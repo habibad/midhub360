@@ -7,6 +7,24 @@
 if (!defined('MIDHUB_ENV_LOADED')) {
     define('MIDHUB_ENV_LOADED', true);
 
+    // 0. Auto-fix session storage path if missing or non-writable
+    if (session_status() === PHP_SESSION_NONE) {
+        $currSavePath = ini_get('session.save_path');
+        if (empty($currSavePath) || !@is_dir($currSavePath) || !@is_writable($currSavePath)) {
+            $candidatePaths = [
+                sys_get_temp_dir(),
+                '/tmp',
+                dirname(__DIR__) . DIRECTORY_SEPARATOR . 'sessions'
+            ];
+            foreach ($candidatePaths as $p) {
+                if (!empty($p) && @is_dir($p) && @is_writable($p)) {
+                    @ini_set('session.save_path', $p);
+                    break;
+                }
+            }
+        }
+    }
+
     // 1. Check for .env file in project root
     $rootDir = dirname(__DIR__);
     $envFile = $rootDir . DIRECTORY_SEPARATOR . '.env';

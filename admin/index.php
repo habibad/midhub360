@@ -3,7 +3,9 @@ include "security.php";
 include "../db.php";
 require_once 'autoload.php';
 include "../mixedfunction.php";
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
 $error_msg = "";
 
