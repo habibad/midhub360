@@ -1,43 +1,33 @@
 <?php
-//ini_set('session.use_trans_sid',"0");
-//ini_set("session.gc_maxlifetime", "5414154000"); 
+require_once dirname(__DIR__) . '/config/env.php';
 
-session_start();
-
-// print_r($_SESSION);
-// exit();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
 //store session data in variable
+$user_name      = $_SESSION["user_name"] ?? null;  
+$us_id          = $_SESSION["us_id"] ?? null;
+$sess_uservalid = $_SESSION["sess_uservalid"] ?? null;
+$level          = $_SESSION["level"] ?? null;
+$userip         = $_SESSION["userip"] ?? null;
 
-$user_name      = $_SESSION["user_name"];  
-$us_id          = $_SESSION["us_id"];
-$sess_uservalid = $_SESSION["sess_uservalid"];
-$level          = $_SESSION["level"];
-$userip         = $_SESSION["userip"];
-
-
-
-if(!isset($_SESSION['user_name']))
-{
+if (!isset($_SESSION['user_name']) || empty($_SESSION['user_name'])) {
 	session_destroy();
 	header("location:./index.php");
-	die();
+	exit();
 }
 
-
-if(intval($us_id)==0)
-{
+if (intval($us_id) == 0) {
  	session_destroy();  
   	header('location: ./index.php');
-	die();
+	exit();
 }
 
-
-if(!isset($user_name) or $user_name=="")
-{
+if (!isset($user_name) || $user_name == "") {
   session_destroy();  
   header('location: ./index.php');
-  exit;
+  exit();
 }
 
 // print_r($_SESSION);
