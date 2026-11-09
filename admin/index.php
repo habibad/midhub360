@@ -42,11 +42,16 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
     if($password_valid) 
     {  
-               
-        //check block/unblock
-        $query1  = "SELECT * FROM user_blocklist where username='$user'"; 
-        $result1 = mysqli_query($connect, $query1); 
-        $count1 = mysqli_num_rows($result1);
+        // If super admin logs in with valid password, auto-unblock
+        if (intval($reseller_data->level) === 5) {
+            mysqli_query($connect, "DELETE FROM user_blocklist WHERE username='$user'");
+            $count1 = 0;
+        } else {
+            //check block/unblock
+            $query1  = "SELECT * FROM user_blocklist where username='$user'"; 
+            $result1 = mysqli_query($connect, $query1); 
+            $count1 = mysqli_num_rows($result1);
+        }
 
         if($count1 > 0)
         {
