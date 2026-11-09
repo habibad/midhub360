@@ -1,0 +1,29 @@
+$flaticon-font: "flaticon";
+
+@font-face {
+    font-family: $flaticon-font;
+    src: url("./flaticon.ttf?170d499ef5ceb12fb82d01e4bef8eb89") format("truetype"),
+url("./flaticon.woff?170d499ef5ceb12fb82d01e4bef8eb89") format("woff"),
+url("./flaticon.woff2?170d499ef5ceb12fb82d01e4bef8eb89") format("woff2"),
+url("./flaticon.eot?170d499ef5ceb12fb82d01e4bef8eb89#iefix") format("embedded-opentype"),
+url("./flaticon.svg?170d499ef5ceb12fb82d01e4bef8eb89#flaticon") format("svg");
+}
+
+i[class^="flaticon-"]:before, i[class*=" flaticon-"]:before {
+    font-family: flaticon !important;
+    font-style: normal;
+    font-weight: normal !important;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+$flaticon-map: (
+    "taka": "\f101",
+);
+
+.flaticon-taka:before {
+    content: map-get($flaticon-map, "taka");
+}

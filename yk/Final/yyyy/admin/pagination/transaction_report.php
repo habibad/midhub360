@@ -1,0 +1,101 @@
+<?php
+include "../login.check.php";
+include "../../pagination/db.php";
+include "../../db.php";
+include "../autoload.php";
+require "../class/Mixedfn.php";
+
+
+//$simbalance = Session::get('us_id');
+
+/*
+ * DataTables example server-side processing script.
+ *
+ * Please note that this script is intentionally extremely simply to show how
+ * server-side processing can be implemented, and probably shouldn't be used as
+ * the basis for a large complex system. It is suitable for simple use cases as
+ * for learning.
+ *
+ * See http://datatables.net/usage/server-side for full details on the server-
+ * side processing requirements of DataTables.
+ *
+ * @license MIT - http://datatables.net/license_mit
+ */
+ 
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * Easy set variables
+ */
+
+
+
+
+ //custom where
+
+ //$custom_where = "level = '3'";
+ 
+// DB table to use
+$table = 'reseller_balance';
+ 
+// Table's primary key
+$primaryKey = 'id';
+ 
+// Array of database columns which should be read and sent back to DataTables.
+// The `db` parameter represents the column name in the database, while the `dt`
+// parameter represents the DataTables column identifier. In this case simple
+// indexes
+$columns = array(
+    array( 'db' => 'id', 'dt' => 0 ),
+    array( 'db' => 'updated', 'dt' => 1 ),    
+    array( 'db' => 'user_id',  'dt' => 2,
+    'formatter' => function( $d, $row ) 
+    { 
+        return Mixedfn::username($d);
+               
+    } 
+    ),
+    array( 'db' => 'load_by',  'dt' => 3,
+    'formatter' => function( $d, $row ) 
+    { 
+        return Mixedfn::username($d);
+               
+    } 
+    ),    
+    array( 'db' => 'amount',   'dt' => 4 ),
+    array( 'db' => 'old_balance', 'dt' => 5),
+    array( 'db' => 'new_balance', 'dt' => 6),  
+    array( 'db' => 'return_payment','dt' => 7,
+    'formatter' => function( $d, $row ) 
+    { 
+        //return ($d == 1)?'Success':'Waiting'; 
+        if($d == 0) return '<span class="badge bg-primary p-2">Added</span>';
+        elseif($d == 1) return '<span class="badge bg-success p-2">Return</span>';       
+        else return 'Unknwon'; 
+    } 
+    ),
+    array( 'db' => 'id','dt' => 8,
+    'formatter' => function( $d, $row ) 
+    { 
+        return '<a href="transaction_report.php?id=' . $d . '"><i class="mdi mdi-delete action-icon action-icon"></i></a>'; 
+        
+    } 
+    ),
+    array( 'db' => 'note', 'dt' => 9)
+   
+   
+);
+ 
+
+ 
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * If you just want to use the basic configuration for DataTables with PHP
+ * server-side, there is no need to edit below this line.
+ */
+ 
+require( '../../pagination/ssp_class.php' );
+ 
+echo json_encode(
+    //SSP::simple( $_GET, $sql_details, $table, $primaryKey, $columns )
+
+    SSP::complex( $_GET, $sql_details, $table, $primaryKey, $columns, null, null )
+);
+

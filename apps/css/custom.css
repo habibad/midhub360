@@ -1,0 +1,193 @@
+.balance{
+    max-width: 100%;   
+    border:solid 2px white;
+    border-radius: 20px;
+    box-sizing: border-box;
+    background-color: white;
+    padding: 10px;   
+   
+}
+.notice-home{
+    max-width: 100%;   
+    border:solid 2px white;
+    border-radius: 10px;
+    box-sizing: border-box;
+    background-color: white;
+    padding: 5px; 
+   
+}
+
+.title-box{
+  border: solid 1px black;
+  border-radius: 15px;
+  padding: 15px;
+  color: #1b1e21;
+  background-color: #d6d8d9;
+  border-color: #c6c8ca;
+
+}
+
+.title-msg{
+    font-weight: bold;
+}
+
+a:link {
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: none;
+  }
+
+  .large-gift-card {
+  font-size: 32px;
+  line-height: 40px;
+  height: auto;
+  font-weight: 500;
+  background: white;
+  text-align: left;
+}
+.title-text{
+  font-size: 18px;
+  padding: 10px;
+}
+input[type=checkbox], input[type=radio] {
+  box-sizing: border-box;
+  padding: 15;
+}
+.home-icon{  
+  max-width: 50px;
+  border-radius: 50%;
+}
+.upload-img-border{  
+  margin: auto;
+  border: solid white;
+  padding: 5px;
+}
+.upload-img{ 
+  border-radius: 50%; 
+}
+.errormsg{
+  border: 5px solid white;
+  background-color: white;
+  border-radius: 10px;
+  color: red;
+  font-weight: bold;
+}
+.transaction-id {
+  color: indigo;
+  font-size: 15px;
+  font-weight: 600;
+}
+.transaction-amount {
+  color: dodgerblue;
+  font-size: 14px;
+  font-weight: 600;  
+}
+.tr-number {
+  font-size: 12px;
+  color: gray;
+}
+
+.history-img {
+  width: 50px;
+  height: 50px;
+}
+
+/* Start for Reseller List*/
+
+.resellers-list-table {
+  width: 100%;
+  margin-bottom: 2.5rem;
+}
+
+.resellers-list-table td {
+  vertical-align: middle;
+}
+
+.resellers-list-table td img {
+  max-width: 50px;
+  height: 50px;
+}
+
+.resellers-list-table table tr {
+  font-size: 12px;
+}
+
+.resellers-list-table .dropdown-toggle::after {
+  display: none;
+}
+
+#nav-resellers-list .add-new-btn {
+  bottom: 0;
+}
+
+/* End for Reseller List*/
+
+td img{
+  width: 50px;
+  height: 50px;
+}
+
+.cslist-dropdown{
+  background-color: #973ec5;  
+}
+
+.cslist-dropdown-item {
+  color: #fff !important;
+  border-bottom: 1px solid #fff;
+  padding: 10px;
+  cursor: pointer;
+  display: block;
+  width: 100%;    
+  clear: both;
+  font-weight: 400;    
+  text-align: inherit;
+  white-space: nowrap;
+  background-color: transparent;   
+
+}
+
+.field-mando{
+  color: red;
+}
+.debit{
+  color: red;
+}
+.credit{
+  color: green;
+}
+
+.nv-dropdown{
+  background-color: #973ec5; 
+  padding: 10px;
+  margin-left: 20px;
+}
+
+.nv-dropdown-item {
+  color: #fff !important;
+  border-bottom: 1px solid #fff;
+  padding: 10px;
+  cursor: pointer;
+  display: block;
+  width: 100%;    
+  clear: both;
+  font-weight: 400;    
+  text-align: inherit;
+  white-space: nowrap;
+  background-color: transparent;   
+
+}
+.for-space{  
+  margin-left: 15px;
+}
+.for-space-drive{  
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.input-number-size{
+  font-size: 20px;
+}
+.big-icon-color {
+  color: #dc3545 !important;
+}

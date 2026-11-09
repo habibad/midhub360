@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit bKash Send Table</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-group input {
+            padding: 8px;
+            width: 100%;
+            max-width: 400px;
+        }
+        .form-group button {
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .form-group button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Check bKash Send Status</h2>
+
+<form id="searchForm">
+    <div class="form-group">
+        <label for="id">Enter ID:</label>
+        <input type="number" id="id" name="id" required>
+        <button type="submit">View Data</button>
+    </div>
+</form>
+
+<form id="editForm" style="display: none;">
+    <div class="form-group">
+        <label for="company_name">Company Name:</label>
+        <input type="text" id="company_name" name="company_name" readonly>
+    </div>
+    <div class="form-group">
+        <label for="ac_number">Account Number:</label>
+        <input type="text" id="ac_number" name="ac_number" readonly>
+    </div>
+    <div class="form-group">
+        <label for="balance">Balance:</label>
+        <input type="number" id="balance" name="balance" readonly>
+    </div>
+    <div class="form-group">
+        <label for="charge">Charge:</label>
+        <input type="number" id="charge" name="charge" readonly>
+    </div>
+    <div class="form-group">
+        <label for="amount">Amount:</label>
+        <input type="number" id="amount" name="amount" readonly>
+    </div>
+    <div class="form-group">
+        <label for="status">Status: 0-pending </label>
+        <input type="text" id="status" name="status" required>
+    </div>
+    <button type="submit">Update</button>
+</form>
+
+<script>
+    document.getElementById('searchForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+        let id = document.getElementById('id').value;
+
+        fetch(`fetch.php?id=${id}`)
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    document.getElementById('editForm').style.display = 'block';
+                    document.getElementById('company_name').value = data.result.company_name;
+                    document.getElementById('ac_number').value = data.result.ac_number;
+                    document.getElementById('balance').value = data.result.balance;
+                    document.getElementById('charge').value = data.result.charge;
+                    document.getElementById('amount').value = data.result.amount;
+                    document.getElementById('status').value = data.result.status;
+                } else {
+                    alert('No data found for this ID');
+                }
+            });
+    });
+
+    document.getElementById('editForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+        let formData = new FormData(document.getElementById('editForm'));
+        formData.append('id', document.getElementById('id').value);
+
+        fetch('update.php', {
+            method: 'POST',
+            body: formData
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('Data updated successfully!');
+                } else {
+                    alert('Failed to update data.');
+                }
+            });
+    });
+</script>
+
+</body>
+</html>
