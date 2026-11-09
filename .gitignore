@@ -1,0 +1,24 @@
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Composer
+/vendor/
+
+# Temporary / Scratch / Logs
+*.log
+scratch/
+.system_generated/
+.gemini/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Archives / Backups
+*.zip
+*.tar.gz
+*.rar
+yk/

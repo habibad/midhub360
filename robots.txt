@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://billsmama.com/sitemap-index.xml
+Sitemap: https://billsmama.com/sitemap-index-1.xml
+Sitemap: https://billsmama.com/sitemap.xml
