@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Midhub360 - মাস্টার প্রজেক্ট প্রপোজাল ও টেকনিক্যাল ডকুমেনটেশন</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0066cc;
+            --primary-dark: #004c99;
+            --secondary: #00b4d8;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --border: #e2e8f0;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --card-bg: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Hind Siliguri', 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: #f1f5f9;
+            color: #334155;
+            line-height: 1.7;
+            font-size: 15px;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            padding: 60px 80px;
+            border: 1px solid var(--border);
+        }
+
+        /* Header Cover */
+        .doc-header {
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 30px;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .brand-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: #ffffff;
+            font-weight: 700;
+            font-size: 14px;
+            padding: 6px 16px;
+            border-radius: 30px;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .doc-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 12px;
+            line-height: 1.3;
+        }
+
+        .doc-subtitle {
+            font-size: 17px;
+            color: #64748b;
+            margin-bottom: 25px;
+        }
+
+        .meta-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            background: var(--light);
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            font-size: 13.5px;
+        }
+
+        .meta-item strong {
+            display: block;
+            color: #64748b;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .meta-item span {
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        /* Action Buttons */
+        .print-btn {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: #ffffff;
+            border: 1px solid var(--border);
+            color: var(--primary);
+            padding: 8px 18px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .print-btn:hover {
+            background: var(--primary);
+            color: #ffffff;
+        }
+
+        /* Typography & Structure */
+        h2 {
+            font-size: 22px;
+            color: var(--dark);
+            margin-top: 45px;
+            margin-bottom: 18px;
+            border-left: 5px solid var(--primary);
+            padding-left: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        h3 {
+            font-size: 18px;
+            color: #1e293b;
+            margin-top: 25px;
+            margin-bottom: 12px;
+        }
+
+        p {
+            margin-bottom: 16px;
+        }
+
+        ul, ol {
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        /* Callout Cards */
+        .callout {
+            background: #eff6ff;
+            border-left: 4px solid var(--primary);
+            padding: 18px 22px;
+            border-radius: 8px;
+            margin: 25px 0;
+            font-size: 14.5px;
+        }
+
+        .callout-success {
+            background: #ecfdf5;
+            border-left-color: var(--success);
+        }
+
+        .callout-warning {
+            background: #fffbeb;
+            border-left-color: var(--warning);
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            font-size: 14px;
+        }
+
+        table th, table td {
+            padding: 12px 16px;
+            text-align: left;
+            border: 1px solid var(--border);
+        }
+
+        table th {
+            background-color: #f8fafc;
+            color: var(--dark);
+            font-weight: 600;
+        }
+
+        table tr:nth-child(even) {
+            background-color: #fbfcfe;
+        }
+
+        /* Badges */
+        .badge {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .badge-success { background: #d1fae5; color: #065f46; }
+        .badge-warning { background: #fef3c7; color: #92400e; }
+        .badge-danger  { background: #fee2e2; color: #991b1b; }
+        .badge-info    { background: #e0f2fe; color: #0369a1; }
+
+        /* Code & Pre */
+        pre {
+            background: #0f172a;
+            color: #f8fafc;
+            padding: 18px 22px;
+            border-radius: 10px;
+            overflow-x: auto;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 13.5px;
+            line-height: 1.5;
+            margin: 20px 0;
+        }
+
+        /* Diagram Boxes */
+        .diagram-container {
+            background: #f8fafc;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 25px;
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        .flow-step {
+            display: inline-block;
+            background: #ffffff;
+            border: 1px solid #cbd5e1;
+            padding: 10px 18px;
+            border-radius: 8px;
+            font-weight: 600;
+            margin: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+        }
+
+        .arrow {
+            display: inline-block;
+            color: var(--primary);
+            font-weight: bold;
+            margin: 0 8px;
+        }
+
+        /* Footer */
+        .doc-footer {
+            margin-top: 60px;
+            padding-top: 25px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+            color: #94a3b8;
+        }
+
+        /* Print Styling */
+        @media print {
+            body {
+                padding: 0;
+                background: #ffffff;
+            }
+            .container {
+                box-shadow: none;
+                border: none;
+                padding: 20px 0;
+                max-width: 100%;
+            }
+            .print-btn {
+                display: none;
+            }
+            h2 {
+                page-break-after: avoid;
+            }
+            table, pre {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="doc-header">
+        <button class="print-btn" onclick="window.print()">
+            <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M2.5 8a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z"/><path d="M5 1a2 2 0 0 0-2 2v2H2a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1v1a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-1h1a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-1V3a2 2 0 0 0-2-2H5zM4 3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2H4V3zm1 5a2 2 0 0 0-2 2v1H2a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v-1a2 2 0 0 0-2-2H5zm7 2v3a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1z"/></svg>
+            Print / Save as PDF
+        </button>
+
+        <span class="brand-badge">Midhub360 • Master Proposal</span>
+        <h1 class="doc-title">মাস্টার প্রজেক্ট প্রপোজাল ও বাস্তবায়ন রোডম্যাপ</h1>
+        <p class="doc-subtitle">Aanonda টেলিকম, এমএফএস ও ডিজিটাল গুডস মাল্টি-সার্ভিস প্ল্যাটফর্ম অটোমেশন</p>
+
+        <div class="meta-grid">
+            <div class="meta-item">
+                <strong>প্রজেক্টের নাম</strong>
+                <span>Midhub360.com</span>
+            </div>
+            <div class="meta-item">
+                <strong>লাইভ সার্ভার আইপি</strong>
+                <span>124.6.224.116 (Ubuntu 24.04)</span>
+            </div>
+            <div class="meta-item">
+                <strong>ডাটাবেজ আর্কিটেকচার</strong>
+                <span>MySQL (৫৬টি একটিভ টেবিল)</span>
+            </div>
+            <div class="meta-item">
+                <strong>বর্তমান স্ট্যাটাস</strong>
+                <span class="badge badge-success">৮৫% কোর কোড প্রস্তুত</span>
+            </div>
+        </div>
+    </div>
+
+    <h2>১. প্রজেক্টের সারসংক্ষেপ ও রূপকল্প (Executive Summary & Vision)</h2>
+    <p>
+        <strong>Midhub360</strong> প্ল্যাটফর্মটিকে একটি সমন্বিত, আধুনিক ও স্বয়ংক্রিয় <strong>টেলিকম রিসেলার, এমএফএস ব্যাংকিং, ইউটিলিটি বিল পরিশোধ এবং ডিজিটাল ভাউচার মার্কেটপ্লেসে</strong> রূপান্তর করাই এই প্রজেক্টের মূল লক্ষ্য।
+    </p>
+    <p>
+        এই প্ল্যাটফর্মটি বাংলাদেশের অভ্যন্তরীণ খুচরা বাজার এবং বিদেশে অবস্থানরত প্রবাসী বাংলাদেশিদের মধ্যে একটি নির্ভরযোগ্য সেতুবন্ধন তৈরি করবে। এর মাধ্যমে মূল ৫টি সেবা পরিচালিত হবে:
+    </p>
+    <ul>
+        <li><strong>স্বয়ংক্রিয় মোবাইল রিচার্জ (Topup):</strong> বাংলাদেশের ৫টি অপারেটরে (GP, Robi, Banglalink, Airtel, Teletalk) প্রিপেইড ও পোস্টপেইড রিচার্জ এবং ৫ স্তরে স্বয়ংক্রিয় আপলাইন কমিশন বণ্টন।</li>
+        <li><strong>মোবাইল ফাইন্যান্সিয়াল সার্ভিস (MFS):</strong> বিকাশ, নগদ, রকেট ও উপায়ের মাধ্যমে স্বয়ংক্রিয় ব্যালেন্স লোড (Add Balance) এবং আউটওয়ার্ড ক্যাশ-আউট / সেন্ড মানি।</li>
+        <li><strong>ইউটিলিটি বিল পরিশোধ:</strong> বিদ্যুৎ (পল্লী বিদ্যুৎ, ডেসকো, ডিপিডিসি, বিপিডিবি, নেসকো, ওজোপাডিকো), পানি (ঢাকা ওয়াসা), গ্যাস, কেবল টিভি এবং ইন্টারনেট বিলের স্বয়ংক্রিয় অনুসন্ধান ও পরিশোধ।</li>
+        <li><strong>ডিজিটাল গুডস ও গেমিং মার্কেটপ্লেস:</strong> ফ্রি ফায়ার ডায়মন্ড, পাবজি ইউসি, গুগল প্লে কার্ড ও ওটিটি সাবস্ক্রিপশন ভাউচারের তাৎক্ষণিক ডেলিভারি (Popular Voucher API-এর মাধ্যমে)।</li>
+        <li><strong>প্রবাসী রেমিট্যান্স ও ক্রস-বর্ডার ইঞ্জিন:</strong> আমেরিকা বা ইউরোপে থাকা প্রবাসীরা আন্তর্জাতিক কার্ডের (Stripe USD) মাধ্যমে ব্যালেন্স লোড করে দেশে থাকা পরিবারের রিচার্জ ও বিল পরিশোধের সুবিধা।</li>
+    </ul>
+
+    <div class="callout callout-success">
+        <strong>বর্তমান সমাপ্তির হার:</strong> প্ল্যাটফর্মের <strong>৮৫% ইন্টারনাল কোর ডেভেলপমেন্ট ইতোমধ্যে সম্পূর্ণ তৈরি ও সফলভাবে পরীক্ষিত</strong>। এর মধ্যে রয়েছে ৫৬টি ডাটাবেজ টেবিল, ৬ স্তরের রিসেলার কাঠামো, ট্রিপল-ওয়ালেট লেজার এবং অ্যাডমিন গভর্ন্যান্স। অবশিষ্ট ১৫% কাজ হলো বহিঃস্থ API-গুলোর (Sandbox ও Live) সংযোগ স্থাপন করা।
+    </div>
+
+    <h2>২. সম্পূর্ণ সিস্টেম আর্কিটেকচার ব্লুপ্রিন্ট (System Architecture)</h2>
+    <div class="diagram-container">
+        <div class="flow-step">সুপার অ্যাডমিন (Level 5)</div>
+        <div class="arrow">↓</div>
+        <div class="flow-step">সাব-অ্যাডমিন / ডিজিএম (Level 4 & 3)</div>
+        <div class="arrow">↓</div>
+        <div class="flow-step">ডিস্ট্রিবিউটর / ডিলার (Level 2 & 1)</div>
+        <div class="arrow">↓</div>
+        <div class="flow-step">রিটেইলার / দোকানদার (Level 0)</div>
+        <div class="arrow">↓</div>
+        <div class="flow-step">সাধারণ গ্রাহক (End User)</div>
+    </div>
+
+    <h3>প্ল্যাটফর্মের ৩টি মূল স্তম্ভ:</h3>
+    <ol>
+        <li>
+            <strong>৬ স্তরের রিসেলার হায়ারার্কি:</strong> সুপার অ্যাডমিন (`newyork24`) থেকে শুরু করে সাব-অ্যাডমিন, ডিজিএম, ডিস্ট্রিবিউটর, ডিলার ও রিটেইলার পর্যন্ত প্রত্যেকের আলাদা কমিশন ও ডাউনলাইন তৈরি করার পূর্ণাঙ্গ পারমিশন সিস্টেম।
+        </li>
+        <li>
+            <strong>ট্রিপল-ওয়ালেট অ্যাকাউন্টিং ইঞ্জিন (৩টি পৃথক ওয়ালেট):</strong>
+            <ul>
+                <li><code>user.balance</code> (মেইন ওয়ালেট): ড্রাইভ প্যাক ক্রয়, রেগুলার ইন্টারনেট ও মিনিট প্যাক, ডাউনলাইন অ্যাকাউন্ট ফি এবং ডিজিটাল ভাউচারের জন্য।</li>
+                <li><code>user.balance2</code> (রিচার্জ ওয়ালেট): শুধুমাত্র ৫টি মোবাইল অপারেটরে স্বয়ংক্রিয় ফ্লেক্সিলোডের জন্য।</li>
+                <li><code>user.bkash_balance</code> (ব্যাংকিং ও বিল ওয়ালেট): বিকাশ, নগদ, রকেটের ক্যাশ-ইন এবং বিদ্যুৎ, গ্যাস ও পানি বিলের জন্য।</li>
+            </ul>
+        </li>
+        <li>
+            <strong>স্বয়ংক্রিয় আপলাইন কমিশন বণ্টন:</strong> রিটেইলার লেভেলে কোনো রিচার্জ সম্পন্ন হওয়ার সাথে সাথে কোডের রিয়েলটাইম লুপের মাধ্যমে মুহূর্তেই সব আপলাইনের অ্যাকাউন্টে তাদের নির্ধারিত কমিশন পার্সেন্টেজ যোগ হয়ে যায়।
+        </li>
+    </ol>
+
+    <h2>৩. কাজের বর্তমান অবস্থা বনাম অবশিষ্ট কাজ (Scope of Work)</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>মডিউল ও সার্ভিস</th>
+                <th>বর্তমান কোডবেসের অবস্থা</th>
+                <th>অবশিষ্ট প্রয়োজনীয় কাজ</th>
+                <th>চূড়ান্ত লক্ষ্য</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>১. ডাটাবেজ ও ফ্রেমওয়ার্ক</strong></td>
+                <td><span class="badge badge-success">১০০% সম্পন্ন</span> ৫৬টি টেবিল অক্ষত ও সিঙ্কড।</td>
+                <td>কোনো কাজ নেই।</td>
+                <td>✅ সম্পূর্ণ কার্যকর</td>
+            </tr>
+            <tr>
+                <td><strong>২. অথেনটিকেশন ও নিরাপত্তা</strong></td>
+                <td><span class="badge badge-success">১০০% সম্পন্ন</span> সেলফ-পিন (<code>******</code>) পরীক্ষিত।</td>
+                <td>কোনো কাজ নেই।</td>
+                <td>✅ সম্পূর্ণ কার্যকর</td>
+            </tr>
+            <tr>
+                <td><strong>৩. মোবাইল রিচার্জ ইঞ্জিন</strong></td>
+                <td><span class="badge badge-warning">৯০% সম্পন্ন</span> Paywell লাইভ টোকেন সচল।</td>
+                <td>রিচার্জ কোডের সাথে কানেক্ট করা ও ডাটাবেজে সুইচ অন।</td>
+                <td>🚀 ৫ সেকেন্ডে অটো রিচার্জ</td>
+            </tr>
+            <tr>
+                <td><strong>৪. অ্যান্ড্রয়েড সিম মডেম</strong></td>
+                <td><span class="badge badge-danger">ব্লকড</span> হার্ডকোড করা এক্সপায়ার ডেট।</td>
+                <td>মেয়াদোত্তীর্ণ ব্লকার অপসারণ ও সিকিউরিটি টোকেন স্থাপন।</td>
+                <td>🚀 অটো-মডেম অ্যাপ সচল</td>
+            </tr>
+            <tr>
+                <td><strong>৫. ব্যালেন্স লোড (Add Balance)</strong></td>
+                <td><span class="badge badge-warning">ম্যানুয়াল সচল</span> অনলাইন টেস্ট মোডে।</td>
+                <td>বিকাশ Tokenized Checkout ও নগদ গেটওয়ে যুক্ত করা।</td>
+                <td>🚀 ২৪/৭ ইনস্ট্যান্ট ব্যালেন্স</td>
+            </tr>
+            <tr>
+                <td><strong>৬. বিকাশ/নগদ টাকা পাঠানো</strong></td>
+                <td><span class="badge badge-info">ম্যানুয়াল কিউ</span> অ্যাডমিন এপ্রুভাল ভিত্তিক।</td>
+                <td>B2C Disbursement API যুক্ত করা (বা সুরক্ষিত কিউ বজায় রাখা)।</td>
+                <td>🚀 স্বয়ংক্রিয় বা সুরক্ষিত কিউ</td>
+            </tr>
+            <tr>
+                <td><strong>৭. ইউটিলিটি বিল পে</strong></td>
+                <td><span class="badge badge-warning">স্যান্ডবক্স ফেচ</span> বিল পরিশোধের আসল API নেই।</td>
+                <td>লাইভ বিল অনুসন্ধান ও রিয়েলটাইম বিল পেমেন্ট API সংযোগ।</td>
+                <td>🚀 ডিজিটাল রসিদসহ বিল পে</td>
+            </tr>
+            <tr>
+                <td><strong>৮. ডিজিটাল ভাউচার শপ</strong></td>
+                <td><span class="badge badge-info">আইডিয়া পর্যায়</span> টেবিল ও কোড তৈরি করতে হবে।</td>
+                <td>Popular Voucher API কানেক্টর, স্কিমা ও শপ পেজ তৈরি।</td>
+                <td>🚀 ইনস্ট্যান্ট গেম টপআপ</td>
+            </tr>
+            <tr>
+                <td><strong>৯. প্রবাসী রেমিট্যান্স (USA)</strong></td>
+                <td><span class="badge badge-warning">কনফিগ বাকি</span> আইপি সেটিংস ও স্ট্রাইপ।</td>
+                <td>ইউএসএ আইপি পারমিশন ও Stripe USD গেটওয়ে ইন্টিগ্রেশন।</td>
+                <td>🚀 গ্লোবাল কার্ড এক্সেপ্টেন্স</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>৪. ধাপে ধাপে বাস্তবায়ন রোডম্যাপ ও সময়সীমা (Phased Roadmap)</h2>
+    <table>
+        <thead>
+            <tr>
+                <th style="width: 12%;">ফেজ</th>
+                <th style="width: 33%;">সার্ভিস ও কাজের নাম</th>
+                <th>কাজের পরিধি</th>
+                <th style="width: 15%;">সময়সীমা</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>ফেজ ১</strong></td>
+                <td><strong>মোবাইল রিচার্জ অটোমেশন ও মডেম আনব্লক</strong></td>
+                <td>Paywell API রিচার্জ রাউটিং, ডাটাবেজ সুইচ অন, স্ট্যাটাস ট্র্যাকিং ও apimobile এক্সপায়ার কোড ফিক্স।</td>
+                <td><strong>দিন ১ – ৫</strong></td>
+            </tr>
+            <tr>
+                <td><strong>ফেজ ২</strong></td>
+                <td><strong>স্বয়ংক্রিয় অ্যাড ব্যালেন্স গেটওয়ে</strong></td>
+                <td>বিকাশ Tokenized Checkout, নগদ ও উপায় পেমেন্ট গেটওয়ে ইন্টিগ্রেশন এবং তাৎক্ষণিক ওয়ালেট ক্রেডিট।</td>
+                <td><strong>দিন ৬ – ১২</strong></td>
+            </tr>
+            <tr>
+                <td><strong>ফেজ ৩</strong></td>
+                <td><strong>ইউটিলিটি বিল পে লাইভ ইন্টিগ্রেশন</strong></td>
+                <td>বিদ্যুৎ, পানি ও গ্যাস বিল অনুসন্ধান ও পেমেন্ট এপিআই সংযোগ, ডিজিটাল রসিদ জেনারেশন ও কেবল/ইন্টারনেট পেজ তৈরি।</td>
+                <td><strong>দিন ১৩ – ১৮</strong></td>
+            </tr>
+            <tr>
+                <td><strong>ফেজ ৪</strong></td>
+                <td><strong>ডিজিটাল ভাউচার ও গেমিং স্টোরফ্রন্ট</strong></td>
+                <td>Popular Voucher API কানেক্টর, ডাটাবেজ স্কিমা এবং ফ্রি ফায়ার/পাবজি তাৎক্ষণিক প্লেয়ার আইডি টপআপ পেজ।</td>
+                <td><strong>দিন ১৯ – ২৫</strong></td>
+            </tr>
+            <tr>
+                <td><strong>ফেজ ৫</strong></td>
+                <td><strong>প্রবাসী রেমিট্যান্স ইঞ্জিন (Stripe USD)</strong></td>
+                <td>আমেরিকা/প্রবাসী গ্রাহকদের জন্য Stripe Checkout (USD), কান্ট্রি পারমিশন ও ডলার-টাকা কারেন্সি কনভার্সন।</td>
+                <td><strong>দিন ২৬ – ৩০</strong></td>
+            </tr>
+            <tr>
+                <td><strong>ফেজ ৬</strong></td>
+                <td><strong>চূড়ান্ত টেস্টিং, সিকিউরিটি অডিট ও লাইভ লঞ্চ</strong></td>
+                <td>ডোমেইন ডিএনএস কানেকশন, কনকারেন্সি লোড টেস্ট, এসএসএল সার্টিফিকেট ও ফাইনাল লাইভ হ্যান্ডওভার।</td>
+                <td><strong>দিন ৩১ – ৩৪</strong></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>৫. ক্লায়েন্টের কাছ থেকে প্রয়োজনীয় তথ্যের পূর্ণাঙ্গ চেকলিস্ট</h2>
+    <div class="callout callout-warning">
+        <strong>গুরুত্বপূর্ণ নির্দেশিকা:</strong> ফিনটেক ও টেলিকম নিয়মানুযায়ী, নিরাপত্তার স্বার্থে আমরা প্রথমে <strong>Sandbox (টেস্ট মোড)</strong>-এ ভার্চুয়াল কারেন্সি দিয়ে প্রতিটি লেনদেন নিখুঁতভাবে পরীক্ষা করব এবং এরপর <strong>Live প্রোডাকশন ক্রেডেনশিয়াল</strong> বসিয়ে ফাইনাল লাইভ করব।
+    </div>
+    <pre>
+ক্লায়েন্ট রিকোয়ারমেন্ট চেকলিস্ট
+├── ১. মোবাইল রিচার্জ প্রোভাইডার
+│   ├── [ ] Paywell Live API Username & Password
+│   ├── [ ] Paywell API Key & Encryption Key
+│   └── [ ] Paywell মার্চেন্ট একাউন্টে রিচার্জ ব্যালেন্স নিশ্চিতকরণ
+│
+├── ২. এমএফএস ও পেমেন্ট গেটওয়ে (অ্যাড ব্যালেন্স)
+│   ├── [ ] bKash Tokenized Checkout (Sandbox ও Live App Key, App Secret, Username, Password)
+│   ├── [ ] Nagad Gateway (Sandbox ও Live Merchant ID, Public Key, Private Key)
+│   └── [ ] (অথবা) UddoktaPay / Shurjopay API Key ও Base URL
+│
+├── ৩. ইউটিলিটি বিল পে এগ্রিগেটর
+│   ├── [ ] প্রোভাইডারের নাম (shl.com.bd / Paywell BillPay / Ekpay)
+│   ├── [ ] Sandbox ও Live API Credentials (Token / Key / Password)
+│   └── [ ] অফিসিয়াল API Documentation (Bill Fetch ও Payment specs)
+│
+├── ৪. ডিজিটাল ভাউচার ও গেমিং টপআপ
+│   ├── [ ] Popular Voucher (বা সমমান এগ্রিগেটর) API Base URL
+│   ├── [ ] API Secret Key / Merchant ID
+│   └── [ ] API Documentation (Player ID Topup ও Voucher PIN মেথড)
+│
+├── ৫. আন্তর্জাতিক পেমেন্ট (প্রবাসী গ্রাহকদের জন্য)
+│   ├── [ ] Stripe Publishable Key ও Secret Key (Sandbox ও Live)
+│   └── [ ] পছন্দের ডলার রেট (যেমন: ১ ডলার = ___ টাকা)
+│
+└── ৬. ডোমেইন ও ডিএনএস অথরাইজেশন
+    ├── [ ] DNS A-Record Pointing: midhub360.com -> 124.6.224.116
+    └── [ ] DNS A-Record Pointing: www.midhub360.com -> 124.6.224.116
+    </pre>
+
+    <h2>৬. সম্ভাব্য ঝুঁকি, সমস্যা ও তার টেকনিক্যাল সমাধান (Risk Mitigation)</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>সম্ভাব্য ঝুঁকি ও সমস্যা</th>
+                <th>মূল কারণ</th>
+                <th>টেকনিক্যাল সমাধান</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>১. ডুপ্লিকেট ট্রানজ্যাকশন</strong></td>
+                <td>ইউজার পর পর দুইবার সাবমিট বাটনে চাপ দিলে।</td>
+                <td><strong>Idempotency Keys:</strong> প্রতিটি রিকোয়েস্টে ইউনিক <code>invoice_number</code> তৈরি হয় এবং ডাটাবেজ লেভেলে ডুপ্লিকেট অটো ব্লক করা হয়।</td>
+            </tr>
+            <tr>
+                <td><strong>২. এপিআই সার্ভার টাইমআউট</strong></td>
+                <td>পিক আওয়ারে টেলিকম এপিআই রেসপন্স দিতে দেরি করলে।</td>
+                <td><strong>Asynchronous Queue:</strong> ব্যাকগ্রাউন্ড ক্রন জব দিয়ে স্ট্যাটাস ভেরিফাই করা হবে। নিশ্চিত কনফার্মেশন ছাড়া কোনো টাকা কাটা হবে না।</td>
+            </tr>
+            <tr>
+                <td><strong>৩. ট্রানজ্যাকশন ফেইল্ড রিফান্ড</strong></td>
+                <td>ব্যালেন্স কাটার পর অপারেটর এন্ড থেকে ফেইল হলে।</td>
+                <td><strong>Automated Wallet Rollback:</strong> এপিআই থেকে এরর কোড আসা মাত্রই ১০ সেকেন্ডের মধ্যে গ্রাহকের ওয়ালেটে ১০০% টাকা স্বয়ংক্রিয় রিফান্ড হবে।</td>
+            </tr>
+            <tr>
+                <td><strong>৪. চোরাই কার্ড দিয়ে বিকাশ ফ্রড</strong></td>
+                <td>বিদেশ থেকে হ্যাক করা কার্ড দিয়ে ডলার পে করলে।</td>
+                <td><strong>Stripe Radar 3D-Secure:</strong> কার্ডের ওটিপি ছাড়া পেমেন্ট হবে না। নতুন প্রবাসীদের জন্য প্রথম ৩ দিন দৈনিক সর্বোচ্চ $৩০ ডলারের লিমিট থাকবে।</td>
+            </tr>
+            <tr>
+                <td><strong>৫. ডলারের দামের ওঠানামা</strong></td>
+                <td>আন্তর্জাতিক বাজারে ডলারের রেট পরিবর্তন হলে।</td>
+                <td><strong>Dynamic Admin Rate Margin:</strong> অ্যাডমিন ডলারের রেটের উপর একটি সেফটি মার্জিন (২-৩ টাকা বাফার) বজায় রাখবেন।</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>৭. আয়ের মডেল ও আর্থিক প্রজেকশন (Revenue Model)</h2>
+    <div class="callout callout-success">
+        <strong>মাসিক রক্ষণশীল গ্রস প্রফিট প্রজেকশন:</strong>
+        <ul style="margin-top: 10px; margin-bottom: 0;">
+            <li>মোবাইল রিচার্জ: ২০,০০,০০০ টাকা ভলিউম @ ৩.০% নেট কমিশন = <strong>৳৬০,০০০ টাকা</strong></li>
+            <li>ডিজিটাল ভাউচার শপ: ৫,০০,০০০ টাকা গেম টপআপ @ ১০.০% প্রফিট = <strong>৳৫০,০০০ টাকা</strong></li>
+            <li>ইউটিলিটি বিল পে: ১,৫০০টি বিল পরিশোধ @ ১০ টাকা সার্ভিস ফি = <strong>৳১৫,০০০ টাকা</strong></li>
+            <li>ড্রাইভ প্যাক বিক্রয়: ৮০০টি ড্রাইভ প্যাক @ ৫০ টাকা গড় লাভ = <strong>৳৪০,০০০ টাকা</strong></li>
+            <li>প্রবাসী ডলার এক্সচেঞ্জ মার্জিন: $৫,০০০ ডলার ভলিউম @ ৩% স্প্রেড = <strong>৳১৮,০০০ টাকা</strong></li>
+            <li style="margin-top: 8px; font-weight: bold; color: var(--primary);">মোট সম্ভাব্য মাসিক গ্রস প্রফিট: ৳১,৮৩,০০০ টাকা / মাস</li>
+        </ul>
+    </div>
+
+    <h2>৮. বিক্রয়োত্তর সেবা চুক্তি ও রক্ষণাবেক্ষণ (SLA & Warranty)</h2>
+    <ul>
+        <li><strong>রিয়েলটাইম ব্যালেন্স অ্যালার্ট:</strong> Paywell বা বিকাশ মার্চেন্ট ওয়ালেটের ব্যালেন্স ২০,০০০ টাকার নিচে নেমে গেলে অ্যাডমিনের ফোনে স্বয়ংক্রিয় লো-ব্যালেন্স অ্যালার্ট যাবে।</li>
+        <li><strong>সার্বক্ষণিক লেনদেন লগিং (<code>api_log</code>):</strong> প্রতিটি আউটগোয়িং এপিআই রিকোয়েস্ট এবং ইনকামিং ওয়েবহুকের পূর্ণাঙ্গ লগ সংরক্ষিত থাকবে।</li>
+        <li><strong>স্বয়ংক্রিয় ডাটাবেজ ব্যাকআপ:</strong> প্রতিদিন রাতে স্বয়ংক্রিয়ভাবে ডাটাবেজের ফুল ব্যাকআপ ক্লাউড ড্রাইভে সেভ হবে।</li>
+        <li><strong>৩০ দিনের ফ্রি টেকনিক্যাল ওয়ারেন্টি:</strong> লাইভ লঞ্চের পর ৩০ দিন পর্যন্ত যেকোনো এপিআই আপডেট, বাগ ফিক্স বা অপ্রত্যাশিত ত্রুটি সম্পূর্ণ বিনামূল্যে সমাধান করা হবে।</li>
+    </ul>
+
+    <h2>৯. তাৎক্ষণিক কাজ শুরুর পরবর্তী পদক্ষেপ (Next Steps)</h2>
+    <ol>
+        <li><strong>ক্লায়েন্ট সম্মতি:</strong> ক্লায়েন্ট এই পূর্ণাঙ্গ প্রপোজালটি পর্যালোচনা করে অনুমোদন করবেন।</li>
+        <li><strong>ক্রেডেনশিয়াল হস্তান্তর:</strong> ক্লায়েন্ট <strong>ধাপ ১ ও ধাপ ২-এর স্যান্ডবক্স ক্রেডেনশিয়াল</strong> (Paywell, bKash/Nagad/UddoktaPay, এবং Popular Voucher) প্রদান করবেন।</li>
+        <li><strong>কাজের সূচনা:</strong> তথ্য পাওয়ার সাথে সাথেই আমাদের টিম ধাপ ১-এর মোবাইল রিচার্জ অটোমেশন দিয়ে মূল ডেভেলপমেন্ট শুরু করবে।</li>
+    </ol>
+
+    <div class="doc-footer">
+        <div>Midhub360.com • Confidential Technical Documentation</div>
+        <div>Generated: November 2026</div>
+    </div>
+</div>
+
+</body>
+</html>
