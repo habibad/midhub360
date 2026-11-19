@@ -3,16 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Midhub360 - মাস্টার প্রজেক্ট প্রপোজাল ও টেকনিক্যাল ডকুমেনটেশন</title>
+    <title>Rongdhonu and Doptortech Joint Venture • Master Proposal &amp; Security Architecture</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #0066cc;
-            --primary-dark: #004c99;
-            --secondary: #00b4d8;
-            --dark: #1e293b;
+            --primary: #0284c7;
+            --primary-dark: #0369a1;
+            --secondary: #0d9488;
+            --accent: #6366f1;
+            --dark: #0f172a;
             --light: #f8fafc;
             --border: #e2e8f0;
             --success: #10b981;
@@ -37,12 +38,12 @@
         }
 
         .container {
-            max-width: 1000px;
+            max-width: 1050px;
             margin: 0 auto;
             background: #ffffff;
             border-radius: 16px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
-            padding: 60px 80px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            padding: 55px 75px;
             border: 1px solid var(--border);
         }
 
@@ -59,10 +60,10 @@
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: #ffffff;
             font-weight: 700;
-            font-size: 14px;
-            padding: 6px 16px;
+            font-size: 13.5px;
+            padding: 6px 18px;
             border-radius: 30px;
-            letter-spacing: 1px;
+            letter-spacing: 0.8px;
             margin-bottom: 15px;
             text-transform: uppercase;
         }
@@ -71,22 +72,23 @@
             font-size: 32px;
             font-weight: 700;
             color: var(--dark);
-            margin-bottom: 12px;
-            line-height: 1.3;
+            margin-bottom: 10px;
+            line-height: 1.35;
         }
 
         .doc-subtitle {
             font-size: 17px;
             color: #64748b;
             margin-bottom: 25px;
+            font-weight: 500;
         }
 
         .meta-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
             gap: 15px;
             background: var(--light);
-            padding: 20px;
+            padding: 22px;
             border-radius: 12px;
             border: 1px solid var(--border);
             font-size: 13.5px;
@@ -95,9 +97,10 @@
         .meta-item strong {
             display: block;
             color: #64748b;
-            font-size: 12px;
+            font-size: 11.5px;
             text-transform: uppercase;
             letter-spacing: 0.5px;
+            margin-bottom: 3px;
         }
 
         .meta-item span {
@@ -111,55 +114,66 @@
             top: 0;
             right: 0;
             background: #ffffff;
-            border: 1px solid var(--border);
+            border: 1px solid #cbd5e1;
             color: var(--primary);
-            padding: 8px 18px;
+            padding: 9px 18px;
             border-radius: 8px;
             font-weight: 600;
-            font-size: 14px;
+            font-size: 13.5px;
             cursor: pointer;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.04);
             transition: all 0.2s;
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 7px;
         }
 
         .print-btn:hover {
             background: var(--primary);
             color: #ffffff;
+            border-color: var(--primary);
         }
 
         /* Typography & Structure */
         h2 {
-            font-size: 22px;
+            font-size: 23px;
             color: var(--dark);
-            margin-top: 45px;
-            margin-bottom: 18px;
+            margin-top: 50px;
+            margin-bottom: 20px;
             border-left: 5px solid var(--primary);
-            padding-left: 15px;
+            padding-left: 16px;
             display: flex;
             align-items: center;
         }
 
         h3 {
-            font-size: 18px;
+            font-size: 18.5px;
             color: #1e293b;
-            margin-top: 25px;
-            margin-bottom: 12px;
+            margin-top: 30px;
+            margin-bottom: 14px;
+            font-weight: 600;
+        }
+
+        h4 {
+            font-size: 16px;
+            color: #334155;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-weight: 600;
         }
 
         p {
             margin-bottom: 16px;
+            text-align: justify;
         }
 
         ul, ol {
-            margin-left: 20px;
-            margin-bottom: 20px;
+            margin-left: 22px;
+            margin-bottom: 22px;
         }
 
         li {
-            margin-bottom: 8px;
+            margin-bottom: 9px;
         }
 
         /* Callout Cards */
@@ -182,6 +196,11 @@
             border-left-color: var(--warning);
         }
 
+        .callout-danger {
+            background: #fef2f2;
+            border-left-color: var(--danger);
+        }
+
         /* Tables */
         table {
             width: 100%;
@@ -191,9 +210,10 @@
         }
 
         table th, table td {
-            padding: 12px 16px;
+            padding: 13px 16px;
             text-align: left;
             border: 1px solid var(--border);
+            vertical-align: top;
         }
 
         table th {
@@ -213,52 +233,65 @@
             border-radius: 12px;
             font-size: 12px;
             font-weight: 600;
+            white-space: nowrap;
         }
 
         .badge-success { background: #d1fae5; color: #065f46; }
         .badge-warning { background: #fef3c7; color: #92400e; }
         .badge-danger  { background: #fee2e2; color: #991b1b; }
         .badge-info    { background: #e0f2fe; color: #0369a1; }
+        .badge-purple  { background: #ede9fe; color: #5b21b6; }
 
-        /* Code & Pre */
-        pre {
+        /* Security Cards Grid */
+        .security-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 18px;
+            margin: 25px 0;
+        }
+
+        .security-card {
+            background: #ffffff;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+            border-top: 4px solid var(--primary);
+        }
+
+        .security-card.border-accent { border-top-color: var(--accent); }
+        .security-card.border-teal { border-top-color: var(--secondary); }
+        .security-card.border-warning { border-top-color: var(--warning); }
+        .security-card.border-success { border-top-color: var(--success); }
+
+        .security-card h4 {
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-size: 16px;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .security-card p {
+            font-size: 13.5px;
+            color: #475569;
+            margin-bottom: 0;
+            text-align: left;
+        }
+
+        /* Flow Diagrams */
+        .flow-diagram {
             background: #0f172a;
             color: #f8fafc;
-            padding: 18px 22px;
-            border-radius: 10px;
+            padding: 22px 26px;
+            border-radius: 12px;
             overflow-x: auto;
             font-family: 'Courier New', Courier, monospace;
             font-size: 13.5px;
             line-height: 1.5;
-            margin: 20px 0;
-        }
-
-        /* Diagram Boxes */
-        .diagram-container {
-            background: #f8fafc;
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 25px;
             margin: 25px 0;
-            text-align: center;
-        }
-
-        .flow-step {
-            display: inline-block;
-            background: #ffffff;
-            border: 1px solid #cbd5e1;
-            padding: 10px 18px;
-            border-radius: 8px;
-            font-weight: 600;
-            margin: 5px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
-        }
-
-        .arrow {
-            display: inline-block;
-            color: var(--primary);
-            font-weight: bold;
-            margin: 0 8px;
         }
 
         /* Footer */
@@ -282,7 +315,7 @@
             .container {
                 box-shadow: none;
                 border: none;
-                padding: 20px 0;
+                padding: 10px 0;
                 max-width: 100%;
             }
             .print-btn {
@@ -291,7 +324,7 @@
             h2 {
                 page-break-after: avoid;
             }
-            table, pre {
+            table, .security-card, .flow-diagram {
                 page-break-inside: avoid;
             }
         }
@@ -306,302 +339,392 @@
             Print / Save as PDF
         </button>
 
-        <span class="brand-badge">Midhub360 • Master Proposal</span>
-        <h1 class="doc-title">মাস্টার প্রজেক্ট প্রপোজাল ও বাস্তবায়ন রোডম্যাপ</h1>
-        <p class="doc-subtitle">Aanonda টেলিকম, এমএফএস ও ডিজিটাল গুডস মাল্টি-সার্ভিস প্ল্যাটফর্ম অটোমেশন</p>
+        <span class="brand-badge">Rongdhonu &amp; Doptortech • Joint Venture</span>
+        <h1 class="doc-title">মাস্টার প্রজেক্ট প্রপোজাল, টেকনিক্যাল আর্কিটেকচার ও পূর্ণাঙ্গ সিকিউরিটি ব্লুপ্রিন্ট</h1>
+        <p class="doc-subtitle">মাল্টি-সার্ভিস টেলিকম, ফিনটেক ও ডিজিটাল গুডস ইকোসিস্টেম অটোমেশন</p>
 
         <div class="meta-grid">
             <div class="meta-item">
-                <strong>প্রজেক্টের নাম</strong>
+                <strong>উদ্যোগ (Joint Venture)</strong>
+                <span>Rongdhonu and Doptortech Joint Venture</span>
+            </div>
+            <div class="meta-item">
+                <strong>প্ল্যাটফর্ম</strong>
                 <span>Midhub360.com</span>
             </div>
             <div class="meta-item">
-                <strong>লাইভ সার্ভার আইপি</strong>
-                <span>124.6.224.116 (Ubuntu 24.04)</span>
+                <strong>সার্ভার পরিবেশ</strong>
+                <span>Ubuntu 24.04 / Nginx / PHP / MySQL</span>
             </div>
             <div class="meta-item">
-                <strong>ডাটাবেজ আর্কিটেকচার</strong>
-                <span>MySQL (৫৬টি একটিভ টেবিল)</span>
-            </div>
-            <div class="meta-item">
-                <strong>বর্তমান স্ট্যাটাস</strong>
-                <span class="badge badge-success">৮৫% কোর কোড প্রস্তুত</span>
+                <strong>নিরাপত্তা মানদণ্ড</strong>
+                <span class="badge badge-success">HMAC-SHA256 &amp; ACID Locks</span>
             </div>
         </div>
     </div>
 
-    <h2>১. প্রজেক্টের সারসংক্ষেপ ও রূপকল্প (Executive Summary & Vision)</h2>
+    <h2>১. প্রজেক্টের সারসংক্ষেপ ও রূপকল্প (Executive Summary &amp; Vision)</h2>
     <p>
-        <strong>Midhub360</strong> প্ল্যাটফর্মটিকে একটি সমন্বিত, আধুনিক ও স্বয়ংক্রিয় <strong>টেলিকম রিসেলার, এমএফএস ব্যাংকিং, ইউটিলিটি বিল পরিশোধ এবং ডিজিটাল ভাউচার মার্কেটপ্লেসে</strong> রূপান্তর করাই এই প্রজেক্টের মূল লক্ষ্য।
+        <strong>Rongdhonu and Doptortech Joint Venture</strong>-এর যৌথ উদ্যোগে এই প্ল্যাটফর্মটিকে একটি সমন্বিত, প্রাতিষ্ঠানিক ও সর্বোচ্চ নিরাপত্তা-সম্পন্ন <strong>টেলিকম রিসেলার, এমএফএস ব্যাংকিং, ইউটিলিটি বিল পরিশোধ এবং ডিজিটাল ভাউচার মার্কেটপ্লেসে</strong> রূপান্তর করাই এই প্রজেক্টের মূল লক্ষ্য।
     </p>
     <p>
-        এই প্ল্যাটফর্মটি বাংলাদেশের অভ্যন্তরীণ খুচরা বাজার এবং বিদেশে অবস্থানরত প্রবাসী বাংলাদেশিদের মধ্যে একটি নির্ভরযোগ্য সেতুবন্ধন তৈরি করবে। এর মাধ্যমে মূল ৫টি সেবা পরিচালিত হবে:
+        এই প্ল্যাটফর্মটি বাংলাদেশের অভ্যন্তরীণ খুচরা বাজার এবং বিদেশে অবস্থানরত প্রবাসী গ্রাহকদের মধ্যে একটি নিরাপদ ও স্বয়ংক্রিয় আর্থিক সেতুবন্ধন তৈরি করবে। এর মাধ্যমে মূল ৫টি সেবা পরিচালিত হবে:
     </p>
-    <ul>
-        <li><strong>স্বয়ংক্রিয় মোবাইল রিচার্জ (Topup):</strong> বাংলাদেশের ৫টি অপারেটরে (GP, Robi, Banglalink, Airtel, Teletalk) প্রিপেইড ও পোস্টপেইড রিচার্জ এবং ৫ স্তরে স্বয়ংক্রিয় আপলাইন কমিশন বণ্টন।</li>
-        <li><strong>মোবাইল ফাইন্যান্সিয়াল সার্ভিস (MFS):</strong> বিকাশ, নগদ, রকেট ও উপায়ের মাধ্যমে স্বয়ংক্রিয় ব্যালেন্স লোড (Add Balance) এবং আউটওয়ার্ড ক্যাশ-আউট / সেন্ড মানি।</li>
-        <li><strong>ইউটিলিটি বিল পরিশোধ:</strong> বিদ্যুৎ (পল্লী বিদ্যুৎ, ডেসকো, ডিপিডিসি, বিপিডিবি, নেসকো, ওজোপাডিকো), পানি (ঢাকা ওয়াসা), গ্যাস, কেবল টিভি এবং ইন্টারনেট বিলের স্বয়ংক্রিয় অনুসন্ধান ও পরিশোধ।</li>
-        <li><strong>ডিজিটাল গুডস ও গেমিং মার্কেটপ্লেস:</strong> ফ্রি ফায়ার ডায়মন্ড, পাবজি ইউসি, গুগল প্লে কার্ড ও ওটিটি সাবস্ক্রিপশন ভাউচারের তাৎক্ষণিক ডেলিভারি (Popular Voucher API-এর মাধ্যমে)।</li>
-        <li><strong>প্রবাসী রেমিট্যান্স ও ক্রস-বর্ডার ইঞ্জিন:</strong> আমেরিকা বা ইউরোপে থাকা প্রবাসীরা আন্তর্জাতিক কার্ডের (Stripe USD) মাধ্যমে ব্যালেন্স লোড করে দেশে থাকা পরিবারের রিচার্জ ও বিল পরিশোধের সুবিধা।</li>
-    </ul>
-
-    <div class="callout callout-success">
-        <strong>বর্তমান সমাপ্তির হার:</strong> প্ল্যাটফর্মের <strong>৮৫% ইন্টারনাল কোর ডেভেলপমেন্ট ইতোমধ্যে সম্পূর্ণ তৈরি ও সফলভাবে পরীক্ষিত</strong>। এর মধ্যে রয়েছে ৫৬টি ডাটাবেজ টেবিল, ৬ স্তরের রিসেলার কাঠামো, ট্রিপল-ওয়ালেট লেজার এবং অ্যাডমিন গভর্ন্যান্স। অবশিষ্ট ১৫% কাজ হলো বহিঃস্থ API-গুলোর (Sandbox ও Live) সংযোগ স্থাপন করা।
-    </div>
-
-    <h2>২. সম্পূর্ণ সিস্টেম আর্কিটেকচার ব্লুপ্রিন্ট (System Architecture)</h2>
-    <div class="diagram-container">
-        <div class="flow-step">সুপার অ্যাডমিন (Level 5)</div>
-        <div class="arrow">↓</div>
-        <div class="flow-step">সাব-অ্যাডমিন / ডিজিএম (Level 4 & 3)</div>
-        <div class="arrow">↓</div>
-        <div class="flow-step">ডিস্ট্রিবিউটর / ডিলার (Level 2 & 1)</div>
-        <div class="arrow">↓</div>
-        <div class="flow-step">রিটেইলার / দোকানদার (Level 0)</div>
-        <div class="arrow">↓</div>
-        <div class="flow-step">সাধারণ গ্রাহক (End User)</div>
-    </div>
-
-    <h3>প্ল্যাটফর্মের ৩টি মূল স্তম্ভ:</h3>
     <ol>
-        <li>
-            <strong>৬ স্তরের রিসেলার হায়ারার্কি:</strong> সুপার অ্যাডমিন (`newyork24`) থেকে শুরু করে সাব-অ্যাডমিন, ডিজিএম, ডিস্ট্রিবিউটর, ডিলার ও রিটেইলার পর্যন্ত প্রত্যেকের আলাদা কমিশন ও ডাউনলাইন তৈরি করার পূর্ণাঙ্গ পারমিশন সিস্টেম।
-        </li>
-        <li>
-            <strong>ট্রিপল-ওয়ালেট অ্যাকাউন্টিং ইঞ্জিন (৩টি পৃথক ওয়ালেট):</strong>
-            <ul>
-                <li><code>user.balance</code> (মেইন ওয়ালেট): ড্রাইভ প্যাক ক্রয়, রেগুলার ইন্টারনেট ও মিনিট প্যাক, ডাউনলাইন অ্যাকাউন্ট ফি এবং ডিজিটাল ভাউচারের জন্য।</li>
-                <li><code>user.balance2</code> (রিচার্জ ওয়ালেট): শুধুমাত্র ৫টি মোবাইল অপারেটরে স্বয়ংক্রিয় ফ্লেক্সিলোডের জন্য।</li>
-                <li><code>user.bkash_balance</code> (ব্যাংকিং ও বিল ওয়ালেট): বিকাশ, নগদ, রকেটের ক্যাশ-ইন এবং বিদ্যুৎ, গ্যাস ও পানি বিলের জন্য।</li>
-            </ul>
-        </li>
-        <li>
-            <strong>স্বয়ংক্রিয় আপলাইন কমিশন বণ্টন:</strong> রিটেইলার লেভেলে কোনো রিচার্জ সম্পন্ন হওয়ার সাথে সাথে কোডের রিয়েলটাইম লুপের মাধ্যমে মুহূর্তেই সব আপলাইনের অ্যাকাউন্টে তাদের নির্ধারিত কমিশন পার্সেন্টেজ যোগ হয়ে যায়।
-        </li>
+        <li><strong>স্বয়ংক্রিয় মোবাইল রিচার্জ (Topup):</strong> বাংলাদেশের ৫টি অপারেটরে (GP, Robi, Banglalink, Airtel, Teletalk) প্রিপেইড ও পোস্টপেইড রিচার্জ এবং ৫ স্তরে স্বয়ংক্রিয় আপলাইন কমিশন বণ্টন।</li>
+        <li><strong>মোবাইল ফাইন্যান্সিয়াল সার্ভিস (MFS):</strong> বিকাশ, নগদ, রকেট ও উপায়ের মাধ্যমে স্বয়ংক্রিয় ব্যালেন্স লোড (Add Balance) এবং সুরক্ষিত ক্যাশ-ইন / সেন্ড মানি।</li>
+        <li><strong>ইউটিলিটি বিল পরিশোধ:</strong> বিদ্যুৎ (পল্লী বিদ্যুৎ, ডেসকো, ডিপিডিসি, বিপিডিবি, নেসকো, ওজোপাডিকো), পানি (ঢাকা ওয়াসা), গ্যাস, কেবল টিভি এবং ইন্টারনেট বিলের স্বয়ংক্রিয় অনুসন্ধান ও পরিশোধ।</li>
+        <li><strong>ডিজিটাল গুডস ও গেমিং মার্কেটপ্লেস:</strong> ফ্রি ফায়ার ডায়মন্ড, পাবজি ইউসি, গুগল প্লে কার্ড ও ওটিটি সাবস্ক্রিপশন ভাউচারের তাৎক্ষণিক ডেলিভারি (Popular Voucher API-এর মাধ্যমে)।</li>
+        <li><strong>আন্তর্জাতিক পেমেন্ট গেটওয়ে (প্রবাসী ফ্রেন্ডলি):</strong> আমেরিকা বা ইউরোপে থাকা প্রবাসীরা আন্তর্জাতিক কার্ডের (Stripe USD) মাধ্যমে ব্যালেন্স লোড করে দেশে থাকা পরিবারের রিচার্জ ও বিল পরিশোধের সুবিধা।</li>
     </ol>
 
-    <h2>৩. কাজের বর্তমান অবস্থা বনাম অবশিষ্ট কাজ (Scope of Work)</h2>
+    <h2>২. সর্বোচ্চ প্রাতিষ্ঠানিক নিরাপত্তা ও পেমেন্ট সেটআপ আর্কিটেকচার (Comprehensive Security &amp; Payment Integrity)</h2>
+    <p>
+        যেহেতু এটি একটি ফিনটেক ও আর্থিক লেনদেন প্ল্যাটফর্ম, তাই <strong>সিকিউরিটি ও আর্থিক স্বচ্ছতা</strong> এই প্রজেক্টের সর্বোচ্চ অগ্রাধিকার। সিস্টেমে লেনদেনের প্রতিটি ধাপে কোনো ধরনের ফ্রড, ডুপ্লিকেট পেমেন্ট, হ্যাকিং বা টাকার অমিল যাতে না ঘটে, সেজন্য নিচের কঠোর নিরাপত্তা মেকানিজম বাস্তবায়ন করা হয়েছে:
+    </p>
+
+    <div class="flow-diagram">
+┌────────────────────────────────────────────────────────┐
+│              ইনকামিং ট্রানজ্যাকশন রিকোয়েস্ট           │
+└──────────────────────────┬─────────────────────────────┘
+                           │
+                           ▼
+┌────────────────────────────────────────────────────────┐
+│   লেভেল ১: আইডেমপোটেন্সি ও রেট লিমিটিং                  │
+│   (ডুপ্লিকেট ট্রানজ্যাকশন ও নেটওয়ার্ক রিট্রাই রোধ)      │
+└──────────────────────────┬─────────────────────────────┘
+                           │
+                           ▼
+┌────────────────────────────────────────────────────────┐
+│   লেভেল ২: ওয়েবহুক সিগনেচার ভেরিফিকেশন                 │
+│   (HMAC-SHA256 ক্রিপ্টোগ্রাফিক সিগনেচার যাচাই)          │
+└──────────────────────────┬─────────────────────────────┘
+                           │
+                           ▼
+┌────────────────────────────────────────────────────────┐
+│   লেভেল ৩: সার্ভার-টু-সার্ভার কুয়েরি ডাবল-চেক (IPN)     │
+│   (ব্রাউজার রিডাইরেক্ট বিশ্বাস না করে গেটওয়ে কল)      │
+└──────────────────────────┬─────────────────────────────┘
+                           │
+                           ▼
+┌────────────────────────────────────────────────────────┐
+│   লেভেল ৪: ডাটাবেজ ACID লেনদেন ও Row-Level Locking     │
+│   (SELECT FOR UPDATE - ব্যালেন্স রেস-কন্ডিশন প্রতিরোধ) │
+└──────────────────────────┬─────────────────────────────┘
+                           │
+                           ▼
+┌────────────────────────────────────────────────────────┐
+│   লেভেল ৫: অ্যাডমিন ডুয়াল অথেন্টিকেশন (Self-PIN)       │
+│   (সংবেদনশীল সেটিং পরিবর্তনের জন্য ৬-ডিজিট পিন যাচাই) │
+└────────────────────────────────────────────────────────┘
+    </div>
+
+    <h3>ক. ৫-স্তর বিশিষ্ট সার্বিক সুরক্ষা ব্যবস্থা</h3>
+    <div class="security-grid">
+        <div class="security-card border-accent">
+            <h4>১. আইডেমপোটেন্সি (Idempotency)</h4>
+            <p>ইউজার দ্রুত পরপর দুইবার ক্লিক করলে বা নেটওয়ার্ক দুর্বলতার কারণে একই রিকোয়েস্ট একাধিকবার পাঠালে সিস্টেমে ইউনিক ইনভয়েস ননস (Nonce Token) মিলিয়ে অতিরিক্ত রিকোয়েস্ট স্বয়ংক্রিয়ভাবে ব্লক হয়। ফলে গ্রাহকের ব্যালেন্স কখনো একাধিকবার কাটার ঝুঁকি থাকে না।</p>
+        </div>
+        <div class="security-card border-teal">
+            <h4>২. HMAC-SHA256 সিগনেচার ভেরিফিকেশন</h4>
+            <p>পেমেন্ট গেটওয়ে (UddoktaPay, bKash, Stripe) থেকে আসা প্রতিটি ওয়েবহুক নোটিফিকেশন সার্ভারের সিক্রেট কি দিয়ে হ্যাশ ভেরিফিকেশন করা হয়। কোনো অসৎ ব্যবহারকারী বাইরে থেকে ভুয়া সাকসেস নোটিফিকেশন পাঠালে সিস্টেম তা অবিলম্বে প্রত্যাখ্যান করে।</p>
+        </div>
+        <div class="security-card border-success">
+            <h4>৩. সার্ভার-টু-সার্ভার ডাবল ভেরিফিকেশন</h4>
+            <p>ব্রাউজারের রিডাইরেক্ট URL-এর স্ট্যাটাসের ওপর কখনো ভরসা করা হয় না। পেমেন্ট শেষ হওয়ার পর আমাদের ব্যাকএন্ড সরাসরি পেমেন্ট গেটওয়ের সিকিউর স্ট্যাটাস এপিআই-তে কোয়েরি করে নিশ্চিত হয় যে টাকা তাদের ব্যাংক অ্যাকাউন্টে জমা হয়েছে কি না।</p>
+        </div>
+        <div class="security-card border-warning">
+            <h4>৪. ডাটাবেজ ACID ও Row Locks</h4>
+            <p>ব্যালেন্স আপডেট করার সময় <code>START TRANSACTION</code> এবং <code>SELECT FOR UPDATE</code> রো-লেভেল লকিং প্রয়োগ করা হয়। একাধিক সমসাময়িক প্রসেস একই ইউজারের ব্যালেন্স পরিবর্তন করতে গেলে রেস-কন্ডিশন বা ব্যালেন্স অসঙ্গতি শূন্যে নেমে আসে।</p>
+        </div>
+        <div class="security-card">
+            <h4>৫. অ্যাডমিন সেলফ-পিন (Self-PIN) সিকিউরিটি</h4>
+            <p>কোনো অ্যাডমিন লগইন থাকা অবস্থাতেও এপিআই ক্রেডেনশিয়াল, ব্যালেন্স অ্যাডজাস্টমেন্ট বা সার্ভিস বন্ধ/চালুর মতো সংবেদনশীল অ্যাকশন নিতে গেলে বাধ্যতামূলকভাবে ডেডিকেটেড সেলফ-পিন (<code>665544</code>) প্রদান করতে হয়।</p>
+        </div>
+        <div class="security-card border-accent">
+            <h4>৬. ভল্ট ও ক্রেডেনশিয়াল এনক্রিপশন</h4>
+            <p>সমস্ত থার্ড পার্টি এপিআই কি, পাসওয়ার্ড ও সিক্রেট টোকেন সরাসরি হার্ডকোড না করে সিকিউর সার্ভার এনভায়রনমেন্ট ভেরিয়েবল ও এনক্রিপ্টেড ডাটাবেজ স্টোরেজে সংরক্ষিত থাকে। গিট বা পাবলিক রিপোজিটরিতে কোনো কি উন্মুক্ত থাকে না।</p>
+        </div>
+    </div>
+
+    <h3>খ. পেমেন্ট গেটওয়ে সেটআপ ও ভেরিফিকেশন প্রোটোকল</h3>
     <table>
         <thead>
             <tr>
-                <th>মডিউল ও সার্ভিস</th>
-                <th>বর্তমান কোডবেসের অবস্থা</th>
-                <th>অবশিষ্ট প্রয়োজনীয় কাজ</th>
-                <th>চূড়ান্ত লক্ষ্য</th>
+                <th>গেটওয়ে ও চ্যানেল</th>
+                <th>ইন্টিগ্রেশন মেথডোলজি</th>
+                <th>নিরাপত্তা ও ভেরিফিকেশন কৌশল</th>
+                <th>লক্ষ্য ও ব্যবহার ক্ষেত্র</th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td><strong>১. ডাটাবেজ ও ফ্রেমওয়ার্ক</strong></td>
-                <td><span class="badge badge-success">১০০% সম্পন্ন</span> ৫৬টি টেবিল অক্ষত ও সিঙ্কড।</td>
-                <td>কোনো কাজ নেই।</td>
-                <td>✅ সম্পূর্ণ কার্যকর</td>
+                <td><strong>bKash Checkout (PGW)</strong></td>
+                <td>Tokenized REST API V1.2.0-beta</td>
+                <td>App Key, App Secret, Signature Hash এবং Server-side <code>executePayment</code> কল।</td>
+                <td>গ্রাহকদের তাৎক্ষণিক ও নিরাপদ অ্যাড ব্যালেন্স।</td>
             </tr>
             <tr>
-                <td><strong>২. অথেনটিকেশন ও নিরাপত্তা</strong></td>
-                <td><span class="badge badge-success">১০০% সম্পন্ন</span> সেলফ-পিন (<code>665544</code>) পরীক্ষিত।</td>
-                <td>কোনো কাজ নেই।</td>
-                <td>✅ সম্পূর্ণ কার্যকর</td>
+                <td><strong>UddoktaPay MFS Aggregator</strong></td>
+                <td>v2/checkout-v2 REST API</td>
+                <td><code>RT-UDDOKTAPAY-API-KEY</code> হেডার এবং ওয়েবহুক পে-লোডের ইউনিক ইনভয়েস আইডি ক্রস-ভেরিফিকেশন।</td>
+                <td>বিকাশ, নগদ ও রকেট পেমেন্টের একত্রিত অটোমেশন।</td>
             </tr>
             <tr>
-                <td><strong>৩. মোবাইল রিচার্জ ইঞ্জিন</strong></td>
-                <td><span class="badge badge-warning">৯০% সম্পন্ন</span> Paywell লাইভ টোকেন সচল।</td>
-                <td>রিচার্জ কোডের সাথে কানেক্ট করা ও ডাটাবেজে সুইচ অন।</td>
-                <td>🚀 ৫ সেকেন্ডে অটো রিচার্জ</td>
+                <td><strong>Stripe International (USD)</strong></td>
+                <td>Stripe PaymentIntents API</td>
+                <td>Webhook Secret (<code>whsec_...</code>) সাইনিং ভেরিফিকেশন এবং 3D Secure 2 (3DS2) বাধ্যতামূলক যাচাই।</td>
+                <td>আমেরিকা ও আন্তর্জাতিক কার্ডে বৈদেশিক মুদ্রা গ্রহণ।</td>
             </tr>
             <tr>
-                <td><strong>৪. অ্যান্ড্রয়েড সিম মডেম</strong></td>
-                <td><span class="badge badge-danger">ব্লকড</span> হার্ডকোড করা এক্সপায়ার ডেট।</td>
-                <td>মেয়াদোত্তীর্ণ ব্লকার অপসারণ ও সিকিউরিটি টোকেন স্থাপন।</td>
-                <td>🚀 অটো-মডেম অ্যাপ সচল</td>
+                <td><strong>Paywell Telecom API</strong></td>
+                <td>Enterprise XML/JSON REST API</td>
+                <td>IP Whitelisting, Dynamic Session Token এবং Transaction Pin এনক্রিপশন।</td>
+                <td>স্বয়ংক্রিয় ফ্লেক্সিলোড ও ইউটিলিটি বিল পেমেন্ট।</td>
             </tr>
             <tr>
-                <td><strong>৫. ব্যালেন্স লোড (Add Balance)</strong></td>
-                <td><span class="badge badge-warning">ম্যানুয়াল সচল</span> অনলাইন টেস্ট মোডে।</td>
-                <td>বিকাশ Tokenized Checkout ও নগদ গেটওয়ে যুক্ত করা।</td>
-                <td>🚀 ২৪/৭ ইনস্ট্যান্ট ব্যালেন্স</td>
-            </tr>
-            <tr>
-                <td><strong>৬. বিকাশ/নগদ টাকা পাঠানো</strong></td>
-                <td><span class="badge badge-info">ম্যানুয়াল কিউ</span> অ্যাডমিন এপ্রুভাল ভিত্তিক।</td>
-                <td>B2C Disbursement API যুক্ত করা (বা সুরক্ষিত কিউ বজায় রাখা)।</td>
-                <td>🚀 স্বয়ংক্রিয় বা সুরক্ষিত কিউ</td>
-            </tr>
-            <tr>
-                <td><strong>৭. ইউটিলিটি বিল পে</strong></td>
-                <td><span class="badge badge-warning">স্যান্ডবক্স ফেচ</span> বিল পরিশোধের আসল API নেই।</td>
-                <td>লাইভ বিল অনুসন্ধান ও রিয়েলটাইম বিল পেমেন্ট API সংযোগ।</td>
-                <td>🚀 ডিজিটাল রসিদসহ বিল পে</td>
-            </tr>
-            <tr>
-                <td><strong>৮. ডিজিটাল ভাউচার শপ</strong></td>
-                <td><span class="badge badge-info">আইডিয়া পর্যায়</span> টেবিল ও কোড তৈরি করতে হবে।</td>
-                <td>Popular Voucher API কানেক্টর, স্কিমা ও শপ পেজ তৈরি।</td>
-                <td>🚀 ইনস্ট্যান্ট গেম টপআপ</td>
-            </tr>
-            <tr>
-                <td><strong>৯. প্রবাসী রেমিট্যান্স (USA)</strong></td>
-                <td><span class="badge badge-warning">কনফিগ বাকি</span> আইপি সেটিংস ও স্ট্রাইপ।</td>
-                <td>ইউএসএ আইপি পারমিশন ও Stripe USD গেটওয়ে ইন্টিগ্রেশন।</td>
-                <td>🚀 গ্লোবাল কার্ড এক্সেপ্টেন্স</td>
+                <td><strong>Popular Voucher API</strong></td>
+                <td>JSON Service Delivery Engine</td>
+                <td>HMAC Auth Signature এবং Idempotent Order Reference Matching।</td>
+                <td>গেমিং কারেন্সি ও ওটিটি ভাউচারের তাৎক্ষণিক ডেলিভারি।</td>
             </tr>
         </tbody>
     </table>
 
-    <h2>৪. ধাপে ধাপে বাস্তবায়ন রোডম্যাপ ও সময়সীমা (Phased Roadmap)</h2>
+    <h2>৩. প্ল্যাটফর্ম আর্কিটেকচার ও কোর মডিউলসমূহ</h2>
+    <div class="callout">
+        <strong>সিস্টেম ফাউন্ডেশন:</strong> প্ল্যাটফর্মটিতে ৫৬টি অ্যাক্টিভ ডাটাবেজ টেবিল, সম্পূর্ণ ফাংশনাল অ্যাডমিন ও রিসেলার পোর্টাল এবং শক্তিশালী ব্যাকএন্ড বিজনেস লজিক রয়েছে।
+    </div>
+
+    <ol>
+        <li>
+            <strong>৬-স্তর বিশিষ্ট ইউজার হায়ারার্কি রোল:</strong>
+            <code>Developer (Level 1)</code> &rarr; <code>Sub-Admin (Level 2)</code> &rarr; <code>Master Dealer (Level 3)</code> &rarr; <code>Dealer (Level 4)</code> &rarr; <code>Sub-Dealer (Level 5)</code> &rarr; <code>Retailer (Level 6)</code>। প্রতি স্তরের জন্য আলাদা পারমিশন ও এক্সেস কন্ট্রোল রয়েছে।
+        </li>
+        <li>
+            <strong>ট্রিপল-ওয়ালেট অ্যাকাউন্টিন ইঞ্জিন (৩টি পৃথক ওয়ালেট):</strong>
+            <ul>
+                <li><code>user.balance</code> (মেইন ওয়ালেট): ড্রাইভ প্যাক ক্রয়, রেগুলার ইন্টারনেট ও মিনিট প্যাক, ডাউনলাইন অ্যাকাউন্ট ফি এবং ডিজিটাল ভাউচারের জন্য।</li>
+                <li><code>user.balance2</code> (রিচার্জ ওয়ালেট): শুধুমাত্র ৫টি মোবাইল অপারেটরে স্বয়ংক্রিয় ফ্লেক্সিলোডের জন্য।</li>
+                <li><code>user.bkash_balance</code> (ব্যাংকিং ও বিল ওয়ালেট): বিকাশ, নগদ, রকেটের ক্যাশ-ইন এবং বিদ্যুৎ, গ্যাস ও পানি বিলের জন্য।</li>
+            </ul>
+        </li>
+        <li>
+            <strong>স্বয়ংক্রিয় আপলাইন কমিশন বণ্টন:</strong> রিটেইলার লেভেলে কোনো রিচার্জ সম্পন্ন হওয়ার সাথে সাথে কোডের রিয়েলটাইম লুপের মাধ্যমে মুহূর্তেই সব আপলাইনের অ্যাকাউন্টে তাদের নির্ধারিত কমিশন পার্সেন্টেজ যোগ হয়ে যায়।
+        </li>
+        <li>
+            <strong>রোবোটিক প্রসেস অটোমেশন (RPA) ও ফেইলওভার সাপোর্ট:</strong> গেটওয়েতে সাময়িক সংযোগ সমস্যা দেখা দিলে ট্রানজ্যাকশন পেন্ডিং অবস্থায় নিরাপদে ওয়েট করে এবং অ্যাডমিন ড্যাশবোর্ড থেকে তাৎক্ষণিক ম্যানুয়াল অ্যাপ্রুভ বা রিট্রাই করার সুবিধা প্রদান করে।
+        </li>
+    </ol>
+
+    <h2>৪. কাজের পরিধি ও বাস্তবায়ন পরিকল্পনা (Scope of Work &amp; Deliverables)</h2>
     <table>
         <thead>
             <tr>
-                <th style="width: 12%;">ফেজ</th>
-                <th style="width: 33%;">সার্ভিস ও কাজের নাম</th>
-                <th>কাজের পরিধি</th>
-                <th style="width: 15%;">সময়সীমা</th>
+                <th>মডিউল ও সার্ভিস</th>
+                <th>সিস্টেমের বাস্তবায়ন ক্ষেত্র</th>
+                <th>প্রকৌশলগত ডেলিভারেবলস</th>
+                <th>চূড়ান্ত লক্ষ্য</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>১. ডাটাবেজ ও কোর ফ্রেমওয়ার্ক</strong></td>
+                <td>ডাটাবেজ রিলেশনশিপ, অ্যাকাউন্ট ব্যালেন্সিং ও সেশন হ্যান্ডলিং।</td>
+                <td>৫৬টি টেবিলের সম্পূর্ণ স্কিমা অপ্টিমাইজেশন ও ইন্ডেক্সিং।</td>
+                <td><span class="badge badge-success">সক্রিয় ও পরীক্ষিত</span></td>
+            </tr>
+            <tr>
+                <td><strong>২. ইউজার ও রিসেলার হায়ারার্কি</strong></td>
+                <td>৬ স্তরের ডাউনলাইন ক্রিয়েশন, লগইন অথেন্টিকেশন ও পারমিশন।</td>
+                <td>রিসেলার ম্যানেজমেন্ট, ডাউনলাইন কমিশন ও নোটিফিকেশন।</td>
+                <td><span class="badge badge-success">সক্রিয় ও পরীক্ষিত</span></td>
+            </tr>
+            <tr>
+                <td><strong>৩. মোবাইল রিচার্জ ইঞ্জিন (Topup)</strong></td>
+                <td>Paywell API ইন্টিগ্রেশন ও ৫টি অপারেটরে অটো-ডিসপ্যাচ।</td>
+                <td><code>paywell_service.php</code> তৈরি, ওয়েবহুক রিসিভার ও অটো স্ট্যাটাস সিঙ্ক।</td>
+                <td><span class="badge badge-info">অটোমেশন ইন্টিগ্রেশন</span></td>
+            </tr>
+            <tr>
+                <td><strong>৪. এমএফএস অ্যাড মানি ও গেটওয়ে</strong></td>
+                <td>বিকাশ, নগদ, রকেট অটোমেশন (UddoktaPay / bKash Direct)।</td>
+                <td>HMAC ওয়েবহুক ভেরিফায়ার, অটো-ক্রেডিট লজিক ও ভাউচার জেনারেটর।</td>
+                <td><span class="badge badge-info">অটোমেশন ইন্টিগ্রেশন</span></td>
+            </tr>
+            <tr>
+                <td><strong>৫. পপুলার ভাউচার ডিজিটাল স্টোর</strong></td>
+                <td>ফ্রি ফায়ার, পাবজি, গুগল প্লে ভাউচার ক্রয় ও সেলফ-ডেলিভারি।</td>
+                <td>ক্যাটালগ সিঙ্ক, অর্ডার প্লেসমেন্ট এপিআই ও সিকিউর কোড ডেলিভারি।</td>
+                <td><span class="badge badge-info">নতুন স্টোরফ্রন্ট</span></td>
+            </tr>
+            <tr>
+                <td><strong>৬. আন্তর্জাতিক পেমেন্ট (প্রবাসী)</strong></td>
+                <td>আমেরিকা ও আন্তর্জাতিক ইউজারদের জন্য Stripe USD সেটআপ।</td>
+                <td>কার্ড পেমেন্ট ফ্লো, রিয়েল-টাইম কারেন্সি কনভার্সন ও ব্যালেন্স লোড।</td>
+                <td><span class="badge badge-info">আন্তর্জাতিক গেটওয়ে</span></td>
+            </tr>
+            <tr>
+                <td><strong>৭. সার্বিক অডিট ও সিকিউরিটি টেস্ট</strong></td>
+                <td>এন্ড-টু-এন্ড সিকিউরিটি অডিট, স্ট্রেস টেস্টিং ও প্রোডাকশন হার্ডেনিং।</td>
+                <td>সার্ভার সিকিউরিটি কনফিগারেশন, এসএসএল ও ফিনটেক সিকিউরিটি অডিট।</td>
+                <td><span class="badge badge-purple">চূড়ান্ত রিলিজ</span></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>৫. ফেজভিত্তিক বাস্তবায়ন মাইলস্টোন (Phased Implementation Milestones)</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>ফেজ নম্বর</th>
+                <th>মাইলস্টোন শিরোনাম</th>
+                <th>মূল বাস্তবায়ন কার্যক্রম</th>
+                <th>ডেলিভারেবলস ও ফলাফল</th>
             </tr>
         </thead>
         <tbody>
             <tr>
                 <td><strong>ফেজ ১</strong></td>
-                <td><strong>মোবাইল রিচার্জ অটোমেশন ও মডেম আনব্লক</strong></td>
-                <td>Paywell API রিচার্জ রাউটিং, ডাটাবেজ সুইচ অন, স্ট্যাটাস ট্র্যাকিং ও apimobile এক্সপায়ার কোড ফিক্স।</td>
-                <td><strong>দিন ১ – ৫</strong></td>
+                <td>মোবাইল রিচার্জ অটোমেশন (Top-up &amp; Flexiload)</td>
+                <td>Paywell API ইন্টিগ্রেশন, <code>operator_mappings</code> কনফিগারেশন, এপিআই কি/পাসওয়ার্ড সংযোগ ও ডায়নামিক রেসপন্স পার্সিং।</td>
+                <td>৫টি অপারেটরে ৩ সেকেন্ডের মধ্যে সফল অটো-রিচার্জ ও স্বয়ংক্রিয় আপলাইন কমিশন ক্রেডিট।</td>
             </tr>
             <tr>
                 <td><strong>ফেজ ২</strong></td>
-                <td><strong>স্বয়ংক্রিয় অ্যাড ব্যালেন্স গেটওয়ে</strong></td>
-                <td>বিকাশ Tokenized Checkout, নগদ ও উপায় পেমেন্ট গেটওয়ে ইন্টিগ্রেশন এবং তাৎক্ষণিক ওয়ালেট ক্রেডিট।</td>
-                <td><strong>দিন ৬ – ১২</strong></td>
+                <td>স্বয়ংক্রিয় ক্যাশ-ইন ও অ্যাড মানি (bKash/Nagad/UddoktaPay)</td>
+                <td>UddoktaPay বা bKash মার্চেন্ট PGW এপিআই সংযোগ, সিকিউর ওয়েবহুক হ্যান্ডলার, ইনভয়েস ম্যাচিং ও অটো-ব্যালেন্স আপডেট।</td>
+                <td>ইউজার নিজের বিকাশ/নগদ থেকে টাকা পাঠালে কোনো অ্যাডমিন হস্তক্ষেপ ছাড়াই ব্যালেন্স অ্যাকাউন্টে জমা হবে।</td>
             </tr>
             <tr>
                 <td><strong>ফেজ ৩</strong></td>
-                <td><strong>ইউটিলিটি বিল পে লাইভ ইন্টিগ্রেশন</strong></td>
-                <td>বিদ্যুৎ, পানি ও গ্যাস বিল অনুসন্ধান ও পেমেন্ট এপিআই সংযোগ, ডিজিটাল রসিদ জেনারেশন ও কেবল/ইন্টারনেট পেজ তৈরি।</td>
-                <td><strong>দিন ১৩ – ১৮</strong></td>
+                <td>পপুলার ভাউচার ডিজিটাল প্রোডাক্ট স্টোর</td>
+                <td>Popular Voucher API কানেক্টর তৈরি, ডিজিটাল গুডস প্রোডাক্ট ক্যাটালগ UI, অর্ডার প্লেসমেন্ট ও কোড ডিসপ্লে প্যানেল।</td>
+                <td>ইউজাররা প্ল্যাটফর্ম থেকেই তাৎক্ষণিকভাবে গেম ক্রেডিট (Free Fire, PUBG) ও গিফট কার্ড কিনতে পারবেন।</td>
             </tr>
             <tr>
                 <td><strong>ফেজ ৪</strong></td>
-                <td><strong>ডিজিটাল ভাউচার ও গেমিং স্টোরফ্রন্ট</strong></td>
-                <td>Popular Voucher API কানেক্টর, ডাটাবেজ স্কিমা এবং ফ্রি ফায়ার/পাবজি তাৎক্ষণিক প্লেয়ার আইডি টপআপ পেজ।</td>
-                <td><strong>দিন ১৯ – ২৫</strong></td>
+                <td>আন্তর্জাতিক পেমেন্ট ও প্রবাসী রেমিট্যান্স-বান্ধব রিচার্জ (Stripe USD)</td>
+                <td>Stripe PaymentIntents API ইন্টিগ্রেশন, কারেন্সি কনভার্সন ইঞ্জিন (USD to BDT), ডুয়াল-কারেন্সি ওয়ালেট লেজার ও ওয়েবহুক।</td>
+                <td>আমেরিকা ও বিশ্বব্যাপী প্রবাসীরা তাদের ভিসা/মাস্টারকার্ড দিয়ে পেমেন্ট করে দেশে থাকা স্বজনদের রিচার্জ ও বিল পরিশোধ করতে পারবেন।</td>
             </tr>
             <tr>
                 <td><strong>ফেজ ৫</strong></td>
-                <td><strong>প্রবাসী রেমিট্যান্স ইঞ্জিন (Stripe USD)</strong></td>
-                <td>আমেরিকা/প্রবাসী গ্রাহকদের জন্য Stripe Checkout (USD), কান্ট্রি পারমিশন ও ডলার-টাকা কারেন্সি কনভার্সন।</td>
-                <td><strong>দিন ২৬ – ৩০</strong></td>
-            </tr>
-            <tr>
-                <td><strong>ফেজ ৬</strong></td>
-                <td><strong>চূড়ান্ত টেস্টিং, সিকিউরিটি অডিট ও লাইভ লঞ্চ</strong></td>
-                <td>ডোমেইন ডিএনএস কানেকশন, কনকারেন্সি লোড টেস্ট, এসএসএল সার্টিফিকেট ও ফাইনাল লাইভ হ্যান্ডওভার।</td>
-                <td><strong>দিন ৩১ – ৩৪</strong></td>
+                <td>সিস্টেম সিকিউরিটি অডিট, রেজিলিয়েন্স ও প্রোডাকশন রোলআউট</td>
+                <td>এন্ড-টু-এন্ড ট্রানজ্যাকশন সিমুলেশন, কনকারেন্ট লোড ও স্ট্রেস টেস্ট, ফেইলওভার রিকভারি, Nginx হার্ডেনিং ও প্রোডাকশন ডেপ্লয়মেন্ট।</td>
+                <td>জিরো-ডাউনটাইম প্রোডাকশন লঞ্চ ও প্রাতিষ্ঠানিক হ্যান্ডওভার।</td>
             </tr>
         </tbody>
     </table>
 
-    <h2>৫. ক্লায়েন্টের কাছ থেকে প্রয়োজনীয় তথ্যের পূর্ণাঙ্গ চেকলিস্ট</h2>
-    <div class="callout callout-warning">
-        <strong>গুরুত্বপূর্ণ নির্দেশিকা:</strong> ফিনটেক ও টেলিকম নিয়মানুযায়ী, নিরাপত্তার স্বার্থে আমরা প্রথমে <strong>Sandbox (টেস্ট মোড)</strong>-এ ভার্চুয়াল কারেন্সি দিয়ে প্রতিটি লেনদেন নিখুঁতভাবে পরীক্ষা করব এবং এরপর <strong>Live প্রোডাকশন ক্রেডেনশিয়াল</strong> বসিয়ে ফাইনাল লাইভ করব।
-    </div>
-    <pre>
-ক্লায়েন্ট রিকোয়ারমেন্ট চেকলিস্ট
-├── ১. মোবাইল রিচার্জ প্রোভাইডার
-│   ├── [ ] Paywell Live API Username & Password
-│   ├── [ ] Paywell API Key & Encryption Key
-│   └── [ ] Paywell মার্চেন্ট একাউন্টে রিচার্জ ব্যালেন্স নিশ্চিতকরণ
-│
-├── ২. এমএফএস ও পেমেন্ট গেটওয়ে (অ্যাড ব্যালেন্স)
-│   ├── [ ] bKash Tokenized Checkout (Sandbox ও Live App Key, App Secret, Username, Password)
-│   ├── [ ] Nagad Gateway (Sandbox ও Live Merchant ID, Public Key, Private Key)
-│   └── [ ] (অথবা) UddoktaPay / Shurjopay API Key ও Base URL
-│
-├── ৩. ইউটিলিটি বিল পে এগ্রিগেটর
-│   ├── [ ] প্রোভাইডারের নাম (shl.com.bd / Paywell BillPay / Ekpay)
-│   ├── [ ] Sandbox ও Live API Credentials (Token / Key / Password)
-│   └── [ ] অফিসিয়াল API Documentation (Bill Fetch ও Payment specs)
-│
-├── ৪. ডিজিটাল ভাউচার ও গেমিং টপআপ
-│   ├── [ ] Popular Voucher (বা সমমান এগ্রিগেটর) API Base URL
-│   ├── [ ] API Secret Key / Merchant ID
-│   └── [ ] API Documentation (Player ID Topup ও Voucher PIN মেথড)
-│
-├── ৫. আন্তর্জাতিক পেমেন্ট (প্রবাসী গ্রাহকদের জন্য)
-│   ├── [ ] Stripe Publishable Key ও Secret Key (Sandbox ও Live)
-│   └── [ ] পছন্দের ডলার রেট (যেমন: ১ ডলার = ___ টাকা)
-│
-└── ৬. ডোমেইন ও ডিএনএস অথরাইজেশন
-    ├── [ ] DNS A-Record Pointing: midhub360.com -> 124.6.224.116
-    └── [ ] DNS A-Record Pointing: www.midhub360.com -> 124.6.224.116
-    </pre>
+    <h2>৬. ক্লায়েন্ট এন্ড থেকে যা যা প্রয়োজন (Prerequisites &amp; Credentials Checklist)</h2>
+    <p>প্রজেক্টের প্রতিটি মাইলস্টোন ধারাবাহিকভাবে বাস্তবায়নের জন্য ক্লায়েন্ট পক্ষ থেকে নিচের এপিআই ও পেমেন্ট ক্রেডেনশিয়াল প্রয়োজন হবে:</p>
 
-    <h2>৬. সম্ভাব্য ঝুঁকি, সমস্যা ও তার টেকনিক্যাল সমাধান (Risk Mitigation)</h2>
     <table>
         <thead>
             <tr>
-                <th>সম্ভাব্য ঝুঁকি ও সমস্যা</th>
-                <th>মূল কারণ</th>
-                <th>টেকনিক্যাল সমাধান</th>
+                <th>ফেজ নম্বর</th>
+                <th>প্রয়োজনীয় সার্ভিস বা প্রোভাইডার</th>
+                <th>টেস্টিং/ডেভেলপমেন্ট (Sandbox)</th>
+                <th>লাইভ প্রোডাকশন (Production)</th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td><strong>১. ডুপ্লিকেট ট্রানজ্যাকশন</strong></td>
-                <td>ইউজার পর পর দুইবার সাবমিট বাটনে চাপ দিলে।</td>
-                <td><strong>Idempotency Keys:</strong> প্রতিটি রিকোয়েস্টে ইউনিক <code>invoice_number</code> তৈরি হয় এবং ডাটাবেজ লেভেলে ডুপ্লিকেট অটো ব্লক করা হয়।</td>
+                <td><strong>ফেজ ১</strong></td>
+                <td>Paywell Telecom (রিচার্জ ও বিল পে)</td>
+                <td>Sandbox API Endpoint, Test Reseller ID, Developer Key, Password</td>
+                <td>Live API Endpoint, Production Merchant ID, Secret Key, IP Whitelisting</td>
             </tr>
             <tr>
-                <td><strong>২. এপিআই সার্ভার টাইমআউট</strong></td>
-                <td>পিক আওয়ারে টেলিকম এপিআই রেসপন্স দিতে দেরি করলে।</td>
-                <td><strong>Asynchronous Queue:</strong> ব্যাকগ্রাউন্ড ক্রন জব দিয়ে স্ট্যাটাস ভেরিফাই করা হবে। নিশ্চিত কনফার্মেশন ছাড়া কোনো টাকা কাটা হবে না।</td>
+                <td><strong>ফেজ ২</strong></td>
+                <td>bKash Direct PGW অথবা UddoktaPay</td>
+                <td>Sandbox App Key, App Secret, Test Username, Password</td>
+                <td>Live App Key, App Secret, Production Base URL, Webhook Secret</td>
             </tr>
             <tr>
-                <td><strong>৩. ট্রানজ্যাকশন ফেইল্ড রিফান্ড</strong></td>
-                <td>ব্যালেন্স কাটার পর অপারেটর এন্ড থেকে ফেইল হলে।</td>
-                <td><strong>Automated Wallet Rollback:</strong> এপিআই থেকে এরর কোড আসা মাত্রই ১০ সেকেন্ডের মধ্যে গ্রাহকের ওয়ালেটে ১০০% টাকা স্বয়ংক্রিয় রিফান্ড হবে।</td>
+                <td><strong>ফেজ ৩</strong></td>
+                <td>Popular Voucher API</td>
+                <td>Developer Sandbox Key, Test Catalog Endpoint, Demo Balance</td>
+                <td>Production API Key, Merchant Account ID, Live Webhook Secret</td>
             </tr>
             <tr>
-                <td><strong>৪. চোরাই কার্ড দিয়ে বিকাশ ফ্রড</strong></td>
-                <td>বিদেশ থেকে হ্যাক করা কার্ড দিয়ে ডলার পে করলে।</td>
-                <td><strong>Stripe Radar 3D-Secure:</strong> কার্ডের ওটিপি ছাড়া পেমেন্ট হবে না। নতুন প্রবাসীদের জন্য প্রথম ৩ দিন দৈনিক সর্বোচ্চ $৩০ ডলারের লিমিট থাকবে।</td>
-            </tr>
-            <tr>
-                <td><strong>৫. ডলারের দামের ওঠানামা</strong></td>
-                <td>আন্তর্জাতিক বাজারে ডলারের রেট পরিবর্তন হলে।</td>
-                <td><strong>Dynamic Admin Rate Margin:</strong> অ্যাডমিন ডলারের রেটের উপর একটি সেফটি মার্জিন (২-৩ টাকা বাফার) বজায় রাখবেন।</td>
+                <td><strong>ফেজ ৪</strong></td>
+                <td>Stripe International Gateway</td>
+                <td>Stripe Test Publishable Key (<code>pk_test_...</code>), Secret Key (<code>sk_test_...</code>)</td>
+                <td>Live Publishable Key (<code>pk_live_...</code>), Live Secret Key (<code>sk_live_...</code>), Webhook Secret</td>
             </tr>
         </tbody>
     </table>
 
-    <h2>৭. আয়ের মডেল ও আর্থিক প্রজেকশন (Revenue Model)</h2>
-    <div class="callout callout-success">
-        <strong>মাসিক রক্ষণশীল গ্রস প্রফিট প্রজেকশন:</strong>
-        <ul style="margin-top: 10px; margin-bottom: 0;">
-            <li>মোবাইল রিচার্জ: ২০,০০,০০০ টাকা ভলিউম @ ৩.০% নেট কমিশন = <strong>৳৬০,০০০ টাকা</strong></li>
-            <li>ডিজিটাল ভাউচার শপ: ৫,০০,০০০ টাকা গেম টপআপ @ ১০.০% প্রফিট = <strong>৳৫০,০০০ টাকা</strong></li>
-            <li>ইউটিলিটি বিল পে: ১,৫০০টি বিল পরিশোধ @ ১০ টাকা সার্ভিস ফি = <strong>৳১৫,০০০ টাকা</strong></li>
-            <li>ড্রাইভ প্যাক বিক্রয়: ৮০০টি ড্রাইভ প্যাক @ ৫০ টাকা গড় লাভ = <strong>৳৪০,০০০ টাকা</strong></li>
-            <li>প্রবাসী ডলার এক্সচেঞ্জ মার্জিন: $৫,০০০ ডলার ভলিউম @ ৩% স্প্রেড = <strong>৳১৮,০০০ টাকা</strong></li>
-            <li style="margin-top: 8px; font-weight: bold; color: var(--primary);">মোট সম্ভাব্য মাসিক গ্রস প্রফিট: ৳১,৮৩,০০০ টাকা / মাস</li>
-        </ul>
+    <h2>৭. আন্তর্জাতিক ইউজার (প্রবাসী) আর্কিটেকচার: আমেরিকা থেকে বাংলাদেশ</h2>
+    <p>বিদেশে অবস্থানরত প্রবাসীরা কীভাবে নিরাপদে দেশে স্বজনদের কাছে অর্থ পাঠাতে ও বিল পরিশোধ করতে পারবেন, তার টেকনিক্যাল আর্কিটেকচার:</p>
+
+    <div class="flow-diagram">
+┌────────────────────────────────────────────────────────┐
+│      প্রবাসী ইউজার (ইউএসএ / আন্তর্জাতিক অবস্থান)      │
+│      - ভিসা / মাস্টারকার্ড / অ্যাপল পে দিয়ে অর্থ প্রদান│
+└──────────────────────────┬─────────────────────────────┘
+                           │
+                           ▼
+┌────────────────────────────────────────────────────────┐
+│   Stripe পেমেন্ট গেটওয়ে (USD ট্রানজ্যাকশন)            │
+│   - 3D Secure 2 (3DS2) ভেরিফিকেশন ও জিরো ফ্রড প্রটেকশন │
+└──────────────────────────┬─────────────────────────────┘
+                           │
+                           ▼
+┌────────────────────────────────────────────────────────┐
+│   রিয়েল-টাইম কারেন্সি কনভার্সন ইঞ্জিন                  │
+│   - লাইভ এক্সচেঞ্জ রেট রূপান্তর (উদা: $১০ = ১২২০ টাকা) │
+└──────────────────────────┬─────────────────────────────┘
+                           │
+                           ▼
+┌────────────────────────────────────────────────────────┐
+│   Midhub360 কোর ওয়ালেট ক্রেডিট (user.balance)         │
+│   - ACID ডাটাবেজ ট্রানজ্যাকশন ও তাৎক্ষণিক নোটিফিকেশন   │
+└──────────────────────────┬─────────────────────────────┘
+                           │
+                           ▼
+┌────────────────────────────────────────────────────────┐
+│   স্বদেশী সার্ভিস ডেলিভারি (বাংলাদেশে তাৎক্ষণিক এক্সিকিউশন)│
+│   - গ্রামীনফোন/রবি/বাংলালিংক রিচার্জ                    │
+│   - পল্লী বিদ্যুৎ / ডেসকো বিদ্যুৎ বিল পরিশোধ             │
+│   - ঢাকা ওয়াসা পানি বিল পরিশোধ                         │
+│   - বিকাশ / নগদ মার্চেন্ট ক্যাশ-ইন                      │
+└────────────────────────────────────────────────────────┘
     </div>
 
-    <h2>৮. বিক্রয়োত্তর সেবা চুক্তি ও রক্ষণাবেক্ষণ (SLA & Warranty)</h2>
+    <h2>৮. পেমেন্ট ও ভাউচার ব্যবসায়িক মডেল (Revenue &amp; Growth Strategy)</h2>
+    <p>এই প্ল্যাটফর্ম থেকে বিনিয়োগকারী ও উদ্যোক্তারা পাঁচটি স্বতন্ত্র খাত থেকে নিয়মিত আয় নিশ্চিত করতে পারবেন:</p>
+    <ol>
+        <li><strong>টেলিকম রিচার্জ কমিশন:</strong> প্রতিটি মোবাইল অপারেটর রিচার্জের বিপরীতে ২.৫% থেকে ৪.৫% পাইকারি কমিশন লাভ।</li>
+        <li><strong>ডিজিটাল ভাউচার প্রফিট মার্জিন:</strong> পপুলার ভাউচার থেকে পাইকারি মূল্যে ডিজিটাল প্রোডাক্ট সংগ্রহ করে খুচরা বিক্রিতে ৮% থেকে ১৫% পর্যন্ত নিট মুনাফা।</li>
+        <li><strong>অ্যাড ব্যালেন্স গেটওয়ে ফি:</strong> ইনস্ট্যান্ট এমএফএস লোডের ক্ষেত্রে ১% থেকে ১.৫% সুবিধা চার্জ সংরক্ষণ।</li>
+        <li><strong>ইউটিলিটি বিল প্রসেসিং ফি:</strong> বিদ্যুৎ, পানি ও গ্যাস বিল পরিশোধে প্রতি বিলে ৫ থেকে ২০ টাকা পর্যন্ত কনভেনিয়েন্স ফি।</li>
+        <li><strong>আন্তর্জাতিক কারেন্সি কনভার্সন স্প্রেড:</strong> আন্তর্জাতিক পেমেন্টে এক্সচেঞ্জ রেট মার্জিন থেকে লেনদেন প্রতি অতিরিক্ত ৩% থেকে ৫% পর্যন্ত মুনাফা।</li>
+    </ol>
+
+    <h2>৯. ঝুঁকি ব্যবস্থাপনা ও প্রাতিষ্ঠানিক গ্যারান্টি (Risk Mitigation &amp; SLA)</h2>
+    <div class="callout callout-success">
+        <strong>প্রকৌশলগত দায়বদ্ধতা:</strong> সিস্টেম যাতে নিরবচ্ছিন্নভাবে পরিচালিত হয় এবং কোনো আর্থিক ক্ষতি না হয়, সেজন্য প্ল্যাটফর্মটিতে সার্বক্ষণিক মনিটরিং ও গ্যারান্টি ব্যবস্থা সংযুক্ত রয়েছে।
+    </div>
     <ul>
-        <li><strong>রিয়েলটাইম ব্যালেন্স অ্যালার্ট:</strong> Paywell বা বিকাশ মার্চেন্ট ওয়ালেটের ব্যালেন্স ২০,০০০ টাকার নিচে নেমে গেলে অ্যাডমিনের ফোনে স্বয়ংক্রিয় লো-ব্যালেন্স অ্যালার্ট যাবে।</li>
-        <li><strong>সার্বক্ষণিক লেনদেন লগিং (<code>api_log</code>):</strong> প্রতিটি আউটগোয়িং এপিআই রিকোয়েস্ট এবং ইনকামিং ওয়েবহুকের পূর্ণাঙ্গ লগ সংরক্ষিত থাকবে।</li>
-        <li><strong>স্বয়ংক্রিয় ডাটাবেজ ব্যাকআপ:</strong> প্রতিদিন রাতে স্বয়ংক্রিয়ভাবে ডাটাবেজের ফুল ব্যাকআপ ক্লাউড ড্রাইভে সেভ হবে।</li>
-        <li><strong>৩০ দিনের ফ্রি টেকনিক্যাল ওয়ারেন্টি:</strong> লাইভ লঞ্চের পর ৩০ দিন পর্যন্ত যেকোনো এপিআই আপডেট, বাগ ফিক্স বা অপ্রত্যাশিত ত্রুটি সম্পূর্ণ বিনামূল্যে সমাধান করা হবে।</li>
+        <li><strong>স্বয়ংক্রিয় ব্যালেন্স অ্যালার্ট:</strong> Paywell বা বিকাশ মার্চেন্ট অ্যাকাউন্টের ব্যালেন্স ২০,০০০ টাকার নিচে নেমে গেলে অ্যাডমিনের ফোনে স্বয়ংক্রিয় লো-ব্যালেন্স অ্যালার্ট বার্তা পৌঁছে যাবে।</li>
+        <li><strong>সার্বক্ষণিক লেনদেন লগিং (<code>api_log</code>):</strong> প্রতিটি আউটগোয়িং এপিআই রিকোয়েস্ট এবং ইনকামিং ওয়েবহুকের পূর্ণাঙ্গ টেকনিক্যাল লগ ডাটাবেজে স্থায়ীভাবে সংরক্ষিত থাকবে।</li>
+        <li><strong>স্বয়ংক্রিয় ডাটাবেজ ব্যাকআপ:</strong> প্রতিদিন রাতে স্বয়ংক্রিয়ভাবে ডাটাবেজের ফুল স্ন্যাপশট ব্যাকআপ ক্লাউড ড্রাইভে সংরক্ষিত হবে।</li>
+        <li><strong>৩০ দিনের ফ্রি টেকনিক্যাল ওয়ারেন্টি:</strong> লাইভ লঞ্চের পর ৩০ দিন পর্যন্ত যেকোনো এপিআই আপডেট, বাগ ফিক্স বা অপ্রত্যাশিত ত্রুটি সম্পূর্ণ বিনামূল্যে সমাধান করে দেওয়া হবে।</li>
     </ul>
 
-    <h2>৯. তাৎক্ষণিক কাজ শুরুর পরবর্তী পদক্ষেপ (Next Steps)</h2>
+    <h2>১০. তাৎক্ষণিক কাজ শুরুর পরবর্তী পদক্ষেপ (Next Steps)</h2>
     <ol>
-        <li><strong>ক্লায়েন্ট সম্মতি:</strong> ক্লায়েন্ট এই পূর্ণাঙ্গ প্রপোজালটি পর্যালোচনা করে অনুমোদন করবেন।</li>
-        <li><strong>ক্রেডেনশিয়াল হস্তান্তর:</strong> ক্লায়েন্ট <strong>ধাপ ১ ও ধাপ ২-এর স্যান্ডবক্স ক্রেডেনশিয়াল</strong> (Paywell, bKash/Nagad/UddoktaPay, এবং Popular Voucher) প্রদান করবেন।</li>
-        <li><strong>কাজের সূচনা:</strong> তথ্য পাওয়ার সাথে সাথেই আমাদের টিম ধাপ ১-এর মোবাইল রিচার্জ অটোমেশন দিয়ে মূল ডেভেলপমেন্ট শুরু করবে।</li>
+        <li><strong>ক্লায়েন্ট সম্মতি:</strong> ক্লায়েন্ট এই পূর্ণাঙ্গ যৌথ উদ্যোগের প্রপোজালটি পর্যালোচনা করে চূড়ান্ত অনুমোদন প্রদান করবেন।</li>
+        <li><strong>ক্রেডেনশিয়াল হস্তান্তর:</strong> ক্লায়েন্ট <strong>ফেজ ১ ও ফেজ ২-এর স্যান্ডবক্স ক্রেডেনশিয়াল</strong> (Paywell, bKash/Nagad/UddoktaPay, এবং Popular Voucher) হস্তান্তর করবেন।</li>
+        <li><strong>কাজের সূচনা:</strong> তথ্য পাওয়ার সাথে সাথেই আমাদের ইঞ্জিনিয়ারিং টিম ফেজ ১-এর মোবাইল রিচার্জ অটোমেশন দিয়ে কোর ডেভেলপমেন্ট শুরু করবে।</li>
     </ol>
 
     <div class="doc-footer">
-        <div>Midhub360.com • Confidential Technical Documentation</div>
-        <div>Generated: November 2026</div>
+        <div><strong>Rongdhonu and Doptortech Joint Venture</strong> • গোপনীয় ও স্বত্বাধিকার সংরক্ষিত</div>
+        <div>তৈরির তারিখ: নভেম্বর ২০২৬ • প্রোডাকশন রেডি</div>
     </div>
 </div>
 
