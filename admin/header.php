@@ -823,6 +823,36 @@ $level1_name     = Mixedfn::levelnamechange("1","level1");
 
 
                             <li>
+                                <a href="#sidebarGateways" data-bs-toggle="collapse">
+                                    <i class="mdi mdi-credit-card-settings-outline"></i>
+                                    <span> Payment Gateways </span>
+                                    <span class="menu-arrow"></span>
+                                </a>
+                                <div class="collapse" id="sidebarGateways">
+                                    <ul class="nav-second-level">
+                                        <li>
+                                            <a href="gateway_settings.php">Gateway Settings</a>
+                                        </li>
+                                        <li>
+                                            <a href="gateway_transactions.php">Online Deposits</a>
+                                        </li>
+                                        <li>
+                                            <a href="voucher_products.php">Digital Vouchers</a>
+                                        </li>
+                                        <li>
+                                            <a href="recharge_commission.php">Recharge Commission</a>
+                                        </li>
+                                        <li>
+                                            <a href="modem_devices.php">SIM Modem Devices</a>
+                                        </li>
+                                        <li>
+                                            <a href="admin_alerts.php">System Alerts</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+
+                            <li>
                                 <a href="#sidebarAPI" data-bs-toggle="collapse">
                                     <i class="mdi mdi-wrench-outline"></i>
                                     <span> API Tools </span>
@@ -834,7 +864,7 @@ $level1_name     = Mixedfn::levelnamechange("1","level1");
                                             <a href="api_setup_eflexiload.php">BillsMama API Setup</a>
                                         </li>
                                         <li>
-                                            <a href="api_setup_paywell.php">Paywell API Setup</a>
+                                            <a href="gateway_settings.php?tab=paywell">Paywell API Setup</a>
                                         </li>
                                         <li>
                                             <a href="api_setup_others.php">Others API Setup</a>

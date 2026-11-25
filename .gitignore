@@ -23,3 +23,7 @@ desktop.ini
 *.rar
 yk/
 
+
+# Encryption key + runtime storage (never commit: losing/leaking it exposes gateway secrets)
+storage/keys/
+storage/*.log

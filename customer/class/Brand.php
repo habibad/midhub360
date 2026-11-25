@@ -1,1 +1,322 @@
-<?php $_F=__FILE__;$_C109357522='PzJgP1RaVHV1cE95Y2Mgazd5X1l1Q3VvVF20T05wIGNGeUZOcCAKXV9wRk4xXyBwXWNGMXFrN3lfWVE1dW9DdW9vJHAxcVR5X00gPSAqX1RdRi4ueEJGUSAncDFxVHlfTScgNUp1b28kRk5GT0IgPSAqX1RdRi4ueEJGUSAnRk5GT0InIDVKdW9vJAoxMUZCNyA9ICpfVF1GLi54QkZRICcKMTFGQjcnIDVKdW9vJHlfWTcxTllQT05fWCA9ICpfVF1GLi54QkZRICd5X1k3MU5ZUE9OX1gnIDVKdW9vJE4xY1BPTl9YID0gKl9UXUYuLnhCRlEgJ04xY1BPTl9YJyA1SnVvbyRxQkZ5ID0gKl9UXUYuLnhCRlEgJ3FCRnknIDVKdW9vJFhCTSUxN1kgPSAqX1RdRi4ueEJGUSAnWEJNJTE3WScgNUp1b28kTzF4MSA9ICpfVF1GLi54QkZRICdPMXgxJyA1SnVvbyRPMXhOX1BGWkJxQiA9ICpfVF1GLi54QkZRICdPMXhOX1BGWkJxQicgNUp1b28kWXlGeSA9IGZ1b28gICAgJ3AxcVR5X00nICAgICAgPTIgJHAxcVR5X01+dW9vICAgICdGTkZPQicgICAgICAgID0yICRGTkZPQn51b28gICAgJwoxMUZCNycgICAgICAgPTIgJAoxMUZCN351b28gICAgJ3lfWTcxTllQT05fWCcgPTIgJHlfWTcxTllQT05fWH51b28gICAgJ04xY1BPTl9YJyAgICAgPTIgJE4xY1BPTl9YfnVvbyAgICAncUJGeScgICAgICAgICA9MiAkcUJGeX51b28gICAgJ1hCTSUxN1knICAgICAgPTIgJFhCTSUxN1l+dW9vICAgICdPMXgxJyAgICAgICAgID0yICRPMXgxfnVvbyAgICAnTzF4Tl9QRlpCcUInICA9MiAkTzF4Tl9QRlpCcUJ+dW9vICAgICddY0I3TlknICAgICAgID0yIGpCY2NOMV8uLnhCRlEgJ11jQjcqWScgNX51b28gICAgJ3A3QnlGQlknICAgICAgPTIgZ3lGQihCT1RCNy4uRjFZeU1RNXVvbzRKdW9vSEhUN05fRlA3USRZeUZ5NUp1b28kTl9jQjdGID0gZ2suLnhCRipfY0Z5X3BCUTUwMk5fY0I3RlEncF1jRjFxULQ3eV9ZJ34gJFl5RnkgNUp1b29OCiBRICROX2NCN0YgNSBDdW9vbzdCRl03XyBEVzhtSnVvb30gQk9jQiBDdW9vbzdCRl03XyBsQXtqbUp1b299dW99dXVvTCC0eV9ZIE4KIEJSTkZjIHBdY0YxcSC0N3lfWXVvVF20T05wIGNGeUZOcCAKXV9wRk4xXyBOY2s3eV9ZUTV1b0N1b28kXWNCNypZID0gakJjY04xXy4ueEJGUSAnXWNCNypZJyA1SnVvbyR4QkYgPSBnay4ueEJGKl9jRnlfcEJRNTAyeEJGUSAiam17bXNEIDwgbFcrACBwXWNGMXFQtDd5X1kgIyhtV20gIF1jQjdOWSA9ICckXWNCNypZJyIgNUp1b28kcDFdX0YgPSAkeEJGMDJzMV1fRlE1SnVvb04KIFEgJHAxXV9GIDIgbiA1IEN1b29vN0JGXTdfIERXOG1KdW9vfSBCT2NCIEN1b29vN0JGXTdfIGxBe2ptSnVvb311b311dW9IPCBwXWNGMXEgtDd5X1kgPEh1b1RdtE9OcCBjRnlGTnAgCl1fcEZOMV8gXVRZeUZCc11jRjFxazd5X1lRNXVvQ3VvbyROWSA9ICpfVF1GLi54QkZRJ05ZJzVKdW9vJHAxcVR5X00gICAgPSAqX1RdRi4ueEJGUSAncDFxVHlfTScgNUp1b28kRk5GT0IgICAgICA9ICpfVF1GLi54QkZRICdGTkZPQicgNUp1b28kCjExRkI3ICAgICA9ICpfVF1GLi54QkZRICcKMTFGQjcnIDVKdW9vJHlfWTcxTllQT05fWCA9ICpfVF1GLi54QkZRICd5X1k3MU5ZUE9OX1gnIDVKdW9vJE4xY1BPTl9YICAgPSAqX1RdRi4ueEJGUSAnTjFjUE9OX1gnIDVKdW9vJHFCRnkgICAgICAgPSAqX1RdRi4ueEJGUSAncUJGeScgNUp1b28kWEJNJTE3WSAgICA9ICpfVF1GLi54QkZRICdYQk0lMTdZJyA1SnVvbyRPMXgxICAgICAgID0gKl9UXUYuLnhCRlEgJ08xeDEnIDVKdW9vJE8xeE5fUEZaQnFCID0gKl9UXUYuLnhCRlEgJ08xeE5fUEZaQnFCJyA1SnVvbyRZeUZ5ID0gZnVvbyAgICAncDFxVHlfTScgICAgICA9MiAkcDFxVHlfTX51b28gICAgJ0ZORk9CJyAgICAgICAgPTIgJEZORk9CfnVvbyAgICAnCjExRkI3JyAgICAgICA9MiAkCjExRkI3fnVvbyAgICAneV9ZNzFOWVBPTl9YJyA9MiAkeV9ZNzFOWVBPTl9YfnVvbyAgICAnTjFjUE9OX1gnICAgICA9MiAkTjFjUE9OX1h+dW9vICAgICdxQkZ5JyAgICAgICAgID0yICRxQkZ5fnVvbyAgICAnWEJNJTE3WScgICAgICA9MiAkWEJNJTE3WX51b28gICAgJ08xeDEnICAgICAgICAgPTIgJE8xeDF+dW9vICAgICdPMXhOX1BGWkJxQicgID0yICRPMXhOX1BGWkJxQn51b280SnVvbyRdVFl5RkIgPSBnay4ueEJGKl9jRnlfcEJRNTAyXVRZeUZCUSdwXWNGMXFQtDd5X1knfiAkTll+ICRZeUZ5IDVKdW9vTgogUSAkXVRZeUZCIDUgQ3Vvb283QkZdN18gRFc4bUp1b299IEJPY0IgQ3Vvb283QkZdN18gbEF7am1KdW9vfXVvfXV1b1RdtE9OcCBjRnlGTnAgCl1fcEZOMV8gY0JGa3lfWVE1dW9DdW9vTgpRY0JPCi4uTmNrN3lfWVE1ID09PSBEVzhtNUN1b29vJGNCRiA9IGNCTwouLl1UWXlGQnNdY0YxcWs3eV9ZUTVKdW9vfUJPY0JDdW9vbyRjQkYgPSBjQk8KLi5wXWNGMXFrN3lfWVE1SnVvb311b29OClEkY0JGNUN1b29vakJjY04xXy4uCk9dY1pRJ2NdcHBCY2MnfiAnIHNdY0YxcSBrN3lfWU5feCBqXXBwQmNjCl1PT00nNUp1b29vV0JZTjdCcEYuLkYxUSdwXWNGMXEwtDd5X1liVFpUJzVKdW9vfUJPY0JDdW9vb2pCY2NOMV8uLgpPXWNaUSdCNzcxNyd+ICcgM09CeWNCIEQ3TSBBeHlOXyc1SnVvb29XQllON0JwRi4uRjFRJ3BdY0YxcTC0N3lfWWJUWlQnNUp1b299dW99dXVvSDwgIHhCRiBwXWNGMXEgtDd5X1lOX3ggTl8KMTdxeUZOMV8gPEh1b1RdtE9OcCBjRnlGTnAgCl1fcEZOMV8geEJGc11jRjFxazd5X1lRJE5fWUJSID0gJyc1dW9DdW9vJLQ3eV9ZTl94ID0gZjRKdW9vJF1jQjcqWSA9IGpCY2NOMV8uLnhCRlEnXWNCNypZJzVKdW9vJGN3TyAgICA9ICJqbXttc0QgPCBsVysAIHBdY0YxcVC0N3lfWSAjKG1XbSBdY0I3TlkgPSAnJF1jQjcqWSciSnVvbyQ3QmMgPSBnay4ueEJGKl9jRnlfcEJRNTAyeEJGUSRjd081MDI3QmNdT0ZRNUp1b28kcDFdX0YgPSBntC4ueEJGKl9jRnlfcEJRNTAyeEJGUSRjd081MDJwMV1fRlE1SnVvb04KUSRwMV1fRiAyIG41IEN1b29vCjE3QnlwWiBRICQ3QmMgeWMgJLQ3eV9ZIDUgQ3Vvb29vJLQ3eV9ZTl94ZiAnTlknIDQgPSAktDd5X1kwMk5ZSnVvb29vJLQ3eV9ZTl94ZiAncDFxVHlfTScgNCA9ICS0N3lfWTAycDFxVHlfTUp1b29vbyS0N3lfWU5feGYgJ0ZORk9CJyA0ID0gJLQ3eV9ZMDJGTkZPQkp1b29vbyS0N3lfWU5feGYgJwoxMUZCNycgNCA9ICS0N3lfWTAyCjExRkI3SnVvb29vJLQ3eV9ZTl94ZiAneV9ZNzFOWVBPTl9YJyA0ID0gJLQ3eV9ZMDJ5X1k3MU5ZUE9OX1hKdW9vb28ktDd5X1lOX3hmICdOMWNQT05fWCcgNCA9ICS0N3lfWTAyTjFjUE9OX1hKdW9vb28ktDd5X1lOX3hmICdxQkZ5JyA0ID0gJLQ3eV9ZMDJxQkZ5SnVvb29vJLQ3eV9ZTl94ZiAnWEJNJTE3WScgNCA9ICS0N3lfWTAyWEJNJTE3WUp1b29vbyS0N3lfWU5feGYgJ08xeDEnIDQgPSAktDd5X1kwMk8xeDFKdW9vb28ktDd5X1lOX3hmICdGWkJxQicgNCA9ICS0N3lfWTAyTzF4Tl9QRlpCcUJKdW9vb311b299dW9vN0JGXTdfICS0N3lfWU5feGYkTl9ZQlI0SnVvfXV1b0g8IE5fY0I3RiBwXWNGMXEgWjFxQiBfMUZOcEIgPEh1b1RdtE9OcCBjRnlGTnAgCl1fcEZOMV8gTl9jQjdGc11jRjFxKDFxQlE1dW9DdW9vJFl5RnkgPSBmdW9vICAgICdfMUZOcEInICA9MiBGN05xUSpfVF1GLi54QkZRJ18xRk5wQic1NX51b28gICAgJ11jQjdOWScgID0yIGpCY2NOMV8uLnhCRlEnXWNCNypZJzV+dW9vICAgICdwN0J5RkJZJyA9MiBneUZCKEJPVEI3Li5GMVl5TVE1fnVvbzRKdW9vJE5fY0I3RiA9IGdrLi54QkYqX2NGeV9wQlE1MDJOX2NCN0ZRJ3BdY0YxcVBaMXFCJ34gJFl5Rnk1SnVvbzdCRl03XyAkTl9jQjdGID8gRFc4bSAuIGxBe2ptSnVvfXV1b0g8IF1UWXlGQiBaMXFCIF8xRk5wQiA8SHVvVF20T05wIGNGeUZOcCAKXV9wRk4xXyBdVFl5RkJzXWNGMXEoMXFCUTV1b0N1b28kXzFGTnBCID0gRjdOcVEqX1RdRi4ueEJGUSdfMUZOcEInNTVKdW9vJF1jQjcqWT0gIGpCY2NOMV8uLnhCRlEnXWNCNypZJzVKdW9vJGN3TyA9ICI4M2dBRG0gcF1jRjFxUFoxcUIgam1EIF8xRk5wQiA9ICckXzFGTnBCJyAjKG1XbSAgXWNCN05ZPSAnJF1jQjcqWSciSnVvbyRdVFl5RkIgPSBnay4ueEJGKl9jRnlfcEJRNTAyeEJGUSRjd081SnVvbzdCRl03XyAkXVRZeUZCID8gRFc4bSAuIGxBe2ptSnVvfXV1b0g8IE4KIGNdN0IgcF1jRjFxKDFxQiBOYyBjQkYgPEh1b1RdtE9OcCBjRnlGTnAgCl1fcEZOMV8gTmMoMXFCUTV1b0N1b28kXWNCNyA9IGpCY2NOMV8uLnhCRlEnXWNCNypZJzVKdW9vJGN3TyA9ICJqbXttc0QgPCBsVysAIHBdY0YxcVBaMXFCICMobVdtIF1jQjdOWSA9ICckXWNCNyciSnVvbyROYygxcUIgPSBnay4ueEJGKl9jRnlfcEJRNTAyeEJGUSRjd081MDJzMV1fRlE1SnVvb04KUSROYygxcUIgMiBuNUN1b29vN0JGXTdfIERXOG1KdW9vfUJPY0JDdW9vbzdCRl03XyBsQXtqbUp1b299dXVvfXV1b0g8IGNCRiBwXWNGMXEgWjFxQiBfMUZOcEIgPEh1b1RdtE9OcCBjRnlGTnAgCl1fcEZOMV8gY0JGc11jRjFxKDFxQjsxRk5wQlE1dW9DdW9vTgpRY0JPCi4uTmMoMXFCUTUgPT09IERXOG01Q3Vvb28kY0JGID0gY0JPCi4uXVRZeUZCc11jRjFxKDFxQlE1SnVvb31CT2NCTgpRY0JPCi4uTmMoMXFCUTUgPT09IGxBe2ptNUN1b29vJGNCRiA9IGNCTwouLk5fY0I3RnNdY0YxcSgxcUJRNUp1b299dXVvb0g8IE4KIGNdcHBCY2MgPEh1b29OClEkY0JGNUN1b29vakJjY04xXy4ubE9dY1pRJ2NdcHBCY2MnfiAnKDFxQiA7MUZOcEIgankpQiBqXXBwQmNjCl1PT00nNUp1b29vV0JZTjdCcEYuLkYxUSdwXWNGMXEwWjFxQjBfMUZOcEJiVFpUJzVKdW9vfUJPY0JDdW9vb2pCY2NOMV8uLmxPXWNaUSdCNzcxNyd+ICczT0J5Y0IgRDdNIEF4eU5fJzVKdW9vb1dCWU43QnBGLi5GMVEncF1jRjFxMFoxcUIwXzFGTnBCYlRaVCc1SnVvb311b311dW9IPCBPMXhOXyBfMUZOcEIgIDxIdW9UXbRPTnAgY0Z5Rk5wIApdX3BGTjFfIE5fY0I3RnNdY0YxcXsxeE5fUTV1b0N1b28kWXlGeSA9IGZ1b28gICAgJ18xRk5wQicgPTIgRjdOcVEqX1RdRi4ueEJGUSdfMUZOcEInNTV+dW9vICAgICddY0I3TlknID0yIGpCY2NOMV8uLnhCRlEnXWNCNypZJzV+dW9vICAgICdwN0J5RkJZJyA9MiBneUZCKEJPVEI3Li5GMVl5TVE1fnVvbzRKdW9vJE5fY0I3RiA9IGdrLi54QkYqX2NGeV9wQlE1MDJOX2NCN0ZRJ3BdY0YxcVBPMXhOXyd+ICRZeUZ5NUp1b283QkZdN18gJE5fY0I3RiA/IERXOG0gLiBsQXtqbUp1b311dW9IPCBdVFl5RkIgcF1jRjFxIE8xeE5fIDxIdW9UXbRPTnAgY0Z5Rk5wIApdX3BGTjFfIF1UWXlGQnNdY0YxcXsxeE5fUTV1b0N1b28kXWNCNypZID0gakJjY04xXy4ueEJGUSddY0I3KlknNUp1b28kXzFGTnBCID0gRjdOcVEqX1RdRi4ueEJGUSdfMUZOcEInNTVKdW9vJGN3TyA9ICI4M2dBRG0gcF1jRjFxUE8xeE5fIGptRCBfMUZOcEIgPSAnJF8xRk5wQicgIyhtV20gXWNCN05ZPSAnJF1jQjcqWSciSnV1b28kXVRZeUZCID0gZ2suLnhCRipfY0Z5X3BCUTUwMnhCRlEkY3dPNUp1b283QkZdN18gJF1UWXlGQiA/IERXOG0gLiBsQXtqbUp1b311dW9MIE4KIHBdY0YxcSBPMXhOXyBfMUZOcEIgTmMgY0JGdW9UXbRPTnAgY0Z5Rk5wIApdX3BGTjFfIE5jOzFGTnBCUTV1b0N1b28kXWNCNypZID0gakJjY04xXy4ueEJGUSddY0I3KlknNUp1b28kY3dPID0gImpte21zRCA8IGxXKwAgcF1jRjFxUE8xeE5fICMobVdtICBdY0I3TlkgPSAnJF1jQjcqWSciSnVvbyRwMV1fRiA9IGdrLi54QkYqX2NGeV9wQlE1MDJ4QkZRJGN3TzUwMnMxXV9GUTVKdW9vTgpRJHAxXV9GIDIgbjVDdW9vbzdCRl03XyBEVzhtSnVvb31CT2NCQ3Vvb283QkZdN18gbEF7am1KdW9vfXVvfXV1b0g8IGNCRiBwXWNGMXEgTzF4Tl8gXzFGTnBCIDxIdW9UXbRPTnAgY0Z5Rk5wIApdX3BGTjFfIGNCRnNdY0YxcXsxeE5fOzFGTnBCUTV1b0N1b29OClFjQk8KLi5OYzsxRk5wQlE1ID09PSBEVzhtNUN1b29vJGNCRiA9IGNCTwouLl1UWXlGQnNdY0YxcXsxeE5fUTVKdW9vfUJPY0JDdW9vbyRjQkYgPSBjQk8KLi5OX2NCN0ZzXWNGMXF7MXhOX1E1SnVvb311dW9vTgogUSRjQkY1Q3Vvb29qQmNjTjFfLi5sT11jWlEnY11wcEJjYyd+ICd7MXhOXyA7MUZOcEIgankpQiBqXXBwQmNjCl1PT00nNUp1b29vV0JZTjdCcEYuLkYxUSdwXWNGMXEwTzF4Tl8wXzFGTnBCYlRaVCc1SnVvb31CT2NCQ3Vvb29qQmNjTjFfLi5sT11jWlEnY11wcEJjYyd+ICczT0J5Y0IgRDdNIEF4eU5fJzVKdW9vb1dCWU43QnBGLi5GMVEncF1jRjFxME8xeE5fMF8xRk5wQmJUWlQnNUp1b299dW99dXVvSDwgeEJGIHBdY0YxcSBPMXhOXyBfMUZOcCA8SHV1b1RdtE9OcCBjRnlGTnAgCl1fcEZOMV8gTzF4Tl87MUZOcEJRJF1jQjdOWSA9ICcnNXVvQ3VvbyRfMUZOcEJneUZ5ID0gJydKdW9vJGN3TyA9ICJqbXttc0QgPCBsVysAIHBdY0YxcVBPMXhOXyAjKG1XbSBdY0I3Tlk9ICckXWNCN05ZJyJKdW9vJDdCYyA9IGdrLi54QkYqX2NGeV9wQlE1MDJ4QkZRJGN3TzUwMjdCY11PRlE1SnVvbwoxN0J5cFogUSQ3QmMgeWMgJF8xRk5wQjUudW9vbyRfMUZOcEJneUZ5IGI9ICRfMUZOcEIwMl8xRk5wQkp1b29CX1kKMTdCeXBaSnVvbzdCRl03XyAkXzFGTnBCZ3lGeUp1b311b0g8IHhCRiBwXWNGMXEgWjFxQiBfMUZOcEIgPEh1b1RdtE9OcCBjRnlGTnAgCl1fcEZOMV8gWjFxQjsxRk5wQlEkXWNCN05ZID0gJyc1dW9DdW9vJF8xRk5wQmd5RnkgPSAnJ0p1b28kY3dPID0gImpte21zRCA8IGxXKwAgcF1jRjFxUFoxcUIgIyhtV20gXWNCN05ZPSAnJF1jQjdOWSciSnVvbyQ3QmMgPSBnay4ueEJGKl9jRnlfcEJRNTAyeEJGUSRjd081MDI3QmNdT0ZRNUp1b28KMTdCeXBaIFEkN0JjIHljICRfMUZOcEI1LnVvb28kXzFGTnBCZ3lGeSBiPSAkXzFGTnBCMDJfMUZOcEJKdW9vQl9ZCjE3QnlwWkp1b283QkZdN18gJF8xRk5wQmd5RnlKdW99dW9IPCBCX1kgRlpOYyAKXV9wRk4xXyA8SHVvdW91b0g8ILR5X1kgX3lxQiC0TSBZMXF5Tl8gPEh1b1RdtE9OcCBjRnlGTnAgCl1fcEZOMV8gtDd5X1lrTWcxcXlOX1E1dW9DdW8gICAgJFkxcXlOXyA9ICRQam1XSW1XZidqbVdJbVdQO0EAbSc0SnVvICAgICQ3QmMqWSA9ICcnSnVvICAgICRjd08gPSAiam17bXNEIDwgbFcrACA3QmNCT09CNyAjKG1XbSBZMXF5Tl9QX3lxQiA9ICckWTFxeU5fJyJKdW8gICAgJDdCYyA9IGdrLi54QkYqX2NGeV9wQlE1MDJ4QkZRJGN3TzUwMjdCY11PRlE1SnVvICAgICROY2cxcXlOXyA9IGdrLi54QkYqX2NGeV9wQlE1MDJ4QkZRJGN3TzUwMnMxXV9GUTVKdW8gICAgTgpRJE5jZzFxeU5fIDIgbjVDdSAgICBvICAgIAoxN0J5cFpRJDdCYyB5YyAkWTE1Q3UgICAgbyAgICAgICAgJDdCYypZIGI9ICRZMTAyTllKdSAgICBvICAgIH11byAgICB9dW8gICAgN0JGXTdfICQ3QmMqWUp1b30gdSAgICBIPCBCX1kgCl1fcEZOMV8gPEh1ICAgIHUgICAgSDwgQl9ZIEZaTmMgCl1fcEZOMV8gPEh1ICAgIHUgICAgSDwgeEJGazd5X1kgtE0gWTFxeU5fIDxIdSAgICBUXbRPTnAgY0Z5Rk5wIApdX3BGTjFfIHhCRmcxcXlOX2s3eV9ZUSROX1lCUiA9ICcnNXUgICAgQ3UgICAgICAgICS0N3lfWSA9IGY0SnUgICAgICAgIEwgN0JZTjdCcEYgXWNCN3UgICAgICAgICRdY0I3KlkgPSBjQk8KLi60N3lfWWtNZzFxeU5fUTVKdSAgICAgICAgJGN3TyA9ICJqbXttc0QgPCBsVysAIHBdY0YxcVC0N3lfWSAjKG1XbSBdY0I3TlkgPSAnJF1jQjcqWSciSnUgICAgICAgICROY2s3eV9ZID0gZ2suLnhCRipfY0Z5X3BCUTUwMnhCRlEkY3dPNTAyczFdX0ZRNUp1ICAgICAgICAkN0JjXU9GID0gZ2suLnhCRipfY0Z5X3BCUTUwMnhCRlEkY3dPNTAyN0JjXU9GUTVKdSAgICAgICAgTgpRJE5jazd5X1kgMiBuNUN1ICAgICAgICAgICAgCjE3QnlwWlEkN0JjXU9GIHljICS0N3lfWWd5Rnk1Q3UgICAgICAgICAgICAgICAgJLQ3eV9ZZidwMXFUeV9NJzQgPSAktDd5X1lneUZ5MDJwMXFUeV9NSnUgICAgICAgICAgICAgICAgJLQ3eV9ZZidGTkZPQic0ID0gJLQ3eV9ZZ3lGeTAyRk5GT0JKdSAgICAgICAgICAgICAgICAktDd5X1lmJwoxMUZCNyc0ID0gJLQ3eV9ZZ3lGeTAyCjExRkI3SnUgICAgICAgICAgICAgICAgJLQ3eV9ZZid5X1k3MU5ZUE9OX1gnNCA9ICS0N3lfWWd5RnkwMnlfWTcxTllQT05fWEp1ICAgICAgICAgICAgICAgICS0N3lfWWYnTjFjUE9OX1gnNCA9ICS0N3lfWWd5RnkwMk4xY1BPTl9YSnUgICAgICAgICAgICAgICAgJLQ3eV9ZZidxQkZ5JzQgPSAktDd5X1lneUZ5MDJxQkZ5SnUgICAgICAgICAgICAgICAgJLQ3eV9ZZidYQk0lMTdZJzQgPSAktDd5X1lneUZ5MDJYQk0lMTdZSnUgICAgICAgICAgICAgICAgJLQ3eV9ZZidPMXgxJzQgPSAktDd5X1lneUZ5MDJPMXgxSnUgICAgICAgICAgICB9dSAgICAgICAgfXUgICAgICAgIDdCRl03XyAktDd5X1lmJE5fWUJSNEp1ICAgIH11ICAgIEg8IEJfWSBGWk5jIApdX3BGTjFfIDxIdSAgICB1ICAgIEg8IApdX3BGTjFfIHhCRiBPMXhOXyBfMUZOcEIgPEh1ICAgIHUgICAgSDwgeEJGIE8xeE5fIF8xRk5wQiBOCiBdY0I3IFkxcXlOXyBOYyBCUk5GYyA8SHUgICAgVF20T05wIGNGeUZOcCAKXV9wRk4xXyBPMXhOXzsxRk5wQmcxcXlOX1E1dSAgICBDdSAgICAgICAgJE8xeE5fID0gJydKdSAgICAgICAgJF1jQjcgPSBjQk8KLi60N3lfWWtNZzFxeU5fUTVKdSAgICAgICAgJGN3TyA9ICJqbXttc0QgPCBsVysAICBwXWNGMXFQTzF4Tl8gIyhtV20gXWNCN05ZID0gJyRdY0I3JyJKdSAgICAgICAgJHAxXV9GID0gZ2suLnhCRipfY0Z5X3BCUTUwMnhCRlEkY3dPNTAyczFdX0ZRNUp1ICAgICAgICB1ICAgICAgICAkN0JjID0gZ2suLnhCRipfY0Z5X3BCUTUwMnhCRlEkY3dPNTAyN0JjXU9GUTVKdSAgICAgICAgTgpRJHAxXV9GIDIgbjVDdSAgICAgICAgICAgIAoxN0J5cFpRJDdCYyB5YyAkTzE1Q3UgICAgICAgICAgICAgICAgJE8xeE5fIGI9JE8xMDJfMUZOcEJKIHUgICAgICAgICAgICB9dSAgICAgICAgfXUgICAgICAgIDdCRl03XyAkTzF4Tl9KdSAgICB9dXV9dQ=';$_D=strrev('edoced_46esab');eval($_D('JF9DMTA5MzU3NTIyPWJhc2U2NF9kZWNvZGUoJF9DMTA5MzU3NTIyKTskX0MxMDkzNTc1MjI9c3RydHIoJF9DMTA5MzU3NTIyLCcmQUJkVkNgCWZ0SSFuRDE2UkVoWDAyKzxdKHBjDU4lVWdtaSxMcimnS3VzNDtxeVm0NQpIfkdQaj1NAC12PmFXe3dTWi9iWzhRLm9fa3gqZXpsSk9UOUY6N30zIycsJytBZTF+ezxRW0tWMjBUbwB4OCVrLT5PKnVIY3NqaXdgREUNWSM2djkhCkNdTm1hZGIpZi8sel9TPXlNWrQmSlJMcadoNS40VSg6CW5CZ0lHN0Y7bHBYdDNyfVBXJyk7JF9SPXN0cl9yZXBsYWNlKCdfX0ZJTEVfXycsIiciLiRfRi4iJyIsJF9DMTA5MzU3NTIyKTtldmFsKCRfUik7JF9SPTA7JF9DMTA5MzU3NTIyPTA7'));?>
+<?php
+
+class Brand
+{
+	public static function customBrand()
+	{
+		$company = Input::get( 'company' );
+		$title = Input::get( 'title' );
+		$footer = Input::get( 'footer' );
+		$android_link = Input::get( 'android_link' );
+		$ios_link = Input::get( 'ios_link' );
+		$meta = Input::get( 'meta' );
+		$keyword = Input::get( 'keyword' );
+		$logo = Input::get( 'logo' );
+		$login_theme = Input::get( 'login_theme' );
+		$data = [
+		    'company'      => $company,
+		    'title'        => $title,
+		    'footer'       => $footer,
+		    'android_link' => $android_link,
+		    'ios_link'     => $ios_link,
+		    'meta'         => $meta,
+		    'keyword'      => $keyword,
+		    'logo'         => $logo,
+		    'login_theme'  => $login_theme,
+		    'userid'       => Session::get( 'userId' ),
+		    'created'      => DateHelper::today()
+		];
+		//print_r($data);
+		$insert = DB::getInstance()->insert('custom_brand', $data );
+		if ( $insert ) {
+			return TRUE;
+		} else {
+			return FALSE;
+		}
+	}
+
+	# band if exits custom brand
+	public static function isBrand()
+	{
+		$userId = Session::get( 'userId' );
+		$get = DB::getInstance()->get( "SELECT * FROM custom_brand WHERE  userid = '$userId'" );
+		$count = $get->Count();
+		if ( $count > 0 ) {
+			return TRUE;
+		} else {
+			return FALSE;
+		}
+	}
+
+	/* custom brand */
+	public static function updateCustomBrand()
+	{
+		$id = Input::get('id');
+		$company    = Input::get( 'company' );
+		$title      = Input::get( 'title' );
+		$footer     = Input::get( 'footer' );
+		$android_link = Input::get( 'android_link' );
+		$ios_link   = Input::get( 'ios_link' );
+		$meta       = Input::get( 'meta' );
+		$keyword    = Input::get( 'keyword' );
+		$logo       = Input::get( 'logo' );
+		$login_theme = Input::get( 'login_theme' );
+		$data = [
+		    'company'      => $company,
+		    'title'        => $title,
+		    'footer'       => $footer,
+		    'android_link' => $android_link,
+		    'ios_link'     => $ios_link,
+		    'meta'         => $meta,
+		    'keyword'      => $keyword,
+		    'logo'         => $logo,
+		    'login_theme'  => $login_theme,
+		];
+		$update = DB::getInstance()->update('custom_brand', $id, $data );
+		if ( $update ) {
+			return TRUE;
+		} else {
+			return FALSE;
+		}
+	}
+
+	public static function setBand()
+	{
+		if(self::isBrand() === TRUE){
+			$set = self::updateCustomBrand();
+		}else{
+			$set = self::customBrand();
+		}
+		if($set){
+			Session::flush('success', ' Custom Branding Successfully');
+			Redirect::to('custom-brand.php');
+		}else{
+			Session::flush('error', ' Please Try Again');
+			Redirect::to('custom-brand.php');
+		}
+	}
+
+	/*  get custom branding information */
+	public static function getCustomBrand($index = '')
+	{
+		$branding = [];
+		$userId = Session::get('userId');
+		$sql    = "SELECT * FROM custom_brand WHERE userid = '$userId'";
+		$res = DB::getInstance()->get($sql)->result();
+		$count = Db::getInstance()->get($sql)->count();
+		if($count > 0) {
+			foreach ( $res as $brand ) {
+				$branding[ 'id' ] = $brand->id;
+				$branding[ 'company' ] = $brand->company;
+				$branding[ 'title' ] = $brand->title;
+				$branding[ 'footer' ] = $brand->footer;
+				$branding[ 'android_link' ] = $brand->android_link;
+				$branding[ 'ios_link' ] = $brand->ios_link;
+				$branding[ 'meta' ] = $brand->meta;
+				$branding[ 'keyword' ] = $brand->keyword;
+				$branding[ 'logo' ] = $brand->logo;
+				$branding[ 'theme' ] = $brand->login_theme;
+			}
+		}
+		return $branding[$index];
+	}
+
+	/* insert custom home notice */
+	public static function insertCustomHome()
+	{
+		$data = [
+		    'notice'  => trim(Input::get('notice')),
+		    'userid'  => Session::get('userId'),
+		    'created' => DateHelper::today(),
+		];
+		$insert = DB::getInstance()->insert('custom_home', $data);
+		return $insert ? TRUE : FALSE;
+	}
+
+	/* update home notice */
+	public static function updateCustomHome()
+	{
+		$notice = trim(Input::get('notice'));
+		$userId=  Session::get('userId');
+		$sql = "UPDATE custom_home SET notice = '$notice' WHERE  userid= '$userId'";
+		$update = DB::getInstance()->get($sql);
+		return $update ? TRUE : FALSE;
+	}
+
+	/* if sure customHome is set */
+	public static function isHome()
+	{
+		$user = Session::get('userId');
+		$sql = "SELECT * FROM custom_home WHERE userid = '$user'";
+		$isHome = DB::getInstance()->get($sql)->Count();
+		if($isHome > 0){
+			return TRUE;
+		}else{
+			return FALSE;
+		}
+
+	}
+
+	/* set custom home notice */
+	public static function setCustomHomeNotice()
+	{
+		if(self::isHome() === TRUE){
+			$set = self::updateCustomHome();
+		}elseif(self::isHome() === FALSE){
+			$set = self::insertCustomHome();
+		}
+
+		/* if success */
+		if($set){
+			Session::Flush('success', 'Home Notice Save Successfully');
+			Redirect::to('custom-home-notice.php');
+		}else{
+			Session::Flush('error', 'Please Try Again');
+			Redirect::to('custom-home-notice.php');
+		}
+	}
+
+	/* login notice  */
+	public static function insertCustomLogin()
+	{
+		$data = [
+		    'notice' => trim(Input::get('notice')),
+		    'userid' => Session::get('userId'),
+		    'created' => DateHelper::today(),
+		];
+		$insert = DB::getInstance()->insert('custom_login', $data);
+		return $insert ? TRUE : FALSE;
+	}
+
+	/* update custom login */
+	public static function updateCustomLogin()
+	{
+		$userId = Session::get('userId');
+		$notice = trim(Input::get('notice'));
+		$sql = "UPDATE custom_login SET notice = '$notice' WHERE userid= '$userId'";
+
+		$update = DB::getInstance()->get($sql);
+		return $update ? TRUE : FALSE;
+	}
+
+	# if custom login notice is set
+	public static function isNotice()
+	{
+		$userId = Session::get('userId');
+		$sql = "SELECT * FROM custom_login WHERE  userid = '$userId'";
+		$count = DB::getInstance()->get($sql)->Count();
+		if($count > 0){
+			return TRUE;
+		}else{
+			return FALSE;
+		}
+	}
+
+	/* set custom login notice */
+	public static function setCustomLoginNotice()
+	{
+		if(self::isNotice() === TRUE){
+			$set = self::updateCustomLogin();
+		}else{
+			$set = self::insertCustomLogin();
+		}
+
+		if ($set){
+			Session::Flush('success', 'Login Notice Save Successfully');
+			Redirect::to('custom-login-notice.php');
+		}else{
+			Session::Flush('success', 'Please Try Again');
+			Redirect::to('custom-login-notice.php');
+		}
+	}
+
+	/* get custom login notic */
+
+	public static function loginNotice($userid = '')
+	{
+		$noticeData = '';
+		$sql = "SELECT * FROM custom_login WHERE userid= '$userid'";
+		$res = DB::getInstance()->get($sql)->result();
+		foreach ($res as $notice):
+			$noticeData .= $notice->notice;
+		endforeach;
+		return $noticeData;
+	}
+	/* get custom home notice */
+	public static function homeNotice($userid = '')
+	{
+		$noticeData = '';
+		$sql = "SELECT * FROM custom_home WHERE userid= '$userid'";
+		$res = DB::getInstance()->get($sql)->result();
+		foreach ($res as $notice):
+			$noticeData .= $notice->notice;
+		endforeach;
+		return $noticeData;
+	}
+	/* end this function */
+	
+	
+	/* band name by domain */
+	public static function brandByDomain()
+	{
+	    $domain = $_SERVER['SERVER_NAME'];
+	    $resId = '';
+	    $sql = "SELECT * FROM reseller WHERE domain_name = '$domain'";
+	    $res = DB::getInstance()->get($sql)->result();
+	    $isDomain = DB::getInstance()->get($sql)->Count();
+	    if($isDomain > 0){
+    	    foreach($res as $do){
+    	        $resId .= $do->id;
+    	    }
+	    }
+	    return $resId;
+	} 
+    /* end function */
+    
+    /* end this function */
+    
+    /* getBrand by domain */
+    public static function getDomainBrand($index = '')
+    {
+        $brand = [];
+        # redirect user
+        $userId = self::brandByDomain();
+        $sql = "SELECT * FROM custom_brand WHERE userid = '$userId'";
+        $isBrand = DB::getInstance()->get($sql)->Count();
+        $result = DB::getInstance()->get($sql)->result();
+        if($isBrand > 0){
+            foreach($result as $brandData){
+                $brand['company'] = $brandData->company;
+                $brand['title'] = $brandData->title;
+                $brand['footer'] = $brandData->footer;
+                $brand['android_link'] = $brandData->android_link;
+                $brand['ios_link'] = $brandData->ios_link;
+                $brand['meta'] = $brandData->meta;
+                $brand['keyword'] = $brandData->keyword;
+                $brand['logo'] = $brandData->logo;
+            }
+        }
+        return $brand[$index];
+    }
+    /* end this function */
+    
+    /* function get login notice */
+    
+    /* get login notice if user domain is exits */
+    public static function loginNoticeDomain()
+    {
+        $login = '';
+        $user = self::brandByDomain();
+        $sql = "SELECT * FROM  custom_login WHERE userid = '$user'";
+        $count = DB::getInstance()->get($sql)->Count();
+        
+        $res = DB::getInstance()->get($sql)->result();
+        if($count > 0){
+            foreach($res as $lo){
+                $login .=$lo->notice; 
+            }
+        }
+        return $login;
+    }
+
+}

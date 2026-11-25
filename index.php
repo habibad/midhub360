@@ -69,7 +69,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 $_SESSION['level']             = $level;         
                 $_SESSION['userip']            = $_SERVER["REMOTE_ADDR"]; 
                 $_SESSION['sess_username']     = $user; 
-                $_SESSION['sess_pass']    	   = $pass; 
+                // (plaintext password no longer stored in the session) 
                 $_SESSION['sess_uservalid']    = 1;
 
                 $login_logs = Log::loginlogs("Success");
@@ -86,12 +86,12 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
      {
         $login_logs = Log::loginlogs("Failed");  
         
-        if($login_failedip >= 5)
+        if($login_failedip >= 19) // 20 failures in 15 min from one IP (high: many BD mobile users share CGNAT IPs)
         {
             Security::IPBlock();
             header("location: forbidden.php");
         }
-        if($login_faileduser >= 3)
+        if($login_faileduser >= 2) // 3rd wrong password in 15 min locks the account
         {
             Security::UserBlock();
             $error_msg = "<div class='errormsg'> Your account is blocked!<br><br></div>";

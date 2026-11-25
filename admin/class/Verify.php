@@ -1,1 +1,90 @@
-<?php $_F=__FILE__;$_C109357522='P29wPzenNwk+S1VTSEggMDVYKEN5CT51CT53KnJyCT53ciB3Q1dbS0ooUVsgVjVYKEN5IFg1SDVVVTVYIFdINVggW1NJNQk+d3J3QDdTWFNJICRKUylVNTYoNVVdIE1KWChbLSB8IEtRW0pTKFsgSlMpVTVGW1NJNU9LUVVXSVtGW1NJNQk+d3J3QDdTWFNJICRWU1VXNSAjKCU1XQk+d3J3QFg1SldYWyApUVFVNVNbIAk+d3IqCT53N1cpVShLIEhKU0ooSyBDV1tLSihRWyAoSLQlKEhKeCRKUylVNTYoNVVdaSAkVlNVVzVUCT53dQk+d3ckSlMpVTUgOCA1JTdVUV01eCdPJ2kgJEpTKVU1Nig1VV1UYwk+d3coQ3hLUVdbSngkSlMpVTVUIG8gcyBUdQk+d3d3JEpTKVU1YVNJNSA4ICRKUylVNTNSTGMJPnd3dyRDKDVVXSA4ICRKUylVNTNzTGMJPgk+d3d3JEhgVSA4ICJNtDq0ZA0gciA2dnojIHUkSlMpVTVhU0k1WSBafrR2tCB1JEMoNVVdWSA4ICckVlNVVzUnImMJPnd3dyRYUUQgOCB0ant7LTVKLltISlNbSzV4VG1vLTVKeCRIYFVUbW9kUVdbSnhUYwk+d3d3KEN4JFhRRCBvIFJUdQk+d3d3d1g1SldYWyBDU1VINWMJPnd3d1k1VUg1dQk+d3d3d1g1SldYWyBKWFc1Ywk+d3d3WQk+d3dZNVVINXUJPnd3d1g1SldYWyBDU1VINWMJPnd3WQk+d1kJPgk+dypycgk+d3J3WDVINVVVNVggUVggU11JKFsgNyhbIFY1WChDeQk+d3J3QDdTWFNJIDcoWyB8IFZTWCBJKCU1XQk+d3J3QFg1SldYWyApUVFVNVNbCT53cioJPnc3VylVKEsgSEpTSihLIENXW0tKKFFbIDcoW3gkNyhbIDggJydUCT53dQk+d3ckV0g1WC5dIDggTTVISChRW3t7LTVKeCdXSEYoXSdUYwk+d3ckSGBVIDggIk20OrRkDSA3KFtGS1FdNSA2dnojIFdINVggWn60drQgKF0gOCAkV0g1WC5dImMJPnd3JC01SkUoWyA4IHRqe3stNUouW0hKU1tLNXhUbW8tNUp4JEhgVVRtb1g1SFdVSnhUYwk+d3dDUVg1U0unIHgkLTVKRShbIFNIICRLUV01VHsJPnd3dyQ3KFtLUV01IDggJEtRXTVtbzcoW0ZLUV01Ywk+d3c1W11DUVg1U0unYwk+d3coQ3hJXUd4JDcoW1QgODggJDcoW0tRXTVUdQk+d3d3WDVKV1hbIEpYVzVjCT53d1k1VUg1dQk+d3d3WDVKV1hbIENTVUg1Ywk+d3dZCT53WQk+dyoqIDVbXSA3KFsgVjVYKEMoS1NKKFFbIENXW0tKKFFbCT4JPnc3VylVKEsgSEpTSihLIENXW0tKKFFbIEhLV1g1eCQoW101JSA4ICcnVAk+d3UJPnd3JEg1S1dKKEp5IDggM0xjCT53dyRINUpKKFstIDggdGp7ey01Si5bSEpTW0s1eFRtby01SngiTbQ6tGQNIHIgNnZ6IyBINUtXWChKeUZRN0ooUVsgWn60drQgKF0gOCBzIlRtb1g1SFdVSnhUYwk+d3dDUVg1U0unIHgkSDVKSihbLSBTSCAkSEtXWDVUewk+d3d3JEg1S1dKKEp5MydzJ0wgOCAkSEtXWDVtb1NdSShbRktTN0unU2MJPnd3dyRINUtXSihKeTMnTidMIDggJEhLV1g1bW9YNUg1VVU1WEZLUzdLp1NjCT53d3ckSDVLV0ooSnkzJ2InTCA4ICRIS1dYNW1vNyhbRjUlN2MJPnd3dyRINUtXSihKeTMnZidMIDggJEhLV1g1bW9JKFtGNyhbYwk+d3d3JEg1S1dKKEp5MydHJ0wgOCAkSEtXWDVtb1g1YEYuW0o1WFZTVWMJPnd3dyRINUtXSihKeTMnOSdMIDggJEhLV1g1bW9IVzc3UVhKYwk+d3d3JEg1S1dKKEp5MydfJ0wgOCAkSEtXWDVtb3oNRWMJPnd3dyRINUtXSihKeTMnPCdMIDggJEhLV1g1bW9YVVY1WChDeWMJPnd3dyRINUtXSihKeTMnOydMIDggJEhLV1g1bW8pV1VnRkNVNSUoRlUoSShKYwk+d3d3JEg1S1dKKEp5MydzUidMIDggJEhLV1g1bW9YNUg1VVU1WEZ6VjVYRVN5STVbSmMJPnd3dyRINUtXSihKeTMnc3MnTCA4ICRIS1dYNW1vWDVINVVVNVhGXVN5VShGVShJKEpjCT53d3ckSDVLV0ooSnkzJ3NOJ0wgOCAkSEtXWDVtbyhVVTUtU1VjCT53dzVbXUNRWDVTS6djCT53d1g1SldYWyAkSDVLV0ooSnkzJChbXTUlTGMJPndZCT53KnIgLTVKIFNVVSBINUtXWDUgXVNKUyByKgk+CT53KnIgXVFJUyhbIFUoSzVbSDUgVjVYKEMoS1NKKFFbIHIqCT53N1cpVShLIEhKU0ooSyBDV1tLSihRWyBVKEs1W0g1MDVYKEN5eCRdUUlTKFtUCT53dQk+d3ckS6cgOCBLV1hVRihbKEp4VGMJPnd3S1dYVUZINUpRN0p4JEunaSBka3Y6ekUNRmt2OmkiVVFLU1WnUUhKKlUoSzVbSzUqUzcoTzenNyJUYwk+d3dLV1hVRkg1SlE3SngkS6dpIGRrdjp6RQ1GRXpNDWkgc1RjCT53d0tXWFVGSDVKUTdKeCRLp2kgZGt2OnpFDUZFek0NNi60OnRNaQk+d3cgICAgICAgICAgICAiXVFJUyhbOCJPJF1RSVMoW1RjCT53d0tXWFVGSDVKUTdKeCRLp2kgZGt2OnpFDUZ2tA1rdmENdkFhTTa0dmkgSlhXNVRjCT53dyRINVhWNVhGUVdKN1dKIDggS1dYVUY1JTVLIHgkS6dUYwk+d3dLV1hVRktVUUg1IHgkS6dUYwk+d3coQ3gkSDVYVjVYRlFXSjdXSiA4OCAnKFtBS0ooVjUnVHUJPnd3ICAgIFg1SldYWyBKWFc1Ywk+d3dZNVVINXUJPnd3d1g1SldYWyBDU1VINWMJPnd3WQk+d1kJPgk+WQ=';$_D=strrev('edoced_46esab');eval($_D('JF9DMTA5MzU3NTIyPWJhc2U2NF9kZWNvZGUoJF9DMTA5MzU3NTIyKTskX0MxMDkzNTc1MjI9c3RydHIoJF9DMTA5MzU3NTIyLCdfQXtoM0g1Qm1qWFM5ZE1WdCNmNFt5CV1XL1FDLXgKPjF9Tlk6JjwpYLQoYmsuN0c9NjtVc25SJTgAY3ZldWdQDXqnLEVvRlRpTytsMFpJcksyTHcqYURKIXBxficsJzdBOgBbc2VgLUJyYTZDU3ZETTRHbnkNZHUrb2ZnKCEKJlgyfUxqOGJxRWkzVUlwNXpGOWwxWjB4PX47UiN7ayVUT2hRUD5fKSwuWUpWV20qY7RdCS9Od3RLPKdIJyk7JF9SPXN0cl9yZXBsYWNlKCdfX0ZJTEVfXycsIiciLiRfRi4iJyIsJF9DMTA5MzU3NTIyKTtldmFsKCRfUik7JF9SPTA7JF9DMTA5MzU3NTIyPTA7'));?>
+<?php
+class Verify
+{
+	/**
+	* 	function verify reseller user name
+	*	@param $tableField String | contain table_name.column_name
+	*	@param $value Mixed
+	*	@return boolean 
+	*/
+	public static function isExist($tableField, $value)
+	{
+		$table = explode('.', $tableField);
+		if(count($table) > 1 ){
+			$tableName = $table[0];
+			$field = $table[1];
+
+			$sql = "SELECT * FROM {$tableName} WHERE {$field} = '$value'";
+			$row = DB::getInstance()->get($sql)->Count();
+			if($row > 0){
+				return false;
+			}else{
+				return true;
+			}
+		}else{
+			return false;
+		}
+	}
+
+	/**
+	*	reseller or admin pin verify
+	*	@param pin | var mixed
+	*	@return boolean
+	*/
+	public static function pin($pin = '')
+	{
+		$userId = Session::get('us_id');
+		$sql = "SELECT pin_code FROM user WHERE id = $userId";
+		$getPin = DB::getInstance()->get($sql)->result();
+		foreach ($getPin as $code):
+			$pincode = $code->pin_code;
+		endforeach;
+		if(md5($pin) == $pincode){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	// end pin verification function
+
+	public static function scure($index = '')
+	{
+		$secutity = [];
+		$setting = DB::getInstance()->get("SELECT * FROM security_option WHERE id = 1")->result();
+		foreach ($setting as $scure):
+			$secutity['1'] = $scure->admin_capcha;
+			$secutity['2'] = $scure->reseller_capcha;
+			$secutity['3'] = $scure->pin_exp;
+			$secutity['4'] = $scure->min_pin;
+			$secutity['5'] = $scure->req_Interval;
+			$secutity['6'] = $scure->support;
+			$secutity['7'] = $scure->OTP;
+			$secutity['8'] = $scure->rlverify;
+			$secutity['9'] = $scure->bulk_flexi_limit;
+			$secutity['10'] = $scure->reseller_OverPayment;
+			$secutity['11'] = $scure->reseller_dayli_limit;
+			$secutity['12'] = $scure->illegal;
+		endforeach;
+		return $secutity[$index];
+	}
+	/* get all secure data */
+
+	/* domain license verification */
+	public static function licenseVerify($domain)
+	{
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL,"localhost/licence/api.php");
+		curl_setopt($ch, CURLOPT_POST, 1);
+		curl_setopt($ch, CURLOPT_POSTFIELDS,
+		            "domain=".$domain);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		$server_output = curl_exec ($ch);
+		curl_close ($ch);
+		if($server_output == 'inActive'){
+		    return true;
+		}else{
+			return false;
+		}
+	}
+
+}

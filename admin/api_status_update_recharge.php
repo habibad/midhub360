@@ -1,4 +1,5 @@
 <?php
+require_once dirname(__DIR__) . '/lib/guard.php'; midhub_guard_cli_or_super_admin(); // SECURITY: was reachable without admin login
 require_once '../db.php';
 require_once 'autoload.php';
 
@@ -64,13 +65,15 @@ if($apicount == 1) //Check API Active/Inactive
 
                      /*Update History Table Start*/
 
-                     $query = "UPDATE send_query SET status='1' WHERE api_reid ='$api_reid'";
-                     global $connect; 
-                     $result = mysqli_query($connect, $query);    
+                     // only settle rows still processing (6); overlapping runs must not settle twice
+                     $query = "UPDATE send_query SET status='1' WHERE id = " . (int) $flexiId . " AND status='6'";
+                     global $connect;
+                     $result = mysqli_query($connect, $query);
                      if(!$result)
-                     {                      
+                     {
                          die("Query Failed!" . mysqli_error($connect));
                      }
+                     if (mysqli_affected_rows($connect) !== 1) { continue; }
 
                       /*Update History Table End*/
 
@@ -85,6 +88,7 @@ if($apicount == 1) //Check API Active/Inactive
                           die("Query Failed2!" . mysqli_error($connect));
                       }
                       /*Insert Data to Reportserver Table End*/
+                      \Midhub\Commission\CommissionService::payForRecharge((int) $flexiId); // 5-level commission, exactly once
 
                       
 				}
@@ -93,32 +97,22 @@ if($apicount == 1) //Check API Active/Inactive
 
                      /*Update History Table Start*/
 
-                     $query = "UPDATE send_query SET status='3' WHERE api_reid ='$api_reid'";
-                     global $connect; 
-                     $result = mysqli_query($connect, $query);    
+                     // claim the row first so an overlapping run cannot refund it twice
+                     $query = "UPDATE send_query SET status='3' WHERE id = " . (int) $flexiId . " AND status='6'";
+                     global $connect;
+                     $result = mysqli_query($connect, $query);
                      if(!$result)
-                     {                      
+                     {
                          die("Query Failed!" . mysqli_error($connect));
                      }
+                     if (mysqli_affected_rows($connect) !== 1) { continue; }
 
                       /*Update History Table End*/
 
 
-                     /*Update User Balance */
+                     /*Update User Balance (relative increment: no lost updates) */
 
-                     $querysl= "SELECT balance2 from user where id='$userid'";                        
-                     $resultsl = mysqli_query($connect, $querysl);
-
-                     if(!$resultsl){
-                     die("Query Failed!3" . mysqli_error($connect));      
-                     } 
-
-                     $reseller_data= mysqli_fetch_object($resultsl);
-                     $balance =$reseller_data->balance2;
-
-                     $update_balance = $balance + $amount;
-
-                     $queryup = "UPDATE user SET balance2='$update_balance' WHERE id='$userid'";
+                     $queryup = "UPDATE user SET balance2 = balance2 + " . (float) $amount . " WHERE id = " . (int) $userid;
                      
                       $resultup = mysqli_query($connect, $queryup);    
                       if(!$resultup)

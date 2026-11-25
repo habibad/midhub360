@@ -7,6 +7,23 @@
 if (!defined('MIDHUB_ENV_LOADED')) {
     define('MIDHUB_ENV_LOADED', true);
 
+    // 0a. Harden the session cookie before any session_start():
+    //     HttpOnly (no JS access), SameSite=Lax (blocks cross-site POST forgery),
+    //     Secure when served over HTTPS. Strict mode rejects uninitialized session IDs.
+    if (session_status() === PHP_SESSION_NONE && PHP_SAPI !== 'cli' && !headers_sent()) {
+        $isHttps = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off')
+            || (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https');
+        @ini_set('session.use_strict_mode', '1');
+        @ini_set('session.cookie_httponly', '1');
+        session_set_cookie_params(array(
+            'lifetime' => 0,
+            'path'     => '/',
+            'secure'   => $isHttps,
+            'httponly' => true,
+            'samesite' => 'Lax',
+        ));
+    }
+
     // 0. Auto-fix session storage path if missing or non-writable
     if (session_status() === PHP_SESSION_NONE) {
         $currSavePath = ini_get('session.save_path');
@@ -34,7 +51,8 @@ if (!defined('MIDHUB_ENV_LOADED')) {
         $lines = file($envFile, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
         foreach ($lines as $line) {
             $line = trim($line);
-            if ($line === '' || str_starts_with($line, '#')) {
+            // substr() rather than str_starts_with(): production runs PHP 7.4
+            if ($line === '' || substr($line, 0, 1) === '#') {
                 continue;
             }
             if (strpos($line, '=') !== false) {

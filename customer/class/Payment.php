@@ -1,5 +1,5 @@
 <?php
-
+require_once dirname(__DIR__, 2) . '/lib/bootstrap.php';
 class Payment
 {
       /**
@@ -148,44 +148,24 @@ class Payment
                         else 
                         {
 
-                              /*Update Self Balance */                        
-                             
-                              $update_selfbalance = $get_selfbalance - $amount;
-
-                              $queryself = "UPDATE user SET balance2='$update_selfbalance' WHERE id='$us_id'";
-                              
-                              $resultself = mysqli_query($connect, $queryself);    
-                              if(!$resultself)
-                              {                      
-                              die("Query Failed4!" . mysqli_error($connect));
-                              }
-                              
-                              /*Update Self Balance End*/
-                              
-                              
-                              /*Update User Balance */
-                        
-                              $querysl= "SELECT balance2 from user where id='$resId'";                        
-                              $resultsl = mysqli_query($connect, $querysl);
-
-                              if(!$resultsl){
-                              die("Query Failed!3" . mysqli_error($connect));      
-                              } 
-
-                              $reseller_data= mysqli_fetch_object($resultsl);
-                              $balance =$reseller_data->balance2;
-
-                              $update_balance = $balance + $amount;
-
-                              $queryup = "UPDATE user SET balance2='$update_balance' WHERE id='$resId'";
-                              
-                              $resultup = mysqli_query($connect, $queryup);    
-                              if(!$resultup)
-                              {                      
-                              die("Query Failed4!" . mysqli_error($connect));
-                              }
-                              
-                              /*Update User Balance End*/
+                              /* Atomic upline -> direct-downline transfer (lib/Midhub/Wallet/TransferService.php).
+                                       The legacy code accepted any user id as recipient and could
+                                       send the same balance twice under parallel requests. */
+                                    try {
+                                          $mv = \Midhub\Wallet\TransferService::toDownline((int) $us_id, (int) $resId, 'balance2', (string) $amount, (string) $note);
+                                    } catch (\Midhub\Wallet\InsufficientBalanceException $e) {
+                                          Session::Flush('error', 'Insufficient Your Recharge Balance!');
+                                          Redirect::to('cs-profile.php?reseller_id=' . (int) $resId);
+                                          exit();
+                                    } catch (\DomainException $e) {
+                                          Session::Flush('error', $e->getMessage());
+                                          Redirect::to('customer_list.php');
+                                          exit();
+                                    }
+                                    $resId = (int) $resId;
+                                    $balance = $mv['to_before'];
+                                    $update_balance = $mv['to_after'];
+                                    /*Update User Balance End*/
 
                               $queryin  = "INSERT INTO  reseller_balance (id,user_id,amount,submitted_date,load_by,updated,note,ip,return_payment,old_balance,new_balance)";
                               $queryin .= "VALUES(0,'$resId','$amount',NOW(),'$us_id',NOW(),'$note','$ip','0','$balance','$update_balance')"; 
@@ -217,42 +197,23 @@ class Payment
                         else 
                         {
 
-                                    /*Update Self Balance */                        
-                             
-                                    $update_selfmbbalance = $get_selfmbbalance - $amount;
-
-                                    $queryself = "UPDATE user SET bkash_balance='$update_selfmbbalance' WHERE id='$us_id'";
-                                    
-                                    $resultself = mysqli_query($connect, $queryself);    
-                                    if(!$resultself)
-                                    {                      
-                                    die("Query Failed4!" . mysqli_error($connect));
+                                    /* Atomic upline -> direct-downline transfer (lib/Midhub/Wallet/TransferService.php).
+                                       The legacy code accepted any user id as recipient and could
+                                       send the same balance twice under parallel requests. */
+                                    try {
+                                          $mv = \Midhub\Wallet\TransferService::toDownline((int) $us_id, (int) $resId, 'bkash_balance', (string) $amount, (string) $note);
+                                    } catch (\Midhub\Wallet\InsufficientBalanceException $e) {
+                                          Session::Flush('error', 'Insufficient Your M. Banking Balance');
+                                          Redirect::to('cs-profile.php?reseller_id=' . (int) $resId);
+                                          exit();
+                                    } catch (\DomainException $e) {
+                                          Session::Flush('error', $e->getMessage());
+                                          Redirect::to('customer_list.php');
+                                          exit();
                                     }
-                                    
-                                    /*Update Self Balance End*/
-
-                                    /*Update User Balance */
-
-                                    $querysl= "SELECT bkash_balance from user where id='$resId'";                        
-                                    $resultsl = mysqli_query($connect, $querysl);
-
-                                    if(!$resultsl){
-                                    die("Query Failed!3" . mysqli_error($connect));      
-                                    } 
-
-                                    $reseller_data= mysqli_fetch_object($resultsl);
-                                    $balance =$reseller_data->bkash_balance;
-
-                                    $update_balance = $balance + $amount;
-
-                                    $queryup = "UPDATE user SET bkash_balance='$update_balance' WHERE id='$resId'";
-                                    
-                                    $resultup = mysqli_query($connect, $queryup);    
-                                    if(!$resultup)
-                                    {                      
-                                    die("Query Failed4!" . mysqli_error($connect));
-                                    }
-                                    
+                                    $resId = (int) $resId;
+                                    $balance = $mv['to_before'];
+                                    $update_balance = $mv['to_after'];
                                     /*Update User Balance End*/
 
                                     $queryin  = "INSERT INTO  bkash_balance (id,user_id,amount,submitted_date,load_by,updated,note,ip,return_payment,old_balance,new_balance)";
@@ -670,6 +631,11 @@ class Payment
 
       /** Add Online Fund Request Start */
       public static function addFundThroughOnline(){
+
+            // Retired: this flow used hardcoded PayStation sandbox merchant credentials.
+            // Online top-ups now go through Add Money (admin-managed gateways, Sandbox/Live).
+            Redirect::to('add_money.php');
+            exit();
 
             $user_id         = Session::get('us_id');
             $balance_type    = Input::get('bltype');

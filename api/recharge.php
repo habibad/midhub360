@@ -9,6 +9,8 @@ $number = Xss::xssClean(Input::get('number'));
 $amount = Xss::xssClean(Input::get('amount'));
 $type   = Xss::xssClean(Input::get('type'));
 $rid   = Xss::xssClean(Input::get('rid'));
+require_once __DIR__ . '/guard.php';
+midhub_api_validate(array('user' => $user, 'key' => $key, 'number' => $number, 'amount' => $amount, 'type' => $type, 'rid' => $rid)); // SECURITY: whitelist before any SQL
 
 
 /* validate request information Start*/
@@ -116,14 +118,7 @@ if ($operatorType == '017') {
 
 /*Query for User Validity start*/
 
-$query  = "SELECT * from user where user='$user' and api_key='$key' and active='1'";    
-    
-$result = mysqli_query($connect, $query); 
-
-$reseller_data= mysqli_fetch_object($result);
-
-
-$count = mysqli_num_rows($result);  // If result matched $user and $pass, table row must be 1 row
+$reseller_data = null; list($reseller_data, $count) = midhub_api_auth($user, $key); // prepared statement + constant-time key check
 
 /*Query for User Validity End*/
 
@@ -195,13 +190,18 @@ if($count == 1)
             $refrom='API';
             
             $upbalance = $balance - $amount;
-            $query = "UPDATE user set balance2='$upbalance' where id='$user_id'";
+            // atomic: the debit only succeeds while the balance still covers it (no double-spend)
+            $query = "UPDATE user SET balance2 = balance2 - " . (int) $amount . " WHERE id = " . (int) $user_id . " AND balance2 >= " . (int) $amount;
             global $connect; 
             $result = mysqli_query($connect, $query);    
             if(!$result)
             {
-                
                 die("Query Failed!" . mysqli_error($connect));
+            }
+            if (mysqli_affected_rows($connect) !== 1)
+            {
+                echo json_encode(array('RESPONSE' => 'ERROR: Insufficient Balance!'));
+                exit();
             }
 
             $apicount = Api::apistatus("1","eFlexiload","Recharge"); //API Active/Inactive Function

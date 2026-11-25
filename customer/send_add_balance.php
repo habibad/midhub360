@@ -182,28 +182,11 @@ $nagad_personal   = $reseller_data->nagad_personal ?? '01700000000';
 
                                         <div class="tab-pane" id="settings">
     
-                                           <div class="tab-pane show active" id="timeline">
-                                                <form action="route.php?action=addFundThroughOnline" method="post" accept-charset="utf-8">
-                                                    <div class="text-start mt-3">
-                                                        <div class="mb-3">
-                                                            <label class="mb-2">Balance Type <span class="text-danger">*</span></label>
-                                                            <br/>
-                                                            <select name="bltype" class="form-control" id="bltype">
-                                                                <option value="recharge">Recharge Balance</option>
-                                                                <option value="mobile_banking">Mobile Banking Balance</option>
-                                                            </select>
-                                                        </div>
-                                                        <div class="mb-3">
-                                                            <label for="product-name" class="form-label">Amount<span class="text-danger">*</span></label>
-                                                            <input type="number" name="amount" id="amount" class="form-control" placeholder="Enter Amount" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="6" required>
-                                                            <span class="request-page-balance">Current Balance: Recharge: Tk. <strong><?php echo $re_balance; ?></strong> M. Bank: <strong><?php echo $mb_balance; ?></strong></span>
-                                                        </div>
-                                                        <br>
-                                                        <div class="button-list pe-xl-4 d-grid">
-                                                            <button type="submit" class="btn btn-lg btn-primary waves-effect waves-light">Submit</button>
-                                                        </div>
-                                                    </div>
-                                                </form>
+                                           <div class="text-start mt-3">
+                                                <p>Pay instantly with bKash, Nagad, Upay, UddoktaPay or an international card. Your wallet is credited automatically as soon as the payment is confirmed.</p>
+                                                <div class="button-list pe-xl-4 d-grid">
+                                                    <a href="add_money.php" class="btn btn-lg btn-primary waves-effect waves-light">Add Money Online</a>
+                                                </div>
                                             </div>
 
                                         </div> <!-- end tab-pane -->

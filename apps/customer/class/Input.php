@@ -1,1 +1,58 @@
-<?php $_F=__FILE__;$_C109357522='PzVZPzs3O24rSGtrbisgayBBTXI3tDAgSbRyTWcgQTdXR3FuKyBrSG4rCV11Li4gemc7TXJuKzZuKyAgICBIa2tuKyAgICAgayBAO3UwdVcgLnIwLWd9ICRybztHbisgICAgIGsgQDBHck0wZyBstLRdbisgICAgIGsgLUQgO7QuciC0MCB9R3IgV0dyN7RxIHIwTUduKyAgICAga0huKyAgICA7TWxdLQkgLnJ1ci0JIERNZwlyLbRnIEdzLS5yLi8kcm87RyBgICc7tC5yJ0xuKyAgICA2bisgICAgICAgIC50LXIJNyAvJHJvO0dMIDZuKyAgICAgICAgICAgIAl1LkcgJzu0LnInYW4rICAgICAgICAgICAgICAgIDBHck0wZyAvOUdXO3JvLyRwCmhQZkxMID8gcjBNRyBhIER1XS5HUm4rICAgICAgICAgICAgICAgIGwwR3VVUm4rICAgICAgICAgICAgCXUuRyAnfUdyJ2FuKyAgICAgICAgICAgICAgICAwR3JNMGcgLzlHVztyby8kcCV4ZkxMID8gcjBNRyBhIER1XS5HUm4rICAgICAgICAgICAgICAgIGwwR3VVUm4rICAgICAgICAgICAgcUdEdU1dcmFuKyAgICAgICAgICAgICAgICAwR3JNMGcgRHVdLkdSbisgICAgICAgICAgICAgICAgbDBHdVVSbisgICAgICAgIEtuK24rICAgIEtuK24rICAgIEhra24rICAgICBrIEA7dTB1VyAkLXJHV24rICAgICBrIEAwR3JNMGcgLnIwLWd9bisgICAgIGsgfUdyIAq0LnIgQ3VydSC0MCAlR3IgLEdyN7RxIHF1cnVuKyAgICAgayByNy0uIFdHcje0cSBNLkdxIHpnO01yYWF9R3IvQDt1MHVXICAkLXJHV0xuKyAgICAga0huKyAgICA7TWxdLQkgLnJ1ci0JIERNZwlyLbRnIH1Hci8kLXJHV0xuKyAgICA2bisgICAgICAgIC1EIC8tLi5Hci8kcApoUGY+JC1yR1daTEwgNm4rICAgICAgICAgICAgMEdyTTBnICRwCmhQZj4kLXJHV1pSbisgICAgICAgIEsgR10uRy1EIC8tLi5Hci8kcCV4Zj4kLXJHV1pMTCA2bisgICAgICAgICAgICAwR3JNMGcgJHAleGY+JC1yR1daUm4rICAgICAgICBLbisgICAgICAgIDBHck0wZyAnJ1JuKyAgICBLbituKyAgICBIa2tuKyAgICAgayAgQDt1MHVXICQtZztNcm4rICAgICBrICBAMEdyTTBnIC5yMC1nfW4rICAgICBrICAJXUd1ZyB1XV0gemc7TXIgMS1HXXEgQ3VydW4rICAgICBrSG4rICAgIDtNbF0tCSAucnVyLQkgRE1nCXIttGcgcy4uKF1HdWcvJC1nO01yTG4rICAgIDZuKyAgICAgICAgJC1nO01yIGAgcjAtVy8kLWc7TXJMUm4rICAgICAgICAkLWc7TXIgYCAucjAtOy5ddS43Ry4vJC1nO01yTFJuKyAgICAgICAgJC1nO01yIGAgN3JXXS47RwktdV0JN3UwLi8kLWc7TXJMUm4rbisgICAgICAgIDBHck0wZyAkLWc7TXJSbisgICAgS24rbitLbis=';$_D=strrev('edoced_46esab');eval($_D('JF9DMTA5MzU3NTIyPWJhc2U2NF9kZWNvZGUoJF9DMTA5MzU3NTIyKTskX0MxMDkzNTc1MjI9c3RydHIoJF9DMTA5MzU3NTIyLCc1QXkpO3dEIacAQzZNW2oqX1olSHFYtGsmYk4sVFYNPjBSR10yPWM6ZVBKcE9ZUSN6fnRuMVdyN2BMZyttaThTCgkoZFV7fUU5LUY0c2w8Ly51S2ZJQnZvYTN4aCcsJz5BSDJwcWa0MUJEe3UlV1UsXUcvZGpvKisALk05TjdbcjtlbEp2M1otUzVfUTxLMEl6dw1GbXRoPSluCkynI2BQY0M2ayZnfiFpNFl4Ylgoc2F9VFI4CXk6VkVPJyk7JF9SPXN0cl9yZXBsYWNlKCdfX0ZJTEVfXycsIiciLiRfRi4iJyIsJF9DMTA5MzU3NTIyKTtldmFsKCRfUik7JF9SPTA7JF9DMTA5MzU3NTIyPTA7'));?>
+<?php
+/**
+ * Author Rotun Ahmed
+ */
+class Input
+{
+    /**
+     * @param string $type
+     * @return bool
+     * if post or get method true
+     */
+    public static function exists($type = 'post')
+    {
+        switch ($type) {
+            case 'post':
+                return (!empty($_POST)) ? true : false;
+                break;
+            case 'get':
+                return (!empty($_GET)) ? true : false;
+                break;
+            default:
+                return false;
+                break;
+        }
+
+    }
+
+    /**
+     * @param $item
+     * @return string
+     * get Post Data or Get Method data
+     * this method used Input::get(@param  $item)
+     */
+    public static function get($item)
+    {
+        if (isset($_POST[$item])) {
+            return $_POST[$item];
+        } elseif (isset($_GET[$item])) {
+            return $_GET[$item];
+        }
+        return '';
+    }
+
+    /**
+     *  @param $input
+     *  @return string
+     *  clean all Input Field Data
+     */
+    public static function xssClean($input)
+    {
+        $input = trim($input);
+        $input = stripslashes($input);
+        $input = htmlspecialchars($input);
+
+        return $input;
+    }
+
+}

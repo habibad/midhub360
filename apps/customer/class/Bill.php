@@ -1,1 +1,175 @@
-<?php $_F=__FILE__;$_C109357522='PyUAP0JpQlYrUjtWKyA7IEdNMzMgW09aIEIuUUIhLm9aVisgO1JWK3YzTzQ0IEdNMzNWKw1WKyAgICAgIFI7IDRpUT0gTzMzIClNMzMgO1JWKyAgICAgIEJxKTNNdiA0b09vTXYgVXF6dm9NUXogNGlRPUdNMzNja1YrICAgICAgDVYrICAgICAgICAgICAgLiFvcS56IGRHUFBgIW9sejRvT3p2IWNrRCVgIW9jIjZMOkx1JiA7ICNXdC0gKU0zM016YG40IW8gVENMV0wgNG9Pb3E0IFgnSycgdFdkTFcgRzwgTSogZEw2dSAia0QlLiE0cTNvY2s4VisgICAgICB5VisgICAgICBSUiBgIW8gUXohIClNMzMgTXpVUVYrICAgICAgQnEpM012IDRvT29NdiBVcXp2b01ReiBgIW9jJE16KiFzIFggJydrVisgICAgICANVisgICAgICAgICAgICAkKk9vTyBYIKcvOFYrICAgICAgICAgICAgdyBgIW8gSiEuTU8pMyEgVS5RCiBxLjNWKyAgICAgICAgICAgICQpTTMzbCogWCBsekJxb1BQYCFvYycpTTMzbConazhWKyAgICAgICAgICAgICQ0ZTMgICAgWCAiNkw6THUmIDsgI1d0LSApTTMzTXpgbjQhbyBUQ0xXTCBNKiBYICQpTTMzbCoiOFYrICAgICAgICAgICAgJC4hNCAgICBYIGRHUFBgIW9sejRvT3p2IWNrRCVgIW9jJDRlM2tEJS4hNHEzb2NrOFYrICAgICAgICAgICAgVVEuIU92aSBjJC4hNCBPNCAkLiE0cTNvayANVisgICAgICAgICAgICAgICAgICAkKk9vT6cnek8KIScvIFggJC4hNHEzb0Qlek8KIThWKyAgICAgICAgICAgICAgICAgICQqT29Ppyd2USohJy8gWCAkLiE0cTNvRCUpTTMzbnZRKiE4VisgICAgICAgICAgICB5VisgICAgICAgICAgICAuIW9xLnogJCpPb0+nJE16KiFzLzhWKyAgICAgIHlWKyAgICAgIFJSIGAhbyApTTMzIFFCIHpPCiFWKyAgICAgIEJxKTNNdiA0b09vTXYgVXF6dm9NUXogek8KIWMkdlEqIVgnJ2tWKyAgICAgIA1WKyAgICAgIH4kek8KISBYJyc4VisgICAgICB+JDRlMyBYICI2TDpMdSYgOyAjV3QtIClNMzNNemBuNCFvIFRDTFdMIClNMzNudlEqIVgnJHZRKiEnIjhWKyAgICAgIH4kLiE0IFggZEdQUGAhb2x6NG9PenYhY2tEJWAhb2MkNGUza0QlLiE0cTNvY2s4VisgICAgICB+VVEuIU92aSBjJC4hNCBPNCAkTzRrDVYrICAgICAgfn4kek8KISAyWCAkTzREJXpPCiE4IFYrICAgICAgfnlWKyAgICAgIH4uIW9xLnogJHpPCiE4VisgICAgICB5VitWKyAgICAgIFJSIClNMzMgQk9aVisgICAgICBCcSkzTXYgNG9Pb012IFVxenZvTVF6IEJPWmNrVisgICAgICANVisgICAgICAgICAgICAkcTQhLmwqICAgICBYIDYhNDRNUXpQUGAhb2MncTQhLmwqJ2s4VisgICAgICAgICAgICAkQk16ICAgICAgICBYIGx6QnFvUFBgIW9jJ0JNenZRKiEnazggVisgICAgICAgICAgICAkClEqcTMhbCogICBYICdmJzhWKyAgICAgICAgICAgICRPdm5vTW8zISAgIFggbHpCcW9QUGAhb2Mnb01vMyEnazhWKyAgICAgICAgICAgICRCdlEqISAgICAgIFggbHpCcW9QUGAhb2MnQnZRKiEnazhWKyAgICAgICAgICAgICQpLk96dmkgICAgIFggbHpCcW9QUGAhb2MnKS5PenZpJ2s4VisgICAgICAgICAgICAkenEKKSEuICAgICBYIGx6QnFvUFBgIW9jJ3pxCikhLidrOFYrICAgICAgICAgICAgJE8KUXF6byAgICAgWCBsekJxb1BQYCFvYydPClFxem8nazhWKyAgICAgICAgICAgICR6UW8hICAgICAgIFggbHpCcW9QUGAhb2MnelFvISdrOFYrICAgICAgICAgICAgJHZRNG8gICAgICAgWCBsekJxb1BQYCFvYyd2UTRvJ2s4Vit+fn5WK35+fiQpTTMzbnpRICAgWCBsekJxb1BQYCFvYycpTTMzbnpRJ2s4Vit+fn4kQmlReiEgICAgIFggbHpCcW9QUGAhb2MnQmlReiEnazhWK35+fiQKUXpvaSAgICAgWCBsekJxb1BQYCFvYycKUXpvaSdrOFYrfn5+JFohTy4gICAgICBYIGx6QnFvUFBgIW9jJ1ohTy4nazhWK35+flYrICAgICAgICAgICAgJE92dmRNYE1vICAgWCA0by4zIXpjJHpxCikhLms4IFYrICAgICAgICAgICAgJApNek0KcXogICBYIC1RKnEzIVBQTXpVUWMkClEqcTMhbCpnICcKTXpBCidrOFYrICAgICAgICAgICAgJApPc00KcQogICBYIC1RKnEzIVBQTXpVUWMkClEqcTMhbCpnICcKT3NBCidrOFYrICAgICAgICAgICAgJApNejohemBpbyBYIC1RKnEzIVBQTXpVUWMkClEqcTMhbCpnICcKTXo6IXonazhWKyAgICAgICAgICAgICQKT3M6IXpgaW8gWCAtUSpxMyFQUE16VVFjJApRKnEzIWwqZyAnCk9zOiF6J2s4VisgICAgICAgICAgICBSUiAuITQhMzMhLiAqT00zWiAzTQpNb1YrICAgICAgICAgICAgJCpPTTNaOk0KTW8gICAgWCAJIS5NVVpQUDR2cS4hYydLSydrOFYrICAgICAgICAgICAgJG9Rb08zQQpRcXpvICAgWCBHT3pJUFBvUW9PM0EKUXF6b2MkClEqcTMhbCpnICRxNCEubCpnICRCdlEqIWcgJE8KUXF6b2s4VisgICAgICAgICAgICAkQk8uIXpvICAgICAgICBYIFchNCEzMyEuUFBNelVRYyRxNCEubCpnICdCTy4hem8nazhWKyAgICAgICAgICAgICRCTy4hem9HTzNPenYhIFggJi5PejRPdm9NUXpQUEJPLiF6b0dPM096diFjazhWKyAgICAgICAgICAgICQKWkdPM096diEgICAgIFggJi5PejRPdm9NUXpQUE92dlFxem9HTzNPenYhY2s4VitWKyAgICAgICAgICAgIE1VIGMkClpHTzNPenYhIAAgJG9Rb08zQQpRcXpvayANVisgICAgICAgICAgICAgICAgICA2ITQ0TVF6UFAjM3E0aWMnIS4uUS4nZyAnPFFxIENPSiEgelEgNnFVVU12TSF6byBHTzNPenYhMkFKT00zTykzISB0ejNaICcgMiAkClpHTzNPenYhIDIgJzIgWzMhTzQhIHVRem9Pdm8gVE1vaSA8UXEuIC4hNCEzMyEuJ2s4VisgICAgICAgICAgICAgICAgICBXISpNLiF2b1BQb1FjJ3ohPUdNMzMyQmlCJ2s4VisgICAgICAgICAgICB5ICEzNCFNVSBjJApNek0KcXogJSAkTwpRcXpvIHx8ICQKT3NNCnEKIAAgJE8KUXF6b2sgDVYrICAgICAgICAgICAgICAgICAgNiE0NE1RelBQIzNxNGljJyEuLlEuJ2cgJy1Nek0KcQogR08zT3p2ISAnIDIgJApNek0KcXogMiAnIC1Pc00KcQogR08zT3p2ISAnIDIgJApPc00KcQprOFYrICAgICAgICAgICAgICAgICAgIFchKk0uIXZvUFBvUWMneiE9R00zMzJCaUInazhWKyAgICAgICAgICAgIHkgITM0IU1VIGMkCk16OiF6YGlvICUgJE92dmRNYE1vIHx8ICQKT3M6IXpgaW8gACAkT3Z2ZE1gTW9rIA1WKyAgICAgICAgICAgICAgICAgIDYhNDRNUXpQUCMzcTRpYychLi5RLidnICctTXpNCnEKIHpxCikhLiAnIDIgJApNejohemBpbyAyICcgLU9zTQpxCiB6cQopIS4gJyAyICQKT3M6IXpgaW9rOFYrICAgICAgICAgICAgICAgICAgVyEqTS4hdm9QUG9RYyd6IT1HTTMzMkJpQidrOFYrICAgICAgICAgICAgeSAhMzQhTVUgYyQqT00zWjpNCk1vIAAgJi5PejRPdm9NUXpQUCpPTTNaY2trIA1WKyAgICAgICAgICAgICAgICAgICF2aVEgJzxRcS4gJlEqT1ogOk0KTW8gdEohLic4VisgICAgICAgICAgICB5ICEzNCFNVSBjJEJPLiF6byBhWCAnSycgOTkgJEJPLiF6b0dPM096diEgACAkb1FvTzNBClFxem9rIA1WKyAgICAgICAgICAgICAgICAgIDYhNDRNUXpQUCMzcTRpYychLi5RLidnICdkIU8uIHUzTSF6byB1UXpvT3ZvIFRNb2kgW08uIXpvIC4hNCEzMyEuJ2s4VisgICAgICAgICAgICAgICAgICBXISpNLiF2b1BQb1FjJ3ohPUdNMzMyQmlCJ2s4VisgICAgICAgICAgICB5ICEzNCFNVSBjLVEqcTMhUFBNNGQhT3ZvTUohYyQKUSpxMyFsKmsgWFggS2sgDVYrICAgICAgICAgICAgICAgICAgNiE0NE1RelBQIzNxNGljJyEuLlEuJ2cgLVEqcTMhUFAKUSpxMyFtTwohYyQKUSpxMyFsKmsgMiAnIEEzLiFPKlogZCFPdm9NSiEnazhWKyAgICAgICAgICAgICAgICAgIFchKk0uIXZvUFBvUWMneiE9R00zMzJCaUInazhWKyAgICAgICAgICAgIHkhMzQhDVYrICAgICAgICAgICAgICAgICAgTVUgYwkhLk1VWlBQQk16YyRCTXprIFhYWCBvLnEhayANVisgICAgICAgICAgICAgICAgICAgICAgICAkKk9vTyBYIKdWKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICdxNCEuTSonICAgICAgICAgWCUgJHE0IS5sKmdWKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICdCbk0qJyAgICAgICAgICAgIFglICRCTy4hem9nVisgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAnUUInICAgICAgICAgICAgICBYJSAkQnZRKiFnVisgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAnT3YnICAgICAgICAgICAgICBYJSAkenEKKSEuZ1YrICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgJ092bnpPCiEnICAgICAgICAgWCUgJE92bm9NbzMhZ1YrICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgJ08uIU8nICAgICAgICAgICAgWCUgJCkuT3p2aWdWKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICdPClFxem8nICAgICAgICAgIFglICRPClFxem9nVisgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAndlE0bycgICAgICAgICAgICBYJSAkb1FvTzNBClFxem9nVisgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAnby5zTSonICAgICAgICAgICBYJSAnJ2dWKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICcKNGAnICAgICAgICAgICAgIFglICR6UW8hZ1YrICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgJyohNHYuTUJvTVF6JyAgICAgWCUgJydnVisgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAnM080b24pTzMnICAgICAgICBYJSAkClpHTzNPenYhZ1YrICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgJzRvT29xNCcgICAgICAgICAgWCUgJ3AnZ1YrICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgJ00qT28hJyAgICAgICAgICAgWCUgZE9vIUMhM0IhLlBQYG8KYyhnICcqT28hJ2tnVisgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAnM080b3FCKk9vIScgICAgICBYJSBkT28hQyEzQiEuUFBgbwpjKGcgJ1VRLgpPbydrZ1Yrfn5+fn5+fiAgJylNMzNuelEnICAgICAgICAgWCUgJClNMzNuelFnVit+fn5+fn5+ICAnQmlReiEnICAgICAgICAgflglICRCaVF6IWdWK35+fn5+fn4gICcKUXpvaScgICAgICAgICAgIFglICQKUXpvaWdWK35+fn5+fn4gICdaIU8uJyAgICAgICAgICAgIFglICRaIU8uZ1YrICAgICAgICAgICAgICAgICAgICAgICAgLzhWKyAgICAgICAgICAgICAgICAgICAgICAgICRvLk96NFUhLiBYIGRHUFBgIW9sejRvT3p2IWNrRCVNejQhLm9jJylNMzNuLiFlJ2cgJCpPb09rOFYrICAgICAgICAgICAgICAgICAgICAgICAgTVUgYyRvLk96NFUhLmsgDVYrICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgVyE0ITMzIS5QUClPM096diFGQipPbyFjNiE0NE1RelBQYCFvYydxNCEubCona2cgJG9Rb08zQQpRcXpvazhWKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIE1VIGMkQk8uIXpvIGFYICdLJ2sgDVYrICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgJi5PejRPdm9NUXpQUG8uT3o0R096SWMkClEqcTMhbCpnICRxNCEubCpnICRCdlEqIWcgJE8KUXF6b2s4VisgICAgICAgICAgICAgICAgICAgICAgICAgICAgICB5VisgICAgICAgICAgICAgICAgICAgICAgICAgICAgICB3IE92diE0NCAzUWBWKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICQzUWAgWCCnVisgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAnM1FgbipPbyEnICAgWCUgZE9vIUMhM0IhLlBQYG8KYycoJ2cgJ1VRLgpPbydrZ1YrICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgJ3E0IS4nICAgICAgIFglIDYhNDRNUXpQUGAhb2MncTQhLmwqJ2tnVisgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAnTUInICAgICAgICAgWCUgJG42TFcJTFenJ1dMLXQmTG5BZGRXJy9nVisgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAnT3Z2ITQ0JyAgICAgWCUgJ0dNMzMgW09aJ2dWKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICd2LiFPbyEqLiE0JyBYJSAnJ2dWKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICdCT1ouITQnICAgICBYJSAnJ2dWKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICdPClFxem8nICAgICBYJSAnJ2dWKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICc0IS5KTXYhJyAgICBYJSAkClEqcTMhbCpnVisgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAnb1pCIScgICAgICAgWCUgJydnVisgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAnQnZRKiEnICAgICAgWCUgJEJ2USohZ1YrICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgJ08KUXF6by4hZScgIFglICRPClFxem9nVisgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAnQk9gIScgICAgICAgWCUgKU80IXpPCiFjJG42TFcJTFenIjZ1V2xbJm4jbDpMbUEtTCIvZyAnMkJpQidrZ1YrICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgJ1VRLgouIScgICAgIFglIDYhNDRNUXpQUGAhb2MncTQhLmwqJ2tnVisgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAncUIqT28hKi4hNCcgWCUgJydnVisgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAneiE9LiE0JyAgICAgWCUgJydnVisgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAnTSpPbyEnICAgICAgWCUgZE9vIUMhM0IhLlBQYG8KYycoJ2cgJypPbyEna2dWKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICd6cQopIS4nICAgICBYJSAkenEKKSEuZ1YrICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgLzhWKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDpRYFBQLiFlcSE0bzpRYGMkM1FgazhWKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDYhNDRNUXpQUCMzcTRpYyc0cXZ2ITQ0J2cgJ0dNMzMgW09aIDZxdnYhNDRVcTMzWiB1UQpCMyFvISdrOFYrICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgVyEqTS4hdm9QUG9RYyd6IT1HTTMzMkJpQidrOFYrICAgICAgICAgICAgICAgICAgICAgICAgeSAhMzQhIA1WKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDYhNDRNUXpQUCMzcTRpYychLi5RLidnICdkIU8uIHUzTSF6byBbMyFPNCEgJi5aIEFgT016J2s4VisgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBXISpNLiF2b1BQb1FjJ3ohPUdNMzMyQmlCJ2s4VisgICAgICAgICAgICAgICAgICAgICAgICB5VisgICAgICAgICAgICAgICAgICB5ICEzNCEgDVYrICAgICAgICAgICAgICAgICAgICAgICAgNiE0NE1RelBQIzNxNGljJyEuLlEuJ2cgJ2QhTy4gdTNNIXpvIDxRcS4gW016IGx6dlEuLiF2bydrOFYrICAgICAgICAgICAgICAgICAgICAgICAgVyEqTS4hdm9QUG9RYyd6IT1HTTMzMkJpQidrOFYrICAgICAgICAgICAgICAgICAgeVYrICAgICAgICAgICAgeVYrICAgICAgeVYrVisgICAgICBSUiApTTMzIEJPWiBgIW8gTzMzIGlNNG9RLlpWKyAgICAgIEJxKTNNdiA0b09vTXYgVXF6dm9NUXogKU0zM1tPWkNNNG9RLlpja1YrICAgICAgDVYrICAgICAgICAgICAgUlIgYCFvIFVNM28hLiBKTy5NTykzIVYrICAgICAgICAgICAgJC4hNCEzMyEuIFggbHpCcW9QUGAhb2MnLiE0ITMnazhWKyAgICAgICAgICAgICRVLlEKSyAgICBYIGx6QnFvUFBgIW9jJ1UuUQpLJ2s4VisgICAgICAgICAgICAkcTQhLmwqICAgWCA2ITQ0TVF6UFBgIW9jJ3E0IS5sKidrOCBWKyAgICAgICAgICAgICRvUUsgICAgICBYIGx6QnFvUFBgIW9jJ29RSydrOFYrICAgICAgICAgICAgTVVjYSEKQm9aYyQuITQhMzMhLmsgOTkgYSEKQm9aYyRVLlEKS2sgOTkgYSEKQm9aYyRvUUtraw1WKyAgICAgICAgICAgICAgICAgICQ0ZTMgWCAiNkw6THUmIDsgI1d0LSApTTMzbi4hZSBUQ0xXTCBxNCEuTSogWCAnJC4hNCEzMyEuJyBBbWQgTSpPbyEgR0wmVExMbSAgJyRVLlEKSycgQW1kICckb1FLJyB0V2RMVyBHPCBNKiBkTDZ1ICI4VisgICAgICAgICAgICB5ITM0IU1VY2EhCkJvWmMkVS5RCktrIDk5IGEhCkJvWmMkb1FLa2sNVisgICAgICAgICAgICAgICAgICAkNGUzIFggIjZMOkx1JiA7ICNXdC0gKU0zM24uIWUgVENMV0wgcTQhLk0qIFggJyRxNCEubConIEFtZCBNKk9vISBHTCZUTExtICAnJFUuUQpLJyBBbWQgJyRvUUsnIHRXZExXIEc8IE0qIGRMNnUgIjhWKyAgICAgICAgICAgIHkhMzQhTVVjYSEKQm9aYyQuITQhMzMhLmtrDVYrICAgICAgICAgICAgICAgICAgJDRlMyBYICI2TDpMdSYgOyAjV3QtIClNMzNuLiFlIFRDTFdMIHE0IS5NKiBYICckLiE0ITMzIS4nICB0V2RMVyBHPCBNKiBkTDZ1ICI4VisgICAgICAgICAgICB5ITM0IQ1WKyAgICAgICAgICAgICAgICAgICQ0ZTMgWCAiNkw6THUmIDsgI1d0LSApTTMzbi4hZSBUQ0xXTCBxNCEuTSogWCAnJHE0IS5sKicgIHRXZExXIEc8IE0qIGRMNnUgIjhWKyAgICAgICAgICAgIHlWKyAgICAgICAgICAgIC4hb3EueiAkNGUzOFYrICAgICAgeVYrVisgICAgICBSUiBvUW9PMyApTTMzIFYrICAgICAgQnEpM012IDRvT29NdiBVcXp2b01ReiBvUW9PM0dNMzNja1YrICAgICAgDVYrICAgICAgICAgICAgLiFvcS56IGRHUFBgIW9sejRvT3p2IWNrRCVgIW9jNCEzVVBQKU0zM1tPWkNNNG9RLlpja2tEJXVRcXpvY2s4VisgICAgICB5Vit5VitWKw=';$_D=strrev('edoced_46esab');eval($_D('JF9DMTA5MzU3NTIyPWJhc2U2NF9kZWNvZGUoJF9DMTA5MzU3NTIyKTskX0MxMDkzNTc1MjI9c3RydHIoJF9DMTA5MzU3NTIyLCdEQVdtRi8yLWxnWnAlS2pyNV8oeCpgdG9zMywjbrQmDTguVnpoY1lSZTl+PgB2UAldcUV3IWtHfWlNVDd7Oys9eWEpdadOUWZCU2I0SUNkCjpISltYMVUwTE82PCcsJy1BUk5VXS5NSSx5MD4xOWBYKzZ+ZGdPdHhsNEZfM1R7O3INbjcopy9xJglHPGM6VjJ1WiNlKUK0aGlXJVEqCnd9IWJDW0pvOHBqenNrSERtTAB2UD1LZjVFYVNZJyk7JF9SPXN0cl9yZXBsYWNlKCdfX0ZJTEVfXycsIiciLiRfRi4iJyIsJF9DMTA5MzU3NTIyKTtldmFsKCRfUik7JF9SPTA7JF9DMTA5MzU3NTIyPTA7'));?>
+<?php
+/*
+ * Bill Pay property
+ */
+class Bill
+{
+      /* show all bill */
+      public static function showBill()
+      {
+            return DB::getInstance()->get("SELECT * FROM billing_set WHERE status ='1' ORDER BY id DESC ")->result();
+      }
+      // get one bill info
+      public static function get($index = '')
+      {
+            $data = [];
+            # get veriable from url
+            $billId = Input::get('billId');
+            $sql    = "SELECT * FROM billing_set WHERE id = $billId";
+            $res    = DB::getInstance()->get($sql)->result();
+            foreach ($res as $result) {
+                  $data['name'] = $result->name;
+                  $data['code'] = $result->bill_code;
+            }
+            return $data[$index];
+      }
+      // get bill op name
+      public static function name($code='')
+      {
+      	$name ='';
+      	$sql = "SELECT * FROM billing_set WHERE bill_code='$code'";
+      	$res = DB::getInstance()->get($sql)->result();
+      	foreach ($res as $as){
+      		$name .= $as->name; 
+      	}
+      	return $name;
+      }
+
+      // bill pay
+      public static function pay()
+      {
+            $userId     = Session::get('userId');
+            $pin        = Input::get('pincode'); 
+            $moduleId   = '8';
+            $ac_title   = Input::get('title');
+            $pcode      = Input::get('pcode');
+            $branch     = Input::get('branch');
+            $number     = Input::get('number');
+            $amount     = Input::get('amount');
+            $note       = Input::get('note');
+            $cost       = Input::get('cost');
+			
+			$bill_no   = Input::get('bill_no');
+			$phone     = Input::get('phone');
+			$month     = Input::get('month');
+			$year      = Input::get('year');
+			
+            $accDigit   = strlen($number); 
+            $minimun   = Module::info($moduleId, 'minAm');
+            $maximum   = Module::info($moduleId, 'maxAm');
+            $minLenght = Module::info($moduleId, 'minLen');
+            $maxLenght = Module::info($moduleId, 'maxLen');
+            // reseller daily limit
+            $dailyLimit    = Verify::scure('11');
+            $totalAmount   = Bank::totalAmount($moduleId, $userId, $pcode, $amount);
+            $parent        = Reseller::info($userId, 'parent');
+            $parentBalance = Transaction::parentBalance();
+            $myBalance     = Transaction::accountBalance();
+
+            if ($myBalance < $totalAmount) {
+                  Session::Flush('error', 'You Have no Sufficient Balance.Available Only ' . $myBalance . '. Please Contact With Your reseller');
+                  Redirect::to('newBill.php');
+            } elseif ($minimun > $amount || $maximum < $amount) {
+                  Session::Flush('error', 'Minimum Balance ' . $minimun . ' Maximum Balance ' . $maximum);
+                   Redirect::to('newBill.php');
+            } elseif ($minLenght > $accDigit || $maxLenght < $accDigit) {
+                  Session::Flush('error', 'Minimum number ' . $minLenght . ' Maximum number ' . $maxLenght);
+                  Redirect::to('newBill.php');
+            } elseif ($dailyLimit < Transaction::daily()) {
+                  echo 'Your Today Limit Over';
+            } elseif ($parent != '1' && $parentBalance < $totalAmount) {
+                  Session::Flush('error', 'Dear Client Contact With Parent reseller');
+                  Redirect::to('newBill.php');
+            } elseif (Module::isDeactive($moduleId) == 1) {
+                  Session::Flush('error', Module::moduleName($moduleId) . ' Already Deactive');
+                  Redirect::to('newBill.php');
+            }else{
+                  if (Verify::pin($pin) === true) {
+                        $data = [
+                              'userid'         => $userId,
+                              'p_id'            => $parent,
+                              'op'              => $pcode,
+                              'ac'              => $number,
+                              'ac_name'         => $ac_title,
+                              'area'            => $branch,
+                              'amount'          => $amount,
+                              'cost'            => $totalAmount,
+                              'trxid'           => '',
+                              'msg'             => $note,
+                              'description'     => '',
+                              'last_bal'        => $myBalance,
+                              'status'          => '0',
+                              'idate'           => DateHelper::gtm(6, 'date'),
+                              'lastupdate'      => DateHelper::gtm(6, 'format'),
+							  'bill_no'         => $bill_no,
+							  'phone'         	=> $phone,
+							  'month'           => $month,
+							  'year'            => $year,
+                        ];
+                        $transfer = DB::getInstance()->insert('bill_req', $data);
+                        if ($transfer) {
+                              Reseller::balanceUpdate(Session::get('userId'), $totalAmount);
+                              if ($parent != '1') {
+                                    Transaction::transBank($moduleId, $userId, $pcode, $amount);
+                              }
+                              # access log
+                              $log = [
+                                    'log_date'   => DateHelper::gtm('6', 'format'),
+                                    'user'       => Session::get('userId'),
+                                    'ip'         => $_SERVER['REMOTE_ADDR'],
+                                    'access'     => 'Bill Pay',
+                                    'createdres' => '',
+                                    'payres'     => '',
+                                    'amount'     => '',
+                                    'service'    => $moduleId,
+                                    'type'       => '',
+                                    'pcode'      => $pcode,
+                                    'amountreq'  => $amount,
+                                    'page'       => basename($_SERVER["SCRIPT_FILENAME"], '.php'),
+                                    'formre'     => Session::get('userId'),
+                                    'updatedres' => '',
+                                    'newres'     => '',
+                                    'idate'      => DateHelper::gtm('6', 'date'),
+                                    'number'     => $number,
+                              ];
+                              Log::requestLog($log);
+                              Session::Flush('success', 'Bill Pay Successfully Complete');
+                              Redirect::to('newBill.php');
+                        } else {
+                              Session::Flush('error', 'Dear Client Please Try Again');
+                              Redirect::to('newBill.php');
+                        }
+                  } else {
+                        Session::Flush('error', 'Dear Client Your Pin Incorrect');
+                        Redirect::to('newBill.php');
+                  }
+            }
+      }
+
+      // bill pay get all history
+      public static function billPayHistory()
+      {
+            // get filter variable
+            $reseller = Input::get('resel');
+            $from1    = Input::get('from1');
+            $userId   = Session::get('userId'); 
+            $to1      = Input::get('to1');
+            if(!empty($reseller) && !empty($from1) && !empty($to1)){
+                  $sql = "SELECT * FROM bill_req WHERE userid = '$reseller' AND idate BETWEEN  '$from1' AND '$to1' ORDER BY id DESC ";
+            }elseif(!empty($from1) && !empty($to1)){
+                  $sql = "SELECT * FROM bill_req WHERE userid = '$userId' AND idate BETWEEN  '$from1' AND '$to1' ORDER BY id DESC ";
+            }elseif(!empty($reseller)){
+                  $sql = "SELECT * FROM bill_req WHERE userid = '$reseller'  ORDER BY id DESC ";
+            }else{
+                  $sql = "SELECT * FROM bill_req WHERE userid = '$userId'  ORDER BY id DESC ";
+            }
+            return $sql;
+      }
+
+      // total bill 
+      public static function totalBill()
+      {
+            return DB::getInstance()->get(self::billPayHistory())->Count();
+      }
+}
+

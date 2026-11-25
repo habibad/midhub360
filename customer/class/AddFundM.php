@@ -1,1 +1,227 @@
-<?php $_F=__FILE__;$_C109357522='P29wPzenNwk+CT5LVVNISCBBXV02V1tdIwk+dQk+ICAgICpyciBBXV0gNldbXSB2NWBXNUhKIE1KU1hKIHIqCT4gICAgN1cpVShLIEhKU0ooSyBDV1tLSihRWyBTXV02V1tdeFR1CT4JPiAgICAgICAgJFdINVhGKF0gICAgICAgICA4IE01SEgoUVt7ey01SngnV0hGKF0nVGMJPiAgICAgICAgJClTVVNbSzVGSnk3NSAgICA4IC5bN1dKe3stNUp4JylVSnk3NSdUYyAgICAgICAgCT4gICAgICAgICRTSVFXW0ogICAgICAgICAgOCAuWzdXSnt7LTVKeCdTSVFXW0onVGMJPiAgICAgICAgJElLU0o1LVFYeSAgICAgICA4IC5bN1dKe3stNUp4J0lLU0o1LVFYeSdUYwk+ICAgICAgICAkSUp5NzUgICAgICAgICAgIDggLls3V0p7ey01SngnSUp5NzUnVGMJPiAgICAgICAgJFNLS1FXW0pGW1dJKTVYICA4IC5bN1dKe3stNUp4J1NLW1dJKTVYJ1RjCT4gICAgICAgICRKWFNbSFNLSihRW0YoXSAgOCAuWzdXSnt7LTVKeCdKWFNbSChdJ1RjCT4gICAgICAgICRINVtdKFstRltXSSk1WCAgOCAuWzdXSnt7LTVKeCdINVtdW1dJKTVYJ1RjIAk+ICAgICAgICAkU0lRV1tKICAgICAgICAgIDggeChbSlQkU0lRV1tKYwk+ICAgICAgICAJPgk+CT4gICAgICAgICpyIDYoW10gZKdTWC01IEhKU1hKcioJPgk+ICAgICAgICAoQyB4JElLU0o1LVFYeSA4OCAnKSFTSKcnIDExICRJSnk3NSA4OCdLU0inKFsnVAk+ICAgICAgICB1CT4gICAgICAgICAgICAgICRLp1NYLTUgOCBkp1NYLTV7e0MoW11Lp1NYLTV4InMiaSIpZ1NIp0Y3NVhIUVtTVSJUYwk+ICAgICAgICBZCT4gICAgICAgIDVVSDUoQyB4JElLU0o1LVFYeSA4OCAnKSFTSKcnIDExICRJSnk3NSA4OCdINVtdSVFbNXknVAk+ICAgICAgICB1CT4gICAgICAgICAgICAgICRLp1NYLTUgOCBkp1NYLTV7e0MoW11Lp1NYLTV4InMiaSIpZ1NIp0Y3NVhIUVtTVSJUYwk+ICAgICAgICBZCT4gICAgICAgIDVVSDUoQyB4JElLU0o1LVFYeSA4OCAnKSFTSKcnIDExICRJSnk3NSA4OCc3U3lJNVtKJ1QJPiAgICAgICAgdQk+ICAgICAgICAgICAgICAkS6dTWC01IDggZKdTWC01e3tDKFtdS6dTWC01eCJzImkiKWdTSKdGN1N5STVbSiJUYwk+ICAgICAgICBZCT4gICAgICAgIDVVSDUoQyB4JElLU0o1LVFYeSA4OCAnYVMtU10nIDExICRJSnk3NSA4OCdLU0inKFsnVAk+ICAgICAgICB1CT4gICAgICAgICAgICAgICRLp1NYLTUgOCBkp1NYLTV7e0MoW11Lp1NYLTV4InMiaSJbUy1TXUY3NVhIUVtTVSJUYwk+ICAgICAgICBZCT4gICAgICAgIDVVSDUoQyB4JElLU0o1LVFYeSA4OCAnYVMtU10nIDExICRJSnk3NSA4OCdINVtdSVFbNXknVAk+ICAgICAgICB1CT4gICAgICAgICAgICAgICRLp1NYLTUgOCBkp1NYLTV7e0MoW11Lp1NYLTV4InMiaSJbUy1TXUY3NVhIUVtTVSJUYwk+ICAgICAgICBZCT4gICAgICAgIDVVSDUoQyB4JElLU0o1LVFYeSA4OCAnYVMtU10nIDExICRJSnk3NSA4OCc3U3lJNVtKJ1QJPiAgICAgICAgdQk+ICAgICAgICAgICAgICAkS6dTWC01IDggZKdTWC01e3tDKFtdS6dTWC01eCJzImkiW1MtU11GN1N5STVbSiJUYwk+ICAgICAgICBZCT4gICAgICAgIDVVSDUoQyB4JElLU0o1LVFYeSA4OCAndlFLZzVKJyAxMSAkSUp5NzUgODgnS1NIpyhbJ1QJPiAgICAgICAgdQk+ICAgICAgICAgICAgICAkS6dTWC01IDggZKdTWC01e3tDKFtdS6dTWC01eCJzImkiWFFLZzVKRjc1WEhRW1NVIlRjCT4gICAgICAgIFkJPiAgICAgICAgNVVINShDIHgkSUtTSjUtUVh5IDg4ICd2UUtnNUonIDExICRJSnk3NSA4OCdINVtdSVFbNXknVAk+ICAgICAgICB1CT4gICAgICAgICAgICAgICRLp1NYLTUgOCBkp1NYLTV7e0MoW11Lp1NYLTV4InMiaSJYUUtnNUpGNzVYSFFbU1UiVGMJPiAgICAgICAgWQk+ICAgICAgICA1VUg1KEMgeCRJS1NKNS1RWHkgODggJ3ZRS2c1SicgMTEgJElKeTc1IDg4JzdTeUk1W0onVAk+ICAgICAgICB1CT4gICAgICAgICAgICAgICRLp1NYLTUgOCBkp1NYLTV7e0MoW11Lp1NYLTV4InMiaSJYUUtnNUpGN1N5STVbSiJUYwk+ICAgICAgICBZCT4gICAgICAgIDVVSDUJPiAgICAgICAgdQk+ICAgICAgICAgICAgICAkS6dTWC01IDggUmMJPiAgICAgICAgWQk+CT4JPiAgICAgICAgJEpRSlNVRkunU1gtNSA4IHgkS6dTWC01ICogc1JSUlQgciAkU0lRV1tKYwk+CT4gICAgICAgICRKUUpTVUZTSVFXW0ogOCAkU0lRV1tKIG0gJEpRSlNVRkunU1gtNWMJPgk+ICAgICAgICAqciA2KFtdIGSnU1gtNSA1W11yKgk+CT4JPiAgICAgICAgKnIgNldbS0ooUVsgQ1FYIDdYNVY1W0ogUUMgSGBVIChbJjVLSihRWyByKgk+ICAgICAJPiAgICAgICAgLVVRKVNVICRLUVtbNUtKYwk+ICAgICAgICAkU0lRV1tKICAgICAgICAgIDggSEpYKDdLSFVTSKc1SHgkU0lRV1tKVGMJPiAgICAgICAgJFNLS1FXW0pGW1dJKTVYICA4IEhKWCg3S0hVU0inNUh4JFNLS1FXW0pGW1dJKTVYVGMJPiAgICAgICAgJEpYU1tIU0tKKFFbRihdICA4IEhKWCg3S0hVU0inNUh4JEpYU1tIU0tKKFFbRihdVGMJPiAgICAgICAgJEg1W10oWy1GW1dJKTVYICA4IEhKWCg3S0hVU0inNUh4JEg1W10oWy1GW1dJKTVYVGMgICAgICAgICAgIAk+ICAgICAgICAJPiAgICAgICAgJFNJUVdbSiAgICAgICAgICAgIDggSXlIYFUoRlg1U1VGNUhLUzc1RkhKWChbLXgkS1FbWzVLSmkgJFNJUVdbSlRjCT4gICAgICAgICRTS0tRV1tKRltXSSk1WCAgICA4IEl5SGBVKEZYNVNVRjVIS1M3NUZISlgoWy14JEtRW1s1S0ppICRTS0tRV1tKRltXSSk1WFRjCT4gICAgICAgICRKWFNbSFNLSihRW0YoXSAgICA4IEl5SGBVKEZYNVNVRjVIS1M3NUZISlgoWy14JEtRW1s1S0ppICRKWFNbSFNLSihRW0YoXVRjCT4gICAgICAgICRINVtdKFstRltXSSk1WCAgICA4IEl5SGBVKEZYNVNVRjVIS1M3NUZISlgoWy14JEtRW1s1S0ppICRINVtdKFstRltXSSk1WFRjICAgICAgICAgICAgICAgICAgICAgCT4JPiAgICAqciC0W10gUUMgNldbS0ooUVsgQ1FYIDdYNVY1W0ogUUMgSGBVIChbJjVLSihRWyByKgk+CT4gICAgICAgIAk+ICAgICAgICAkYFc1WHk4ICJNtDq0ZA0gV0g1WGkgVTVWNVVpIEtYNVNKNV1GKXkgNnZ6IyBXSDVYIESnNVg1IChdOCckV0g1WEYoXSciYwk+ICAgICAgICAtVVEpU1UgJEtRW1s1S0pjCT4gICAgICAgICRYNUhXVUogOCBJeUhgVShGYFc1WHl4JEtRW1s1S0ppICRgVzVYeVRjCT4JPiAgICAgICAgKEN4CiRYNUhXVUpUdQk+ICAgICAgICAgICAgICBdKDV4IixXNVh5IDZTKFU1XQoiIE8gSXlIYFUoRjVYWFFYeCRLUVtbNUtKVFRjICAgICAgCT4gICAgICAgIFkgCT4JPiAgICAgICAgJFg1SDVVVTVYRl1TSlM4IEl5SGBVKEZDNUpLp0ZRKSY1S0p4JFg1SFdVSlRjCT4gICAgICAgICRLWDVTSjVdRil5IDgkWDVINVVVNVhGXVNKU21vS1g1U0o1XUYpeWMJPiAgICAgICAgJFdINVhbU0k1IDgkWDVINVVVNVhGXVNKU21vV0g1WGMJPiAgICAgICAgJFdINVhGVTVWNVUgOCRYNUg1VVU1WEZdU0pTbW9VNVY1VWMJPgk+CT4gICAgICAgICpyZKc1S2cgdFc3VShLU0o1IA1YU1tIU0tKKFFbIC50IE1KU1hKcioJPgk+ICAgICAgICAkYFc1WHlzICA4ICJNtDq0ZA0gciA2dnojIFNdXUZDV1tdIESnNVg1IEpYU1tIU0tKKFFbRihdOCckSlhTW0hTS0ooUVtGKF0nImMgICAgCT4JPiAgICAgICAgJFg1SFdVSnMgOCBJeUhgVShGYFc1WHl4JEtRW1s1S0ppICRgVzVYeXNUYyAJPiAgICAgICAgKEN4CiRYNUhXVUpzVAk+ICAgICAgICB1CT4gICAgICAgICAgICBdKDV4IixXNVh5IDZTKFU1XQoiIE8gSXlIYFUoRjVYWFFYeCRLUVtbNUtKVFRjICAgICAgCT4gICAgICAgIFkgCT4gICAgICAgCT4gICAgICAgICRLUVdbSnMgOCBJeUhgVShGW1dJRlhRREh4JFg1SFdVSnNUYyAgKiogLkMgWDVIV1VKIElTSkunNV0gJFdINVggU1tdICQ3U0hIaSBKUylVNSBYUUQgSVdISiApNSBzIFhRRAk+ICAgIAk+ICAgICAgICAqcmSnNUtnIHRXN1UoS1NKNSANWFNbSFNLSihRWyAudCC0W10gcioJPgk+CT4gICAgICAgICpyZKc1S2cgdFc3VShLU0o1IA1YU1tIU0tKKFFbIC50IENYUUkgU1dKUSBNSlNYSnIqCT4JPiAgICAgICAgJGBXNVh5U1dKUSAgOCAiTbQ6tGQNIHIgNnZ6IyBTV0pRRlNdXSlTVVNbSzUgRKc1WDUgSlhTW0hTS0ooUVsoXTgnJEpYU1tIU0tKKFFbRihdJyJjICAgIAk+CT4gICAgICAgICRYNUhXVUpTV0pRIDggSXlIYFUoRmBXNVh5eCRLUVtbNUtKaSAkYFc1WHlTV0pRVGMgCT4gICAgICAgIChDeAokWDVIV1VKU1dKUVQJPiAgICAgICAgdQk+ICAgICAgICAgICAgXSg1eCIsVzVYeSA2UyhVNV0KIiBPIEl5SGBVKEY1WFhRWHgkS1FbWzVLSlRUYyAgICAgIAk+ICAgICAgICBZIAk+ICAgICAgIAk+ICAgICAgICAkS1FXW0pTV0pRIDggSXlIYFUoRltXSUZYUURIeCRYNUhXVUpTV0pRVGMgICoqIC5DIFg1SFdVSiBJU0pLpzVdICRXSDVYIFNbXSAkN1NISGkgSlMpVTUgWFFEIElXSEogKTUgcyBYUUQJPiAgICAJPiAgICAgICAgKnJkpzVLZyB0VzdVKEtTSjUgDVhTW0hTS0ooUVsgLnQgQ1hRSSBTV0pRILRbXSByKgk+CT4JPgk+ICAgICAgICAoQyB4NUk3Snl4JEpYU1tIU0tKKFFbRihdVFQgCT4gICAgICAgIHUgICAgICAgICAgICAgICAJPiAgICAgICAgICAgICAgTTVISChRW3t7NlVXSKd4JzVYWFFYJ2kgJytRVyBJV0hKIDVbSjVYIA1YU1tIU0tKKFFbIC50J1RjCT4gICAgICAgICAgICAgIHY1XShYNUtKe3tKUXgnU11dRkNXW11GSSlTW2dPN6c3J1RjIAk+ICAgICAgICBZCT4gICAgICAgIDVVSDUoQyB4JEtRV1tKcyBvOCBzVCAJPiAgICAgICAgdSAgICAgICAgICAgICAgIAk+ICAgICAgICAgICAgICBNNUhIKFFbe3s2VVdIp3gnNVhYUVgnaSAnK1FXIKdTVjUgU1VYNVNdeSBIVylJKEpKNV0gRChKpyBKpzUgSFNJNSANWFNbSFNLSihRWyAudE8nVGMJPiAgICAgICAgICAgICAgdjVdKFg1S0p7e0pReCdTXV1GQ1dbXUZJKVNbZ083pzcnVGMgCT4gICAgICAgIFkJPiAgICAgICAgNVVINShDIHgkS1FXW0pTV0pRIG84IHNUIAk+ICAgICAgICB1ICAgICAgICAgICAgICAgCT4gICAgICAgICAgICAgIE01SEgoUVt7ezZVV0ineCc1WFhRWCdpICfgpo/gpocg4Kaf4HGN4Kaw4Ka+4Kao4Kac4HGH4KaV4Ka24Kao4Kaf4Ka/IOCmheCmn+BxiyDgprjgpr/gprjgcY3gpp/gcYfgpq7gcYcg4Kas4HGN4Kav4Kas4Ka54Ka+4KawIOCmueBxn+Bxh+Cmm+Bxh+ClpCDgpqzgpr/gprjgcY3gpqTgpr7gprDgpr/gpqQg4Kac4Ka+4Kao4Kak4HGHIOCmuOCmvuCmquBxi+CmsOBxjeCmn+BxhyDgpq/gcYvgppfgpr7gpq/gcYvgppcg4KaV4Kaw4HGB4Kao4KWkIHgNpyhIIA1YU1tIU0tKKFFbIFNVWDVTXXkgV0g1XSAoWyBTV0pRIEh5SEo1SU8gRVU1U0g1IEtRW1NKS0ogRChKpyBIVzc3UVhKVCAnVGMJPiAgICAgICAgICAgICAgdjVdKFg1S0p7e0pReCdTXV1GQ1dbXUZJKVNbZ083pzcnVGMgCT4gICAgICAgIFkJPiAgICAgICAgNVVINShDIHhISlhVNVt4JEpYU1tIU0tKKFFbRihdVCBvIE5SVAk+ICAgICAgICB1CT4gICAgICAgICAgICAgIE01SEgoUVt7ezZVV0ineCc1WFhRWCdpICcNWFNbSFNLSihRWyAudCBbNTVdSCBKUSCnU1Y1IFU1SEggSqdTWyBOUiBLp1NYU0tKNVhICidUYwk+ICAgICAgICAgICAgICB2NV0oWDVLSnt7SlF4J1NdXUZDV1tdRkkpU1tnTzenNydUYyAJPiAgICAgICAgWQk+ICAgICAgICA1VUg1KEMgeAo3WDUtRklTSkuneCIqXngzQW1uU209Um07TFQvJCoiaSAkSlhTW0hTS0ooUVtGKF1UVCAgICAgICAgICAgCT4gICAgICAgIHUgICAgICAgICAgIAk+ICAgICAgICAgICAgICBNNUhIKFFbe3s2VVdIp3gnNVhYUVgnaSAnDVhTW0hTS0ooUVsgLnQgUVtVeSBTVVVRRCBVNUpKNVggU1tdIFtXSSk1WAogTTdTSzUgW1FKIFNVVVFENV0KJ1RjCT4gICAgICAgICAgICAgIHY1XShYNUtKe3tKUXgnU11dRkNXW11GSSlTW2dPN6c3J1RjCT4gICAgICAgIFkJPiAgICAgICAgNVVINShDIHg1STdKeXgkU0lRV1tKVFQgCT4gICAgICAgIHUgICAgICAgICAgICAgICAJPiAgICAgICAgICAgICAgTTVISChRW3t7NlVXSKd4JzVYWFFYJ2kgJytRVyBJV0hKIDVbSjVYIFNJUVdbSgonVGMJPiAgICAgICAgICAgICAgdjVdKFg1S0p7e0pReCdTXV1GQ1dbXUZJKVNbZ083pzcnVGMgCT4gICAgICAgIFkJPiAgICAgICAgNVVINShDeAooSEZbV0k1WChLeCRTSVFXW0pUVCAJPiAgICAgICAgdSAgICAgICAgICAgICAgICAJPiAgICAgICAgICAgIE01SEgoUVt7ezZVV0ineCc1WFhRWCdpICdBSVFXW0ogU1VVUUQgUVtVeSBbV0kpNVgKJ1RjCT4gICAgICAgICAgICB2NV0oWDVLSnt7SlF4J1NdXUZDV1tdRkkpU1tnTzenNydUYwk+ICAgICAgICBZIAk+ICAgICAgICA1VUg1KEMgeEhKWFU1W3gkU0lRV1tKVCBvIF9UCT4gICAgICAgIHUJPiAgICAgICAgICAgICAgTTVISChRW3t7NlVXSKd4JzVYWFFYJ2kgJ0FJUVdbSiBbNTVdSCBKUSCnU1Y1IFU1SEggSqdTWyBfIF0oLShKCidUYwk+ICAgICAgICAgICAgICB2NV0oWDVLSnt7SlF4J1NdXUZDV1tdRkkpU1tnTzenNydUYyAJPiAgICAgICAgWQk+ICAgICAgICA1VUg1KEMgeDVJN0p5eCRTS0tRV1tKRltXSSk1WFRUIAk+ICAgICAgICB1ICAgICAgICAgICAgICAgCT4gICAgICAgICAgICAgIE01SEgoUVt7ezZVV0ineCc1WFhRWCdpICcrUVcgSVdISiA1W0o1WCBFU3lJNVtKIGFXSSk1WAonVGMJPiAgICAgICAgICAgICAgdjVdKFg1S0p7e0pReCdTXV1GQ1dbXUZJKVNbZ083pzcnVGMgCT4gICAgICAgIFkJPiAgICAgICAgNVVINShDeAooSEZbV0k1WChLeCRTS0tRV1tKRltXSSk1WFRUIAk+ICAgICAgICB1ICAgICAgICAgICAgICAgIAk+ICAgICAgICAgICAgTTVISChRW3t7NlVXSKd4JzVYWFFYJ2kgJ0VTeUk1W0ogYVdJKTVYIFNVVVFEIFFbVXkgW1dJKTVYCidUYwk+ICAgICAgICAgICAgdjVdKFg1S0p7e0pReCdTXV1GQ1dbXUZJKVNbZ083pzcnVGMJPiAgICAgICAgWSAJPiAgICAgICAgNVVINShDIHhISlhVNVt4JFNLS1FXW0pGW1dJKTVYVCBvIHNOVAk+ICAgICAgICB1CT4gICAgICAgICAgICAgIE01SEgoUVt7ezZVV0ineCc1WFhRWCdpICdFU3lJNVtKIGFXSSk1WCBbNTVdSCBKUSCnU1Y1IFU1SEggSqdTWyBzYiBdKC0oSgonVGMJPiAgICAgICAgICAgICAgdjVdKFg1S0p7e0pReCdTXV1GQ1dbXUZJKVNbZ083pzcnVGMgCT4gICAgICAgIFkJPiAgICAgICAgNVVINShDIHg1STdKeXgkSDVbXShbLUZbV0kpNVhUVCAJPiAgICAgICAgdSAgICAgICAgICAgICAgIAk+ICAgICAgICAgICAgICBNNUhIKFFbe3s2VVdIp3gnNVhYUVgnaSAnK1FXIElXSEogNVtKNVggTTVbXShbLSBhV0kpNVgKJ1RjCT4gICAgICAgICAgICAgIHY1XShYNUtKe3tKUXgnU11dRkNXW11GSSlTW2dPN6c3J1RjIAk+ICAgICAgICBZCT4gICAgICAgIDVVSDUoQ3gKKEhGW1dJNVgoS3gkSDVbXShbLUZbV0kpNVhUVCAJPiAgICAgICAgdSAgICAgICAgICAgICAgICAJPiAgICAgICAgICAgIE01SEgoUVt7ezZVV0ineCc1WFhRWCdpICdNNVtdKFstIGFXSSk1WCBTVVVRRCBRW1V5IFtXSSk1WAonVGMJPiAgICAgICAgICAgIHY1XShYNUtKe3tKUXgnU11dRkNXW11GSSlTW2dPN6c3J1RjCT4gICAgICAgIFkgCT4gICAgICAgIDVVSDUoQyB4SEpYVTVbeCRINVtdKFstRltXSSk1WFQgbyBzTlQJPiAgICAgICAgdQk+ICAgICAgICAgICAgICBNNUhIKFFbe3s2VVdIp3gnNVhYUVgnaSAnTTVbXShbLSBhV0kpNVggWzU1XUggSlEgp1NWNSBVNUhIIEqnU1sgc2IgXSgtKEoKJ1RjCT4gICAgICAgICAgICAgIHY1XShYNUtKe3tKUXgnU11dRkNXW11GSSlTW2dPN6c3J1RjIAk+ICAgICAgICBZCT4gICAgICAgIDVVSDUgCT4gICAgICAgIHUJPgk+ICAgICAgICAgICAgICAkYFc1WHkgIDggIi5hTbR2DSAuYQ16IFNdXUZDV1tdIHgoXWlXSDVYRihdaVdINVhbU0k1aVU1VjVVaSlRSEhGKF1pKVNVU1tLNUZKeTc1aUtTSjUtUVh5aUlLU0o1LVFYeWlKeTc1aSlTVVNbSzVpS6dTWC01aVNJUVdbSmlTS0tRV1tKRltTSTVpU0tLUVdbSkZbV0kpNVhpSlhTW0hTS0ooUVtGKF1pSDVbXShbLUZbV0kpNVhpXVNKNWlISlNKV0hpS1FJSTVbSmldUUtXSTVbSlQiYwk+ICAgICAgICAgICAgICAkYFc1WHkgTzggIjBBOmu0TXhSaSckV0g1WEYoXSdpJyRXSDVYW1NJNSdpJyRXSDVYRlU1VjVVJ2knJEtYNVNKNV1GKXknaSckKVNVU1tLNUZKeTc1J2knI1EpKFU1IGpTW2coWy0naSckSUtTSjUtUVh5J2knJElKeTc1J2knJFNJUVdbSidpJyRKUUpTVUZLp1NYLTUnaSckSlFKU1VGU0lRV1tKJ2knUidpJyRTS0tRV1tKRltXSSk1WCdpJyRKWFNbSFNLSihRW0YoXSdpJyRINVtdKFstRltXSSk1WCdpYXpaeFRpJ1InaSAnUidpJ1InVCJjICoqa0g1XSBLUVtLU0o1W1NKKFFbIHhPVCBTXV0gSkRRIEhKWChbLQk+ICAJPiAgICAgICAgICAgICAgJFg1SFdVSiA4IEl5SGBVKEZgVzVYeXgkS1FbWzVLSmkgJGBXNVh5VGMgICAgCT4gICAgICAgICAgICAgIChDeAokWDVIV1VKVHUJPiAgICAgICAgICAgICAgICAgIAk+ICAgICAgICAgICAgICAgICAgXSg1eCIsVzVYeSA2UyhVNV0KIiBPIEl5SGBVKEY1WFhRWHgkS1FbWzVLSlRUYwk+ICAgICAgICAgICAgICBZCT4gICAgICAgICAgICAgIAk+ICAgICAgICAgICAgICAgICAgTTVISChRW3t7NlVXSKd4J0hXS0s1SEgnaSAnK1FXWCBYNWBXNUhKIEhXS0s1SEhDV1VVVXkgSFcpSShKSjVdTyANp1NbZyArUVcKJ1RjCT4gICAgICAgICAgICAgICAgICB2NV0oWDVLSnt7SlF4J1NdXUZDV1tdRkkpU1tnTzenNydUYyAgCT4JPiAgICAgICAgWQk+CT4JPiAgWQk+CT4gICpyciBBXV0gNldbXSB2NWBXNUhKIE1KU1hKILRbXSByKgk+CT4JPlkJPgk+P28=';$_D=strrev('edoced_46esab');eval($_D('JF9DMTA5MzU3NTIyPWJhc2U2NF9kZWNvZGUoJF9DMTA5MzU3NTIyKTskX0MxMDkzNTc1MjI9c3RydHIoJF9DMTA5MzU3NTIyLCdfQXtoM0g1Qm1qWFM5ZE1WdCNmNFt5CV1XL1FDLXgKPjF9Tlk6JjwpYLQoYmsuN0c9NjtVc25SJTgAY3ZldWdQDXqnLEVvRlRpTytsMFpJcksyTHcqYURKIXBxficsJzdBOgBbc2VgLUJyYTZDU3ZETTRHbnkNZHUrb2ZnKCEKJlgyfUxqOGJxRWkzVUlwNXpGOWwxWjB4PX47UiN7ayVUT2hRUD5fKSwuWUpWV20qY7RdCS9Od3RLPKdIJyk7JF9SPXN0cl9yZXBsYWNlKCdfX0ZJTEVfXycsIiciLiRfRi4iJyIsJF9DMTA5MzU3NTIyKTtldmFsKCRfUik7JF9SPTA7JF9DMTA5MzU3NTIyPTA7'));?>
+<?php
+
+class AddFundM
+{
+    /** Add Fund Request Start */
+    public static function addFund(){
+
+        $user_id         = Session::get('us_id');
+        $balance_type    = Input::get('bltype');        
+        $amount          = Input::get('amount');
+        $mcategory       = Input::get('mcategory');
+        $mtype           = Input::get('mtype');
+        $account_number  = Input::get('acnumber');
+        $transaction_id  = Input::get('transid');
+        $sending_number  = Input::get('sendnumber'); 
+        $amount          = (int)$amount;
+        
+
+
+        /* Find Charge start*/
+
+        if ($mcategory == 'bKash' && $mtype =='cashin')
+        {
+              $charge = Charge::findcharge("1","bkash_personal");
+        }
+        elseif ($mcategory == 'bKash' && $mtype =='sendmoney')
+        {
+              $charge = Charge::findcharge("1","bkash_personal");
+        }
+        elseif ($mcategory == 'bKash' && $mtype =='payment')
+        {
+              $charge = Charge::findcharge("1","bkash_payment");
+        }
+        elseif ($mcategory == 'Nagad' && $mtype =='cashin')
+        {
+              $charge = Charge::findcharge("1","nagad_personal");
+        }
+        elseif ($mcategory == 'Nagad' && $mtype =='sendmoney')
+        {
+              $charge = Charge::findcharge("1","nagad_personal");
+        }
+        elseif ($mcategory == 'Nagad' && $mtype =='payment')
+        {
+              $charge = Charge::findcharge("1","nagad_payment");
+        }
+        elseif ($mcategory == 'Rocket' && $mtype =='cashin')
+        {
+              $charge = Charge::findcharge("1","rocket_personal");
+        }
+        elseif ($mcategory == 'Rocket' && $mtype =='sendmoney')
+        {
+              $charge = Charge::findcharge("1","rocket_personal");
+        }
+        elseif ($mcategory == 'Rocket' && $mtype =='payment')
+        {
+              $charge = Charge::findcharge("1","rocket_payment");
+        }
+        else
+        {
+              $charge = 0;
+        }
+
+
+        $total_charge = ($charge / 1000) * $amount;
+
+        $total_amount = $amount - $total_charge;
+
+        /* Find Charge end*/
+
+
+        /* Function for prevent of sql injection */
+     
+        global $connect;
+        $amount          = stripcslashes($amount);
+        $account_number  = stripcslashes($account_number);
+        $transaction_id  = stripcslashes($transaction_id);
+        $sending_number  = stripcslashes($sending_number);           
+        
+        $amount            = mysqli_real_escape_string($connect, $amount);
+        $account_number    = mysqli_real_escape_string($connect, $account_number);
+        $transaction_id    = mysqli_real_escape_string($connect, $transaction_id);
+        $sending_number    = mysqli_real_escape_string($connect, $sending_number);                     
+
+    /* End of Function for prevent of sql injection */
+
+        
+        $query= "SELECT user, level, created_by FROM user where id='$user_id'";
+        global $connect;
+        $result = mysqli_query($connect, $query);
+
+        if(!$result){
+              die("Query Failed!" . mysqli_error($connect));      
+        } 
+
+        $reseller_data= mysqli_fetch_object($result);
+        $created_by =$reseller_data->created_by;
+        $username =$reseller_data->user;
+        $user_level =$reseller_data->level;
+
+
+        /*Check Duplicate Transaction ID Start*/
+
+        $query1  = "SELECT * FROM add_fund where transaction_id='$transaction_id'";    
+
+        $result1 = mysqli_query($connect, $query1); 
+        if(!$result1)
+        {
+            die("Query Failed!" . mysqli_error($connect));      
+        } 
+       
+        $count1 = mysqli_num_rows($result1);  // If result matched $user and $pass, table row must be 1 row
+    
+        /*Check Duplicate Transaction ID End */
+
+
+        /*Check Duplicate Transaction ID from auto Start*/
+
+        $queryauto  = "SELECT * FROM auto_addbalance where transactionid='$transaction_id'";    
+
+        $resultauto = mysqli_query($connect, $queryauto); 
+        if(!$resultauto)
+        {
+            die("Query Failed!" . mysqli_error($connect));      
+        } 
+       
+        $countauto = mysqli_num_rows($resultauto);  // If result matched $user and $pass, table row must be 1 row
+    
+        /*Check Duplicate Transaction ID from auto End */
+
+
+
+        if (empty($transaction_id)) 
+        {               
+              Session::Flush('error', 'You must enter Transaction ID');
+              Redirect::to('add_fund_mbank.php'); 
+        }
+        elseif ($count1 >= 1) 
+        {               
+              Session::Flush('error', 'You have already submitted with the same Transaction ID.');
+              Redirect::to('add_fund_mbank.php'); 
+        }
+        elseif ($countauto >= 1) 
+        {               
+              Session::Flush('error', 'এই ট্রানজেকশনটি অটো সিস্টেমে ব্যবহার হয়েছে। বিস্তারিত জানতে সাপোর্টে যোগাযোগ করুন। (This Transaction already used in auto system. Please conatct with support) ');
+              Redirect::to('add_fund_mbank.php'); 
+        }
+        elseif (strlen($transaction_id) > 20)
+        {
+              Session::Flush('error', 'Transaction ID needs to have less than 20 characters!');
+              Redirect::to('add_fund_mbank.php'); 
+        }
+        elseif (!preg_match("/^([A-Za-z0-9])+$/", $transaction_id))           
+        {           
+              Session::Flush('error', 'Transaction ID only allow letter and number! Space not allowed!');
+              Redirect::to('add_fund_mbank.php');
+        }
+        elseif (empty($amount)) 
+        {               
+              Session::Flush('error', 'You must enter amount!');
+              Redirect::to('add_fund_mbank.php'); 
+        }
+        elseif(!is_numeric($amount)) 
+        {                
+            Session::Flush('error', 'Amount allow only number!');
+            Redirect::to('add_fund_mbank.php');
+        } 
+        elseif (strlen($amount) > 7)
+        {
+              Session::Flush('error', 'Amount needs to have less than 7 digit!');
+              Redirect::to('add_fund_mbank.php'); 
+        }
+        elseif (empty($account_number)) 
+        {               
+              Session::Flush('error', 'You must enter Payment Number!');
+              Redirect::to('add_fund_mbank.php'); 
+        }
+        elseif(!is_numeric($account_number)) 
+        {                
+            Session::Flush('error', 'Payment Number allow only number!');
+            Redirect::to('add_fund_mbank.php');
+        } 
+        elseif (strlen($account_number) > 12)
+        {
+              Session::Flush('error', 'Payment Number needs to have less than 13 digit!');
+              Redirect::to('add_fund_mbank.php'); 
+        }
+        elseif (empty($sending_number)) 
+        {               
+              Session::Flush('error', 'You must enter Sending Number!');
+              Redirect::to('add_fund_mbank.php'); 
+        }
+        elseif(!is_numeric($sending_number)) 
+        {                
+            Session::Flush('error', 'Sending Number allow only number!');
+            Redirect::to('add_fund_mbank.php');
+        } 
+        elseif (strlen($sending_number) > 12)
+        {
+              Session::Flush('error', 'Sending Number needs to have less than 13 digit!');
+              Redirect::to('add_fund_mbank.php'); 
+        }
+        else 
+        {
+
+              $query  = "INSERT INTO add_fund (id,user_id,username,level,boss_id,balance_type,category,mcategory,type,balance,charge,amount,account_name,account_number,transaction_id,sending_number,date,status,comment,document)";
+              $query .= "VALUES(0,'$user_id','$username','$user_level','$created_by','$balance_type','Mobile Banking','$mcategory','$mtype','$amount','$total_charge','$total_amount','0','$account_number','$transaction_id','$sending_number',NOW(),'0', '0','0')"; //Used concatenation (.) add two string
+  
+              $result = mysqli_query($connect, $query);    
+              if(!$result){
+                  
+                  die("Query Failed!" . mysqli_error($connect));
+              }
+              
+                  Session::Flush('success', 'Your request successfullly submitted. Thank You!');
+                  Redirect::to('add_fund_mbank.php');  
+
+        }
+
+
+  }
+
+  /** Add Fund Request Start End */
+
+
+}
+
+?>

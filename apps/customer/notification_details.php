@@ -2,7 +2,7 @@
 include "login.check.php";
 include "header.php"; 
 
-$nid = Xss::xssClean(Input::get('id'));
+$nid = (int) Input::get('id'); // int only (was SQL-injectable)
 
 $notifica_result = Notice::ReadNotification($nid,$us_id);
 
@@ -15,7 +15,7 @@ $seen_status  = $row->seen;
 
 if($seen_status == 0)
 {
-    $query = "UPDATE notification SET seen='1' WHERE id='$nid'";    
+    $query = "UPDATE notification SET seen='1' WHERE id='" . (int) $nid . "' AND UserId='" . (int) $us_id . "'";    
     $result = mysqli_query($connect, $query);    
     if(!$result)
     {                      

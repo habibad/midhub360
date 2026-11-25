@@ -1,19 +1,39 @@
 <?php
-session_start();
-
-// Enable detailed error reporting
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
 require_once __DIR__ . '/db.php';
 require_once __DIR__ . '/autoload.php';
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+// Errors are logged, never shown (this page is public).
+ini_set('display_errors', IS_LOCAL ? '1' : '0');
 
 $error = "";
+
+if (Security::CheckBlockIP() > 0) {
+    header("Location: forbidden.php");
+    exit;
+}
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = trim($_POST['username'] ?? '');
     $password = trim($_POST['password'] ?? '');
+    // Brute-force protection (same rules as the main login): previous failures in 15 minutes
+    $failedUser = Security::totalloginfaileduser();
+    $failedIp   = Security::totalloginfailed();
+    $loginFailed = function () use (&$error, $failedUser, $failedIp) {
+        Log::loginlogs("Failed");
+        if ($failedIp >= 19) {
+            Security::IPBlock();
+            header("Location: forbidden.php");
+            exit;
+        }
+        if ($failedUser >= 2) {
+            Security::UserBlock(); // 3rd wrong password locks the account (admin can unblock)
+            $error = "Your account is blocked after repeated wrong passwords. Please contact support.";
+            return;
+        }
+        $error = "Invalid username or password.";
+    };
 
     if (empty($username) || empty($password)) {
         $error = "Username and Password are required.";
@@ -50,8 +70,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         $_SESSION['level']         = $user['level'];
                         $_SESSION['userip']        = $_SERVER["REMOTE_ADDR"] ?? '127.0.0.1';
                         $_SESSION['sess_username'] = $user['user'];
-                        $_SESSION['sess_pass']     = $password;
-                        $_SESSION['sess_uservalid']= 1;
+                        $_SESSION['sess_uservalid']= 1; // (plaintext password no longer kept in the session)
+                        session_regenerate_id(true);    // no session fixation
+                        Log::loginlogs("Success");
 
                         // Check redirect destination
                         $redirect = $_GET['redirect'] ?? '';
@@ -68,11 +89,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         }
                         exit;
                     } else {
-                        $error = "Invalid credentials.";
+                        $loginFailed();
                     }
                 }
             } else {
-                $error = "No active user found with this username.";
+                $loginFailed(); // same message as a wrong password: no username enumeration
             }
             mysqli_stmt_close($stmt);
         } else {

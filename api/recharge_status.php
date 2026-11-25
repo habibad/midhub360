@@ -10,6 +10,8 @@ $number = Xss::xssClean(Input::get('number'));
 $amount = Xss::xssClean(Input::get('amount'));
 $type   = Xss::xssClean(Input::get('type'));
 $rid    = Xss::xssClean(Input::get('rid'));
+require_once __DIR__ . '/guard.php';
+midhub_api_validate(array('user' => $user, 'key' => $key, 'rid' => $rid)); // SECURITY: whitelist before any SQL
 
 /* validate request information Start*/
 if(!isset($user) || empty($user))
@@ -57,14 +59,7 @@ if(!isset($rid) || empty($rid)){
 /* validate request information end*/
 
 
-$query  = "SELECT * from user where user='$user' and api_key='$key' and active='1'";    
-    
-$result = mysqli_query($connect, $query); 
-
-$reseller_data= mysqli_fetch_object($result);
-
-
-$count = mysqli_num_rows($result);  // If result matched $user and $pass, table row must be 1 row
+$reseller_data = null; list($reseller_data, $count) = midhub_api_auth($user, $key); // prepared statement + constant-time key check
 
 
 if($count == 1) 
@@ -132,7 +127,8 @@ if($count == 1)
       }       
       else 
       {
-            $query= "SELECT * from send_query where api_reid='$rid' ORDER BY id ASC LIMIT 1";
+            // scoped to the authenticated reseller: rids are guessable integers
+            $query= "SELECT * from send_query where api_reid='" . (int) $rid . "' AND user_id = " . (int) $reseller_data->id . " ORDER BY id ASC LIMIT 1";
 
             $result = mysqli_query($connect, $query); 
 

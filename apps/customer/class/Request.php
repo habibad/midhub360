@@ -1,6 +1,40 @@
 <?php
+require_once dirname(__DIR__, 3) . '/lib/bootstrap.php';
 class Request
 {
+
+    /**
+     * Atomically debit a wallet column.
+     * The legacy code read the balance, then wrote an absolute value, so two concurrent
+     * requests could both pass the balance check and both be served for one debit.
+     * This UPDATE only succeeds while the balance is still sufficient at write time.
+     * On failure it flashes an error, redirects back and stops the request.
+     */
+    public static function atomic_debit($column, $user_id, $amount, $redirect)
+    {
+        global $connect;
+        if (!in_array($column, array('balance', 'balance2', 'bkash_balance'), true)) {
+            die('Invalid wallet column');
+        }
+        $amount = (float) $amount;
+        $uid    = (int) $user_id;
+        if ($amount <= 0 || $uid <= 0) {
+            Session::Flush('error', 'Invalid amount.');
+            Redirect::to($redirect);
+            exit();
+        }
+        $stmt = mysqli_prepare($connect, "UPDATE user SET `$column` = `$column` - ? WHERE id = ? AND `$column` >= ?");
+        mysqli_stmt_bind_param($stmt, 'did', $amount, $uid, $amount);
+        mysqli_stmt_execute($stmt);
+        $ok = (mysqli_stmt_affected_rows($stmt) === 1);
+        mysqli_stmt_close($stmt);
+        if (!$ok) {
+            Session::Flush('error', 'Insufficient balance. Please check your balance and try again.');
+            Redirect::to($redirect);
+            exit();
+        }
+    }
+
     public static $rates = [];
 
         
@@ -578,417 +612,24 @@ class Request
                 Redirect::to('send_recharge.php');
             }                       
         else
-            {           
-			
-			if ($userlevel == 0) /* Retailer/Level1 Request Start */
             {
-
-                $r1 = $us_id;
-                $r1B = $mybalance;
-
-                $r2 = self::get_boss_id($us_id);
-                $r2B = self::get_balance($r2);
-
-                $r3 = self::get_boss_id($r2);
-                $r3B = self::get_balance($r3);
-
-                $r4 = self::get_boss_id($r3);
-                $r4B = self::get_balance($r4);
-
-                $r5 = self::get_boss_id($r4);
-                $r5B = self::get_balance($r5);
-
-                if ($r1B < $amount)
-                {
-                    Session::Flush('error', 'Insufficient Your Balance');
-                    Redirect::to('send_recharge.php');
-                }
-                
-                else
-                {
-
-                    $r1Nb = $mybalance - $amount;
-                    $query = "UPDATE user set balance2='$r1Nb' where id='$r1'";
-                    global $connect; 
-                    $result = mysqli_query($connect, $query);    
-                    if(!$result)
-                    {
-                        
-                        die("Query Failed!" . mysqli_error($connect));
-                    }
-                    
-
-                    $operator = self::get_company($num);
-
-
-                    if($apicount == 1)  //check API active or inactive
-                    {
-                        $status = Api::apirequest("$num","$amount","$load_type","$apirid"); //recharge request pass to API
-
-                            if($status == "SUCCESS")
-                            {
-                                $query  = "INSERT INTO send_query (id,user_id,phone,load_type,balance,submitted_date,status,s_time,operator,s_date,level1,level2,level3,level4,level5,ip,rfrom,api_reid)";
-                                $query .= "VALUES(0,'$us_id','$num','$load_type','$amount',NOW(),'6','$time','$operator',CURDATE(),'$r1','$r2','$r3','$r4','$r5','$ip','$refrom','$apirid')";
-                               
-                                $result = mysqli_query($connect, $query);    
-                                if(!$result)
-                                {                            
-                                    die("Query Failed!" . mysqli_error($connect));
-                                }
-                            }
-                            else //if api sent not working
-                            {
-                                $query  = "INSERT INTO send_query (id,user_id,phone,load_type,balance,submitted_date,status,s_time,operator,s_date,level1,level2,level3,level4,level5,ip,rfrom,api_reid)";
-                                $query .= "VALUES(0,'$us_id','$num','$load_type','$amount',NOW(),'0','$time','$operator',CURDATE(),'$r1','$r2','$r3','$r4','$r5','$ip','$refrom','0')";
-                               
-                                $result = mysqli_query($connect, $query);    
-                                if(!$result)
-                                {                            
-                                    die("Query Failed!" . mysqli_error($connect));
-                                }
-                            }
-
-                    }
-                    else //if api is inative
-                    {
-
-                        $query  = "INSERT INTO send_query (id,user_id,phone,load_type,balance,submitted_date,status,s_time,operator,s_date,level1,level2,level3,level4,level5,ip,rfrom,api_reid)";
-                        $query .= "VALUES(0,'$us_id','$num','$load_type','$amount',NOW(),'0','$time','$operator',CURDATE(),'$r1','$r2','$r3','$r4','$r5','$ip','$refrom','0')";
-                       
-                        $result = mysqli_query($connect, $query);    
-                        if(!$result)
-                        {                            
-                            die("Query Failed!" . mysqli_error($connect));
-                        }
-
-                    }
-
-                    Session::Flush('success', 'Your Requested Transaction of service (<b>Recharge</b>) has been initiated.');
-                    Redirect::to('send_recharge.php');
-
-                } 
-                
-            } /* Retailer/Level1 Request End */
-            elseif ($userlevel == 1) /* Dealer/Level2 Request Start */
-            {
-                $r1 = $us_id;
-                $r1B = $mybalance;
-
-                $r3 = self::get_boss_id($r1);
-                $r3B = self::get_balance($r3);
-
-                $r4 = self::get_boss_id($r3);
-                $r4B = self::get_balance($r4);
-
-                $r5 = self::get_boss_id($r4);
-                $r5B = self::get_balance($r5);
-                
-				if ($r1B  < $amount)
-                {
-                    Session::Flush('error', 'Insufficient Balance Your Balance');
-                    Redirect::to('send_recharge.php');
-                }               
-                else
-                {
-
-                    $r1Nb = $mybalance - $amount;
-                    $query ="UPDATE user set balance2='$r1Nb' where id='$r1'";
-                    global $connect; 
-                    $result = mysqli_query($connect, $query);    
-                    if(!$result){
-                        
-                        die("Query Failed!" . mysqli_error($connect));
-                    }
-					
-                    
-                    $operator = self::get_company($num);
-                    
-                    if($apicount == 1) //check API is active/inactive
-                    {
-                        $status = Api::apirequest("$num","$amount","$load_type","$apirid"); //recharge request pass to API
-                            
-                            if($status == "SUCCESS")
-                            {
-                                $query  = "INSERT INTO send_query (id,user_id,phone,load_type,balance,submitted_date,status,s_time,operator,s_date,level1,level2,level3,level4,level5,ip,rfrom,api_reid)";
-                                $query .= "VALUES(0,'$us_id','$num','$load_type','$amount',NOW(),'6','$time','$operator',CURDATE(),'0','$r1','$r3','$r4','$r5','$ip','$refrom','$apirid')";
-                                
-                                $result = mysqli_query($connect, $query);    
-                                if(!$result)
-                                {
-                                    
-                                    die("Query Failed!" . mysqli_error($connect));
-                                }
-                            }
-                            else //if api is not working
-                            {
-                                $query  = "INSERT INTO send_query (id,user_id,phone,load_type,balance,submitted_date,status,s_time,operator,s_date,level1,level2,level3,level4,level5,ip,rfrom,api_reid)";
-                                $query .= "VALUES(0,'$us_id','$num','$load_type','$amount',NOW(),'0','$time','$operator',CURDATE(),'0','$r1','$r3','$r4','$r5','$ip','$refrom,'0')";
-                                
-                                $result = mysqli_query($connect, $query);    
-                                if(!$result)
-                                {
-                                    
-                                    die("Query Failed!" . mysqli_error($connect));
-                                }
-                            }
-                    }
-                    else //If API is inactive
-                    {
-                        $query  = "INSERT INTO send_query (id,user_id,phone,load_type,balance,submitted_date,status,s_time,operator,s_date,level1,level2,level3,level4,level5,ip,rfrom,api_reid)";
-                        $query .= "VALUES(0,'$us_id','$num','$load_type','$amount',NOW(),'0','$time','$operator',CURDATE(),'0','$r1','$r3','$r4','$r5','$ip','$refrom','0')";
-                        
-                        $result = mysqli_query($connect, $query);    
-                        if(!$result)
-                        {
-                            
-                            die("Query Failed!" . mysqli_error($connect));
-                        }
-                    }                  
-                  
-                    Session::Flush('success', 'Your Requested Transaction of service (<b>Recharge</b>) has been initiated.');
-                    Redirect::to('send_recharge.php');
-                }
-            } /* Dealer/Level2 Request End */          
-			elseif ($userlevel == 2) /* DGM/Level3 Request Start */
-            {
-
-                $r1 = $us_id;
-                $r1B = $mybalance;
-
-                $r4 = self::get_boss_id($r1);
-                $r4B = self::get_balance($r4);
-
-                $r5 = self::get_boss_id($r4);
-                $r5B = self::get_balance($r5);
-
-                if ($r1B < $amount)
-                {
-                    Session::Flush('error', 'Insufficient Balance Your Balance');
-                    Redirect::to('send_recharge.php');
-                }                
-                else
-                {
-
-                    $r1Nb = $mybalance - $amount;
-                    $query ="UPDATE user set balance2='$r1Nb' where id='$r1'";
-                    global $connect; 
-                    $result = mysqli_query($connect, $query);    
-                    if(!$result){
-                        
-                        die("Query Failed!" . mysqli_error($connect));
-                    }
-                    
-
-                    $operator = self::get_company($num);
-
-
-                    if($apicount == 1) //Check API active/Inactive
-                    {
-                        $status = Api::apirequest("$num","$amount","$load_type","$apirid"); //recharge request pass to API
-                            
-                            if($status == "SUCCESS")
-                            {
-                                $query  = "INSERT INTO send_query (id,user_id,phone,load_type,balance,submitted_date,status,s_time,operator,s_date,level1,level2,level3,level4,level5,ip,rfrom,api_reid)";
-                                $query .= "VALUES(0,'$us_id','$num','$load_type','$amount',NOW(),'6','$time','$operator',CURDATE(),'0','0','$r1','$r4','$r5','$ip','$refrom','$apirid')";
-            
-                                $result = mysqli_query($connect, $query);    
-                                if(!$result)
-                                {
-                                    
-                                    die("Query Failed!" . mysqli_error($connect));
-                                }
-                            }
-                            else //If API is not working
-                            {
-                                $query  = "INSERT INTO send_query (id,user_id,phone,load_type,balance,submitted_date,status,s_time,operator,s_date,level1,level2,level3,level4,level5,ip,rfrom,api_reid)";
-                                $query .= "VALUES(0,'$us_id','$num','$load_type','$amount',NOW(),'0','$time','$operator',CURDATE(),'0','0','$r1','$r4','$r5','$ip','$refrom','0')";
-            
-                                $result = mysqli_query($connect, $query);    
-                                if(!$result)
-                                {
-                                    
-                                    die("Query Failed!" . mysqli_error($connect));
-                                }
-                            }
-                    }
-                    else //If API is Inactive
-                    {
-                        $query  = "INSERT INTO send_query (id,user_id,phone,load_type,balance,submitted_date,status,s_time,operator,s_date,level1,level2,level3,level4,level5,ip,rfrom,api_reid)";
-                        $query .= "VALUES(0,'$us_id','$num','$load_type','$amount',NOW(),'0','$time','$operator',CURDATE(),'0','0','$r1','$r4','$r5','$ip','$refrom','0')";
-    
-                        $result = mysqli_query($connect, $query);    
-                        if(!$result)
-                        {
-                            
-                            die("Query Failed!" . mysqli_error($connect));
-                        }
-    
-                    }
-
-                    Session::Flush('success', 'Your Requested Transaction of service (<b>Recharge</b>) has been initiated.');
-                    Redirect::to('send_recharge.php');
-                }
-            } /* DGM/Level3 Request End */			
-			elseif ($userlevel == 3) /* Distributor/Level4 Request Start*/
-            {
-
-                $r1 = $us_id;
-                $r1B = $mybalance;               
-
-                $r5 = self::get_boss_id($r1);
-                $r5B = self::get_balance($r5);
-
-                if ($r1B < $amount)
-                {
-                    Session::Flush('error', 'Insufficient Balance Your Balance');
-                    Redirect::to('send_recharge.php');
-                }                
-                else
-                {
-
-                    $r1Nb = $mybalance - $amount;
-                    $query = "UPDATE user set balance2='$r1Nb' where id='$r1'";
-                    global $connect; 
-                    $result = mysqli_query($connect, $query);    
-                    if(!$result){
-                        
-                        die("Query Failed!" . mysqli_error($connect));
-                    }                  
-
-                    $operator = self::get_company($num);
-
-                    if($apicount == 1) //Check API Active of Inactive
-                    {
-                        $status = Api::apirequest("$num","$amount","$load_type","$apirid"); //recharge request pass to API
-                            
-                            if($status == "SUCCESS")
-                            {
-                                $query  = "INSERT INTO send_query (id,user_id,phone,load_type,balance,submitted_date,status,s_time,operator,s_date,level1,level2,level3,level4,level5,ip,rfrom,api_reid)";
-                                $query .= "VALUES(0,'$us_id','$num','$load_type','$amount',NOW(),'6','$time','$operator',CURDATE(),'0','0','0','$r1','$r5','$ip','$refrom','$apirid')";
-               
-                                $result = mysqli_query($connect, $query);    
-                                if(!$result)
-                                {
-                                    
-                                    die("Query Failed!" . mysqli_error($connect));
-                                }       
-                            }
-                            else //If API is not working
-                            {
-                                $query  = "INSERT INTO send_query (id,user_id,phone,load_type,balance,submitted_date,status,s_time,operator,s_date,level1,level2,level3,level4,level5,ip,rfrom,api_reid)";
-                                $query .= "VALUES(0,'$us_id','$num','$load_type','$amount',NOW(),'0','$time','$operator',CURDATE(),'0','0','0','$r1','$r5','$ip','$refrom','0')";
-                                         
-                                $result = mysqli_query($connect, $query);    
-                                if(!$result)
-                                {
-                                    
-                                    die("Query Failed!" . mysqli_error($connect));
-                                }       
-                            }
-                    }
-                    else //If API is Inactive
-                    {
-                        $query  = "INSERT INTO send_query (id,user_id,phone,load_type,balance,submitted_date,status,s_time,operator,s_date,level1,level2,level3,level4,level5,ip,rfrom,api_reid)";
-                        $query .= "VALUES(0,'$us_id','$num','$load_type','$amount',NOW(),'0','$time','$operator',CURDATE(),'0','0','0','$r1','$r5','$ip','$refrom','0')";
-    
-                        $result = mysqli_query($connect, $query);    
-                        if(!$result)
-                        {
-                            
-                            die("Query Failed!" . mysqli_error($connect));
-                        }                   
-                         
-                    }
-
-                      Session::Flush('success', 'Your Requested Transaction of service (<b>Recharge</b>) has been initiated.');
-                      Redirect::to('send_recharge.php');
- 
-                }
-            } /* Distributor/Level4 Request End*/				
-			elseif ($userlevel == 4) /* Subadmin/Level5 Request Start*/
-            {
-
-                $r1 = $us_id;
-                $r1B = $mybalance;            
-              
-                if ($r1B < $amount)
-                {
-                    Session::Flush('error', 'Insufficient Balance');
-                    Redirect::to('send_recharge.php');
-                }                
-                else
-                {
-
-                    $r1Nb = $mybalance - $amount;
-                    $query = "UPDATE user set balance2='$r1Nb' where id='$r1'";
-                    global $connect; 
-                    $result = mysqli_query($connect, $query);    
-                    if(!$result)
-                    {
-                        
-                        die("Query Failed!" . mysqli_error($connect));
-                    }                
-
-
-                    $operator = self::get_company($num);
-
-                    if($apicount == 1) //Check API active or Inactive
-                    {
-                        $status = Api::apirequest("$num","$amount","$load_type","$apirid"); //recharge request pass to API
-                            
-                            if($status == "SUCCESS")
-                            {
-                                $query  = "INSERT INTO send_query (id,user_id,phone,load_type,balance,submitted_date,status,s_time,operator,s_date,level1,level2,level3,level4,level5,ip,rfrom,api_reid)";
-                                $query .= "VALUES(0,'$us_id','$num','$load_type','$amount',NOW(),'6','$time','$operator',CURDATE(),'0','0','0','0','$r1','$ip','$refrom','$apirid')";
-               
-                                $result = mysqli_query($connect, $query);    
-                                if(!$result)
-                                {
-                                    
-                                    die("Query Failed!" . mysqli_error($connect));
-                                }
-                            }
-                            else //If API is not Working
-                            {
-                                $query  = "INSERT INTO send_query (id,user_id,phone,load_type,balance,submitted_date,status,s_time,operator,s_date,level1,level2,level3,level4,level5,ip,rfrom,api_reid)";
-                                $query .= "VALUES(0,'$us_id','$num','$load_type','$amount',NOW(),'0','$time','$operator',CURDATE(),'0','0','0','0','$r1','$ip','$refrom','0')";
-               
-                                $result = mysqli_query($connect, $query);    
-                                if(!$result)
-                                {
-                                    
-                                    die("Query Failed!" . mysqli_error($connect));
-                                }
-                            }
-                    }
-                    else //If API is Inactive
-                    {
-                        $query  = "INSERT INTO send_query (id,user_id,phone,load_type,balance,submitted_date,status,s_time,operator,s_date,level1,level2,level3,level4,level5,ip,rfrom,api_reid)";
-                        $query .= "VALUES(0,'$us_id','$num','$load_type','$amount',NOW(),'0','$time','$operator',CURDATE(),'0','0','0','0','$r1','$ip','$refrom','0')";
-       
-                        $result = mysqli_query($connect, $query);    
-                        if(!$result)
-                        {
-                            
-                            die("Query Failed!" . mysqli_error($connect));
-                        }
-    
-                       
-                    }   
-
-                    Session::Flush('success', 'Your Requested Transaction of service (<b>Recharge</b>) has been initiated.');
-                    Redirect::to('send_recharge.php');
-                }
-            } /* Subadmin/Level5 Request End*/
-		
-			
-        }
+                // Atomic debit + dispatch (Paywell -> legacy eFlexiload -> manual queue).
+                // See lib/Midhub/Recharge/RechargeService.php. The legacy rule required the
+                // remaining balance to stay strictly above both low-balance limits.
+                $floor  = max((float) $lowbalance, (float) $dlowbalance) + 0.01;
+                $result = \Midhub\Recharge\RechargeService::submit(
+                    (int) $us_id, (int) $userlevel, (string) $num, (string) $amount,
+                    (string) $load_type, number_format($floor, 2, '.', ''), $refrom
+                );
+                Session::Flush($result['ok'] ? 'success' : 'error', $result['message']);
+                Redirect::to('send_recharge.php');
+            }
     }
 
 
 
 
-public static function make_flexiload_mnp($us_id, $num, $amount, $load_type, $operator, $ownpin, $userlevel)
+    public static function make_flexiload_mnp($us_id, $num, $amount, $load_type, $operator, $ownpin, $userlevel)
     {
 
         $mybalance = self::get_balance($us_id);
@@ -1118,14 +759,7 @@ public static function make_flexiload_mnp($us_id, $num, $amount, $load_type, $op
                 {
 
                     $r1Nb = $mybalance - $amount;
-                    $query = "UPDATE user set balance2='$r1Nb' where id='$r1'";
-                    
-                    global $connect; 
-                    $result = mysqli_query($connect, $query);    
-                    if(!$result){
-                        
-                        die("Query Failed!" . mysqli_error($connect));
-                    }
+                    self::atomic_debit('balance2', $r1, $amount, 'send_mnp.php'); // atomic: prevents double-spend race
 
                     //$operator = $operator;
 
@@ -1170,14 +804,7 @@ public static function make_flexiload_mnp($us_id, $num, $amount, $load_type, $op
                 {
 
                     $r1Nb = $mybalance - $amount;
-                    $query = "UPDATE user set balance2='$r1Nb' where id='$r1'";				
-                    
-                    global $connect; 
-                    $result = mysqli_query($connect, $query);    
-                    if(!$result){
-                        
-                        die("Query Failed!" . mysqli_error($connect));
-                    }
+                    self::atomic_debit('balance2', $r1, $amount, 'send_mnp.php'); // atomic: prevents double-spend race
 
                     //$operator = self::get_company($num);
 
@@ -1217,14 +844,7 @@ public static function make_flexiload_mnp($us_id, $num, $amount, $load_type, $op
                 {
 
                     $r1Nb = $mybalance - $amount;
-                    $query = "UPDATE user set balance2='$r1Nb' where id='$r1'";                    
-
-                    global $connect; 
-                    $result = mysqli_query($connect, $query);    
-                    if(!$result){
-                        
-                        die("Query Failed!" . mysqli_error($connect));
-                    }
+                    self::atomic_debit('balance2', $r1, $amount, 'send_mnp.php'); // atomic: prevents double-spend race
                     //$operator = self::get_company($num);
 
                     $query  = "INSERT INTO send_query (id,user_id,phone,load_type,balance,submitted_date,status,s_time,operator,s_date,level1,level2,level3,level4,level5,ip,rfrom,api_reid)";
@@ -1259,14 +879,7 @@ public static function make_flexiload_mnp($us_id, $num, $amount, $load_type, $op
                 {
 
                     $r1Nb = $mybalance - $amount;
-                    $query = "UPDATE user set balance2='$r1Nb' where id='$r1'";                 
-
-                    global $connect; 
-                    $result = mysqli_query($connect, $query);    
-                    if(!$result){
-                        
-                        die("Query Failed!" . mysqli_error($connect));
-                    }
+                    self::atomic_debit('balance2', $r1, $amount, 'send_mnp.php'); // atomic: prevents double-spend race
                     //$operator = self::get_company($num);
 
                     $query  = "INSERT INTO send_query (id,user_id,phone,load_type,balance,submitted_date,status,s_time,operator,s_date,level1,level2,level3,level4,level5,ip,rfrom,api_reid)";
@@ -1301,13 +914,7 @@ public static function make_flexiload_mnp($us_id, $num, $amount, $load_type, $op
                 {
 
                     $r1Nb = $mybalance - $amount;
-                    $query = "UPDATE user set balance2='$r1Nb' where id='$r1'";                    
-                    global $connect; 
-                    $result = mysqli_query($connect, $query);    
-                    if(!$result){
-                        
-                        die("Query Failed!" . mysqli_error($connect));
-                    }
+                    self::atomic_debit('balance2', $r1, $amount, 'send_mnp.php'); // atomic: prevents double-spend race
 
 
                     //$operator = self::get_company($num);
@@ -1464,14 +1071,7 @@ public static function make_m_banking($us_id, $num, $amount, $type, $m_banking_t
                 {
 
                     $r1Nb = $my_balance - $amount;
-                    $query = "UPDATE user set bkash_balance='$r1Nb' where id='$r1'";
-                    
-                    global $connect; 
-                    $result = mysqli_query($connect, $query);    
-                    if(!$result){
-                        
-                        die("Query Failed!" . mysqli_error($connect));
-                    }
+                    self::atomic_debit('bkash_balance', $r1, $amount, 'error.php'); // atomic: prevents double-spend race
 
                     //$operator = self::get_company($num);
 
@@ -1516,14 +1116,7 @@ public static function make_m_banking($us_id, $num, $amount, $type, $m_banking_t
                 {
 
                     $r1Nb = $my_balance - $amount;
-                    $query = "UPDATE user set bkash_balance='$r1Nb' where id='$r1'";					
-                    
-                    global $connect; 
-                    $result = mysqli_query($connect, $query);    
-                    if(!$result){
-                        
-                        die("Query Failed!" . mysqli_error($connect));
-                    }
+                    self::atomic_debit('bkash_balance', $r1, $amount, 'error.php'); // atomic: prevents double-spend race
 
                     //$operator = self::get_company($num);
 
@@ -1564,14 +1157,7 @@ public static function make_m_banking($us_id, $num, $amount, $type, $m_banking_t
                 {
 
                     $r1Nb = $my_balance - $amount;
-                    $query = "UPDATE user set bkash_balance='$r1Nb' where id='$r1'"; 
-                    
-                    global $connect; 
-                    $result = mysqli_query($connect, $query);    
-                    if(!$result){
-                        
-                        die("Query Failed!" . mysqli_error($connect));
-                    }
+                    self::atomic_debit('bkash_balance', $r1, $amount, 'error.php'); // atomic: prevents double-spend race
 
                     //$operator = self::get_company($num);
 
@@ -1610,14 +1196,7 @@ public static function make_m_banking($us_id, $num, $amount, $type, $m_banking_t
                 {
 
                     $r1Nb = $my_balance - $amount;
-                    $query = "UPDATE user set bkash_balance='$r1Nb' where id='$r1'";  
-                    
-                    global $connect; 
-                    $result = mysqli_query($connect, $query);    
-                    if(!$result){
-                        
-                        die("Query Failed!" . mysqli_error($connect));
-                    }
+                    self::atomic_debit('bkash_balance', $r1, $amount, 'error.php'); // atomic: prevents double-spend race
 
 
                     //$operator = self::get_company($num);
@@ -1657,14 +1236,7 @@ public static function make_m_banking($us_id, $num, $amount, $type, $m_banking_t
                 {
 
                     $r1Nb = $my_balance - $amount;
-                    $query = "UPDATE user set bkash_balance='$r1Nb' where id='$r1'"; 
-                    
-                    global $connect; 
-                    $result = mysqli_query($connect, $query);    
-                    if(!$result){
-                        
-                        die("Query Failed!" . mysqli_error($connect));
-                    }
+                    self::atomic_debit('bkash_balance', $r1, $amount, 'error.php'); // atomic: prevents double-spend race
                     
                     //$operator = self::get_company($num);
 
@@ -1803,14 +1375,7 @@ public static function make_bank_request($us_id,$bank_name,$branch_name,$ac_type
             {
 
                 $r1Nb = $my_balance - $amount;
-                $query = "UPDATE user set bkash_balance='$r1Nb' where id='$r1'";
-                
-                global $connect; 
-                $result = mysqli_query($connect, $query);    
-                if(!$result){
-                    
-                    die("Query Failed!" . mysqli_error($connect));
-                }
+                self::atomic_debit('bkash_balance', $r1, $amount, 'send_bank.php'); // atomic: prevents double-spend race
 
                 //$operator = self::get_company($num);
 
@@ -1854,14 +1419,7 @@ public static function make_bank_request($us_id,$bank_name,$branch_name,$ac_type
             {
 
                 $r1Nb = $my_balance - $amount;
-                $query = "UPDATE user set bkash_balance='$r1Nb' where id='$r1'";					
-                
-                global $connect; 
-                $result = mysqli_query($connect, $query);    
-                if(!$result){
-                    
-                    die("Query Failed!" . mysqli_error($connect));
-                }
+                self::atomic_debit('bkash_balance', $r1, $amount, 'send_bank.php'); // atomic: prevents double-spend race
 
                 //$operator = self::get_company($num);
 
@@ -1901,14 +1459,7 @@ public static function make_bank_request($us_id,$bank_name,$branch_name,$ac_type
             {
 
                 $r1Nb = $my_balance - $amount;
-                $query = "UPDATE user set bkash_balance='$r1Nb' where id='$r1'"; 
-                
-                global $connect; 
-                $result = mysqli_query($connect, $query);    
-                if(!$result){
-                    
-                    die("Query Failed!" . mysqli_error($connect));
-                }
+                self::atomic_debit('bkash_balance', $r1, $amount, 'send_bank.php'); // atomic: prevents double-spend race
 
                 //$operator = self::get_company($num);
 
@@ -1946,14 +1497,7 @@ public static function make_bank_request($us_id,$bank_name,$branch_name,$ac_type
             {
 
                 $r1Nb = $my_balance - $amount;
-                $query = "UPDATE user set bkash_balance='$r1Nb' where id='$r1'";  
-                
-                global $connect; 
-                $result = mysqli_query($connect, $query);    
-                if(!$result){
-                    
-                    die("Query Failed!" . mysqli_error($connect));
-                }
+                self::atomic_debit('bkash_balance', $r1, $amount, 'send_bank.php'); // atomic: prevents double-spend race
 
 
                 //$operator = self::get_company($num);
@@ -1992,14 +1536,7 @@ public static function make_bank_request($us_id,$bank_name,$branch_name,$ac_type
             {
 
                 $r1Nb = $my_balance - $amount;
-                $query = "UPDATE user set bkash_balance='$r1Nb' where id='$r1'"; 
-                
-                global $connect; 
-                $result = mysqli_query($connect, $query);    
-                if(!$result){
-                    
-                    die("Query Failed!" . mysqli_error($connect));
-                }
+                self::atomic_debit('bkash_balance', $r1, $amount, 'send_bank.php'); // atomic: prevents double-spend race
                 
                 //$operator = self::get_company($num);
 
@@ -2152,14 +1689,7 @@ public static function make_bank_request($us_id,$bank_name,$branch_name,$ac_type
                 {
 
                     $r1Nb = $mybalance - $cost;
-                    $query = "UPDATE user set balance2='$r1Nb' where id='$r1'";
-
-                    global $connect; 
-                    $result = mysqli_query($connect, $query);    
-                    if(!$result){
-                        
-                        die("Query Failed!" . mysqli_error($connect));
-                    }
+                    self::atomic_debit('balance2', $r1, $cost, 'error.php'); // atomic: prevents double-spend race
                     
 
                     $operator = self::get_company($num);
@@ -2203,14 +1733,7 @@ public static function make_bank_request($us_id,$bank_name,$branch_name,$ac_type
                 {
 
                     $r1Nb = $mybalance - $cost;
-                    $query = "UPDATE user set balance2='$r1Nb' where id='$r1'";
-
-                    global $connect; 
-                    $result = mysqli_query($connect, $query);    
-                    if(!$result){
-                        
-                        die("Query Failed!" . mysqli_error($connect));
-                    }
+                    self::atomic_debit('balance2', $r1, $cost, 'error.php'); // atomic: prevents double-spend race
 					
                     
                     $operator = self::get_company($num);
@@ -2250,14 +1773,7 @@ public static function make_bank_request($us_id,$bank_name,$branch_name,$ac_type
                 {
 
                     $r1Nb = $mybalance - $cost;
-                    $query = "UPDATE user set balance2='$r1Nb' where id='$r1'";
-
-                    global $connect; 
-                    $result = mysqli_query($connect, $query);    
-                    if(!$result){
-                        
-                        die("Query Failed!" . mysqli_error($connect));
-                    }
+                    self::atomic_debit('balance2', $r1, $cost, 'error.php'); // atomic: prevents double-spend race
                    
 
                     $operator = self::get_company($num);
@@ -2293,14 +1809,7 @@ public static function make_bank_request($us_id,$bank_name,$branch_name,$ac_type
                 {
 
                     $r1Nb = $mybalance - $cost;
-                    $query = "UPDATE user set balance2='$r1Nb' where id='$r1'";
-                    
-                    global $connect; 
-                    $result = mysqli_query($connect, $query);    
-                    if(!$result){
-                        
-                        die("Query Failed!" . mysqli_error($connect));
-                    }
+                    self::atomic_debit('balance2', $r1, $cost, 'error.php'); // atomic: prevents double-spend race
                     
 
                     $operator = self::get_company($num);
@@ -2336,14 +1845,7 @@ public static function make_bank_request($us_id,$bank_name,$branch_name,$ac_type
                 {
 
                     $r1Nb = $mybalance - $cost;
-                    $query = "UPDATE user set balance2='$r1Nb' where id='$r1'"; 
-                    
-                    global $connect; 
-                    $result = mysqli_query($connect, $query);    
-                    if(!$result){
-                        
-                        die("Query Failed!" . mysqli_error($connect));
-                    }
+                    self::atomic_debit('balance2', $r1, $cost, 'error.php'); // atomic: prevents double-spend race
                     
 
                     $operator = self::get_company($num);
@@ -2497,14 +1999,7 @@ public static function make_bank_request($us_id,$bank_name,$branch_name,$ac_type
                 {
 
                     $r1Nb = $mybalance - $cost;
-                    $query = "UPDATE user set balance2='$r1Nb' where id='$r1'";
-
-                    global $connect; 
-                    $result = mysqli_query($connect, $query);    
-                    if(!$result){
-                        
-                        die("Query Failed!" . mysqli_error($connect));
-                    }
+                    self::atomic_debit('balance2', $r1, $cost, 'error.php'); // atomic: prevents double-spend race
                     
 
                     $operator = self::get_company($num);
@@ -2548,14 +2043,7 @@ public static function make_bank_request($us_id,$bank_name,$branch_name,$ac_type
                 {
 
                     $r1Nb = $mybalance - $cost;
-                    $query = "UPDATE user set balance2='$r1Nb' where id='$r1'";
-
-                    global $connect; 
-                    $result = mysqli_query($connect, $query);    
-                    if(!$result){
-                        
-                        die("Query Failed!" . mysqli_error($connect));
-                    }
+                    self::atomic_debit('balance2', $r1, $cost, 'error.php'); // atomic: prevents double-spend race
                     
                     
                     $operator = self::get_company($num);
@@ -2595,14 +2083,7 @@ public static function make_bank_request($us_id,$bank_name,$branch_name,$ac_type
                 {
 
                     $r1Nb = $mybalance - $cost;
-                    $query = "UPDATE user set balance2='$r1Nb' where id='$r1'";
-
-                    global $connect; 
-                    $result = mysqli_query($connect, $query);    
-                    if(!$result){
-                        
-                        die("Query Failed!" . mysqli_error($connect));
-                    }
+                    self::atomic_debit('balance2', $r1, $cost, 'error.php'); // atomic: prevents double-spend race
                 
 
                     $operator = self::get_company($num);
@@ -2638,14 +2119,7 @@ public static function make_bank_request($us_id,$bank_name,$branch_name,$ac_type
                 {
 
                     $r1Nb = $mybalance - $cost;
-                    $query = "UPDATE user set balance2='$r1Nb' where id='$r1'";
-                    
-                    global $connect; 
-                    $result = mysqli_query($connect, $query);    
-                    if(!$result){
-                        
-                        die("Query Failed!" . mysqli_error($connect));
-                    }
+                    self::atomic_debit('balance2', $r1, $cost, 'error.php'); // atomic: prevents double-spend race
                     
 
                     $operator = self::get_company($num);
@@ -2681,14 +2155,7 @@ public static function make_bank_request($us_id,$bank_name,$branch_name,$ac_type
                 {
 
                     $r1Nb = $mybalance - $cost;
-                    $query = "UPDATE user set balance2='$r1Nb' where id='$r1'"; 
-                    
-                    global $connect; 
-                    $result = mysqli_query($connect, $query);    
-                    if(!$result){
-                        
-                        die("Query Failed!" . mysqli_error($connect));
-                    }
+                    self::atomic_debit('balance2', $r1, $cost, 'error.php'); // atomic: prevents double-spend race
                     
 
                     $operator = self::get_company($num);
@@ -2886,14 +2353,7 @@ public static function make_bank_request($us_id,$bank_name,$branch_name,$ac_type
                 {
 
                     $r1Nb = $mybalance - $cost;
-                    $query = "UPDATE user set bkash_balance='$r1Nb' where id='$r1'";
-
-                    global $connect; 
-                    $result = mysqli_query($connect, $query);    
-                    if(!$result){
-                        
-                        die("Query Failed!" . mysqli_error($connect));
-                    }
+                    self::atomic_debit('bkash_balance', $r1, $cost, 'error.php'); // atomic: prevents double-spend race
                     
 
                     //$operator = self::get_company($num);
@@ -2938,14 +2398,7 @@ public static function make_bank_request($us_id,$bank_name,$branch_name,$ac_type
                 {
 
                     $r1Nb = $mybalance - $cost;
-                    $query = "UPDATE user set bkash_balance='$r1Nb' where id='$r1'";
-
-                    global $connect; 
-                    $result = mysqli_query($connect, $query);    
-                    if(!$result){
-                        
-                        die("Query Failed!" . mysqli_error($connect));
-                    }
+                    self::atomic_debit('bkash_balance', $r1, $cost, 'error.php'); // atomic: prevents double-spend race
                     
                     
                     //$operator = self::get_company($num);
@@ -2985,14 +2438,7 @@ public static function make_bank_request($us_id,$bank_name,$branch_name,$ac_type
                 {
 
                     $r1Nb = $mybalance - $cost;
-                    $query = "UPDATE user set bkash_balance='$r1Nb' where id='$r1'";
-
-                    global $connect; 
-                    $result = mysqli_query($connect, $query);    
-                    if(!$result){
-                        
-                        die("Query Failed!" . mysqli_error($connect));
-                    }
+                    self::atomic_debit('bkash_balance', $r1, $cost, 'error.php'); // atomic: prevents double-spend race
                 
 
                     //$operator = self::get_company($num);
@@ -3028,14 +2474,7 @@ public static function make_bank_request($us_id,$bank_name,$branch_name,$ac_type
                 {
 
                     $r1Nb = $mybalance - $cost;
-                    $query = "UPDATE user set bkash_balance='$r1Nb' where id='$r1'";
-                    
-                    global $connect; 
-                    $result = mysqli_query($connect, $query);    
-                    if(!$result){
-                        
-                        die("Query Failed!" . mysqli_error($connect));
-                    }
+                    self::atomic_debit('bkash_balance', $r1, $cost, 'error.php'); // atomic: prevents double-spend race
                     
 
                     //$operator = self::get_company($num);
@@ -3071,14 +2510,7 @@ public static function make_bank_request($us_id,$bank_name,$branch_name,$ac_type
                 {
 
                     $r1Nb = $mybalance - $cost;
-                    $query = "UPDATE user set bkash_balance='$r1Nb' where id='$r1'"; 
-                    
-                    global $connect; 
-                    $result = mysqli_query($connect, $query);    
-                    if(!$result){
-                        
-                        die("Query Failed!" . mysqli_error($connect));
-                    }
+                    self::atomic_debit('bkash_balance', $r1, $cost, 'error.php'); // atomic: prevents double-spend race
                     
 
                     //$operator = self::get_company($num);

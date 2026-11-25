@@ -87,7 +87,8 @@ $slot4_charge   = Mixedfn::billpaycharge("1","slot4");
                                                     <option value="Palli Bidyut">Palli Bidyut</option>
                                                     <option value="DESCO">DESCO</option>
                                                     <option value="NESCO">NESCO</option>
-                                                    <option value="West Zone">West Zone</option>  
+                                                    <option value="West Zone">West Zone</option>
+                                                    <option value="DPDC">DPDC</option>  
                                                 </select>
                                             </div>
                                             <div class="mb-3">
@@ -234,9 +235,11 @@ $slot4_charge   = Mixedfn::billpaycharge("1","slot4");
 											  if($pending->status == '0'):
 													echo '<span class="badge bg-warning p-2">Pending</span>';
 											  elseif($pending->status == '1'):
-													echo '<span class="badge bg-success p-2">Success</span>';
+													echo '<span class="badge bg-success p-2">Paid</span> <a class="btn btn-xs btn-outline-success py-0 px-1" href="bill_receipt.php?id=' . (int) $pending->id . '">Receipt</a>';
 											  elseif($pending->status == '2'):
 													echo '<span class="badge bg-danger p-2">Cancelled</span>';
+											  elseif ($pending->status == '6'):
+													echo '<span class="badge bg-info p-2">Processing</span>';
 											  elseif ($pending->status == '4'):
 													echo '<span class="badge bg-info p-2">Waiting</span>';
 													

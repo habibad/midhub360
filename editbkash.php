@@ -1,3 +1,4 @@
+<?php require_once __DIR__ . '/lib/guard.php'; midhub_guard_super_admin(); // SECURITY: was reachable without admin login ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

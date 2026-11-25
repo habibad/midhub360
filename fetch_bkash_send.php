@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/lib/guard.php'; midhub_guard_super_admin(); // SECURITY: was reachable without admin login
 // Database connection
 $servername = "124.6.224.121";
 $username = "midhubDBuser"; // Update with your database username

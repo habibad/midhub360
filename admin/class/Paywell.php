@@ -1,4 +1,5 @@
 <?php
+require_once dirname(__DIR__, 2) . '/lib/bootstrap.php';
 class Paywell
 {
 
@@ -58,12 +59,15 @@ class Paywell
            
         /* End of Function for prevent of sql injection */
 
-                                     
-        if ($company_name == 'Paywell') 
-        {            
-            $data = "username='$username',password='$password',apiusername='$api_username',apipassword='$api_password',ap_key='$api_key',encryption_key='$encryption_key',base_url='$baseurl',request_url='$request_link',status_url='$status_link',balance_url='$balance_link',api_status='$api_status'";
-              
-        }          
+
+        if ($company_name == 'Paywell')
+        {
+            // Paywell is now configured (encrypted, Sandbox/Live, PIN-protected) in
+            // Gateway Settings. Writing the legacy table too would create two sources of truth.
+            Session::Flush('error', 'Paywell credentials are now managed in Gateway Settings (Sandbox/Live, Self-PIN protected). Nothing was saved here.');
+            Redirect::to('gateway_settings.php?tab=paywell');
+            exit();
+        }
         elseif ($company_name == 'Others')
         {            
           $data = "username='$api_username',ap_key='$api_key',request_url='$request_link',status_url='$status_link',balance_url='$balance_link',api_status='$api_status',pera_user='$pera_user',pera_key='$pera_key',pera_number='$pera_number',pera_amount='$pera_amount',pera_type='$pera_type',pera_customone='$pera_customone',pera_customtwo='$peracustomtwo'";
@@ -106,178 +110,56 @@ class Paywell
     /* API Update End */
 
 
-    /*API Status Function Start */
+    /*
+     * ---- Adapters over the new Paywell integration (lib/Midhub/Recharge/PaywellService.php) ----
+     * Same method names the admin dashboard and menu already call. Configuration now comes
+     * from payment_gateways (Gateway Settings); the API/encryption keys that used to be
+     * hardcoded in this file have been removed.
+     */
 
-    public static function apistatus($apiid,$apicompany,$apiservice)
+    /** 1 when the Paywell gateway is active in Gateway Settings, else 0. */
+    public static function apistatus($apiid, $apicompany, $apiservice)
     {
-
-        $query= "SELECT * from api_paywell where id='$apiid' and company='$apicompany' and service='$apiservice' and api_status='1' ORDER BY id DESC LIMIT 1";
-
-        global $connect;
-        
-        $result = mysqli_query($connect, $query); 
-
-        if(!$result)
-        {                        
-            die("Query Failed!" . mysqli_error($connect));
+        if ($apicompany !== "Paywell") {
+            $query = "SELECT id FROM api_paywell WHERE id= . (int)  .  AND company= . mysqli_real_escape_string([connect], (string) ) .  AND service= . mysqli_real_escape_string([connect], (string) ) .  AND api_status=1 LIMIT 1";
+            $result = mysqli_query($GLOBALS["connect"], $query);
+            return $result ? mysqli_num_rows($result) : 0;
         }
-
-        $count = mysqli_num_rows($result);
-
-    return $count;  
-
+        try {
+            return \Midhub\Gateway\GatewayConfig::load("paywell")->isActive() ? 1 : 0;
+        } catch (\Throwable $e) {
+            return 0;
+        }
     }
 
-
-    /*API Status Function End */
-
-
-
-    public static function paywell_token()
-     {
-		
-        /* Query for API Link Information Start*/
-
-        $query= "SELECT * from api_paywell where id='1' and company='Paywell' and service='Recharge' ORDER BY id DESC LIMIT 1";
-
-        global $connect;
-        
-        $result = mysqli_query($connect, $query); 
-
-        if(!$result)
-        {                        
-            die("Query Failed!" . mysqli_error($connect));
+    /** Paywell retailer balance for the dashboard card, or "N/A". */
+    public static function recharge_balance()
+    {
+        try {
+            $svc = \Midhub\Recharge\PaywellService::active();
+            if (!$svc) {
+                return "N/A";
+            }
+            $bal = $svc->balance();
+            return $bal === null ? "N/A" : $bal;
+        } catch (\Throwable $e) {
+            error_log("Paywell balance: " . $e->getMessage());
+            return "N/A";
         }
-
-
-        $reseller_data= mysqli_fetch_object($result);
-
-        $baseurl      = $reseller_data->base_url;
-        $APIUserName  = $reseller_data->apiusername;
-        $APIPassword  = $reseller_data->apipassword;
-        
-       
-        $AUTH_VALUE = base64_encode($APIUserName.":".$APIPassword);
-
-        //echo $AUTH_VALUE . "<br/><br/>";
-        $url = "$baseurl"."/Authentication/PaywellAuth/getToken";
-
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL,"$url");
-        curl_setopt($ch, CURLOPT_POST, 1);
-        //curl_setopt($ch, CURLOPT_POSTFIELDS,$vars);  //Post Fields
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-
-        $headers = array("Content-Type:application/json","Authorization: Basic ".$AUTH_VALUE);
-
-        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-
-        $response = curl_exec ($ch);
-        $result = json_decode($response);
-
-        curl_close ($ch);
-
-        //print  $server_output ;
-        $token = $result->token->security_token;
-            
-        //echo $response . "<br/><br/>";
-        //echo $token . "<br/><br/>";
-        
-    return $token;	
-}	 
-
-    public static function recharge_balance(){       
-            
-
-            $query= "SELECT * from api_paywell where id='1' and company='Paywell' and service='Recharge' ORDER BY id DESC LIMIT 1";
-
-            global $connect;
-            
-            $result = mysqli_query($connect, $query); 
-
-            if(!$result)
-            {                        
-                die("Query Failed!" . mysqli_error($connect));
-            }
-
-
-            $reseller_data= mysqli_fetch_object($result);
-
-            $baseurl   = $reseller_data->base_url;
-            $username  = $reseller_data->username;
-            $password  = $reseller_data->password;
-      
-        $request_parameter=array(
-            "username"=>"$username",
-            "password"=>"$password"            
-          );
-
-          /* Start of Bearer Token */
-
-          $request_data = json_encode($request_parameter);      
-          $api_key = "***REMOVED***";
-          $encryption_key = "54ef8f9a457bf6e28fcae33f19134abc375696947b16a734dc101803d38ac94c9e8b4dbb87aa8b681370649fc06a13f55e401d577a7474307ec284ab8e2ec176";
-          $security_token = self::paywell_token();
-          $hashed_data = hash_hmac('sha256',$request_data, $encryption_key);
-          $bearer_token = base64_encode(($security_token.":".$api_key.":".$hashed_data));
-
-          /* End of Bearer Token */
-
-            $var = $request_parameter;
-            $url = "$baseurl"."/Retailer/RetailerService/retailerBalance";	
-
-            $headers = array("Content-Type:application/json","Authorization: Bearer ".$bearer_token);
-            $curl = curl_init($url);
-            curl_setopt($curl, CURLOPT_URL, $url);
-            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-            curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
-                    
-            if (count($var)>0)
-            {
-              $json_string = json_encode($var);
-              curl_setopt($curl, CURLOPT_CUSTOMREQUEST, 'POST');
-              curl_setopt($curl, CURLOPT_POSTFIELDS, $json_string);
-            }
-                    
-              $response = curl_exec($curl);
-              $result = json_decode($response);
-              curl_close($curl);
-              //var_dump($resp);$var
-
-              $status = $result->balanceData->balance;
-              //echo $response;
-
-        return $status;
-
     }
 
-
-            public static function apiallstatus()
-            {
-
-                $query= "SELECT * from api_paywell where api_status='1' ORDER BY id DESC LIMIT 1";
-
-                global $connect;
-                
-                $result = mysqli_query($connect, $query); 
-
-                if(!$result)
-                {                        
-                    die("Query Failed!" . mysqli_error($connect));
-                }
-
-                $count = mysqli_num_rows($result);
-
-            return $count;  
-
-            }
-    
-
+    /** Number of active providers (Gateway Settings + legacy API table), for the menu badge. */
+    public static function apiallstatus()
+    {
+        $n = 0;
+        try {
+            $n += (int) \Midhub\Db::scalar("SELECT COUNT(*) FROM payment_gateways WHERE status = \x27active\x27");
+        } catch (\Throwable $e) {
+        }
+        $result = mysqli_query($GLOBALS["connect"], "SELECT id FROM api_paywell WHERE api_status=\x271\x27 AND company <> \x27Paywell\x27 LIMIT 1");
+        if ($result) {
+            $n += mysqli_num_rows($result);
+        }
+        return $n;
+    }
 }
-
-
-
-
-
-
-?>

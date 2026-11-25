@@ -1,4 +1,5 @@
 <?php
+require_once dirname(__DIR__) . '/lib/guard.php'; midhub_guard_cli_or_super_admin(); // SECURITY: was reachable without admin login
 require_once '../db.php';
 require_once 'autoload.php';
 require_once 'api_function.php';

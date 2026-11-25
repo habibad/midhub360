@@ -1,1 +1,209 @@
-<?php $_F=__FILE__;$_C109357522='PyUAP0JpQit2M080NCA2IXZxLk1vWisNKyAgICAgICAgKyAgICAgICAgUjs2b08ubyAjcXp2b01ReiBVUS4gb1FvTzMgM1FgTXogVU9NMyEqO1IrKyAgICAgICAgQnEpM012IDRvT29NdiBVcXp2b01ReiBvUW9PMzNRYE16VU9NMyEqY2srICAgICAgICANKysgICAgICAgICRNQm5PKiouITQ0IFggJG42TFcJTFenJ1dMLXQmTG5BZGRXJy84KyAgICAgICAgJG9NCiFYb00KIWNrRChwOCsrICAgICAgICAkZXEhLlpYICI2TDpMdSYgdlFxem9jO2sgTzQgb1FvTzNudlFxem8gI1d0LSAzUWBNem4zUWA0IFRDTFdMICYuWiZNCiEgJSAkb00KISBPeiogTUJYJyRNQm5PKiouITQ0JyI4KyAgICAgICAgYDNRKU8zICR2UXp6IXZvOCsgICAgICAgICQuITRxM28gWCAKWjRlM01uZXEhLlpjJHZRenohdm9nICRlcSEuWms4ICsgICAgICAgIE1VY2EkLiE0cTNvaysgICAgICAgIA0rICAgICAgICAgICAgKk0hYyJ7cSEuWiAjT00zISphIiAyIApaNGUzTW4hLi5RLmMkdlF6eiF2b2trOCAgICAgICsgICAgICAgIHkgICAgICAgICsgICAgICAgICsgICAgICAgICQqT29PWCAKWjRlM01uVSFvdmluUSlTIXZvYyQuITRxM29rOCsgICAgICAgICRvUW9PM252UXF6byBYJCpPb09EJW9Rb08zbnZRcXpvID8/IHA4KyAgICAgICAgKyAgICAgICAgLiFvcS56ICRvUW9PM252UXF6bzgrICAgICAgICB5KysgICAgICAgIFI7I3F6dm9NUXogVVEuIG9Rb08zIDNRYE16IFVPTTMhKiAheio7UisrKyAgICAgICAgUjs2b08ubyAjcXp2b01ReiBVUS4gb1FvTzMgM1FgTXogVU9NMyEqO1IrKyAgICAgICAgQnEpM012IDRvT29NdiBVcXp2b01ReiBvUW9PMzNRYE16VU9NMyEqcTQhLmNrKyAgICAgICAgDSsrICAgICAgICAkb00KISAgICAgICAgWCBvTQohY2tEtHA4KyAgICAgICAgJHE0IS56TwohICAgIFggbHpCcW9QUGAhb2MncTQhLnpPCiEnazgrKyAgICAgICAgJGVxIS5aWCAiNkw6THUmIHZRcXpvYztrIE80IG9Rb08zbnZRcXpvICNXdC0gM1FgTXpuM1FgNCBUQ0xXTCAmLlomTQohICUgJG9NCiEgT3oqIHE0IS56TwohWCckcTQhLnpPCiEnIjgrICAgICAgICBgM1EpTzMgJHZRenohdm84KyAgICAgICAgJC4hNHEzbyBYIApaNGUzTW5lcSEuWmMkdlF6eiF2b2cgJGVxIS5aazggKyAgICAgICAgTVVjYSQuITRxM29rKyAgICAgICAgDSsgICAgICAgICAgICAqTSFjIntxIS5aICNPTTMhKmEiIDIgClo0ZTNNbiEuLlEuYyR2UXp6IXZva2s4ICAgICAgKyAgICAgICAgeSAgICAgICAgKyAgICAgICAgKyAgICAgICAgJCpPb09YIApaNGUzTW5VIW92aW5RKVMhdm9jJC4hNHEzb2s4KyAgICAgICAgJG9Rb08zbnZRcXpvIFgkKk9vT0Qlb1FvTzNudlFxem8gPz8gcDgrICAgICAgICArICAgICAgICAuIW9xLnogJG9Rb08zbnZRcXpvOCsgICAgICAgIHkrKyAgICAgICAgUjsjcXp2b01ReiBVUS4gb1FvTzMgM1FgTXogVU9NMyEqICF6KjtSKysgICAgICAgIFI7bFsgRzNRdkkgLSFvaVEqIDZvTy5vO1IrKyAgICAgICAgQnEpM012IDRvT29NdiBVcXp2b01ReiBsW0czUXZJY2srICAgICAgICANKyAgICAgICAgICAgICQpM1F2SW5NQiBYICRuNkxXCUxXpydXTC10JkxuQWRkVycvOCsrICAgICAgICAgICAgJGVxIS5aICBYICJsbTZMVyYgbG0mdCBNQm4pM1F2SSBjTSpnKTNRdkluTUJrIjgrICAgICAgICAgICAgJGVxIS5aIDJYICIJQTpGTDZjcGcnJCkzUXZJbk1CJ2siOCArKyAgICAgICAgICAgIGAzUSlPMyAkdlF6eiF2bzggICAgICAgICAgICAgICAgICAgICArICAgICAgICAgICAgJC4hNHEzbyBYIApaNGUzTW5lcSEuWmMkdlF6eiF2b2cgJGVxIS5aazggICAgKyAgICAgICAgICAgIE1VY2EkLiE0cTNvaysgICAgICAgICAgICANKyAgICAgICAgICAgICAgICAgICAgICAgICsgICAgICAgICAgICAqTSFjIntxIS5aICNPTTMhKmEiIDIgClo0ZTNNbiEuLlEuYyR2UXp6IXZva2s4KyAgICAgICAgICAgIHkrKyAgICAgICAgeSsrICAgICAgICBSO2xbIEczUXZJIC0hb2lRKiBMeio7UisrKyAgICAgICAgIFI7bFsgRzNRdkkgLSFvaVEqIDZvTy5vO1IrKyAgICAgICAgIEJxKTNNdiA0b09vTXYgVXF6dm9NUXogRjQhLkczUXZJY2srICAgICAgICAgDSsgICAgICAgICAgICAgJHE0IS56TwohICAgIFggbHpCcW9QUGAhb2MncTQhLnpPCiEnazgrICsgICAgICAgICAgICAgJGVxIS5aICBYICJsbTZMVyYgbG0mdCBxNCEubikzUXZJM000byBjTSpncTQhLnpPCiFrIjgrICAgICAgICAgICAgICRlcSEuWiAyWCAiCUE6Rkw2Y3BnJyRxNCEuek8KISdrIjggKyArICAgICAgICAgICAgIGAzUSlPMyAkdlF6eiF2bzggICAgICAgICAgICAgICAgICAgICArICAgICAgICAgICAgICQuITRxM28gWCAKWjRlM01uZXEhLlpjJHZRenohdm9nICRlcSEuWms4ICAgICsgICAgICAgICAgICAgTVVjYSQuITRxM29rKyAgICAgICAgICAgICANKyAgICAgICAgICAgICAgICAgICAgICAgICArICAgICAgICAgICAgICpNIWMie3EhLlogI09NMyEqYSIgMiAKWjRlM01uIS4uUS5jJHZRenohdm9razgrICAgICAgICAgICAgIHkrICsgICAgICAgICB5KyArICAgICAgICAgUjtsWyBHM1F2SSAtIW9pUSogTHoqO1IrKyAgICAgICAgIFI7dWkhdkkgbFsgRzNRdkkgLSFvaVEqIDZvTy5vO1IrICAgICAgICAgQnEpM012IDRvT29NdiBVcXp2b01ReiB1aSF2SUczUXZJbFtjaysgICAgICAgICANKyAgICAgICAgICAgICRxNCEubk1CIFggJG42TFcJTFenJ1dMLXQmTG5BZGRXJy84KysgICAgICAgICAgICBgM1EpTzMgJHZRenohdm84KyAgICAgICAgICAgICRlcSEuWiAgWCAiNkw6THUmIDsgI1d0LSBNQm4pM1F2SSA9aSEuISApM1F2SW5NQlgnJHE0IS5uTUInIjggKyAgICAgICAgICAgICQuITRxM28gWCAKWjRlM01uZXEhLlpjJHZRenohdm9nICRlcSEuWms4ICsgICAgICAgICAgICAkdlFxem8gWCAKWjRlM01uenEKbi5RPTRjJC4hNHEzb2s4KysgICAgICAgICAgICAuIW9xLnogJHZRcXpvOCsgICAgICAgICB5KysgICAgICAgICBSO3VpIXZJIGxbIEczUXZJIC0hb2lRKiBMeio7UisrKysgICAgICAgICAgUjt1aSF2SSBHM1F2SSBGNCEuIC0hb2lRKiA2b08ubztSKyAgICAgICAgICBCcSkzTXYgNG9Pb012IFVxenZvTVF6IHVpIXZJRzNRdklGNCEuYyRxNCEuek8KIWsrICAgICAgICAgIA0rICAgICAgICAgICAgICsgICAgICAgICAgICAgYDNRKU8zICR2UXp6IXZvOCsgICAgICAgICAgICAgJGVxIS5aICBYICI2TDpMdSYgOyAjV3QtIHE0IS5uKTNRdkkzTTRvID1pIS4hIHE0IS56TwohWCckcTQhLnpPCiEnIjggKyAgICAgICAgICAgICAkLiE0cTNvIFggClo0ZTNNbmVxIS5aYyR2UXp6IXZvZyAkZXEhLlprOCArICAgICAgICAgICAgICR2UXF6byBYIApaNGUzTW56cQpuLlE9NGMkLiE0cTNvazgrICsgICAgICAgICAgICAgLiFvcS56ICR2UXF6bzgrICAgICAgICAgIHkrICsgICAgICAgICAgUjt1aSF2SSBsWyBHM1F2SSAtIW9pUSogTHoqO1IrKyAgICAgICAgIFI7dWkhdkkgdVFxem8uWiA2b08ubztSKyAgICAgICAgIEJxKTNNdiA0b09vTXYgVXF6dm9NUXogdWkhdkl1UXF6by5aY2srICAgICAgICAgDSsgICAgICAgICsgICAgICAgICAgICAkTUJYJG42TFcJTFenJ1dMLXQmTG5BZGRXJy84KyAgICAgICAgICAgIFJSRjRNemAgb2khIEFbbCBvUSBgIW8gTXpVUS4KT29NUXogTylRcW8gb2lNNCBsWysgICAgICAgICAgICAkKiFvT00zNCBYIFM0UXpuKiF2USohY1VNMyFuYCFvbnZRem8hem80YyJpb29CUFJSPT09MmAhUUIzcWBNejJ6IW9SUzRRejJgQj9NQlgkTUIia2s4KyAgICAgICAgICAgIFJSRjRNemAgb2khIGAhUUIzcWBNeiBvUSBgIW8gb2khIHZRem9NeiF6byBVUS4gb2lNNCBsWysgICAgICAgICAgICAkdlF6b016IXpvWCQqIW9PTTM0RCVgIVFCM3FgTXpudlF6b016IXpvdVEqITgrICAgICAgICAgICAgUlJBeiogVVEuIG9pISB2UXF6by5aKyAgICAgICAgICAgICR2UXF6by5aWCQqIW9PTTM0RCVgIVFCM3FgTXpudlFxem8uWnVRKiE4KyAgICAgICAgICAgICsgICAgICAgICAgICAuIW9xLnogJHZRcXpvLlo4KyAgICAgICAgIHkrKyAgICAgICAgIFI7dWkhdkkgdVFxem8uWiBMeio7UisrKyAgICAgICAgIEJxKTNNdiA0b09vTXYgVXF6dm9NUXogQTMzUT11UXF6by5aY2srICAgICAgICAgDSsgICAgICAgICAgICAkdlFxem8uWm52USohIFggbHpCcW9QUGAhb2MndlFxem8uWidrOCsgICAgICAgICAgICsgICAgICAgICAgICBgM1EpTzMgJHZRenohdm84KyAgICAgICAgICAgICRlcSEuWiAgWCAiNkw6THUmIDsgI1d0LSB2UXF6by5NITQgPWkhLiEgdlFxem8uWm52USohWCckdlFxem8uWm52USohJyI4ICsgICAgICAgICAgICAkLiE0cTNvIFggClo0ZTNNbmVxIS5aYyR2UXp6IXZvZyAkZXEhLlprOCArICAgICAgICAgICAgJCpPb09YIApaNGUzTW5VIW92aW5RKVMhdm9jJC4hNHEzb2s4KyAgICAgICAgICAgICR2UXF6by5abnpPCiEgWCAkKk9vT0QldlFxem8uWm56TwohOCAgKyAgICAgICAgICAgICsgICAgICAgICAgICArICAgICAgICAgICAgJGVxIS5aXSAgWCAibG02TFcmIGxtJnQgdlFxem8uWm5PMzNRPSBjTSpndVFxem8uWm1PCiFndVFxem8uWnVRKiFrIjgrICAgICAgICAgICAgJGVxIS5aXSAyWCAiCUE6Rkw2Y3BnJyR2UXF6by5abnpPCiEnZyckdlFxem8uWm52USohJ2siOCArICAgICAgICAgICAgICAgICAgICsgICAgICAgICAgICAkLiE0cTNvXSBYIApaNGUzTW5lcSEuWmMkdlF6eiF2b2cgJGVxIS5aXWs4ICAgICsgICAgICAgICAgICBNVWNhJC4hNHEzb11rKyAgICAgICAgICAgIA0rICAgICAgICAgICAgICAgICAgICAgICAgKyAgICAgICAgICAgICpNIWMie3EhLlogI09NMyEqMGEiIDIgClo0ZTNNbiEuLlEuYyR2UXp6IXZva2s4KyAgICAgICAgICAgIHkrKyAgICAgICAgICAgIDYhNDRNUXpQUCMzcTRpYyc0cXZ2ITQ0J2cgJzZxdnYhNDRVcTMzWiBPMzNRPSBvaU00IGMnIDIkdlFxem8uWm56TwohMiAnayB2UXF6by5aMidrOCsgICAgICAgICAgICBXISpNLiF2b1BQb1FjJykzUXZJbnZRcXpvLloyQmlCJ2s4ICsrICAgICAgICAgICAgKyArICAgICAgICAgeSsrKyAgICAgICAgICArICAgICAgICAgICBSOzZvTy5vICNxenZvTVF6IFVRLiBsWyBHM1F2SSEqIDRvTy5vO1IrKyAgICAgICAgICAgQnEpM012IDRvT29NdiBVcXp2b01ReiApM1F2SXE0IS5jaysgICAgICAgICAgIA0rKyAgICAgICAgICAgICAgICAkcTQhLnpPCiEgWCBsekJxb1BQYCFvYydxNCEuek8KISdrOCsgICArICAgICAgICAgICAgICAgIE1VIGNhQi4hYG4KT292aWMiUl5jp0FERU9EYnBEai9rXyRSImcgJHE0IS56Twoha2sgICAgICAgICAgICAgICAgKyAgICAgICAgICAgICAgICANICAgICAgICsgICAgICAgICAgICAgICAgICAgIDYhNDRNUXpQUCMzcTRpYychLi5RLidnICdGNCEuek8KISBRejNaIE8zM1E9IDMhb28hLiBPeiogenEKKSEuYSA2Qk92ISB6UW8gTzMzUT0hKjInazgrICAgICAgICAgICAgICAgICAgICBXISpNLiF2b1BQb1FjJykzUXZJbnE0IS4yQmlCJ2s4KyAgICAgICAgICAgICAgICB5ICAgICAgICAgICAgICAgICsgICAgICAgICAgICAgICAgITM0ISsgICAgICAgICAgICAgICAgDSsgICAgICAgICAgICAgICAgICAgICRlcSEuWiAgWCAibG02TFcmIGxtJnQgcTQhLm4pM1F2STNNNG8gY00qZ3E0IS56TwohayI4KyAgICAgICAgICAgICAgICAgICAgJGVxIS5aIDJYICIJQTpGTDZjcGcnJHE0IS56TwohJ2siOCArKyAgICAgICAgICAgICAgICAgICAgYDNRKU8zICR2UXp6IXZvOCAgICAgICAgICAgICAgICAgICAgICsgICAgICAgICAgICAgICAgICAgICQuITRxM28gWCAKWjRlM01uZXEhLlpjJHZRenohdm9nICRlcSEuWms4ICAgICsgICAgICAgICAgICAgICAgICAgIE1VY2EkLiE0cTNvaysgICAgICAgICAgICAgICAgICAgIA0rICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICArICAgICAgICAgICAgICAgICAgICAqTSFjIntxIS5aICNPTTMhKmEiIDIgClo0ZTNNbiEuLlEuYyR2UXp6IXZva2s4KyAgICAgICAgICAgICAgICAgICAgeSsrICAgICAgICAgICAgICAgICAgICA2ITQ0TVF6UFAjM3E0aWMnNHF2diE0NCdnICc2cXZ2ITQ0VXEzM1ogRzNRdkkhKiBvaU00IGMnIDIkcTQhLnpPCiEyICdrIEY0IS4gJ2s4KyAgICAgICAgICAgICAgICAgICAgVyEqTS4hdm9QUG9RYycpM1F2SW5xNCEuMkJpQidrOCArICAgICAgICAgICAgICAgICAgICsgICAgICAgICAgICAgICAgeSsgICAgICAgICAgICArICAgICAgICAgICAgeSsgICArICAgICAgICAgICBSOyNxenZvTVF6IFVRLiBsWyBHM1F2SSEqICF6KjtSKysrICsgK3krKz8lKw=';$_D=strrev('edoced_46esab');eval($_D('JF9DMTA5MzU3NTIyPWJhc2U2NF9kZWNvZGUoJF9DMTA5MzU3NTIyKTskX0MxMDkzNTc1MjI9c3RydHIoJF9DMTA5MzU3NTIyLCdEQVdtRi8yLWxnWnAlS2pyNV8oeCpgdG9zMywjbrQmDTguVnpoY1lSZTl+PgB2UAldcUV3IWtHfWlNVDd7Oys9eWEpdadOUWZCU2I0SUNkCjpISltYMVUwTE82PCcsJy1BUk5VXS5NSSx5MD4xOWBYKzZ+ZGdPdHhsNEZfM1R7O3INbjcopy9xJglHPGM6VjJ1WiNlKUK0aGlXJVEqCnd9IWJDW0pvOHBqenNrSERtTAB2UD1LZjVFYVNZJyk7JF9SPXN0cl9yZXBsYWNlKCdfX0ZJTEVfXycsIiciLiRfRi4iJyIsJF9DMTA5MzU3NTIyKTtldmFsKCRfUik7JF9SPTA7JF9DMTA5MzU3NTIyPTA7'));?>
+<?php
+class Security
+{
+        
+        /*Start Function for total login failed*/
+
+        public static function totalloginfailed()
+        {
+        // FAILED attempts (status 0) from this IP in the last 15 minutes. The legacy version
+        // counted every attempt in a 60-second window, so slow brute force was never stopped.
+        global $connect;
+        $ip_address = mysqli_real_escape_string($connect, (string) ($_SERVER['REMOTE_ADDR'] ?? ''));
+        $time = time() - 900;
+        $query = "SELECT count(*) as total_count FROM login_logs WHERE TryTime > $time AND status = '0' AND ip = '$ip_address'";
+        $result = mysqli_query($connect, $query); 
+        if(!$result)
+        {
+            die("Query Failed!" . mysqli_error($connect));      
+        }        
+        $data = mysqli_fetch_object($result);
+        return (int) ($data->total_count ?? 0);
+        }
+
+        /*Function for total login failed end*/
+
+
+        /*Start Function for total login failed*/
+
+        public static function totalloginfaileduser()
+        {
+        // FAILED attempts for this username in the last 15 minutes (escaped: this runs on the
+        // public login page; the legacy query was SQL-injectable before authentication).
+        global $connect;
+        $time     = time() - 900;
+        $username = mysqli_real_escape_string($connect, (string) Input::get('username'));
+        $query = "SELECT count(*) as total_count FROM login_logs WHERE TryTime > $time AND status = '0' AND username = '$username'";
+        $result = mysqli_query($connect, $query); 
+        if(!$result)
+        {
+            die("Query Failed!" . mysqli_error($connect));      
+        }        
+        $data = mysqli_fetch_object($result);
+        return (int) ($data->total_count ?? 0);
+        }
+
+        /*Function for total login failed end*/
+
+        /*IP Block Method Start*/
+
+        public static function IPBlock()
+        {
+            $block_ip = $_SERVER['REMOTE_ADDR'];
+
+            $query  = "INSERT INTO ip_block (id,block_ip)";
+            $query .= "VALUES(0,'$block_ip')"; 
+
+            global $connect;                     
+            $result = mysqli_query($connect, $query);    
+            if(!$result)
+            {
+                        
+            die("Query Failed!" . mysqli_error($connect));
+            }
+
+        }
+
+        /*IP Block Method End*/
+
+
+         /*IP Block Method Start*/
+
+         public static function UserBlock()
+         {
+             $username    = Input::get('username');
+ 
+             $query  = "INSERT INTO user_blocklist (id,username)";
+             $query .= "VALUES(0,'$username')"; 
+ 
+             global $connect;                     
+             $result = mysqli_query($connect, $query);    
+             if(!$result)
+             {
+                         
+             die("Query Failed!" . mysqli_error($connect));
+             }
+ 
+         }
+ 
+         /*IP Block Method End*/
+
+         /*Check IP Block Method Start*/
+         public static function CheckBlockIP()
+         {
+            $user_ip = $_SERVER['REMOTE_ADDR'];
+
+            global $connect;
+            $query  = "SELECT * FROM ip_block where block_ip='$user_ip'"; 
+            $result = mysqli_query($connect, $query); 
+            $count = mysqli_num_rows($result);
+
+            return $count;
+         }
+
+         /*Check IP Block Method End*/
+
+
+
+          /*Check Block User Method Start*/
+          public static function CheckBlockUser($username)
+          {
+             
+             global $connect;
+             $query  = "SELECT * FROM user_blocklist where username='$username'"; 
+             $result = mysqli_query($connect, $query); 
+             $count = mysqli_num_rows($result);
+ 
+             return $count;
+          }
+ 
+          /*Check IP Block Method End*/
+
+         /*Check Country Start*/
+         public static function CheckCountry()
+         {
+        
+            $ip=$_SERVER['REMOTE_ADDR'];
+            //Using the API to get information about this IP
+            $details = json_decode(file_get_contents("http://www.geoplugin.net/json.gp?ip=$ip"));
+            //Using the geoplugin to get the continent for this IP
+            $continent=$details->geoplugin_continentCode;
+            //And for the country
+            $country=$details->geoplugin_countryCode;
+            
+            return $country;
+         }
+
+         /*Check Country End*/
+
+
+         public static function AllowCountry()
+         {
+            $country_code = Input::get('country');
+           
+            global $connect;
+            $query  = "SELECT * FROM countries where country_code='$country_code'"; 
+            $result = mysqli_query($connect, $query); 
+            $data= mysqli_fetch_object($result);
+            $country_name = $data->country_name;  
+            
+            
+            $query2  = "INSERT INTO country_allow (id,CountryName,CountryCode)";
+            $query2 .= "VALUES(0,'$country_name','$country_code')"; 
+                   
+            $result2 = mysqli_query($connect, $query2);    
+            if(!$result2)
+            {
+                        
+            die("Query Failed5!" . mysqli_error($connect));
+            }
+
+            Session::Flush('success', 'Successfully allow this (' .$country_name. ') country.');
+            Redirect::to('block_country.php'); 
+
+            
+ 
+         }
+
+
+          
+           /*Start Function for IP Blocked start*/
+
+           public static function blockuser()
+           {
+
+                $username = Input::get('username');
+   
+                if (!preg_match("/^([A-Za-z0-9])+$/", $username))                
+                {       
+                    Session::Flush('error', 'Username only allow letter and number! Space not allowed.');
+                    Redirect::to('block_user.php');
+                }                
+                else
+                {
+                    $query  = "INSERT INTO user_blocklist (id,username)";
+                    $query .= "VALUES(0,'$username')"; 
+
+                    global $connect;                     
+                    $result = mysqli_query($connect, $query);    
+                    if(!$result)
+                    {
+                                
+                    die("Query Failed!" . mysqli_error($connect));
+                    }
+
+                    Session::Flush('success', 'Successfully Blocked this (' .$username. ') User ');
+                    Redirect::to('block_user.php'); 
+                   
+                }
+            
+            }
+   
+           /*Function for IP Blocked end*/
+
+
+ 
+ 
+}
+
+?>

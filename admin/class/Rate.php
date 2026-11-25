@@ -1,1 +1,262 @@
-<?php $_F=__FILE__;$_C109357522='P2FnP096T3htWjkNLS0gXQ0lNXhtVHhtICAgICAgdHBweG0gICAgICAgcCAgICAgICAgDUdHICwNJTUgSS5HRDk1eG0gICAgICAgcCAgICAgIEQtNSwgXQ0lNWpqDUdHO2B4bSAgICAgICBwdHhtICAgICAgT0Q9OStaIC0lDSUrWiAmRFdaJSsuVyANR0c7YHhtICAgICAgVHhtICAgICAgICAgICAgLyA9K1dHIA0sLA11IGsrJXogK1dPRCUgJis1OUd4bSAgICAgICAgICAgICQtNSynK1o1IDwgfldPRCVqamg1JTsnLTUspytaNS0nYFh4bSAgICAgICAgICAgICRaLkc1ICAgIDwgfldPRCVqamg1JTsnWi5HNSdgWHhtICAgICAgICAgICAgJCV1TzUgICAgPCB+V09EJWpqaDUlOycldU81J2BYeG0gICAgICAgICAgICAkTyw1JisoICA8IH5XT0QlampoNSU7J08sNSYrKCdgWHhtICAgICAgICAgICAgJCwNJTUgICAgPCBveG0gICAgICAgICAgICAgICAgICAnLk9XDUk1JyA8YSAkLTUspytaNUV4bSAgICAgICAgICAgICAgICAgICcsDSU1JyAgIDxhIH5XT0QlampoNSU7JywNJTUnYEV4bSAgICAgICAgICAgICAgICAgICdaLklJJyAgIDxhIH5XT0QlampoNSU7J1ouSUkrLSsuVydgRXhtICAgICAgICAgICAgICAgICAgJ1p6DSxoNScgPGEgfldPRCVqamg1JTsnWnoNLGg1J2BFeG0gICAgICAgICAgICAgICAgICAnJXVPNScgICA8YSAkJXVPNUV4bSAgICAgICAgICAgICAgICAgICdPWi5HNScgIDxhICRaLkc1RXhtICAgICAgICAgICAgICAgICAgJ08sNSYrKCcgPGEgJE8sNSYrKEV4bSAgICAgICAgICAgICAgICAgICdHDSU1JyAgIDxhIEcNJTU7JzR3SXdHICFqK2otJ2BFeG0gICAgICAgICAgICBjWHhteG0gICAgICAgICAgICAkLTU5NVolICAgPCAiU01ITbRmIHAgCV1CMCBPLCtaNSBQIU1dTSAuT1cNSTU8JyQtNSynK1o1JyBBbDogT1ouRzUgPCAnJFouRzUnIEFsOiAldU81IDwgJyQldU81JyBBbDogTyw1JisoPCckTyw1JisoJyJYeG0gICAgICAgICAgICAkWi5EVyVdLmsgPCA6YmpqaDUlflctJQ1XWjU7YHdhaDUlOyQtczlgd2G0LkRXJTtgWHhtICAgICAgICAgICAgKyYgOyRaLkRXJV0uayBnIHFgIFR4bSAgICAgICAgICAgICAgICAgIC8gK1ctNSwlICtXJS4gTywrWjUgJQ09OTV4bSAgICAgICAgICAgICAgICAgICQtNSVdDSU1IDwgOmJqamg1JX5XLSUNV1o1O2B3YStXLTUsJTsnTywrWjUnRSAkLA0lNWBYeG0gICAgICAgICAgICAgICAgICArJiA7JC01JV0NJTVgIFR4bSAgICAgICAgICAgICAgICAgICAgICAgIFM1LS0rLldqagk5RC16OyctRFpaNS0tJ0UgJyBdDSU1IDAuR0Q5NSBBR0c1RyBTRFpaNS0tJkQ5OXUnYFh4bSAgICAgICAgICAgICAgICAgICAgICAgIF01RyssNVolamolLjsnLA0lNXdJLkdEOTUzT3pPJ2BYeG0gICAgICAgICAgICAgICAgICBKIDU5LTUgVHhtICAgICAgICAgICAgICAgICAgICAgICAgUzUtLSsuV2pqCTlELXo7JzUsLC4sJ0UgJzc5NQ0tNSBmLHUgQWgNK1cnYFh4bSAgICAgICAgICAgICAgICAgICAgICAgIF01RyssNVolamolLjsnDUdHXQ0lNTNPek8nYFh4bSAgICAgICAgICAgICAgICAgIEp4bSAgICAgICAgICAgIEogNTktNSBUeG0gICAgICAgICAgICAgICAgICBTNS0tKy5XamoJOUQtejsnNSwsLiwnRSAnZnorLSBdDSU1IEE5LDUNR3UgTSgrLSUtJ2BYeG0gICAgICAgICAgICAgICAgICBdNUcrLDVaJWpqJS47Jw1HR10NJTUzT3pPJ2BYeG0gICAgICAgICAgICBKeG0gICAgICBKeG14bSAgICAgIHRwcHhtICAgICAgIHAgICAgICAmRFdaJSsuVyAtei5rIA05OSAsDSU1IEkuR0Q5NXhtICAgICAgIHAgICAgICAtei5rICtXICwNJTUgdyBJLkdEOTUgTw1oNXhtICAgICAgIHB0eG0gICAgICBPRD05K1ogLSUNJStaICZEV1olKy5XIC16Lms7YHhtICAgICAgVHhtICAgICAgICAgICAgJC1zOSAgICA8ICJTTUhNtGYgcCAJXUIwIE8sK1o1IEJdOk1dIGJ1ICtHIDpNU7QiWHhtICAgICAgICAgICAgJCw1LUQ5JSA8IDpiampoNSV+Vy0lDVdaNTtgd2FoNSU7JC1zOWB3YSw1LUQ5JTtgWHhtICAgICAgICAgICAgLDUlRCxXICQsNS1EOSVYeG0gICAgICBKeG0gICAgICB0dCA1V0cgJkRXWiUrLlcgXQ0lNWpqLXoua3hteG0gICAgICB0cHB4bSAgICAgICBwICAgICAgJkRXWiUrLlcgVw1JNSBqRzU5XQ0lNXhtICAgICAgIHAgICAgICBHNTk1JTUgLA0lNSAmLixJIE8sK1o1ICUNPTk1eG0gICAgICAgcHR4bSAgICAgIE9EPTkrWiAtJQ0lK1ogJkRXWiUrLlcgRzU5XQ0lNTtgeG0gICAgICBUeG0gICAgICAgICAgICAkK0cgIDwgfldPRCVqamg1JTsnLA0lNX5HJ2BYeG0gICAgICAgICAgICAkRzU5IDwgOmJqamg1JX5XLSUNV1o1O2B3YWg1JTsiOk1ITWZNIAldQjAgTywrWjUgUCFNXU0gK0cgPCAkK0ciYFh4bSAgICAgICAgICAgICsmIDskRzU5YCBUeG0gICAgICAgICAgICAgICAgICBTNS0tKy5XamoJOUQtejsnLURaWjUtLSdFICddDSU1IDAuR0Q5NSA6NTk1JTUgU0RaWjUtLSZEOTl1J2BYeG0gICAgICAgICAgICAgICAgICBdNUcrLDVaJWpqJS47JywNJTV3SS5HRDk1M096TydgWHhtICAgICAgICAgICAgSiA1OS01IFR4bSAgICAgICAgICAgICAgICAgIFM1LS0rLldqagk5RC16Oyc1LCwuLCdFICc3OTUNLTUgZix1IEFoDStXJ2BYeG0gICAgICAgICAgICAgICAgICBdNUcrLDVaJWpqJS47JywNJTV3SS5HRDk1M096TydgWHhtICAgICAgICAgICAgSnhtICAgICAgSnhtICAgICAgdHQgNVdHICAleistICZEV1olKy5XeG0gICAgICB0cHB4bSAgICAgICBwICAgICAgDUdHICwNJTUgSS5HRDk1ICYuLCAsNS01OTk1LCAtNSynK1o1eG0gICAgICAgcCAgICAgIEBPDSwNSSAkRC01LH5HIHwgV0Q5OUV4bSAgICAgICBwICAgICAgQCw1JUQsVyA9Li45NQ1XeG0gICAgICAgcHR4bSAgICAgIE9EPTkrWiAtJQ0lK1ogJkRXWiUrLlcgDUdHXQ0lNTAuR0Q5NTskRC01LH5HIDwgJydgeG0gICAgICBUeG0gICAgICAgICAgICAkLA0lNSA8IDpiampoNSV+Vy0lDVdaNTtgd2FoNSVmDT05NTsnTywrWjUnYHdhLDUtRDklO2BYeG0gICAgICAgICAgICAmLiw1DVp6IDskLA0lNSANLSAkLA0lNX4lNUlgIFR4bSAgICAgICAgICAgICAgICAgIC8gPStXRyANLCwNdSAmLiwgK1ctNSwlICwNJTUxSS5HRDk1eG0gICAgICAgICAgICAgICAgICAkDUdHXQ0lNSA8IG94bSAgICAgICAgICAgICAgICAgICAgICAgICdELTUsK0cnICAgIDxhICRELTUsfkdFeG0gICAgICAgICAgICAgICAgICAgICAgICAnWiw1DSU1MT11JyA8YSBTNS0tKy5XampoNSU7J0QtNSx+RydgRXhtICAgICAgICAgICAgICAgICAgICAgICAgJy01LKcrWjUnICAgPGEgJCwNJTV+JTVJd2EuT1cNSTVFeG0gICAgICAgICAgICAgICAgICAgICAgICAnTyw1JisoJyAgICA8YSAkLA0lNX4lNUl3YU8sNSYrKEV4bSAgICAgICAgICAgICAgICAgICAgICAgICdPWi5HNScgICAgIDxhICQsDSU1fiU1SXdhT1ouRzVFeG0gICAgICAgICAgICAgICAgICAgICAgICAnJXVPNScgICAgICA8YSAkLA0lNX4lNUl3YSV1TzVFeG0gICAgICAgICAgICAgICAgICAgICAgICAnLA0lNScgICAgICA8YSAkLA0lNX4lNUl3YSwNJTVFeG0gICAgICAgICAgICAgICAgICAgICAgICAnWi5JSScgICAgICA8YSAkLA0lNX4lNUl3YVouSUlFeG0gICAgICAgICAgICAgICAgICAgICAgICAnWnoNLGg1JyAgICA8YSAkLA0lNX4lNUl3YVp6DSxoNUV4bSAgICAgICAgICAgICAgICAgICAgICAgICdPLCtaNTErRycgIDxhICQsDSU1fiU1SXdhK0dFeG0gICAgICAgICAgICAgICAgICAgICAgICAnLSUNJUQtJyAgICA8YSAncSdFeG0gICAgICAgICAgICAgICAgICAgICAgICAnRw0lNScgICAgICA8YSBHDSU1Oyc0d0l3RydgRXhtICAgICAgICAgICAgICAgICAgY1h4bSAgICAgICAgICAgICAgICAgIC8gK1ctNSwlICtXJS4gLA0lNSBJLkdEOTUgJQ09OTV4bSAgICAgICAgICAgICAgICAgICQNR0cgPCA6YmpqaDUlflctJQ1XWjU7YHdhK1ctNSwlOycsDSU1MUkuR0Q5NSdFICQNR0ddDSU1YFh4bSAgICAgICAgICAgIEp4bSAgICAgICAgICAgICw1JUQsVyAkDUdHID8gJSxENSBqICYNOS01WHhtICAgICAgSnhtICAgICAgdHR4bXhtICAgICAgdHBweG0gICAgICAgcCAgICAgJkRXWiUrLlcgVw1JNSBqIGg1JV0NJTUwLkdEOTU7YFh4bSAgICAgICBwICAgICBATw0sDUkgJEQtNSx+RyB8IFdEOTkgfCBJRC0lID01IC0lLCtXaHhtICAgICAgIHAgICAgIEAsNSVELFcgDSwsDXV4bSAgICAgICBwdHhtICAgICAgT0Q9OStaIC0lDSUrWiAmRFdaJSsuVyBoNSVdDSU1MC5HRDk1OyRELTUsfkcgPCBXRDk5YHhtICAgICAgVHhtICAgICAgICAgICAgJCwNJTVTczkgPCA6YmpqaDUlflctJQ1XWjU7YHdhaDUlOyJTTUhNtGYgcCAJXUIwICwNJTUxSS5HRDk1IFAhTV1NIEQtNSwrRyA8ICckRC01LH5HJyJgd2EsNS1EOSU7YFh4bSAgICAgICAgICAgICw1JUQsVyAkLA0lNVNzOVh4bXhtICAgICAgSnhteG0gICAgICB0cHB4bSAgICAgICBwICBET0cNJTUgLDUtNTk5NSwgLA0lNSBJLkdEOTV4bSAgICAgICBwdHhtICAgICAgT0Q9OStaIC0lDSUrWiAmRFdaJSsuVyBET0cNJTVdDSU1MC5HRDk1O2B4bSAgICAgIFR4bSAgICAgICAgICAgIHR0JCV1TzUgICAgICAgPCB+V09EJWpqaDUlOycldU81J2BYeG0gICAgICAgICAgICAkLDUtNTk5NSx+RyA8IH5XT0QlampoNSU7Jyw1LTU5OTUsK0cnYFh4bSAgICAgICAgICAgICRaejVaaT0uKCAgIDwgfldPRCVqamg1JTsnWnppPS4oJ2BYeG0gICAgICAgICAgICAkLA0lNSAgICAgICA8IH5XT0QlampoNSU7JywNJTUnYFh4bSAgICAgICAgICAgICRaLklJICAgICAgIDwgfldPRCVqamg1JTsnWi5JJ2BYeG0gICAgICAgICAgICAkWnoNLGg1ICAgICA8IH5XT0QlampoNSU7J1p6DSxoNSdgWHhteG0gICAgICAgICAgICAmLiwgOyQrIDwgAFggJCsgZyBaLkRXJTskWno1Wmk9LihgWCAkK3l5YCBUeG0gICAgICAgICAgICAgICAgICAkLXM5ICAgIDwgIlk3OkFmTSAsDSU1MUkuR0Q5NSBTTWYgLA0lNSA8ICckLA0lNW8kK2MnRSBaLklJPCRaLklJbyQrY0UgWnoNLGg1PCRaeg0saDVvJCtjIFAhTV1NICtHIDwkWno1Wmk9LihvJCtjIlh4bSAgICAgICAgICAgICAgICAgICRET0cNJTUgPCA6YmpqaDUlflctJQ1XWjU7YHdhaDUlOyQtczlgWHhtICAgICAgICAgICAgSnhtICAgICAgICAgICAgKyYgOyRET0cNJTVgIFR4bSAgICAgICAgICAgICAgICAgIF01RyssNVolamolLjsnLDUtNTk5NSwxOSstJTNPek8nYFh4bSAgICAgICAgICAgIEp4bSAgICAgIEp4bXhtICAgICAgdHQgLTUlICwNJTUgSS5HRDk1ICYsLkkgLDUtNTk5NSwgTw1oNXhtICAgICAgT0Q9OStaIC0lDSUrWiAmRFdaJSsuVyAtNSVdDSU1MC5HRDk1O2B4bSAgICAgIFR4bSAgICAgICAgICAgICQsNS01OTk1LH5HIDwgfldPRCVqamg1JTsnLDUtNTk5NSwrRydgWHhtICAgICAgICAgICAgJFp6NVppPS4oICAgPCB+V09EJWpqaDUlOydaemk9LignYFh4bSAgICAgICAgICAgICQsDSU1ICAgICAgIDwgfldPRCVqamg1JTsnLA0lNSdgWHhtICAgICAgICAgICAgJFouSUkgICAgICAgPCB+V09EJWpqaDUlOydaLkknYFh4bSAgICAgICAgICAgICRaeg0saDUgICAgIDwgfldPRCVqamg1JTsnWnoNLGg1J2BYeG0gICAgICAgICAgICAkLSUNJUQtICAgICA8IH5XT0QlampoNSU7Jy0lDSVELSdgWCB4bSAgICAgICAgICAgICsmIDtyNSwrJnVqak8rVzt+V09EJWpqaDUlOydPK1daLkc1J2BgIDw8ICUsRDVgIFR4bSAgICAgICAgICAgICAgICAgICYuLCA7JCsgPCAAWCAkKyBnIFouRFclOyRaejVaaT0uKGBYICQreXlgIFR4bSAgICAgICAgICAgICAgICAgICAgICAgICQtczkgICAgPCAiWTc6QWZNICwNJTUxSS5HRDk1IFNNZiAsDSU1IDwgJyQsDSU1byQrYydFIFouSUk8JyRaLklJbyQrYydFIFp6DSxoNTwnJFp6DSxoNW8kK2MnRSAtJQ0lRC08JyQtJQ0lRC1vJCtjJyBQIU1dTSArRyA8JFp6NVppPS4obyQrYyJYeG0gICAgICAgICAgICAgICAgICAgICAgICAkRE9HDSU1IDwgOmJqamg1JX5XLSUNV1o1O2B3YWg1JTskLXM5YFh4bSAgICAgICAgICAgICAgICAgIEp4bSAgICAgICAgICAgICAgICAgICsmIDskRE9HDSU1YCBUeG0gICAgICAgICAgICAgICAgICAgICAgICBdNUcrLDVaJWpqJS47Jyw1LTU5OTUsM096TydgWHhtICAgICAgICAgICAgICAgICAgSnhtICAgICAgICAgICAgSiA1OS01IFR4bSAgICAgICAgICAgICAgICAgIFM1LS0rLldqagk5RC16Oyc1LCwuLCdFICd+V6cNOStHIDcrVydgWHhtICAgICAgICAgICAgICAgICAgXTVHKyw1WiVqaiUuOycsDSU1LTNPek8/LDUtNTk5NSw8JyAzID0NLTVDXzE1V1ouRzU7JCw1LTU5OTUsfkdgYFh4bSAgICAgICAgICAgIEp4bSAgICAgIEp4bXhtICAgICAgdHQgJis5JTUsICwNJTUgSS5HRDk1eG0gICAgICBPRD05K1ogLSUNJStaICZEV1olKy5XICYrOSU1LF0NJTU7YHhtICAgICAgVHhtICAgICAgICAgICAgJE8sNSYrKCAgPCB+V09EJWpqaDUlOydPLDUmKygnYFh4bSAgICAgICAgICAgICQtNSynK1o1IDwgfldPRCVqamg1JTsnLTUspytaNSdgWHhtICAgICAgICAgICAgKyYgOyRPLDUmKyggWzwgJycgUlIgJC01LKcrWjUgWzwgJydgIFR4bSAgICAgICAgICAgICAgICAgICQtczkgPCAiU01ITbRmIHAgCV1CMCBPLCtaNSBQIU1dTSAuT1cNSTUgPCckLTUspytaNScgQWw6IE8sNSYrKCA8JyRPLDUmKygnIEJdOk1dIGI0ICtHIEFTtCAiWHhtICAgICAgICAgICAgSiA1OS01KyYgOyRPLDUmKyggWzwgJydgIFR4bSAgICAgICAgICAgICAgICAgICQtczkgPCAiU01ITbRmIHAgCV1CMCBPLCtaNSBQIU1dTSBPLDUmKyggPCckTyw1JisoJyBCXTpNXSBiNCArRyBBU7QgIlh4bSAgICAgICAgICAgIEogNTktNSsmIDskLTUspytaNSBbPCAnJ2AgVHhtICAgICAgICAgICAgICAgICAgJC1zOSA8ICJTTUhNtGYgcCAJXUIwIE8sK1o1IFAhTV1NIC5PVw1JNSA8JyQtNSynK1o1JyBCXTpNXSBiNCArRyBBU7QgIlh4bSAgICAgICAgICAgIEogNTktNSBUeG0gICAgICAgICAgICAgICAgICAkLXM5IDwgIlNNSE20ZiBwIAldQjAgTywrWjUgQl06TV0gYjQgK0cgQVO0ICJYeG0gICAgICAgICAgICBKeG0gICAgICAgICAgICAsNSVELFcgJC1zOVh4bSAgICAgIEp4bXhtICAgICAgdHQgWi5EVyUgJS4lDTkgICYrOSU1LCBHDSUNeG0gICAgICBPRD05K1ogLSUNJStaICZEV1olKy5XICUuJQ05O2B4bSAgICAgIFR4bSAgICAgICAgICAgICw1JUQsVyA6YmpqaDUlflctJQ1XWjU7YHdhaDUlOy01OSZqaiYrOSU1LF0NJTU7YGB3YbQuRFclO2BYeG0gICAgICBKeG14bSAgICAgIHRwcCBoNSUgLA0lNSBJLkdEOTUgJi4sIERPRw0lNSBPDWg1IHB0eG14bSAgICAgIE9EPTkrWiAtJQ0lK1ogJkRXWiUrLlcgNUcrJTskK1dHNSggPCAnJ2B4bSAgICAgIFR4bSAgICAgICAgICAgICQrJTVJICAgPCBvY1h4bSAgICAgICAgICAgICQsDSU1fkcgPCB+V09EJWpqaDUlOycsDSU1fkcnYFh4bSAgICAgICAgICAgICQtNTk1WiUgPCAiU01ITbRmIHAgCV1CMCBPLCtaNSBQIU1dTSArRyA8ICQsDSU1fkciWHhtICAgICAgICAgICAgJEcNJQ0gICA8IDpiampoNSV+Vy0lDVdaNTtgd2FoNSU7JC01OTVaJWB3YSw1LUQ5JTtgWHhtICAgICAgICAgICAgJi4sNQ1aeiA7JEcNJQ0gDS0gJDU5YGp4bSAgICAgICAgICAgICAgICAgICQrJTVJbycuTydjICAgICA8ICQ1OXdhLk9XDUk1WHhtICAgICAgICAgICAgICAgICAgJCslNUlvJywNJTUnYyAgIDwgJDU5d2EsDSU1WHhtICAgICAgICAgICAgICAgICAgJCslNUlvJ1ouSUknYyAgIDwgJDU5d2FaLklJWHhtICAgICAgICAgICAgICAgICAgJCslNUlvJ1p6DSxoNSdjIDwgJDU5d2Faeg0saDVYeG0gICAgICAgICAgICAgICAgICAkKyU1SW8nJXVPNSdjICAgPCAkNTl3YSV1TzVYeG0gICAgICAgICAgICAgICAgICAkKyU1SW8nT1ouRzUnYyAgPCAkNTl3YU9aLkc1WHhtICAgICAgICAgICAgICAgICAgJCslNUlvJ08sNSYrKCdjIDwgJDU5d2FPLDUmKyhYeG0gICAgICAgICAgICA1V0cmLiw1DVp6WHhtICAgICAgICAgICAgLDUlRCxXICQrJTVJbyQrV0c1KGNYeG0gICAgICBKeG14bSAgICAgIHRwcCAmRFdaJSsuVyAmLiwgRE9HDSU1IE8sK1o1ICUNPTk1ICwNJTUgSS5HRDk1IHB0eG0gICAgICBPRD05K1ogLSUNJStaICZEV1olKy5XIERPRw0lNV0NJTU7YHhtICAgICAgVHhtICAgICAgICAgICAgJCwNJTV+RyAgPCB+V09EJWpqaDUlOycsDSU1fkcnYFh4bSAgICAgICAgICAgICQtNSynK1o1IDwgfldPRCVqamg1JTsnLTUspytaNS0nYFh4bSAgICAgICAgICAgICRaLkc1ICAgIDwgfldPRCVqamg1JTsnWi5HNSdgWHhtICAgICAgICAgICAgJCV1TzUgICAgPCB+V09EJWpqaDUlOycldU81J2BYeG0gICAgICAgICAgICAkTyw1JisoICA8IH5XT0QlampoNSU7J08sNSYrKCdgWHhtICAgICAgICAgICAgJCwNJTUgICAgPCBveG0gICAgICAgICAgICAgICAgICAnLk9XDUk1JyA8YSAkLTUspytaNUV4bSAgICAgICAgICAgICAgICAgICcsDSU1JyAgIDxhIH5XT0QlampoNSU7JywNJTUnYEV4bSAgICAgICAgICAgICAgICAgICdaLklJJyAgIDxhIH5XT0QlampoNSU7J1ouSUkrLSsuVydgRXhtICAgICAgICAgICAgICAgICAgJ1p6DSxoNScgPGEgfldPRCVqamg1JTsnWnoNLGg1J2BFeG0gICAgICAgICAgICAgICAgICAnJXVPNScgICA8YSAkJXVPNUV4bSAgICAgICAgICAgICAgICAgICdPWi5HNScgIDxhICRaLkc1RXhtICAgICAgICAgICAgICAgICAgJ08sNSYrKCcgPGEgJE8sNSYrKEV4bSAgICAgICAgICAgIGNYeG0gICAgICAgICAgICAvIERPRw0lNSBPLCtaNSAlDT05NXhtICAgICAgICAgICAgJERPRw0lNSA8IDpiampoNSV+Vy0lDVdaNTtgd2FET0cNJTU7J08sK1o1J0UgJCwNJTV+R0UgJCwNJTVgWHhtICAgICAgICAgICAgKyY7JERPRw0lNWBUeG0gICAgICAgICAgICAgICAgICBTNS0tKy5XamoJOUQtejsnLURaWjUtLSdFICddDSU1IDAuR0Q5NSA6NTk1JTUgU0RaWjUtLSZEOTl1J2BYeG0gICAgICAgICAgICAgICAgICBdNUcrLDVaJWpqJS47JywNJTV3SS5HRDk1M096TydgWHhtICAgICAgICAgICAgSjU5LTVUeG0gICAgICAgICAgICAgICAgICBTNS0tKy5XamoJOUQtejsnNSwsLiwnRSAnNzk1DS01IGYsdSBBaA0rVydgWHhtICAgICAgICAgICAgICAgICAgXTVHKyw1WiVqaiUuOyc1RysldywNJTUzT3pPJ2BYeG0gICAgICAgICAgICBKeG0gICAgICBKeG14bSAgICAgIE9EPTkrWiAtJQ0lK1ogJkRXWiUrLlcgLXVXWnosLlcrbjVHO2B4bSAgICAgIFR4bSAgICAgICAgICAgICQsDSU1ICAgPCBvY1h4bSAgICAgICAgICAgICQldU81IDwgfldPRCVqamg1JTsnJXVPNSdgWHhtICAgICAgICAgICAgJEQtNSx+RyA8IH5XT0QlampoNSU7J0QtNSwnYFh4bSAgICAgICAgICAgICQtczlxICAgIDwgIjpNSE1mTSAJXUIwICwNJTUxSS5HRDk1IFAhTV1NIEQtNSwrRyA8ICckRC01LH5HJyJYeG0gICAgICAgICAgICA6YmpqaDUlflctJQ1XWjU7YHdhaDUlOyQtczlxYFh4bSAgICAgICAgICAgICQtczkgPCAiU01ITbRmIHAgCV1CMCBPLCtaNSJYeG0gICAgICAgICAgICAkVzVrXQ0lNSA8IDpiampoNSV+Vy0lDVdaNTtgd2FoNSU7JC1zOWB3YSw1LUQ5JTtgWHhtICAgICAgICAgICAgJi4sNQ1aeiA7JFc1a10NJTUgDS0gJFc1a2AgVHhtICAgICAgICAgICAgICAgICAgJEcNJQ0gPCBveG0gICAgICAgICAgICAgICAgICAgICAgICAnRC01LCtHJyAgICA8YSAkRC01LH5HRXhtICAgICAgICAgICAgICAgICAgICAgICAgJ1osNQ0lNTE9dScgPGEgUzUtLSsuV2pqaDUlOydELTUsfkcnYEV4bSAgICAgICAgICAgICAgICAgICAgICAgICctNSynK1o1JyAgIDxhICRXNWt3YS5PVw1JNUV4bSAgICAgICAgICAgICAgICAgICAgICAgICdPLDUmKygnICAgIDxhICRXNWt3YU8sNSYrKEV4bSAgICAgICAgICAgICAgICAgICAgICAgICdPWi5HNScgICAgIDxhICRXNWt3YU9aLkc1RXhtICAgICAgICAgICAgICAgICAgICAgICAgJyV1TzUnICAgICAgPGEgJFc1a3dhJXVPNUV4bSAgICAgICAgICAgICAgICAgICAgICAgICcsDSU1JyAgICAgIDxhICRXNWt3YSwNJTVFeG0gICAgICAgICAgICAgICAgICAgICAgICAnWi5JSScgICAgICA8YSAkVzVrd2FaLklJRXhtICAgICAgICAgICAgICAgICAgICAgICAgJ1p6DSxoNScgICAgPGEgJFc1a3dhWnoNLGg1RXhtICAgICAgICAgICAgICAgICAgICAgICAgJ08sK1o1MStHJyAgPGEgJFc1a3dhK0dFeG0gICAgICAgICAgICAgICAgICAgICAgICAnLSUNJUQtJyAgICA8YSAncSdFeG0gICAgICAgICAgICAgICAgICAgICAgICAnRw0lNScgICAgICA8YSA6DSU1ITU5TzUsampoJUk7Q0UgJ0cNJTUnYEV4bSAgICAgICAgICAgICAgICAgIGNYeG0gICAgICAgICAgICAgICAgICAkK1ctNSwlIDwgOmJqamg1JX5XLSUNV1o1O2B3YStXLTUsJTsnLA0lNTFJLkdEOTUnRSAkRw0lDWBYeG0gICAgICAgICAgICBKeG0gICAgICAgICAgICArJjskK1ctNSwlYFR4bSAgICAgICAgICAgICAgICAgIFM1LS0rLldqagk5RC16OyctRFpaNS0tJ0UgJ10NJTUgMC5HRDk1IFN1V1p6LC5XK241RyBTRFpaNS0tJkQ5OXUnYFh4bSAgICAgICAgICAgICAgICAgIF01RyssNVolamolLjsnLA0lNS0zT3pPPyw1LTU5OTUsPCczPQ0tNUNfMTVXWi5HNTskRC01LH5HYDMnUiV1TzU8JzMkJXVPNWBYeG0gICAgICAgICAgICBKeG0gICAgICBKeG1KeG0=';$_D=strrev('edoced_46esab');eval($_D('JF9DMTA5MzU3NTIyPWJhc2U2NF9kZWNvZGUoJF9DMTA5MzU3NTIyKTskX0MxMDkzNTc1MjI9c3RydHIoJF9DMTA5MzU3NTIyLCcsQQ1DWnRUUldGKDhpNXt1RTJQXVZEU286eGtLSE5lIS47Iz0pZlEKPKe0VWp2OWc+SQBZK2h3Y21PTF9gejcwYUJyNn00YnEqWE0JbjMlWzFwRyZ5fmxKZC8tcycsJ3JBYTZjL3smbkp4NWtlAHksOVdSp3VTW0QNd1pMWGBIbyhRYjdUJX49dkNHOjJsPDhtMFVpZy1dCnBqNCloUE0+T1YzCVlCMUs7RUZ6LnQhXypkZitJTn20I3NxJyk7JF9SPXN0cl9yZXBsYWNlKCdfX0ZJTEVfXycsIiciLiRfRi4iJyIsJF9DMTA5MzU3NTIyKTtldmFsKCRfUik7JF9SPTA7JF9DMTA5MzU3NTIyPTA7'));?>
+<?php
+class Rate
+{
+      /**
+       *        add rate module
+       *      user Rate::add()
+       */
+      public static function add()
+      {
+            # bind array with input field
+            $service = Input::get('services');
+            $code    = Input::get('code');
+            $type    = Input::get('type');
+            $prefix  = Input::get('prefix');
+            $rate    = [
+                  'opname' => $service,
+                  'rate'   => Input::get('rate'),
+                  'comm'   => Input::get('commision'),
+                  'charge' => Input::get('charge'),
+                  'type'   => $type,
+                  'pcode'  => $code,
+                  'prefix' => $prefix,
+                  'date'   => date('Y-m-d H:i:s'),
+            ];
+
+            $select   = "SELECT * FROM price WHERE opname='$service' AND pcode = '$code' AND type = '$type' AND prefix='$prefix'";
+            $countRow = DB::getInstance()->get($sql)->Count();
+            if ($countRow < 1) {
+                  # insert into price table
+                  $setRate = DB::getInstance()->insert('price', $rate);
+                  if ($setRate) {
+                        Session::Flush('success', ' Rate Module Added Successfully');
+                        Redirect::to('rate-module.php');
+                  } else {
+                        Session::Flush('error', 'Please Try Again');
+                        Redirect::to('addRate.php');
+                  }
+            } else {
+                  Session::Flush('error', 'This Rate Already Exists');
+                  Redirect::to('addRate.php');
+            }
+      }
+
+      /**
+       *      function show all rate module
+       *      show in rate - module page
+       */
+      public static function show()
+      {
+            $sql    = "SELECT * FROM price ORDER By id DESC";
+            $result = DB::getInstance()->get($sql)->result();
+            return $result;
+      }
+      // end function Rate::show
+
+      /**
+       *      function name :delRate
+       *      delete rate form price table
+       */
+      public static function delRate()
+      {
+            $id  = Input::get('rateId');
+            $del = DB::getInstance()->get("DELETE FROM price WHERE id = $id");
+            if ($del) {
+                  Session::Flush('success', 'Rate Module Delete Successfully');
+                  Redirect::to('rate-module.php');
+            } else {
+                  Session::Flush('error', 'Please Try Again');
+                  Redirect::to('rate-module.php');
+            }
+      }
+      // end  this function
+      /**
+       *      add rate module for reseller service
+       *      @param $userId | null,
+       *      @return boolean
+       */
+      public static function addRateModule($userId = '')
+      {
+            $rate = DB::getInstance()->getTable('price')->result();
+            foreach ($rate as $rateItem) {
+                  # bind array for insert rate_module
+                  $addRate = [
+                        'userid'    => $userId,
+                        'create_by' => Session::get('userId'),
+                        'service'   => $rateItem->opname,
+                        'prefix'    => $rateItem->prefix,
+                        'pcode'     => $rateItem->pcode,
+                        'type'      => $rateItem->type,
+                        'rate'      => $rateItem->rate,
+                        'comm'      => $rateItem->comm,
+                        'charge'    => $rateItem->charge,
+                        'price_id'  => $rateItem->id,
+                        'status'    => '1',
+                        'date'      => date('Y-m-d'),
+                  ];
+                  # insert into rate module table
+                  $add = DB::getInstance()->insert('rate_module', $addRate);
+            }
+            return $add ? true : false;
+      }
+      //
+
+      /**
+       *     function name : getRateModule();
+       *     @param $userId | null | must be string
+       *     @return array
+       */
+      public static function getRateModule($userId = null)
+      {
+            $rateSql = DB::getInstance()->get("SELECT * FROM rate_module WHERE userid = '$userId'")->result();
+            return $rateSql;
+
+      }
+
+      /**
+       *  update reseller rate module
+       */
+      public static function updateRateModule()
+      {
+            //$type       = Input::get('type');
+            $resellerId = Input::get('resellerid');
+            $checkbox   = Input::get('chkbox');
+            $rate       = Input::get('rate');
+            $comm       = Input::get('com');
+            $charge     = Input::get('charge');
+
+            for ($i = 0; $i < count($checkbox); $i++) {
+                  $sql    = "UPDATE rate_module SET rate = '$rate[$i]', comm=$comm[$i], charge=$charge[$i] WHERE id =$checkbox[$i]";
+                  $update = DB::getInstance()->get($sql);
+            }
+            if ($update) {
+                  Redirect::to('reseller_list.php');
+            }
+      }
+
+      // set rate module from reseller page
+      public static function setRateModule()
+      {
+            $resellerId = Input::get('resellerid');
+            $checkbox   = Input::get('chkbox');
+            $rate       = Input::get('rate');
+            $comm       = Input::get('com');
+            $charge     = Input::get('charge');
+            $status     = Input::get('status'); 
+            if (Verify::pin(Input::get('pincode')) == true) {
+                  for ($i = 0; $i < count($checkbox); $i++) {
+                        $sql    = "UPDATE rate_module SET rate = '$rate[$i]', comm='$comm[$i]', charge='$charge[$i]', status='$status[$i]' WHERE id =$checkbox[$i]";
+                        $update = DB::getInstance()->get($sql);
+                  }
+                  if ($update) {
+                        Redirect::to('reseller.php');
+                  }
+            } else {
+                  Session::Flush('error', 'Invalid Pin');
+                  Redirect::to('rates.php?reseller=' . base64_encode($resellerId));
+            }
+      }
+
+      // filter rate module
+      public static function filterRate()
+      {
+            $prefix  = Input::get('prefix');
+            $service = Input::get('service');
+            if ($prefix != '' && $service != '') {
+                  $sql = "SELECT * FROM price WHERE opname ='$service' AND prefix ='$prefix' ORDER BY id ASC ";
+            } elseif ($prefix != '') {
+                  $sql = "SELECT * FROM price WHERE prefix ='$prefix' ORDER BY id ASC ";
+            } elseif ($service != '') {
+                  $sql = "SELECT * FROM price WHERE opname ='$service' ORDER BY id ASC ";
+            } else {
+                  $sql = "SELECT * FROM price ORDER BY id ASC ";
+            }
+            return $sql;
+      }
+
+      // count total  filter data
+      public static function total()
+      {
+            return DB::getInstance()->get(self::filterRate())->Count();
+      }
+
+      /** get rate module for update page */
+
+      public static function edit($index = '')
+      {
+            $item   = [];
+            $rateId = Input::get('rateId');
+            $select = "SELECT * FROM price WHERE id = $rateId";
+            $data   = DB::getInstance()->get($select)->result();
+            foreach ($data as $el):
+                  $item['op']     = $el->opname;
+                  $item['rate']   = $el->rate;
+                  $item['comm']   = $el->comm;
+                  $item['charge'] = $el->charge;
+                  $item['type']   = $el->type;
+                  $item['pcode']  = $el->pcode;
+                  $item['prefix'] = $el->prefix;
+            endforeach;
+            return $item[$index];
+      }
+
+      /** function for update price table rate module */
+      public static function updateRate()
+      {
+            $rateId  = Input::get('rateId');
+            $service = Input::get('services');
+            $code    = Input::get('code');
+            $type    = Input::get('type');
+            $prefix  = Input::get('prefix');
+            $rate    = [
+                  'opname' => $service,
+                  'rate'   => Input::get('rate'),
+                  'comm'   => Input::get('commision'),
+                  'charge' => Input::get('charge'),
+                  'type'   => $type,
+                  'pcode'  => $code,
+                  'prefix' => $prefix,
+            ];
+            # update price table
+            $update = DB::getInstance()->update('price', $rateId, $rate);
+            if($update){
+                  Session::Flush('success', 'Rate Module Delete Successfully');
+                  Redirect::to('rate-module.php');
+            }else{
+                  Session::Flush('error', 'Please Try Again');
+                  Redirect::to('edit-rate.php');
+            }
+      }
+
+      public static function synchronized()
+      {
+            $rate   = [];
+            $type = Input::get('type');
+            $userId = Input::get('user');
+            $sql1    = "DELETE FROM rate_module WHERE userid = '$userId'";
+            DB::getInstance()->get($sql1);
+            $sql = "SELECT * FROM price";
+            $newRate = DB::getInstance()->get($sql)->result();
+            foreach ($newRate as $new) {
+                  $data = [
+                        'userid'    => $userId,
+                        'create_by' => Session::get('userId'),
+                        'service'   => $new->opname,
+                        'prefix'    => $new->prefix,
+                        'pcode'     => $new->pcode,
+                        'type'      => $new->type,
+                        'rate'      => $new->rate,
+                        'comm'      => $new->comm,
+                        'charge'    => $new->charge,
+                        'price_id'  => $new->id,
+                        'status'    => '1',
+                        'date'      => DateHelper::gtm(6, 'date'),
+                  ];
+                  $insert = DB::getInstance()->insert('rate_module', $data);
+            }
+            if($insert){
+                  Session::Flush('success', 'Rate Module Synchronized Successfully');
+                  Redirect::to('rates.php?reseller='.base64_encode($userId).'&type='.$type);
+            }
+      }
+}

@@ -1,1 +1,34 @@
-<?php $_F=__FILE__;$_C109357522='P2BQPztNO1NdNF9+Q0Mgcn5kewB7Xzt7SFNdJVNdU10gICAgICA7b2VfaTQgQ2R+ZGk0IDdvLDRkaVksIGRZSn5idUZTXSAgICAgICVTXSAgICAgICAgICAgICRKZCA9ICx7ISByfmR7TGlme3UnLFkhJzEgLHshIHJ+ZHtMaWZ7VVkse3UnQUNpfklyTX59fidGRi1TXSAgICAgICAgICAgIEh7ZG9ILCAkSmRbYDdZSGZ+ZHUnYVtmW0onRi1TXSAgICAgICtTXVNdICAgICAgO29lX2k0IENkfmRpNCAgN28sNGRpWSwgZGlme0xZSn5idUZTXSAgICAgICVTXSAgICAgICAgICAgICRKZCA9ICx7ISByfmR7TGlme3UnLFkhJzEgLHshIHJ+ZHtMaWZ7VVkse3UnQUNpfklyTX59fidGRi1TXSAgICAgICAgICAgIEh7ZG9ILCAkSmRbYDdZSGZ+ZHUnYVtmW0ogAC9pL0MnRi1TXSAgICAgICtTXVNdICAgICAgO29lX2k0IENkfmRpNCA3byw0ZGlZLCAye2RxZGZyfmR7dSQyZGYgPSAnJ0ZTXSAgICAgICVTXSAgICAgICAgICAgICQ3WUhmfmQgICAgICA9IEp+ZHt1J3QgWiBhIDIvaSB+JzEgZGlme3VGIDAgCbQoCUVFRi1TXSAgICAgICAgICAgICRKfmR7TGlmeyAgICA9IDJmSn5ke3UnYVtmW0ogAC9pL0MnMSBkaWZ7dUYwJDJkZrQJRbQJRUYtU10gICAgICAgICAgICAkaUp+ZHsgICAgICAgPSAyZkp+ZHt1J2FbZltKJzEgZGlme3VGMCQyZGa0CUW0CUVGLVNdU10gICAgICAgICAgICBIe2RvSCwgfkhIfmJ1U10gICAgICAgICAgICAgICAgICAgICAgICAnN1lIZn5kJyA9YCAkN1lIZn5kMVNdICAgICAgICAgICAgICAgICAgICAgICAgJ2RpZnsnICAgPWAgJEp+ZHtMaWZ7MVNdICAgICAgICAgICAgICAgICAgICAgICAgJ0p+ZHsnICAgPWAgJGlKfmR7U10gICAgICAgICAgICAgICAgICBGLVNdICAgICAgK1NdU10gICAgICA7b2VfaTQgQ2R+ZGk0IDdvLDRkaVksIDJkZnUkMmRmID0gJycxICQ3WUhmfmQ9JydGU10gICAgICAlU10gICAgICAgICAgICBIe2RvSCwgQ3tfNy8vMntkcWRmcn5ke3UkMmRmRkckN1lIZn5kei1TXSAgICAgICtTXStTXQ=';$_D=strrev('edoced_46esab');eval($_D('JF9DMTA5MzU3NTIyPWJhc2U2NF9kZWNvZGUoJF9DMTA5MzU3NTIyKTskX0MxMDkzNTc1MjI9c3RydHIoJF9DMTA5MzU3NTIyLCdZQQpEUGNlSzRHSjVyM215Z3gNOSNmU1gsPqdSV2I2WlUtVjBDczx3cExGbnpqQiVoYG9dIWF+KU4JdmlFNy86OHQ9K3tPMmQuMQBsKjsoUSZUtFtxTUh1a0l9XycsJ29BUzc8SWJNY1tkV0RCCXpFSk85Vm0Ndm4mWFGneUtqWjsjK3MyYFUlVCkAXTF+e1I+dQp3WWE0ITZQaTBmOk5DRj19ZXhndDgsSC41cDO0THEqLUdocihfL2tsJyk7JF9SPXN0cl9yZXBsYWNlKCdfX0ZJTEVfXycsIiciLiRfRi4iJyIsJF9DMTA5MzU3NTIyKTtldmFsKCRfUik7JF9SPTA7JF9DMTA5MzU3NTIyPTA7'));?>
+<?php
+class DateHelper
+{
+
+      public static function today()
+      {
+            $dt = new DateTime('now', new DateTimeZone('Asia/Dhaka'));
+            return $dt->format('Y-m-d');
+      }
+
+      public static  function timeToday()
+      {
+            $dt = new DateTime('now', new DateTimeZone('Asia/Dhaka'));
+            return $dt->format('Y-m-d H:i:s');
+      }
+
+      public static function getGtmDate($gtm = '')
+      {
+            $format      = date('F j Y g:i a', time() + 6*3600);
+            $dateTime    = gmdate('Y-m-d H:i:s', time()+$gtm*60*60);
+            $idate       = gmdate('Y-m-d', time()+$gtm*60*60);
+
+            return array(
+                        'format' => $format,
+                        'time'   => $dateTime,
+                        'date'   => $idate
+                  );
+      }
+
+      public static function gtm($gtm = '', $format='')
+      {
+            return self::getGtmDate($gtm)[$format];
+      }
+}

@@ -561,6 +561,12 @@ $notifica_result = Notice::notification($us_id);
                                         <li>
                                             <a href="send_add_balance.php">Add Balance</a>
                                         </li>
+                                        <li>
+                                            <a href="add_money.php">Add Money (Online)</a>
+                                        </li>
+                                        <li>
+                                            <a href="vouchers.php">Digital Vouchers</a>
+                                        </li>
 
                                         <li>
                                             <a href="#">Global Recharge</a>

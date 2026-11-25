@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/lib/guard.php'; midhub_guard_super_admin(); // SECURITY: was reachable without admin login
 session_start();
 
 if (!isset($_SESSION['user_id'])) {

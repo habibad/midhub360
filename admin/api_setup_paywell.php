@@ -1,5 +1,10 @@
-<?php 
+<?php
 include "login.check.php";
+// Superseded: Paywell (all services) is configured in Gateway Settings with encrypted
+// Sandbox/Live credentials and Self-PIN protection. This legacy form wrote plaintext
+// credentials to api_paywell, which the new engine no longer reads.
+header('Location: gateway_settings.php?tab=paywell');
+exit();
 include "header.php";
 ?>
            

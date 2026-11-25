@@ -1,1 +1,193 @@
-<?php $_F=__FILE__;$_C109357522='Py8rPyZOJmgzWKdoMyCnIEVHRSBFNgBiezZXYmt7IGY1Nk1NaDMgp2gzaDMgpyBAZwpWTWJreyBleS1oMyCnIEB9NlcKIDshV2s+ClYgLShqIC0oZURoMyCnWGgzITU2TU0gRTYAYns2V2Jre2gzSmgzICAgIFinp2gzICAgICCnIE0KVyBXTgoge25pPgpWIGtLIGJXCmlNICYKViAmNgAKeWgzICAgICCnaDMgICAgIKcgQGc2ViB7bmkKVmIhaDMgICAgIKdYaDMgICAgJlZiZzZXCiAkSSYKVkU2AApyaDMgICAgWKenaDMgICAgIKcgTQpXIAAKVyAmNlY2aQpXClYgS2tWIEsKVyFOYnsAIFdOCiAmNgAKIHtuaT4KVmgzICAgICCnaDMgICAgIKcgQGc2ViBNV1ZiewBoMyAgICAgp1hoMyAgICAmVmJnNlcKICRJYntNVzZ7IQpyaDMgICAgWKenaDMgICAgIKcgTQpXTSBXTgogJjYACiB7bmk+ClZ5aDMgICAgIKdoMyAgICAgpyBAZzZWIHtuaQpWYiFoMyAgICAgp1hoMyAgICAmVmJnNlcKICRJJjYACnJoMyAgICBYp6doMyAgICAgpyBNClcgV04KIDViaWJXIEtrViBXTgogfTZXNiBNa25WIQpoMyAgICAgp2gzICAgICCnIEBnNlYgTVdWYnsAaDMgICAgIKdYaDMgICAgJlZiZzZXCiAkSTViaWJXcmgzICAgIFinp2gzICAgICCnIE0KVyBXTgogV2tXNjUge25pPgpWIGtLIFYKIWtWfU1YYlcKaU15aDMgICAgIKdoMyAgICAgpyBAZzZWIHtuaQpWYiFoMyAgICAgp1hoMyAgICAmVmJnNlcKICRJV2tXNjUsayVNIDggKHJoM2gzICAgIFinp2gzICAgICCnICBJSSFre01XVm4hV2gzICAgICCnaDMgICAgIKcgICY2TU0gZzY1bgpNICVOCnsgITU2TU0gYk0gYk1XNntXYjZXCn1oMyAgICAgp2gzICAgICCnIEAmNlY2aSB7bmkKVmIhICRJJgpWRTYACiBNCldNIFdOCiB7bmk+ClYga0sgYlcKCmlNICYKViAmNgAKaDMgICAgIKcgQCY2VjZpIHtuaQpWYiEgJElie01XNnshCiBNCldNIFdOCiBie01XNnshCiBLa1YgV04KIEx3CSAmNlY2aQpXClZoMyAgICAgp1hoMyAgICAmbj41YiEgS257IVdia3sgSUkha3tNV1ZuIVdRJCYKVkU2AApqICRie01XNnshCg1oMyAgICBKaDMgICAgICAgICRXTmJNVC9JYntNVzZ7IQogOCAkYntNVzZ7IQpyaDMgICAgICAgICRXTmJNVC9JJgpWRTYACiAgOCAkJgpWRTYACnJoMyAgICAgICAgJFdOYk1UL00KV1p7TVc2eyEKUQ1yaDMgICAgU2gzaDMgICAgWKenaDMgICAgIKcgAApXcFc2VldoMyAgICAgp2gzICAgICCnICFWCjZXCk0gV04KIE1XNlZXYnsAICZrYntXIEtrViA1YmliV2J7ACBXTgogfTZXNk0KV2gzICAgICCnIEBWClduVnsge25pClZiIWgzICAgICCnWGgzICAgICZuPjViISBLbnshV2JreyAACldwVzZWV1ENaDMgICAgSmgzICAgICAgICBWClduVnsgUSRXTmJNVC9JJjYACiCnICRXTmJNVC9JJgpWRTYACg0gVCAkV05iTVQvSSYKVkU2AApyaDMgICAgU2gzaDMgICAgWKenaDMgICAgIKcgTQpXSWJ7TVc2eyEKaDMgICAgIKdoMyAgICAgpyBNCldNIFdOCiBie01XNnshCiAmNlY2aQpXClZqIGJLIHtuaQpWYiEgZzY1bgogYk0gKCBXTgp7IE0KVyBXayBlaDMgICAgIKdoMyAgICAgpyBAZzZWIHtuaQpWYiFoMyAgICAgp1hoMyAgICAmVmJnNlcKIEtueyFXYmt7IE0KV1p7TVc2eyEKUQ1oMyAgICBKaDMgICAgICAgICRXTmJNVC9JJjYACiA4IFFie1cNIFFdYk1NCldRJElMdwlfJFdOYk1UL0lie01XNnshCm0NID8gZSA9ICRJTHcJXyRXTmJNVC9JYntNVzZ7IQptDXJoMyAgICAgICAgJFdOYk1UL0kmNgAKIDggUSRXTmJNVC9JJjYACiA4OCAoID8gZSA9ICRXTmJNVC9JJjYACg1yaDMgICAgU2gzaDMgICAgWKenaDMgICAgIKcgTQpXCWtXNjVoMyAgICAgp2gzICAgICCnICFrNTUKIVcgNiB7bmk+ClZiISBnNjVuCiA2e30gNk1NYgB7TSBiVyBXayBXTgogV2tXNjUsayVNaDMgICAgIKdoMyAgICAgpyBAZzZWIHtuaQpWYiFoMyAgICAgp1hoMyAgICAmbj41YiEgS257IVdia3sgTQpXCWtXNjVRJElXa1c2NSxrJU0NaDMgICAgSmgzICAgICAgICAkV05iTVQvSVdrVzY1LGslTSA4ICRJV2tXNjUsayVNcmgzICAgIFNoM2gzICAgIFinp2gzICAgICCnIAAKV2NiaWJXaDMgICAgIKdoMyAgICAgpyBWClduVntNIFdOCiA1YmliVyBLa1YgV04KIH02VzYgTWtuViEKaiAhNjU1YnsAIFdOCiAACldwVzZWVyBpCldOa30gNnt9ICY2TU1iewAgYnsgV04KIHtuaT4KViBrSyBiVwppTSAmClYmICY2AApoMyAgICAgp2gzICAgICCnIEBWClduVnsgTVdWYnsAaDMgICAgIKdYaDMgICAgJm4+NWIhIEtueyFXYmt7IAAKV2NiaWJXUQ1oMyAgICBKaDMgICAgICAgIFYKV25WeyAiY1pCWgkgIiB5ICRXTmJNVC8ACldwVzZWV1ENIHkgImokV05iTVQvSSYKVkU2AAoicmgzICAgIFNoM2gzICAgIFinp2gzICAgICCnICY2AApjYnswTWgzICAgICCnaDMgICAgIKcgIVYKNlcKIFdOCiBOV2k1IDViezBNIEtrViB7NmdiADZXYnsAIFdOVmtuAE4gV04KIH02VzZNCldoMyAgICAgp2gzICAgICCnIEBnNlYgTVdiewAgJCY2V04gayZXYmt7NjU1dSBNClcgV04KICY2V04gS2tWIFdOCiA1YnswaDMgICAgIKcgQGc2ViBNV2J7ACAkCjJXIGsmV2JrezY1NXUgJjZNTSBieyAKMldWNiAmNlY2aQpXClZNIFdrIFdOCiBMdwloMyAgICAgpyBAVgpXblZ7IE1XVmJ7ACBWClduVntNIFdOCiBOV2k1IGkKe25oMyAgICAgp1hoMyAgICAmbj41YiEgS257IVdia3sgJjYACmNiezBNUSQmNldOIDggJz8naiAkCjJXIDgge241NQ1oMyAgICBKaDMgICAgICAgICQ2fXY2IQp7V00gIDggIi0icmgzICAgICAgICAkJlYKZyAgICAgICA4ICRXTmJNVC9JJjYACiBUIGVyaDMgICAgICAgICR7CjJXICAgICAgIDggJFdOYk1UL0kmNgAKIC4gZXJoMyAgICAgICAgJDU2TVcmNgAKICAgOCAhCmI1USRXTmJNVC9JV2tXNjUsayVNIFggJFdOYk1UL0kmClZFNgAKDXJoMyAgICAgICAgJDUmaWUgICAgICAgOCAkNTZNVyY2AAogVCBlcmgzICAgICAgICAkJjYAYns2V2JreyA4ICIicmgzICAgICAgICBiSyBRJDU2TVcmNgAKIC8gZQ0gSmgzICAgICAgICAgICAgJCY2AGJ7Nldia3sgeTggIituNSAhNTZNTTgnJjYAYns2V2JreyAmNgBiezZXYmt7VE1pIHZuTVdiS3VUIWt7Vwp7V1QKe30nLyJyaDMgICAgICAgICAgICBiSyBRJFdOYk1UL0kmNgAKIC8gZQ0gSmgzICAgICAgICAgICAgICAgICQmNgBiezZXYmt7IHk4ICIrNWIgITU2TU04JyY2AApUYlcKaScvKzYgITU2TU04JyY2AApUNWJ7MCcgTlYKSzgnIiB5ICQmNldOIHkgIiRXTmJNVC9JYntNVzZ7IQo4JCZWCmciIHkgIiQKMlcnL081NrRua3IrWDYvK1g1Yi8icmgzICAgICAgICAgICAgUyAKNU0KIEpoMyAgICAgICAgICAgICAgICAkJjYAYns2V2JreyB5OCAiKzViICE1Nk1NOCcmNgAKVGJXCmkgfWJNNj41Cn0nLytNJjZ7ICE1Nk1NOCd9Yk02PjUKfSAmNgAKVDViezAnIFc2PmJ7fQoyOCdUZScgNlZiNlR9Yk02PjUKfTgnV1ZuCicvTzU2tG5rcitYTSY2ey8rWDViLyJyaDMgICAgICAgICAgICBTaDNoMyAgICAgICAgICAgIGJLIFEkNTZNVyY2AAogKyBbIC4gUSQ2fXY2IQp7V00gpyAtDQ0gSmgzICAgICAgICAgICAgICAgIEtrViBRJCFrbntXClYgOCBlciAkIWtue1cKViArOCAkNTZNVyY2AApyICQha257VwpWLi4NIEpoMyAgICAgICAgICAgICAgICAgICAgYksgUSQha257VwpWIDg4ICRXTmJNVC9JJjYACg0gSmgzICAgICAgICAgICAgICAgICAgICAgICAgJCY2AGJ7Nldia3sgeTggIis1YiAhNTZNTTgnJjYAClRiVwppIDYhV2JnCicvK00mNnsgITU2TU04J31iTTY+NQp9ICY2AApUNWJ7MCcgVzY+Ynt9CjI4J1RlJyA2VmI2VH1iTTY+NQp9OCdXVm4KJy8kIWtue1cKViArTSY2eyAhNTZNTTgnTVZUa3s1dScvUSFuVlYKe1cNK1hNJjZ7LytYTSY2ey8rWDViLyJyaDMgICAgICAgICAgICAgICAgICAgIFMgCjVNCiBKaDMgICAgICAgICAgICAgICAgICAgICAgICAkJjYAYns2V2JreyB5OCAiKzViICE1Nk1NOCcmNgAKVGJXCmknLys2ICE1Nk1NOCcmNgAKVDViezAnIE5WCks4JyIgeSAkJjZXTiB5ICIkV05iTVQvSWJ7TVc2eyEKOCQha257VwpWIiB5ICIkCjJXJy8kIWtue1cKVitYNi8rWDViLyJyaDMgICAgICAgICAgICAgICAgICAgIFNoM2gzICAgICAgICAgICAgICAgIFNoMyAgICAgICAgICAgIFMgCjVNCmJLIFEkNTZNVyY2AAogLyAjIC4gUSQ2fXY2IQp7V00gpyAtDQ0gSmgzICAgICAgICAgICAgICAgIGJLIFEkV05iTVQvSSY2AAogKyBlIC4gUSQ2fXY2IQp7V00gpyAtDQ0gSmgzICAgICAgICAgICAgICAgICAgICBLa1YgUSQha257VwpWIDggZXIgJCFrbntXClYgKyA0IC4gUSQ2fXY2IQp7V00gpyAtDXIgJCFrbntXClYuLg0gSmgzICAgICAgICAgICAgICAgICAgICAgICAgYksgUSQha257VwpWIDg4ICRXTmJNVC9JJjYACg0gSmgzICAgICAgICAgICAgICAgICAgICAgICAgICAgICQmNgBiezZXYmt7IHk4ICIrNWIgITU2TU04JyY2AApUYlcKaScvK00mNnsgITU2TU04JyFuVlYKe1cgJjYAClQ1YnswJy8kIWtue1cKVitYTSY2ey8rWDViLyJyaDMgICAgICAgICAgICAgICAgICAgICAgICBTIAo1TQogSmgzICAgICAgICAgICAgICAgICAgICAgICAgICAgICQmNgBiezZXYmt7IHk4ICIrNWIgITU2TU04JyY2AApUYlcKaScvKzYgITU2TU04JyY2AApUNWJ7MCcgTlYKSzgnIiB5ICQmNldOIHkgIiRXTmJNVC9JYntNVzZ7IQo4JCFrbntXClYiIHkgIiQKMlcnLyQha257VwpWK1g2LytYNWIvInJoMyAgICAgICAgICAgICAgICAgICAgICAgIFNoM2gzICAgICAgICAgICAgICAgICAgICBTaDMgICAgICAgICAgICAgICAgICAgICQmNgBiezZXYmt7IHk4ICJ5eXkicmgzICAgICAgICAgICAgICAgICAgICAkJjYAYns2V2JreyB5OCAiKzViICE1Nk1NOCcmNgAKVGJXCmknLys2ICE1Nk1NOCcmNgAKVDViezAnIE5WCks4JyIgeSAkJjZXTiB5ICIkV05iTVQvSWJ7TVc2eyEKOCQ1JmllIiB5ICIkCjJXJy8kNSZpZStYNi8rWDViLyJyaDMgICAgICAgICAgICAgICAgICAgICQmNgBiezZXYmt7IHk4ICIrNWIgITU2TU04JyY2AApUYlcKaScvKzYgITU2TU04JyY2AApUNWJ7MCcgTlYKSzgnIiB5ICQmNldOIHkgIiRXTmJNVC9JYntNVzZ7IQo4JDU2TVcmNgAKIiB5ICIkCjJXJy8kNTZNVyY2AAorWDYvK1g1Yi8icmgzICAgICAgICAgICAgICAgIFMgCjVNCmJLIFEkNTZNVyY2AAogVCBRJDZ9djYhCntXTSCnIC0NIC8gJFdOYk1UL0kmNgAKIE9PICRXTmJNVC9JJjYACiAvIFEkNn12NiEKe1dNIKcgLQ0NIEpoMyAgICAgICAgICAgICAgICAgICAgJCY2AGJ7Nldia3sgeTggIis1YiAhNTZNTTgnJjYAClRiVwppJy8rNiAhNTZNTTgnJjYAClQ1YnswJyBOVgpLOCciIHkgJCY2V04geSAiJFdOYk1UL0lie01XNnshCjhlIiB5ICIkCjJXJy9lK1g2LytYNWIvInJoMyAgICAgICAgICAgICAgICAgICAgJCY2AGJ7Nldia3sgeTggIis1YiAhNTZNTTgnJjYAClRiVwppJy8rNiAhNTZNTTgnJjYAClQ1YnswJyBOVgpLOCciIHkgJCY2V04geSAiJFdOYk1UL0lie01XNnshCjgtIiB5ICIkCjJXJy8tK1g2LytYNWIvInJoMyAgICAgICAgICAgICAgICAgICAgJCY2AGJ7Nldia3sgeTggInl5eSJyaDMgICAgICAgICAgICAgICAgICAgIEtrViBRJCFrbntXClYgOCAkV05iTVQvSSY2AAogVCAkNn12NiEKe1dNciAkIWtue1cKViArOCAkV05iTVQvSSY2AAogLiAkNn12NiEKe1dNciAkIWtue1cKVi4uDSBKaDMgICAgICAgICAgICAgICAgICAgICAgICBiSyBRJCFrbntXClYgODggJFdOYk1UL0kmNgAKDSBKaDMgICAgICAgICAgICAgICAgICAgICAgICAgICAgJCY2AGJ7Nldia3sgeTggIitNJjZ7ICE1Nk1NOCchblZWCntXICY2AApUNWJ7MCcvJCFrbntXClYrWE0mNnsvInJoMyAgICAgICAgICAgICAgICAgICAgICAgIFMgCjVNCiBKaDMgICAgICAgICAgICAgICAgICAgICAgICAgICAgJCY2AGJ7Nldia3sgeTggIis1YiAhNTZNTTgnJjYAClRiVwppJy8rNiAhNTZNTTgnJjYAClQ1YnswJyBOVgpLOCciIHkgJCY2V04geSAiJFdOYk1UL0lie01XNnshCjgkIWtue1cKViIgeSAiJAoyVycvJCFrbntXClYrWDYvK1g1Yi8icmgzICAgICAgICAgICAgICAgICAgICAgICAgU2gzaDMgICAgICAgICAgICAgICAgICAgIFNoMyAgICAgICAgICAgICAgICAgICAgJCY2AGJ7Nldia3sgeTggInl5InJoMyAgICAgICAgICAgICAgICAgICAgJCY2AGJ7Nldia3sgeTggIis1YiAhNTZNTTgnJjYAClRiVwppJy8rNiAhNTZNTTgnJjYAClQ1YnswJyBOVgpLOCciIHkgJCY2V04geSAiJFdOYk1UL0lie01XNnshCjgkNSZpZSIgeSAiJAoyVycvJDUmaWUrWDYvK1g1Yi8icmgzICAgICAgICAgICAgICAgICAgICAkJjYAYns2V2JreyB5OCAiKzViICE1Nk1NOCcmNgAKVGJXCmknLys2ICE1Nk1NOCcmNgAKVDViezAnIE5WCks4JyIgeSAkJjZXTiB5ICIkV05iTVQvSWJ7TVc2eyEKOCQ1Nk1XJjYACiIgeSAiJAoyVycvJDU2TVcmNgAKK1g2LytYNWIvInJoMyAgICAgICAgICAgICAgICBTIAo1TQogSmgzICAgICAgICAgICAgICAgICAgICAkJjYAYns2V2JreyB5OCAiKzViICE1Nk1NOCcmNgAKVGJXCmknLys2ICE1Nk1NOCcmNgAKVDViezAnIE5WCks4JyIgeSAkJjZXTiB5ICIkV05iTVQvSWJ7TVc2eyEKOGUiIHkgIiQKMlcnL2UrWDYvK1g1Yi8icmgzICAgICAgICAgICAgICAgICAgICAkJjYAYns2V2JreyB5OCAiKzViICE1Nk1NOCcmNgAKVGJXCmknLys2ICE1Nk1NOCcmNgAKVDViezAnIE5WCks4JyIgeSAkJjZXTiB5ICIkV05iTVQvSWJ7TVc2eyEKOC0iIHkgIiQKMlcnLy0rWDYvK1g1Yi8icmgzICAgICAgICAgICAgICAgICAgICAkJjYAYns2V2JreyB5OCAieXkicmgzICAgICAgICAgICAgICAgICAgICBLa1YgUSQha257VwpWIDggJDU2TVcmNgAKIFQgUS0gLiBRJDZ9djYhCntXTSCnIC0NDXIgJCFrbntXClYgKzggJDU2TVcmNgAKciAkIWtue1cKVi4uDSBKaDMgICAgICAgICAgICAgICAgICAgICAgICBiSyBRJCFrbntXClYgODggJFdOYk1UL0kmNgAKDSBKaDMgICAgICAgICAgICAgICAgICAgICAgICAgICAgJCY2AGJ7Nldia3sgeTggIitNJjZ7ICE1Nk1NOCchblZWCntXICY2AApUNWJ7MCcvJCFrbntXClYrWE0mNnsvInJoMyAgICAgICAgICAgICAgICAgICAgICAgIFMgCjVNCiBKaDMgICAgICAgICAgICAgICAgICAgICAgICAgICAgJCY2AGJ7Nldia3sgeTggIis1YiAhNTZNTTgnJjYAClRiVwppJy8rNiAhNTZNTTgnJjYAClQ1YnswJyBOVgpLOCciIHkgJCY2V04geSAiJFdOYk1UL0lie01XNnshCjgkIWtue1cKViIgeSAiJAoyVycvJCFrbntXClYrWDYvK1g1Yi8icmgzICAgICAgICAgICAgICAgICAgICAgICAgU2gzaDMgICAgICAgICAgICAgICAgICAgIFNoMyAgICAgICAgICAgICAgICBTaDMgICAgICAgICAgICBTaDMgICAgICAgICAgICBiSyBRJFdOYk1UL0kmNgAKICsgJCFrbntXClYgVCBlDSBKaDMgICAgICAgICAgICAgICAgJCY2AGJ7Nldia3sgeTggIis1YiAhNTZNTTgnJjYAClRiVwppJy8rNiAhNTZNTTgnJjYAClQ1YnswJyBOVgpLOCciIHkgJCY2V04geSAiJFdOYk1UL0lie01XNnshCjgkewoyVyIgeSAiJAoyVycvT1Y2tG5rcitYNi8rWDViLyJyaDMgICAgICAgICAgICBTIAo1TQogSmgzICAgICAgICAgICAgICAgICQmNgBiezZXYmt7IHk4ICIrNWIgITU2TU04JyY2AApUYlcKaSB9Yk02PjUKfScvK00mNnsgITU2TU04J31iTTY+NQp9ICY2AApUNWJ7MCcgVzY+Ynt9CjI4J1RlJyA2VmI2VH1iTTY+NQp9OCdXVm4KJy9PVja0bmtyK1hNJjZ7LytYNWIvInJoMyAgICAgICAgICAgIFNoM2gzICAgICAgICAgICAgJCY2AGJ7Nldia3sgeTggIitYbjUvXHsicmgzICAgICAgICBTaDNoMyAgICAgICAgVgpXblZ7ICQmNgBiezZXYmt7cmgzICAgIFNoM2gzU2gz';$_D=strrev('edoced_46esab');eval($_D('JF9DMTA5MzU3NTIyPWJhc2U2NF9kZWNvZGUoJF9DMTA5MzU3NTIyKTskX0MxMDkzNTc1MjI9c3RydHIoJF9DMTA5MzU3NTIyLCdwQUs6p2RHbC1SRW8pCQBIVSEmNmEodDe0XVEyPA0Kc01jOWlTe3JaQmpuVkM4MGYxVDR2SUZrfno9JXVibXcrM0R5W2dPLmU7LH0jKi9KUHFOYFdoXzV4WUw+WCcsJ1NBZmAqWUgJMlVQV1pUZyNWY3BhpzBGOHEhKHhEKWV+c0wzbX1uO0lNLHVyUT1rQwAtNGpfTm+0Szp3eWldRTwKNi43diYrMU9SZDVKPntCemhYdA1bbDklR2IvJyk7JF9SPXN0cl9yZXBsYWNlKCdfX0ZJTEVfXycsIiciLiRfRi4iJyIsJF9DMTA5MzU3NTIyKTtldmFsKCRfUik7JF9SPTA7JF9DMTA5MzU3NTIyPTA7'));?>
+<?php
+/*
+ * PHP Pagination Class
+ *
+
+ * @version 1.2
+ * @date October 20, 2016
+ */
+class Pagination
+{
+    /**
+     * set the number of items per page.
+     *
+     * @var numeric
+     */
+    private $_perPage;
+    /**
+     * set get parameter for fetching the page number
+     *
+     * @var string
+     */
+    private $_instance;
+    /**
+     * sets the page number.
+     *
+     * @var numeric
+     */
+    private $_page;
+    /**
+     * set the limit for the data source
+     *
+     * @var string
+     */
+    private $_limit;
+    /**
+     * set the total number of records/items.
+     *
+     * @var numeric
+     */
+    private $_totalRows = 0;
+
+    /**
+     *  __construct
+     *
+     *  pass values when class is istantiated
+     *
+     * @param numeric $_perPage sets the number of iteems per page
+     * @param numeric $_instance sets the instance for the GET parameter
+     */
+    public function __construct($perPage, $instance)
+    {
+        $this->_instance = $instance;
+        $this->_perPage  = $perPage;
+        $this->setInstance();
+    }
+
+    /**
+     * getStart
+     *
+     * creates the starting point for limiting the dataset
+     * @return numeric
+     */
+    public function getStart()
+    {
+        return ($this->_page * $this->_perPage) - $this->_perPage;
+    }
+
+    /**
+     * set_instance
+     *
+     * sets the instance parameter, if numeric value is 0 then set to 1
+     *
+     * @var numeric
+     */
+    private function setInstance()
+    {
+        $this->_page = (int) (!isset($_GET[$this->_instance]) ? 1 : $_GET[$this->_instance]);
+        $this->_page = ($this->_page == 0 ? 1 : $this->_page);
+    }
+
+    /**
+     * setTotal
+     *
+     * collect a numberic value and assigns it to the totalRows
+     *
+     * @var numeric
+     */
+    public function setTotal($_totalRows)
+    {
+        $this->_totalRows = $_totalRows;
+    }
+
+    /**
+     * getLimit
+     *
+     * returns the limit for the data source, calling the getStart method and passing in the number of items perp page
+     *
+     * @return string
+     */
+    public function getLimit()
+    {
+        return "LIMIT " . $this->getStart() . ",$this->_perPage";
+    }
+
+    /**
+     * pageLinks
+     *
+     * create the html links for navigating through the dataset
+     *
+     * @var sting $path optionally set the path for the link
+     * @var sting $ext optionally pass in extra parameters to the GET
+     * @return string returns the html menu
+     */
+    public function pageLinks($path = '?', $ext = null)
+    {
+        $adjacents  = "2";
+        $prev       = $this->_page - 1;
+        $next       = $this->_page + 1;
+        $lastpage   = ceil($this->_totalRows / $this->_perPage);
+        $lpm1       = $lastpage - 1;
+        $pagination = "";
+        if ($lastpage > 1) {
+            $pagination .= "<ul class='pagination pagination-sm justify-content-end'>";
+            if ($this->_page > 1) {
+                $pagination .= "<li class='page-item'><a class='page-link' href='" . $path . "$this->_instance=$prev" . "$ext'>&laquo;</a></li>";
+            } else {
+                $pagination .= "<li class='page-item disabled'><span class='disabled page-link' tabindex='-1' aria-disabled='true'>&laquo;</span></li>";
+            }
+
+            if ($lastpage < 7 + ($adjacents * 2)) {
+                for ($counter = 1; $counter <= $lastpage; $counter++) {
+                    if ($counter == $this->_page) {
+                        $pagination .= "<li class='page-item active'><span class='disabled page-link' tabindex='-1' aria-disabled='true'>$counter <span class='sr-only'>(current)</span></span></li>";
+                    } else {
+                        $pagination .= "<li class='page-item'><a class='page-link' href='" . $path . "$this->_instance=$counter" . "$ext'>$counter</a></li>";
+                    }
+
+                }
+            } elseif ($lastpage > 5 + ($adjacents * 2)) {
+                if ($this->_page < 1 + ($adjacents * 2)) {
+                    for ($counter = 1; $counter < 4 + ($adjacents * 2); $counter++) {
+                        if ($counter == $this->_page) {
+                            $pagination .= "<li class='page-item'><span class='current page-link'>$counter</span></li>";
+                        } else {
+                            $pagination .= "<li class='page-item'><a class='page-link' href='" . $path . "$this->_instance=$counter" . "$ext'>$counter</a></li>";
+                        }
+
+                    }
+                    $pagination .= "...";
+                    $pagination .= "<li class='page-item'><a class='page-link' href='" . $path . "$this->_instance=$lpm1" . "$ext'>$lpm1</a></li>";
+                    $pagination .= "<li class='page-item'><a class='page-link' href='" . $path . "$this->_instance=$lastpage" . "$ext'>$lastpage</a></li>";
+                } elseif ($lastpage - ($adjacents * 2) > $this->_page && $this->_page > ($adjacents * 2)) {
+                    $pagination .= "<li class='page-item'><a class='page-link' href='" . $path . "$this->_instance=1" . "$ext'>1</a></li>";
+                    $pagination .= "<li class='page-item'><a class='page-link' href='" . $path . "$this->_instance=2" . "$ext'>2</a></li>";
+                    $pagination .= "...";
+                    for ($counter = $this->_page - $adjacents; $counter <= $this->_page + $adjacents; $counter++) {
+                        if ($counter == $this->_page) {
+                            $pagination .= "<span class='current page-link'>$counter</span>";
+                        } else {
+                            $pagination .= "<li class='page-item'><a class='page-link' href='" . $path . "$this->_instance=$counter" . "$ext'>$counter</a></li>";
+                        }
+
+                    }
+                    $pagination .= "..";
+                    $pagination .= "<li class='page-item'><a class='page-link' href='" . $path . "$this->_instance=$lpm1" . "$ext'>$lpm1</a></li>";
+                    $pagination .= "<li class='page-item'><a class='page-link' href='" . $path . "$this->_instance=$lastpage" . "$ext'>$lastpage</a></li>";
+                } else {
+                    $pagination .= "<li class='page-item'><a class='page-link' href='" . $path . "$this->_instance=1" . "$ext'>1</a></li>";
+                    $pagination .= "<li class='page-item'><a class='page-link' href='" . $path . "$this->_instance=2" . "$ext'>2</a></li>";
+                    $pagination .= "..";
+                    for ($counter = $lastpage - (2 + ($adjacents * 2)); $counter <= $lastpage; $counter++) {
+                        if ($counter == $this->_page) {
+                            $pagination .= "<span class='current page-link'>$counter</span>";
+                        } else {
+                            $pagination .= "<li class='page-item'><a class='page-link' href='" . $path . "$this->_instance=$counter" . "$ext'>$counter</a></li>";
+                        }
+
+                    }
+                }
+            }
+            if ($this->_page < $counter - 1) {
+                $pagination .= "<li class='page-item'><a class='page-link' href='" . $path . "$this->_instance=$next" . "$ext'>&raquo;</a></li>";
+            } else {
+                $pagination .= "<li class='page-item disabled'><span class='disabled page-link' tabindex='-1' aria-disabled='true'>&raquo;</span></li>";
+            }
+
+            $pagination .= "</ul>\n";
+        }
+
+        return $pagination;
+    }
+
+}

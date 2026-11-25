@@ -132,7 +132,7 @@ include "header.php";
 
                                                             <div class="col-md-6 col-xl-4">
                                                                 <div class="widget-rounded-circle card">
-                                                                <a href="#">
+                                                                <a href="bill_internet.php">
                                                                     <div class="card-body">
                                                                         <div class="row">
                                                                             <div class="col-12">
@@ -174,7 +174,7 @@ include "header.php";
 
                                                             <div class="col-md-6 col-xl-4">
                                                                 <div class="widget-rounded-circle card">
-                                                                <a href="#">
+                                                                <a href="bill_tv.php">
                                                                     <div class="card-body">
                                                                         <div class="row">
                                                                             <div class="col-12">

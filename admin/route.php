@@ -2,9 +2,60 @@
 include "login.check.php";
 include "../db.php";
 require_once 'autoload.php';
+require_once dirname(__DIR__) . '/lib/bootstrap.php';
+
+// CSRF defence for every legacy admin action (forms and GET action links): the request
+// must originate from this site. New forms additionally carry a synchronizer token.
+\Midhub\Security\Csrf::assertSameOrigin();
+
 $action = Input::get('action');
 
-switch ($action) {		
+// Legacy admin forms that carry the Self-PIN (customer edit, my profile) get the same
+// DB-backed lockout as the new pages before the legacy handler re-checks the PIN.
+if (Input::get('selfpin') !== '') {
+    $__pv = \Midhub\Security\AdminAuth::verifyPin((int) $us_id, trim((string) Input::get('selfpin')));
+    if (!$__pv['ok']) {
+        $__back = basename((string) parse_url(isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '', PHP_URL_PATH));
+        Session::Flush('error', $__pv['error']);
+        Redirect::to(preg_match('/^[A-Za-z0-9_-]+\.php$/', $__back) ? $__back : 'home.php');
+        exit();
+    }
+}
+
+switch ($action) {
+	case 'RechargeCommissionSave':
+		\Midhub\Admin\OpsAdminController::saveCommission();
+		break;
+	case 'BreakerReset':
+		\Midhub\Admin\OpsAdminController::resetBreaker();
+		break;
+	case 'ModemDeviceCreate':
+		\Midhub\Admin\OpsAdminController::createModemDevice();
+		break;
+	case 'ModemDeviceToggle':
+		\Midhub\Admin\OpsAdminController::toggleModemDevice();
+		break;
+	case 'GatewaySave':
+		\Midhub\Admin\GatewayAdminController::save();
+		break;
+	case 'GatewayTest':
+		\Midhub\Admin\GatewayAdminController::test();
+		break;
+	case 'VoucherSync':
+		\Midhub\Admin\VoucherAdminController::sync();
+		break;
+	case 'VoucherProductSave':
+		\Midhub\Admin\VoucherAdminController::saveProducts();
+		break;
+	case 'VoucherBulk':
+		\Midhub\Admin\VoucherAdminController::bulk();
+		break;
+	case 'DepositRecheck':
+		\Midhub\Admin\DepositAdminController::recheck();
+		break;
+	case 'RechargeRecheck':
+		\Midhub\Admin\DepositAdminController::rechargeRecheck();
+		break;
 	case 'requestSend':
 		Request::send_flexiload();
 		break;

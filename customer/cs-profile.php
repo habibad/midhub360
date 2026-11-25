@@ -4,7 +4,7 @@ include "header.php";
 
     //$reseller_id=$_GET["reseller_id"];
 
-    $reseller_id   = Xss::xssClean(Input::get('reseller_id'));
+    $reseller_id   = (string) (int) Input::get('reseller_id'); // int only: the query scopes to created_by = you, and must not be injectable
 
 
     if(!isset($reseller_id) || empty($reseller_id)){

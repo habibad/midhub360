@@ -1,1 +1,65 @@
-<?php $_F=__FILE__;$_C109357522='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';$_D=strrev('edoced_46esab');eval($_D('JF9DMTA5MzU3NTIyPWJhc2U2NF9kZWNvZGUoJF9DMTA5MzU3NTIyKTskX0MxMDkzNTc1MjI9c3RydHIoJF9DMTA5MzU3NTIyLCdKQTRdcXVoMi1ReFBzM2FlL2anKkJIVGJgVjZjMSlFRkxPVUMJU3Ryd0kmXztvamdutD56TntXbDg9Ljw3Um1aa2Q6NQojW2lHRHl2KEt+TSV9MFgrLCEAOVlwDScsJyZBIUI8Lyh9KUlEYnZxLlpuDU83CgBpaFYtWzMyX3lRbzhZXadKSEM1az4xObR7ZmE9U0tkWGA7eGpFNFd0Y0ZVCW1ndX5STXdQckcjLHA6MCtsTDZUTnNlJSp6Jyk7JF9SPXN0cl9yZXBsYWNlKCdfX0ZJTEVfXycsIiciLiRfRi4iJyIsJF9DMTA5MzU3NTIyKTtldmFsKCRfUik7JF9SPTA7JF9DMTA5MzU3NTIyPTA7'));?>
+<?php
+
+class Receive
+{
+      public static function receivePayment()
+      {
+            $userId = Session::get('userId');
+            $type   = Input::get('type');
+            $from1  = Input::get('from1');
+            $to1    = Input::get('to1');
+
+            if($type !='' && $from1 !='' && $to1 != ''){
+            	$sql ="SELECT * FROM pay_receive WHERE userid = '$userId' AND type ='$type' AND idate between '$from1' AND '$to1' ORDER BY id DESC ";
+            }elseif($from1 !='' && $to1 != ''){
+            	$sql ="SELECT * FROM pay_receive WHERE userid = '$userId'  AND idate between '$from1' AND '$to1' ORDER BY id DESC ";
+            }elseif($type !=''){
+            	$sql ="SELECT * FROM pay_receive WHERE userid = '$userId' AND type ='$type' ORDER BY id DESC ";
+            }else{
+            	$sql ="SELECT * FROM pay_receive WHERE userid = '$userId' ORDER BY id DESC ";
+            }
+
+            return $sql;
+      }
+	  
+	  public static function receivePayment_user($userId)
+      {
+            $sql ="SELECT * FROM pay_receive WHERE userid = '$userId' ORDER BY id DESC ";
+            return $sql;
+      }
+      // end this function 
+
+      public static function receiveTotal()
+      {
+      	return DB::getInstance()->get(self::receivePayment())->Count();
+      }
+	  
+	  public static function receiveTotal_user($userId)
+      {
+      	return DB::getInstance()->get(self::receivePayment_user($userId))->Count();
+      }
+
+      public static function totalReceive()
+      {
+      	$credit = '';
+      	$userId = Session::get('userId');
+      	$sql  = "SELECT SUM(credit) as credit FROM pay_receive WHERE userid = '$userId' AND type = 'Transfer'";
+      	$rs = DB::getInstance()->get($sql)->result();
+      	foreach ($rs as $total){
+      		$credit = $total->credit;
+      	}
+      	return $credit;
+      }
+
+      public static function totalReturn()
+      {
+      	$debit = '';
+      	$userId = Session::get('userId');
+      	$sql  = "SELECT SUM(debit) as debit FROM pay_receive WHERE userid = '$userId' AND type = 'Return'";
+      	$rs = DB::getInstance()->get($sql)->result();
+      	foreach ($rs as $total){
+      		$debit = $total->debit;
+      	}
+      	return $debit;
+      }
+}

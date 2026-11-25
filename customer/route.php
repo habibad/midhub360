@@ -2,7 +2,26 @@
 include "login.check.php";
 include "../db.php";
 require_once 'autoload.php';
+require_once dirname(__DIR__, 1) . '/lib/bootstrap.php';
+
+// CSRF defence for every legacy customer action: the request must originate from this site.
+\Midhub\Security\Csrf::assertSameOrigin();
+
 $action = Input::get('action');
+
+// Every PIN-protected money action first passes the PIN lockout (5 wrong PINs in 15 min lock
+// the account's PIN actions, and the IP temporarily); the legacy handler then re-checks the PIN.
+$__pinActions = array('requestSend', 'requestSend_mnp', 'requestPackage', 'requestDrive', 'requestMBSend',
+    'requestBillPaySend', 'BankSend', 'paymentTransfer', 'returnpayment');
+if (in_array($action, $__pinActions, true)) {
+    $__pv = \Midhub\Security\PinVerifier::verify((int) $us_id, trim((string) Input::get('pincode')));
+    if (!$__pv['ok']) {
+        $__back = basename((string) parse_url(isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '', PHP_URL_PATH));
+        Session::Flush('error', $__pv['error']);
+        Redirect::to(preg_match('/^[A-Za-z0-9_-]+\.php$/', $__back) ? $__back : 'home.php');
+        exit();
+    }
+}
 
 switch ($action) {
 	case 'requestSend':

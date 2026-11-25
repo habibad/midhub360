@@ -1,6 +1,18 @@
 <?php
+/*
+ * Legacy PayStation return handler (new top-ups use gateway/return.php).
+ *
+ * SECURITY FIX: this page used to credit the wallet on EVERY load. Reloading
+ * callback.php?status=Successful&invoice_number=<any paid invoice> re-verified with
+ * PayStation (still "successful") and credited again, without limit. The add_fund row is
+ * now claimed atomically (status 0 -> 1) inside a transaction before crediting, the amount
+ * must match the stored request, and the wallet type comes from our own record.
+ */
 session_start();
 include "../db.php";
+require_once dirname(__DIR__) . '/lib/bootstrap.php';
+$verifiedStatus = 'Failed';
+$message = 'Payment failed or cancelled.';
 // Get the response values
 $status          = isset($_GET['status']) ? $_GET['status'] : null;
 $invoice_number  = isset($_GET['invoice_number']) ? $_GET['invoice_number'] : null;
@@ -39,37 +51,44 @@ if ($status === 'Successful' && $invoice_number) {
     if (!empty($result) && isset($result['status_code']) && $result['status_code'] == '200') {
         if (isset($result['data']) && $result['data']['trx_status'] === 'successful') {
 
-            $balance_type = $result['data']['checkout_items'];
-            $invoiceNumber = $result['data']['invoice_number'];
-            $amount = $result['data']['payment_amount'];
+            $invoiceNumber = (string) $result['data']['invoice_number'];
+            $amount = (string) $result['data']['payment_amount'];
+            $verifiedStatus = 'Failed';
+            $message = 'Payment verification failed. Please contact support.';
 
-            $queryFund  = "SELECT * FROM add_fund where invoice_no='$invoiceNumber'";    
-            $resultFund = mysqli_query($connect, $queryFund);
-            $resultFundData= mysqli_fetch_object($resultFund);
-
-            if ($resultFund) {
-
-                if($balance_type=="Recharge"){
-                    // Query to update the balance
-                    $query = "UPDATE user SET balance2 = balance2 + $amount WHERE id = $resultFundData->user_id";
-                }else{
-                    // Query to update the balance
-                    $query = "UPDATE user SET bkash_balance = bkash_balance + $amount WHERE id = $resultFundData->user_id";
+            if (hash_equals((string) $invoice_number, $invoiceNumber)) {
+                try {
+                    $outcome = \Midhub\Db::transaction(function () use ($invoiceNumber, $amount, $trx_id) {
+                        $fund = \Midhub\Db::one("SELECT * FROM add_fund WHERE invoice_no = ? AND type = 'Online' FOR UPDATE", 's', array($invoiceNumber));
+                        if (!$fund) {
+                            return 'missing';
+                        }
+                        if ((string) $fund['status'] !== '0') {
+                            return 'already';
+                        }
+                        if (\Midhub\Money::toPaisa($amount) !== \Midhub\Money::toPaisa((string) $fund['amount'])) {
+                            return 'amount';
+                        }
+                        // claim first: a concurrent or replayed request finds status 1 and stops
+                        $claimed = \Midhub\Db::exec("UPDATE add_fund SET status = '1', transaction_id = ? WHERE id = ? AND status = '0'", 'si', array(substr((string) $trx_id, 0, 50), (int) $fund['id']));
+                        if ($claimed !== 1) {
+                            return 'already';
+                        }
+                        $wallet = ($fund['balance_type'] === 'Recharge') ? 'balance2' : 'bkash_balance';
+                        \Midhub\Wallet\Wallet::credit((int) $fund['user_id'], $wallet, \Midhub\Money::fromPaisa(\Midhub\Money::toPaisa((string) $fund['amount'])), 'deposit', $invoiceNumber, 'PayStation ' . $trx_id);
+                        return 'credited';
+                    });
+                } catch (\Throwable $e) {
+                    error_log('PayStation callback: ' . $e->getMessage());
+                    $outcome = 'error';
                 }
-
-                // Execute the query
-                $success = mysqli_query($connect, $query);
-
-                if ($success) {
-                    $queryRequest = "UPDATE add_fund SET status = 1, transaction_id = '$trx_id' WHERE invoice_no = '$invoiceNumber'";
-                    $update = mysqli_query($connect, $queryRequest);
+                if ($outcome === 'credited') {
                     $verifiedStatus = 'Successful';
                     $message = 'Your payment has been verified successfully!';
-                } else { 
-                    $verifiedStatus = 'Failed';
-                    $message = 'Payment failed or cancelled.';
+                } elseif ($outcome === 'already') {
+                    $verifiedStatus = 'Successful';
+                    $message = 'This payment was already credited to your account.';
                 }
-
             }
 
         }

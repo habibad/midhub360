@@ -1,1 +1,200 @@
-<?php $_F=__FILE__;$_C109357522='P29wPzenNwk+S1VTSEggdGoJPnUJPiAgICAqKlZTWCgpVTUgS1g1U0o1IENRWCBLUVtbNUtKKFFbCT4JPiAgICAqcnIJPiAgICAgciBBV0qnUVggdlFKV1sgQadJNV0JPiAgICAgciANpyhIIEtVU0hIIENRWCBdU0pTKVNINSCnU1tdVTUJPiAgICAgciBLWDVTSjUgKXkgdlFKV1sgQadJNV0JPiAgICAgciBLWDVTSjUgdFNKNSA8bXNibU5SczkJPiAgICAgcgk+ICAgICBycioJPgk+ICAgIDdYKFZTSjUgSEpTSihLICRGKFtISlNbSzUgOCBbV1VVYwk+ICAgIDdYKFZTSjUgJEY3XVFjCT4gICAgN1cpVShLICRGYFc1WHljCT4gICAgN1goVlNKNSAkRjVYWFFYIDggQ1NVSDVjCT4gICAgN1goVlNKNSAkRlg1SFdVSkhjCT4gICAgN1goVlNKNSAkRktRV1tKIDggUmMJPiAgICA3WChWU0o1ICQoW0g1WEouXWMJPgk+ICAgICoqXTVLVTVTWDUgN1goVlNKNSBDV1tLSihRWwk+ICAgIDdYKFZTSjUgQ1dbS0ooUVsgRkZLUVtISlhXS0p4VAk+ICAgIHUJPiAgICAgICAgSlh5IHUJPiAgICAgICAgICAgICRKpyhIbW9GN11RIDggWzVEIEV0engnSXlIYFV7p1FISjgnIE8gZFFbQygte3stNUp4J0l5SGBVKqdRSEonVCBPICdjS6dTWEg1SjhXSkM8Y10pW1NJNTgnIE8gZFFbQygte3stNUp4J0l5SGBVKl0pJ1RpIGRRW0MoLXt7LTVKeCdJeUhgVSpXSDVYJ1RpIGRRW0MoLXt7LTVKeCdJeUhgVSo3U0hIRFFYXSdUVGMJPgk+ICAgICAgICBZIEtTSkunIHhFdHq0JUs1N0ooUVsgJDVUIHUJPiAgICAgICAgICAgIF0oNXgkNW1vLTVKIzVISFMtNXhUVGMJPiAgICAgICAgWQk+ICAgIFkJPiAgICAqKl01S1U1U1g1IEhKU0ooSyBDV1tLSihRWyAtNUogXVNKUylTSDUgU0tKKFFbCT4gICAgN1cpVShLIEhKU0ooSyBDV1tLSihRWyAtNUouW0hKU1tLNXhUCT4gICAgdQk+ICAgICAgICAoQyB4CihISDVKeCRGKFtISlNbSzVUVCB1CT4gICAgICAgICAgICBINVVDe3skRihbSEpTW0s1IDggWzVEIHRqeFRjCT4gICAgICAgIFkJPiAgICAgICAgWDVKV1hbIEg1VUN7eyRGKFtISlNbSzVjCT4gICAgWQk+CT4gICAgKnJyCT4gICAgIHIgQDdTWFNJICRIYFUJPiAgICAgciBAN1NYU0kgU1hYU3kgJDdTWFNJSAk+ICAgICByIEBYNUpXWFsgJEqnKEgJPiAgICAgcioJPiAgICA3VylVKEsgQ1dbS0ooUVsgLTVKeCRIYFVpICQ3U1hTSUggOCBTWFhTeXhUVAk+ICAgIHUJPiAgICAgICAgJEqnKEhtb0Y1WFFYWCA4IENTVUg1Ywk+ICAgICAgICAoQyB4JEqnKEhtb0ZgVzVYeSA4ICRKpyhIbW9GN11RbW83WDU3U1g1eCRIYFVUVCB1CT4gICAgICAgICAgICAkJSA4IHNjCT4gICAgICAgICAgICAoQyB4S1FXW0p4JDdTWFNJSFRUIHUJPiAgICAgICAgICAgICAgICBDUVg1U0unIHgkN1NYU0lIIFNIICQ3U1hTSVQgdQk+ICAgICAgICAgICAgICAgICAgICAkSqcoSG1vRmBXNVh5bW8pKFtdMFNVVzV4JCVpICQ3U1hTSVRjCT4gICAgICAgICAgICAgICAgICAgICQlLy9jCT4gICAgICAgICAgICAgICAgWQk+ICAgICAgICAgICAgWQk+ICAgICAgICAgICAgKio1S6dRICRIYFVPJ3ApWG8nYwk+ICAgICAgICAgICAgKEMgeCRKpyhIbW9GYFc1WHltbzUlNUtXSjV4VFQgdQk+ICAgICAgICAgICAgICAgICAgJEqnKEhtb0ZYNUhXVUpIIDggJEqnKEhtb0ZgVzVYeW1vQzVKS6dBVVV4RXR6e3s2tA1kfkZ6amxUYwk+ICAgICAgICAgICAgICAgICAgJEqnKEhtb0ZLUVdbSiAgIDggJEqnKEhtb0ZgVzVYeW1vWFFEZFFXW0p4VGMJPiAgICAgICAgICAgIFkgNVVINSB1CT4gICAgICAgICAgICAgICAgJEqnKEhtb0Y1WFhRWCA4IEpYVzVjCT4gICAgICAgICAgICBZCT4gICAgICAgIFkJPgk+ICAgICAgICBYNUpXWFsgJEqnKEhjCT4gICAgWQk+CT4gICAgKnJyCT4gICAgIHIgQDdTWFNJICRTS0ooUVsJPiAgICAgciBAN1NYU0kgJEpTKVU1CT4gICAgIHIgQDdTWFNJIFNYWFN5ICREpzVYNQk+ICAgICByCT4gICAgIHIqCT4gICAgN1cpVShLIENXW0tKKFFbIFNLSihRW3gkU0tKKFFbaSAkSlMpVTVpICREpzVYNSA4IFNYWFN5eFRUCT4gICAgdQk+ICAgICAgICAoQyB4S1FXW0p4JESnNVg1VCA4ODggYlQgdQk+ICAgICAgICAgICAgJFE3U1g1SlFYSCA4IFNYWFN5eCc4J2kgJ28naSAncCdpICdvOCdpICdwOCdUYwk+ICAgICAgICAgICAgJEMoNVVdICAgICA4ICREpzVYNTNSTGMJPiAgICAgICAgICAgICRRN1NYNUpRWCAgOCAkRKc1WDUzc0xjCT4gICAgICAgICAgICAkVlNVVzUgICAgIDggJESnNVg1M05MYwk+CT4gICAgICAgICAgICAoQyB4KFtGU1hYU3l4JFE3U1g1SlFYaSAkUTdTWDVKUVhIVFQgdQk+ICAgICAgICAgICAgICAgICRIYFUgOCAidSRTS0ooUVtZIDZ2eiMgdSRKUylVNVkgWn60drQgdSRDKDVVXVkgdSRRN1NYNUpRWFkgPyJjCT4gICAgICAgICAgICAgICAgKio1S6dRICRIYFVjCT4gICAgICAgICAgICAgICAgKEMgeAokSqcoSG1vLTVKeCRIYFVpIFNYWFN5eCRWU1VXNVRUbW81WFhRWHhUVCB1CT4gICAgICAgICAgICAgICAgICAgIFg1SldYWyAkSqcoSGMJPiAgICAgICAgICAgICAgICBZCT4gICAgICAgICAgICBZCT4gICAgICAgIFkJPiAgICAgICAgWDVKV1hbIENTVUg1Ywk+ICAgIFkgKio1W10gQ1dbS0ooUVsJPgk+ICAgICoqSDVVNUtKIEQoSqcgS1FbXShKKFFbIGBXNVh5CT4gICAgN1cpVShLIENXW0tKKFFbIC01SlqnNVg1eCRKUylVNWkgJESnNVg1VAk+ICAgIHUJPiAgICAgICAgWDVKV1hbICRKpyhIbW9TS0ooUVt4J020OrRkDSByJ2kgJEpTKVU1aSAkRKc1WDVUYwk+ICAgIFkgKio1W10gQ1dbS0ooUVsJPgk+ICAgICoqQ1dbS0ooUVsgXTVVNUo1IF1TSlMJPiAgICA3VylVKEsgQ1dbS0ooUVsgXTVVNUo1eCRKUylVNWkgJESnNVg1VAk+ICAgIHUJPiAgICAgICAgWDVKV1hbICRKpyhIbW9TS0ooUVt4J3S0OrQNtCdpICRKUylVNWkgJESnNVg1VGMJPiAgICBZICoqNVtdIENXS1tKKFFbCT4JPiAgICAqKkNXW0tKKFFbIENRWCBYNUpXWFsgWDVIV1VKCT4gICAgN1cpVShLIENXW0tKKFFbIChbSDVYSngkSlMpVTVpICRDKDVVXUggOCBTWFhTeXhUVAk+ICAgIHUJPiAgICAgICAgKEMgeEtRV1tKeCRDKDVVXUhUVCB1CT4gICAgICAgICAgICAkZzV5SCAgIDggU1hYU3lGZzV5SHgkQyg1VV1IVGMJPiAgICAgICAgICAgICRWU1VXNUggOCAnJ2MJPiAgICAgICAgICAgICQlICAgICAgOCBzYwk+ICAgICAgICAgICAgQ1FYNVNLpyB4JEMoNVVdSCBTSCAkQyg1VV1UIHUJPiAgICAgICAgICAgICAgICAkVlNVVzVIIE84ICc/J2MJPiAgICAgICAgICAgICAgICAoQyB4JCUgcCBLUVdbSngkQyg1VV1IVFQgdQk+ICAgICAgICAgICAgICAgICAgICAkVlNVVzVIIE84ICdpICdjCT4gICAgICAgICAgICAgICAgWQk+ICAgICAgICAgICAgICAgICQlLy9jCT4gICAgICAgICAgICBZCT4JPiAgICAgICAgICAgICRIYFUgOCAiLmFNtHYNIC5hDXogdSRKUylVNVkgeCIgTyAoSTdVUV01eCdpJ2kgJGc1eUhUIE8gIlQgMEE6a7RNIHh1JFZTVVc1SFlUImMJPiAgICAgICAgICAgICoqNUunUSAkSGBVYwk+ICAgICAgICAgICAgKEMgeAokSqcoSG1vLTVKeCRIYFVpICRDKDVVXUhUbW81WFhRWHhUVCB1CT4gICAgICAgICAgICAgICAgICBYNUpXWFsgJEqnKEhtb0Y3XVFtb1VTSEouW0g1WEouXXhUYwk+ICAgICAgICAgICAgWQk+CT4gICAgICAgIFkJPiAgICAgICAgWDVKV1hbIENTVUg1Ywk+ICAgIFkgKio1W10gQ1dbS0ooUVsJPgk+ICAgICoqQ1dbS0ooUVsgQ1FYIEpTKVU1ICBgVzVYeQk+ICAgIDdXKVUoSyBDV1tLSihRWyAtNUoNUylVNXgkSlMpVTVpICRVKEkoSiA4IFtXVVVpICRRQ0NINUogOCBbV1VVVAk+ICAgIHUJPiAgICAgICAgJEqnKEhtb0Y1WFhRWCA4IENTVUg1Ywk+ICAgICAgICAkSGBVICAgICAgICAgIDggIk20OrRkDSByIDZ2eiMgdSRKUylVNVkiYwk+ICAgICAgICAoQyB4CjVJN0p5eCRVKEkoSlRUIHUJPiAgICAgICAgICAgICRIYFUgTzggIiA6LiMuDSAiIE8gJFUoSShKIE8gJyBpJyBPICRRQ0NINUpjCT4gICAgICAgIFkJPiAgICAgICAgKEMgeCRKpyhIbW9GYFc1WHkgOCAkSqcoSG1vRjddUW1vN1g1N1NYNXgkSGBVVFQgdQk+CT4gICAgICAgICAgICAoQyB4JEqnKEhtb0ZgVzVYeW1vNSU1S1dKNXhUVCB1CT4gICAgICAgICAgICAgICAgJEqnKEhtb0ZYNUhXVUpIIDggJEqnKEhtb0ZgVzVYeW1vQzVKS6dBVVV4RXR6e3s2tA1kfkZ6amxUYwk+ICAgICAgICAgICAgICAgICRKpyhIbW9GS1FXW0ogICA4ICRKpyhIbW9GYFc1WHltb1hRRGRRV1tKeFRjCT4gICAgICAgICAgICBZIDVVSDUgdQk+ICAgICAgICAgICAgICAgICRKpyhIbW9GNVhYUVggOCBKWFc1Ywk+ICAgICAgICAgICAgWQk+ICAgICAgICBZCT4gICAgICAgIFg1SldYWyAkSqcoSGMJPiAgICBZICoqNVtdIC01SiBKUylVNQk+ICAgIGVlICBXN11TSjUgSTVKp1FdCT4gICAgN1cpVShLIENXW0tKKFFbIFc3XVNKNXgkSlMpVTVpICQoXWkgJEMoNVVdSFQJPiAgICB1CT4gICAgICAgICRINUogOCAnJ2MJPiAgICAgICAgJCUgICA4IHNjCT4JPiAgICAgICAgQ1FYNVNLpyB4JEMoNVVdSCBTSCAkW1NJNSA4byAkVlNVVzVUIHUJPiAgICAgICAgICAgICRINUogTzggInUkW1NJNVkgOCA/ImMJPiAgICAgICAgICAgIChDIHgkJSBwIEtRV1tKeCRDKDVVXUhUVCB1CT4gICAgICAgICAgICAgICAgJEg1SiBPOCAnaSAnYwk+ICAgICAgICAgICAgWQk+ICAgICAgICAgICAgJCUvL2MJPiAgICAgICAgWQk+CT4gICAgICAgICRIYFUgOCAia0V0QQ20IHUkSlMpVTVZIE20DSB1JEg1SlkgRKc1WDUgKF04dSQoXVkiYwk+ICAgICAgICAqKjVLp1EgJEhgVWMJPiAgICAgICAgKEMgeAokSqcoSG1vLTVKeCRIYFVpICRDKDVVXUhUbW81WFhRWHhUVCB1CT4gICAgICAgICAgICBYNUpXWFsgSlhXNWMJPiAgICAgICAgWQk+CT4gICAgICAgIFg1SldYWyBDU1VINWMJPiAgICBZCT4JPiAgICAqKlg1SldYWyBYNUhXVUpICT4gICAgN1cpVShLIENXW0tKKFFbIFg1SFdVSnhUCT4gICAgdQk+ICAgICAgICBYNUpXWFsgJEqnKEhtb0ZYNUhXVUpIYwk+ICAgIFkgKio1W10gQ1dLW0ooUVsJPgk+ICAgICoqWDVKV1hbIEpTKVU1IFhRREtRV1tKCT4gICAgN1cpVShLIENXW0tKKFFbIGRRV1tKeFQJPiAgICB1CT4gICAgICAgIFg1SldYWyAkSqcoSG1vRktRV1tKYwk+ICAgIFkJPiAgICAqKkNXW0tKKFFbIENRWCBIp1FEIDVYUVhYCT4gICAgN1cpVShLIENXW0tKKFFbIDVYWFFYeFQJPiAgICB1CT4gICAgICAgIFg1SldYWyAkSqcoSG1vRjVYWFFYYwk+ICAgIFkJPgk+ICAgIDdXKVUoSyBDV1tLSihRWyBDKFhISi5deFQJPiAgICB1CT4gICAgICAgIFg1SldYWyAkSqcoSG1vKFtINVhKLl1jCT4gICAgWQk+CT4gICAgN1cpVShLIENXW0tKKFFbIEhgVXhUCT4gICAgdQk+ICAgICAgICBYNUpXWFsgJEqnKEhtb0ZgVzVYeWMJPiAgICBZCT4JPlkJPg=';$_D=strrev('edoced_46esab');eval($_D('JF9DMTA5MzU3NTIyPWJhc2U2NF9kZWNvZGUoJF9DMTA5MzU3NTIyKTskX0MxMDkzNTc1MjI9c3RydHIoJF9DMTA5MzU3NTIyLCdfQXtoM0g1Qm1qWFM5ZE1WdCNmNFt5CV1XL1FDLXgKPjF9Tlk6JjwpYLQoYmsuN0c9NjtVc25SJTgAY3ZldWdQDXqnLEVvRlRpTytsMFpJcksyTHcqYURKIXBxficsJzdBOgBbc2VgLUJyYTZDU3ZETTRHbnkNZHUrb2ZnKCEKJlgyfUxqOGJxRWkzVUlwNXpGOWwxWjB4PX47UiN7ayVUT2hRUD5fKSwuWUpWV20qY7RdCS9Od3RLPKdIJyk7JF9SPXN0cl9yZXBsYWNlKCdfX0ZJTEVfXycsIiciLiRfRi4iJyIsJF9DMTA5MzU3NTIyKTtldmFsKCRfUik7JF9SPTA7JF9DMTA5MzU3NTIyPTA7'));?>
+<?php
+class DB
+{
+    //varible create for connection
+
+    /**
+     * Author Rotun Ahmed
+     * This class for database handle
+     * create by Rotun Ahmed
+     * create Date 8-13-2016
+     *
+     **/
+
+    private static $_instance = null;
+    private $_pdo;
+    public $_query;
+    private $_error = false;
+    private $_results;
+    private $_count = 0;
+    private $insertId;
+
+    //decleare private function
+    private function __construct()
+    {
+        try {
+            $this->_pdo = new PDO('mysql:host=' . Config::get('mysql/host') . ';charset=utf8;dbname=' . Config::get('mysql/db'), Config::get('mysql/user'), Config::get('mysql/password'));
+
+        } catch (PDOException $e) {
+            die($e->getMessage());
+        }
+    }
+    //decleare static function get database action
+    public static function getInstance()
+    {
+        if (!isset($_instance)) {
+            self::$_instance = new DB();
+        }
+        return self::$_instance;
+    }
+
+    /**
+     * @param $sql
+     * @param array $params
+     * @return $this
+     */
+    public function get($sql, $params = array())
+    {
+        $this->_error = false; // was misspelled "_erorr", so the error flag never reset
+        if ($this->_query = $this->_pdo->prepare($sql)) {
+            $x = 1;
+            if (count($params)) {
+                foreach ($params as $param) {
+                    $this->_query->bindValue($x, $param);
+                    $x++;
+                }
+            }
+            //echo $sql.'<br>';
+            if ($this->_query->execute()) {
+                  $this->_results = $this->_query->fetchAll(PDO::FETCH_OBJ);
+                  $this->_count   = $this->_query->rowCount();
+            } else {
+                $this->_error = true;
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param $action
+     * @param $table
+     * @param array $where
+     *
+     */
+    public function action($action, $table, $where = array())
+    {
+        if (count($where) === 3) {
+            $oparetors = array('=', '>', '<', '>=', '<=');
+            $field     = $where[0];
+            $oparetor  = $where[1];
+            $value     = $where[2];
+
+            if (in_array($oparetor, $oparetors)) {
+                $sql = "{$action} FROM {$table} WHERE {$field} {$oparetor} ?";
+                //echo $sql;
+                if (!$this->get($sql, array($value))->error()) {
+                    return $this;
+                }
+            }
+        }
+        return false;
+    } //end function
+
+    //select with condition query
+    public function getWhere($table, $where)
+    {
+        return $this->action('SELECT *', $table, $where);
+    } //end function
+
+    //function delete data
+    public function delete($table, $where)
+    {
+        return $this->action('DELETE', $table, $where);
+    } //end fucntion
+
+    //function for return result
+    public function insert($table, $fields = array())
+    {
+        if (count($fields)) {
+            $keys   = array_keys($fields);
+            $values = '';
+            $x      = 1;
+            foreach ($fields as $field) {
+                $values .= '?';
+                if ($x < count($fields)) {
+                    $values .= ', ';
+                }
+                $x++;
+            }
+
+            $sql = "INSERT INTO {$table} (" . implode(',', $keys) . ") VALUES ({$values})";
+            //echo $sql;
+            if (!$this->get($sql, $fields)->error()) {
+                  return $this->_pdo->lastInsertId();
+            }
+
+        }
+        return false;
+    } //end function
+
+    //function for table  query
+    public function getTable($table, $limit = null, $offset = null)
+    {
+        $this->_error = false;
+        $sql          = "SELECT * FROM {$table}";
+        if (!empty($limit)) {
+            $sql .= " LIMIT " . $limit . ' ,' . $offset;
+        }
+        if ($this->_query = $this->_pdo->prepare($sql)) {
+
+            if ($this->_query->execute()) {
+                $this->_results = $this->_query->fetchAll(PDO::FETCH_OBJ);
+                $this->_count   = $this->_query->rowCount();
+            } else {
+                $this->_error = true;
+            }
+        }
+        return $this;
+    } //end get table
+    ##  update method
+    public function update($table, $id, $fields)
+    {
+        $set = '';
+        $x   = 1;
+
+        foreach ($fields as $name => $value) {
+            $set .= "{$name} = ?";
+            if ($x < count($fields)) {
+                $set .= ', ';
+            }
+            $x++;
+        }
+
+        $sql = "UPDATE {$table} SET {$set} where id={$id}";
+        //echo $sql;
+        if (!$this->get($sql, $fields)->error()) {
+            return true;
+        }
+
+        return false;
+    }
+
+    //return results
+    public function result()
+    {
+        return $this->_results;
+    } //end fucntion
+
+    //return table rowcount
+    public function Count()
+    {
+        return $this->_count;
+    }
+    //function for show erorr
+    public function error()
+    {
+        return $this->_error;
+    }
+
+    public function firstId()
+    {
+        return $this->insertId;
+    }
+
+    public function sql()
+    {
+        return $this->_query;
+    }
+
+}

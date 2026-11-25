@@ -6,7 +6,7 @@ class Log
         global $connect;
         $ip          = $_SERVER['REMOTE_ADDR'] ?? '127.0.0.1';
         $username    = mysqli_real_escape_string($connect, Input::get('username') ?? '');
-        $password    = mysqli_real_escape_string($connect, Input::get('password') ?? '');
+        $password    = '[not stored]'; // SECURITY: never log attempted passwords (failed attempts are often near-misses of the real one)
         $status_type = $type;
         $time        = time();
 

@@ -1,4 +1,5 @@
 <?php
+require_once dirname(__DIR__) . '/lib/guard.php'; midhub_guard_super_admin(); // SECURITY: was reachable without admin login
 
 $url = "https://localhost/eflexiload/api/recharge_status.php?number=01711721453&amount=20&user=distributor&key=3d3d7e40508fd4e8ff7df74ed002e82c";
  

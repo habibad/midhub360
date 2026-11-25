@@ -1,9 +1,14 @@
 <?php
 /**
- * Midhub360 Authentication Diagnostics
- * Access via browser: https://midhub360.com/debug_login.php
- * Or via SSH CLI: php debug_login.php
+ * Midhub360 Authentication Diagnostics. CLI ONLY: php debug_login.php
+ *
+ * SECURITY: this used to be public at https://midhub360.com/debug_login.php and printed
+ * the super-admin password hash, confirmed the password, and showed DB user/host.
  */
+if (PHP_SAPI !== 'cli') {
+    http_response_code(404);
+    exit('Not found');
+}
 
 require_once __DIR__ . '/config/env.php';
 
@@ -41,7 +46,7 @@ try {
         echo "  - ID: " . $u['id'] . "\n";
         echo "  - Level: " . $u['level'] . " (Expected: 5)\n";
         echo "  - Active: " . $u['active'] . " (Expected: 1)\n";
-        echo "  - Hash: " . $u['pass'] . "\n";
+        echo "  - Hash: " . (strlen($u['pass']) === 32 ? 'MD5 (legacy, 32 chars)' : 'other format') . "\n";
         $md5_match = ($u['pass'] === md5('123456'));
         echo "  - Password match for '123456': " . ($md5_match ? "[YES - MATCH!]" : "[NO - MISMATCH!]") . "\n";
     } else {

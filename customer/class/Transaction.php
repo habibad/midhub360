@@ -1,1 +1,298 @@
-<?php $_F=__FILE__;$_C109357522='PwB2PyU9JSlwKXBIOw1nZyBXRA1QZw1IVixFUClwKilwICAgICAgJTBNOyxIIGdWDVYsSCBqMFBIVixFUCANSEhFMFBWfQ07DVBIUTRJKXAgICAgICAqKXAgICAgICAgICAgICBEUVYwRFAgd1FnUTs7UURvbyxQakU0VFFnZyxFUG9vR1FWNCcwZ1FETFMnSWsgJ00NOw1QSFEnSVIpcCAgICAgIEspcClwICAgICAgJTBNOyxIIGdWDVYsSCBqMFBIVixFUCAlDURRUFZ9DTsNUEhRNEkpcCAgICAgICopcCAgICAgICAgICAgICQlDURRUFYgPiB3UWdROztRRG9vLFBqRTRUUWdnLEVQb29HUVY0JzBnUURMUydJayAnJQ1EUVBWJ0lSKXAgICAgICAgICAgICBEUVYwRFAgd1FnUTs7UURvbyxQakU0JCUNRFFQVmsgJ00NOw1QSFEnSVIpcCAgICAgIEspcClwICAgICAgJTBNOyxIIGdWDVYsSCBqMFBIVixFUCBTDSw7KDRJKXAgICAgICAqKXAgICAgICAgICAgICAkVkVTDShXRVYNOyA+ICcnUilwICAgICAgICAgICAgJFZFUw0oICAgICAgPiBZDVZRL1E7JVFEb29HVl00J2UnayAnUw1WUSdJUilwICAgICAgICAgICAgJDBnUURMUyAgICAgPiBUUWdnLEVQb29HUVY0JzBnUURMUydJUilwICAgICAgICAgICAgJGdiOyAgICAgICAgPiAiVCMxIzhXIFR5fjRNDTsNUEhRSSANZyBWRVMNKCAud0Z+IERRZ1E7O1FEIDIvI3cjICxTDVZRID4gJyRWRVMNKCcgMi8jdyMgMGdRRCxTID4gJDBnUURMUyJSKXAgICAgICAgICAgICAsaiA0WX1vb0dRVkxQZ1YNUEhRNEluAEdRVjQkZ2I7SW4AOEUwUFY0SSAAIGNJICopcCAgICAgICAgICAgICAgICAgIGpFRFENSD0gNFl9b29HUVZMUGdWDVBIUTRJbgBHUVY0JGdiO0luAERRZzA7VjRJIA1nICRWRVYNO0lvKXAgICAgICAgICAgICAgICAgICAgICAgICAkVkVTDShXRVYNOyBtPiAkVkVWDTtuAFZFUw0oNElSKXAgICAgICAgICAgICAgICAgICBRUFNqRURRDUg9UilwICAgICAgICAgICAgSyBRO2dRICopcCAgICAgICAgICAgICAgICAgICRWRVMNKFdFVg07IG0+IGNSKXAgICAgICAgICAgICBLKXAgICAgICAgICAgICBEUVYwRFAgJFZFUw0oV0VWDTtSKXAgICAgICBLKXApcCAgICAgIKc2NilwICAgICAgIDYgICAgICBqRUQgRFFnUTs7UUQgOw1NUTsgPClwICAgICAgIDanKXApcCAgICAgICUwTTssSCBnVg1WLEggajBQSFYsRVAgVkQNUGc0JGdRRGwsSFEsU2sgJEgwRERRUFZ5Z1FEayAkDV1FMFBWayAkViglUWsgJCVEUWpqLHhJKXAgICAgICAqKXAgICAgICAgICAgICAkJQ1EUVBWICAgICAgID4gd1FnUTs7UURvbyxQakU0JEgwRERRUFZ5Z1FEayAnJQ1EUVBWJ0lSKXAgICAgICAgICAgICAkODBnVkVdUURXKCVRID4gd1FnUTs7UURvb1YoJVE0JEgwRERRUFZ5Z1FESVIpcCAgICAgICAgICAgICxqNCQ4MGdWRV1RRFcoJVEgPj4gJ0RRZ1E7O1FEtCdJKilwICAgICAgICAgICAgICAgICAgJGcwTQ1TXSxQID4gd1FnUTs7UURvbyxQakU0JEgwRERRUFZ5Z1FEayAnJQ1EUVBWJ0lSIKenIGcwTSANU10sUClwICAgICAgICAgICAgS1E7Z1EsaiA0JDgwZ1ZFXVFEVyglUSA+PiAnRFFnUTs7UUQ8J0kgKilwICAgICAgICAgICAgICAgICAgJCUNRFFQVjy0ID4gd1FnUTs7UURvbyxQakU0JEgwRERRUFZ5Z1FEayAnJQ1EUVBWJ0lSIKenOw1NUTsgtClwICAgICAgICAgICAgSyBRO2dRLGogNCQ4MGdWRV1RRFcoJVEgPj4gJ0RRZ1E7O1FETydJICopcCAgICAgICAgICAgICAgICAgICQlDURRUFZPPCA+IHdRZ1E7O1FEb28sUGpFNCRIMEREUVBWeWdRRGsgJyUNRFFQVidJUiCnpyA7DU1ROyA8KXAgICAgICAgICAgICAgICAgICAkJQ1EUVBWT7QgPiB3UWdROztRRG9vLFBqRTQkJQ1EUVBWTzxrICclDURRUFYnSVIgp6c7DU1ROyC0KXAgICAgICAgICAgICBLIFE7Z1EsaiA0JDgwZ1ZFXVFEVyglUSA+PiAnRFFnUTs7UUR6J0kgKilwICAgICAgICAgICAgICAgICAgJCUNRFFQVnpPID4gd1FnUTs7UURvbyxQakU0JEgwRERRUFZ5Z1FEayAnJQ1EUVBWJ0lSIKenIDsNTVE7IE8pcCAgICAgICAgICAgICAgICAgICQlDURRUFZ6PCA+IHdRZ1E7O1FEb28sUGpFNCQlDURRUFZ6T2sgJyUNRFFQVidJUiCnpyA7DU1ROyA8KXAgICAgICAgICAgICAgICAgICAkJQ1EUVBWerQgPiB3UWdROztRRG9vLFBqRTQkJQ1EUVBWejxrICclDURRUFYnSVIgp6cgOw1NUTsgtClwICAgICAgICAgICAgSyBRO2dRLGogNCQ4MGdWRV1RRFcoJVEgPj4gJ0RRZ1E7O1FENSdJICopcCAgICAgICAgICAgICAgICAgICQlDURRUFY1eiA+IHdRZ1E7O1FEb28sUGpFNCRIMEREUVBWeWdRRGsgJyUNRFFQVidJUiCnpyA7DU1ROyB6KXAgICAgICAgICAgICAgICAgICAkJQ1EUVBWNU8gPiB3UWdROztRRG9vLFBqRTQkJQ1EUVBWNXprICclDURRUFYnSVIgp6c7DU1ROyBPKXAgICAgICAgICAgICAgICAgICAkJQ1EUVBWNTwgPiB3UWdROztRRG9vLFBqRTQkJQ1EUVBWNU9rICclDURRUFYnSVIgp6cgOw1NUTsgPClwICAgICAgICAgICAgICAgICAgJCUNRFFQVjW0ID4gd1FnUTs7UURvbyxQakU0JCUNRFFQVjU8ayAnJQ1EUVBWJ0lSIKenIDsNTVE7ILQpcCAgICAgICAgICAgIEspcCAgICAgICAgICAgICxqIDQkJQ1EUVBWIGE+ICc1J0kgKilwICAgICAgICAgICAgICAgICAgLGo0JDgwZ1ZFXVFEVyglUSA+PiAnRFFnUTs7UUS0J0kqKXAgICAgICAgICAgICAgICAgICAgICAgICBnUTtqb29EDVZRV0QNUGc0JGcwTQ1TXSxQayAkZ1FEbCxIUSxTayAkDV1FMFBWayAkViglUWsgJCVEUWpqLHhJUilwICAgICAgICAgICAgICAgICAgS1E7Z1EsaiA0JDgwZ1ZFXVFEVyglUSA+PiAnRFFnUTs7UUQ8J0kgKilwICAgICAgICAgICAgICAgICAgICAgICAgZ1E7am9vRA1WUVdEDVBnNCQlDURRUFY8tGsgJGdRRGwsSFEsU2sgJA1dRTBQVmsgJFYoJVFrICQlRFFqaix4SVIpcCAgICAgICAgICAgICAgICAgIEsgUTtnUSxqIDQkODBnVkVdUURXKCVRID4+ICdEUWdROztRRE8nSSAqKXAgICAgICAgICAgICAgICAgICAgICAgICBnUTtqb29EDVZRV0QNUGc0JCUNRFFQVk88ayAkZ1FEbCxIUSxTayAkDV1FMFBWayAkViglUWsgJCVEUWpqLHhJUilwICAgICAgICAgICAgICAgICAgICAgICAgZ1E7am9vRA1WUVdEDVBnNCQlDURRUFZPtGsgJGdRRGwsSFEsU2sgJA1dRTBQVmsgJFYoJVFrICQlRFFqaix4SVIpcCAgICAgICAgICAgICAgICAgIEsgUTtnUSxqIDQkODBnVkVdUURXKCVRID4+ICdEUWdROztRRHonSSAqKXAgICAgICAgICAgICAgICAgICAgICAgICBnUTtqb29EDVZRV0QNUGc0JCUNRFFQVnpPayAkZ1FEbCxIUSxTayAkDV1FMFBWayAkViglUWsgJCVEUWpqLHhJUilwICAgICAgICAgICAgICAgICAgICAgICAgZ1E7am9vRA1WUVdEDVBnNCQlDURRUFZ6PGsgJGdRRGwsSFEsU2sgJA1dRTBQVmsgJFYoJVFrICQlRFFqaix4SVIpcCAgICAgICAgICAgICAgICAgICAgICAgIGdRO2pvb0QNVlFXRA1QZzQkJQ1EUVBWerRrICRnUURsLEhRLFNrICQNXUUwUFZrICRWKCVRayAkJURRamoseElSKXAgICAgICAgICAgICAgICAgICBLIFE7Z1EsaiA0JDgwZ1ZFXVFEVyglUSA+PiAnRFFnUTs7UUQ1J0kgKilwICAgICAgICAgICAgICAgICAgICAgICAgZ1E7am9vRA1WUVdEDVBnNCQlDURRUFY1emsgJGdRRGwsSFEsU2sgJA1dRTBQVmsgJFYoJVFrICQlRFFqaix4SVIpcCAgICAgICAgICAgICAgICAgICAgICAgIGdRO2pvb0QNVlFXRA1QZzQkJQ1EUVBWNU9rICRnUURsLEhRLFNrICQNXUUwUFZrICRWKCVRayAkJURRamoseElSKXAgICAgICAgICAgICAgICAgICAgICAgICBnUTtqb29EDVZRV0QNUGc0JCUNRFFQVjU8ayAkZ1FEbCxIUSxTayAkDV1FMFBWayAkViglUWsgJCVEUWpqLHhJUilwICAgICAgICAgICAgICAgICAgICAgICAgZ1E7am9vRA1WUVdEDVBnNCQlDURRUFY1tGsgJGdRRGwsSFEsU2sgJA1dRTBQVmsgJFYoJVFrICQlRFFqaix4SVIpcCAgICAgICAgICAgICAgICAgIEspcCAgICAgICAgICAgIEspcCAgICAgIEspcClwICAgICAgJTBNOyxIIGdWDVYsSCBqMFBIVixFUCBEDVZRV0QNUGc0JDBnUURMU2sgJGdRRGwsSFEsU2sgJA1dRTBQVmsgJFYoJVFrICQlRFFqaix4SSlwICAgICAgKilwICAgICAgICAgICAgJF0NLFB3DVZRICAgICAgID4gJydSKXAgICAgICAgICAgICAkXQ0sUDhFXV0gICAgICAgPiAnJ1IpcCAgICAgICAgICAgICRdDSxQOD0NREdRICAgICA+ICcnUilwICAgICAgICAgICAgJA1ISEUwUFZ9DTsNUEhRID4gJydSKXAgICAgICAgICAgICAkRA1WUSAgICAgICAgICAgPiAnJ1IpcCAgICAgICAgICAgICRIRV1dICAgICAgICAgICA+ICcnUilwICAgICAgICAgICAgJEg9DURHUSAgICAgICAgID4gJydSKXAgICAgICAgICAgICAkZ2I7ICAgICAgICAgICAgPiAiVCMxIzhXIDYgLndGfiBEDVZROl1FUzA7USAyLyN3IyAwZ1FELFMgPiAnJDBnUURMUycgQXJZIGdRRGwsSFEgPickZ1FEbCxIUSxTJyBBclkgViglUSA+JyRWKCVRJyBBclkgJURRaix4ID4nJCVEUWpqLHgnIlIpcCAgICAgICAgICAgICR3UWcgICAgICAgICAgICA+IFl9b29HUVZMUGdWDVBIUTRJbgBHUVY0JGdiO0luAERRZzA7VjRJUilwICAgICAgICAgICAgakVEUQ1IPSA0JHdRZyANZyAkRA1WUTVJICopcCAgICAgICAgICAgICAgICAgICQlSEVTUSAgPiAkRA1WUTVuACVIRVNRUilwICAgICAgICAgICAgICAgICAgJEQNVlEgICA+ICREDVZRNW4ARA1WUVIpcCAgICAgICAgICAgICAgICAgICRIRV1dICAgPiAkRA1WUTVuAEhFXV1SKXAgICAgICAgICAgICAgICAgICAkSD0NREdRID4gJEQNVlE1bgBIPQ1ER1FSKXAgICAgICAgICAgICBLKXAgICAgICAgICAgICAkXQ0sUHcNVlEgICA+ICREDVZRIDYgJA1dRTBQVlIpcCAgICAgICAgICAgICRdDSxQOEVdXSAgID4gJA1dRTBQViA2ICRIRV1dIKcgNWNjUilwICAgICAgICAgICAgJF0NLFA4PQ1ER1EgPiAkDV1FMFBWIDYgJEg9DURHUSCnIDVjY1IpcClwICAgICAgICAgICAgJFZFVg07VFFQUyAgICAgID4gNCRdDSxQdw1WUSAKICRdDSxQOD0NREdRSSBuICRdDSxQOEVdXVIpcCAgICAgICAgICAgICQlRFF9DTsNUEhRICAgICA+IHdRZ1E7O1FEb28sUGpFNCQwZ1FETFNrICdNDTsNUEhRJ0lSKXAgICAgICAgICAgICAkDUhIRTBQVn0NOw1QSFEgPiAkJURRfQ07DVBIUSBuICRWRVYNO1RRUFNSKXApcCAgICAgICAgICAgICRTDVYNID4gKylwICAgICAgICAgICAgICAgICAgJzBnUUQsUycgICAgICAgICA+ACAkMGdRRExTaylwICAgICAgICAgICAgICAgICAgJ1NRZ0hEJyAgICAgICAgICA+ACAnJ2spcCAgICAgICAgICAgICAgICAgICdFO1NNDTsnICAgICAgICAgPgAgJCVEUX0NOw1QSFFrKXAgICAgICAgICAgICAgICAgICAnU1FNLFYnICAgICAgICAgID4AICRWRVYNO1RRUFNrKXAgICAgICAgICAgICAgICAgICAnSERRUyxWJyAgICAgICAgID4AICcnaylwICAgICAgICAgICAgICAgICAgJ2dRRGwsSFEnICAgICAgICA+ACAkZ1FEbCxIUSxTaylwICAgICAgICAgICAgICAgICAgJw1ISEUwUFZNDTsNUEhRJyA+ACAkDUhIRTBQVn0NOw1QSFFrKXAgICAgICAgICAgICAgICAgICAnViglUScgICAgICAgICAgID4AICd+LFAwZydrKXAgICAgICAgICAgICAgICAgICAnUw1WUScgICAgICAgICAgID4AIFkNVlEvUTslUURvb0dWXTQnZSdrICdTDVZRJ0lrKXAgICAgICAgICAgICAgICAgICAnVixdUScgICAgICAgICAgID4AIFkNVlEvUTslUURvb1YsXVFXRVMNKDRJaylwICAgICAgICAgICAgIVIpcCAgICAgICAgICAgICQsUGdRRFYgPiBZfW9vR1FWTFBnVg1QSFE0SW4ALFBnUURWNCdWRA1QZydrICRTDVYNSVIpcCAgICAgICAgICAgIHdRZ1E7O1FEb29NDTsNUEhReSVTDVZRNCQwZ1FETFNrICRWRVYNO1RRUFNJUilwICAgICAgSylwKXAgICAgICAlME07LEggZ1YNVixIIGowUEhWLEVQIEg9UUgJTFBWUURsDTs0JF0wXU1RRCA+ICcnSSlwICAgICAgKilwKXAgICAgICAgICAgICAkZ1E7UUhWfg14ID4gIlQjMSM4VyB+QXM0LFNJIA1nICxTayBIRTBQVjQ2SSANZyBIUFYgLndGfiBnUVBTajtReCwgMi8jdyMgJT1FUFEgPiAnJF0wXU1RRCciUilwICAgICAgICAgICAgakVEUQ1IPSA0WX1vb0dRVkxQZ1YNUEhRNEluAEdRVjQkZ1E7UUhWfg14SW4ARFFnMDtWNEkgDWcgJCxTSSopcCAgICAgICAgICAgICAgICAgICRdDXhMUyA+ICQsU24ALFNSKXAgICAgICAgICAgICAgICAgICAkSEVQICAgPiAkLFNuAEhQVlIpcCAgICAgICAgICAgIEspcCAgICAgICAgICAgICxqIDQkSEVQIAAgY0kgKilwICAgICAgICAgICAgICAgICAgJGdRO1FIVlcsXVEgPiAiVCMxIzhXIDYgLndGfiBnUVBTajtReCwgMi8jdyMgLFMgPiAkXQ14TFMiUilwICAgICAgICAgICAgICAgICAgakVEUQ1IPSA0WX1vb0dRVkxQZ1YNUEhRNEluAEdRVjQkZ1E7UUhWVyxdUUluAERRZzA7VjRJIA1nICRWLF1RNUkgKilwICAgICAgICAgICAgICAgICAgICAgICAgJFYsXVFTDVZRID4gJFYsXVE1bgBnME1dLFZWUVM6Uw1WUVIpcCAgICAgICAgICAgICAgICAgIEspcCAgICAgICAgICAgICAgICAgICREUWIwUWdWOlMNVlEgICAgPiBZDVZRL1E7JVFEb29HVl00ZWsgJ1YsXVEnSVIpcClwICAgICAgICAgICAgICAgICAgJA0gICAgPiBnVkRWRVYsXVE0JERRYjBRZ1Y6Uw1WUUlSKXAgICAgICAgICAgICAgICAgICAkTSAgICA+IGdWRFZFVixdUTQkVixdUVMNVlFJUilwICAgICAgICAgICAgICAgICAgJFYsXVEgPiAkDSBuICRNUilwKXAgICAgICAgICAgICAgICAgICAkUw1WUVksamogICAgPiAkDSBuICRNUilwICAgICAgICAgICAgICAgICAgJGowOztZDShnICAgID4gajtFRUQ0JFMNVlFZLGpqIKcgNGVjIDYgZWMgNiB6PElJUilwICAgICAgICAgICAgICAgICAgJGowOzsvRTBEZyAgID4gajtFRUQ0NCRTDVZRWSxqaiBuIDQkajA7O1kNKGcgNiBlYyA2IGVjIDYgejxJSSCnIDRlYyA2IGVjSUlSKXAgICAgICAgICAgICAgICAgICAkajA7O34sUDBWUWcgPiBqO0VFRDQ0JFMNVlFZLGpqIG4gNCRqMDs7WQ0oZyA2IGVjIDYgZWMgNiB6PEkgbiA0JGowOzsvRTBEZyA2IGVjIDYgZWNJSSCnIGVjSVIpcCAgICAgICAgICAgICAgICAgICRqMDs7VFFIICAgICA+ICRWLF1RUilwICAgICAgICAgICAgICAgICAgRFFWMERQICRqMDs7VFFIUilwICAgICAgICAgICAgSyBRO2dRICopcCAgICAgICAgICAgICAgICAgIERRVjBEUCBjUilwICAgICAgICAgICAgSylwICAgICAgSylwKXAgICAgICAlME07LEggZ1YNVixIIGowUEhWLEVQIGdRUFMuO1F4LDQkUw1WDSA+ICshSSlwICAgICAgKilwICAgICAgICAgICAgJCxQZ1FEViA+IFl9b29HUVZMUGdWDVBIUTRJbgAsUGdRRFY0J2dRUFNqO1F4LCdrICRTDVYNSVIpcCAgICAgICAgICAgIERRVjBEUCAkLFBnUURWID8gVkQwUSBvIGoNO2dRUilwICAgICAgSylwICAgJTBNOyxIIGdWDVYsSCBqMFBIVixFUCBNLDs7NCRTDVYNID4gKyFJKXAgICAgICAqKXAgICAgICAgICAgICAkLFBnUURWID4gWX1vb0dRVkxQZ1YNUEhRNEluACxQZ1FEVjQnTSw7OzpEUWInayAkUw1WDUlSKXAgICAgICAgICAgICBEUVYwRFAgJCxQZ1FEViA/IFZEMFEgbyBqDTtnUVIpcCAgICAgIEspcHQgIClwdCAgKXAgICAgICCnpyBNDVAJIFZEDVBnIEQNVlEpcCAgICAgICUwTTssSCBnVg1WLEggajBQSFYsRVAgTQ1QCVdEDVBndw1WUTQkXUVTMDtRTFNrICQwZ1FETFNrICRNDVAJTFNrICQNXUUwUFZJKXAgICAgICAqKXAgICAgICAgICAgICAkXQ0sUHcNVlEgICAgICAgPiAnJ1IpcCAgICAgICAgICAgICRdDSxQOEVdXSAgICAgICA+ICcnUilwICAgICAgICAgICAgJF0NLFA4PQ1ER1EgICAgID4gJydSKXAgICAgICAgICAgICAkDUhIRTBQVn0NOw1QSFEgPiAnJ1IpcCAgICAgICAgICAgICREDVZRICAgICAgICAgICA+ICcnUilwICAgICAgICAgICAgJEhFXV0gICAgICAgICAgID4gJydSKXAgICAgICAgICAgICAkSD0NREdRICAgICAgICAgPiAnJ1IpcCAgICAgICAgICAgICRnYjsgICAgICAgICAgICA+ICJUIzEjOFcgNiAud0Z+IEQNVlE6XUVTMDtRIDIvI3cjIDBnUUQsUyA+ICckMGdRRExTJyBBclkgZ1FEbCxIUSA+JyRdRVMwO1FMUycgQXJZICVIRVNRID4nJE0NUAlMUyciUilwICAgICAgICAgICAgJHdRZyAgICAgICAgICAgID4gWX1vb0dRVkxQZ1YNUEhRNEluAEdRVjQkZ2I7SW4ARFFnMDtWNElSKXAgICAgICAgICAgICBqRURRDUg9IDQkd1FnIA1nICREDVZRNUkgKilwICAgICAgICAgICAgICAgICAgJCVIRVNRICA+ICREDVZRNW4AJUhFU1FSKXAgICAgICAgICAgICAgICAgICAkRA1WUSAgID4gJEQNVlE1bgBEDVZRUilwICAgICAgICAgICAgICAgICAgJEhFXV0gICA+ICREDVZRNW4ASEVdXVIpcCAgICAgICAgICAgICAgICAgICRIPQ1ER1EgPiAkRA1WUTVuAEg9DURHUVIpcCAgICAgICAgICAgIEspcCAgICAgICAgICAgICRdDSxQdw1WUSAgID4gJEQNVlEgNiAkDV1FMFBWUilwICAgICAgICAgICAgJF0NLFA4RV1dICAgPiAkDV1FMFBWIDYgJEhFXV0gpyA1Y2NSKXAgICAgICAgICAgICAkXQ0sUDg9DURHUSA+ICQNXUUwUFYgNiAkSD0NREdRIKcgNWNjUilwKXAgICAgICAgICAgICAkVkVWDTtUUVBTICAgICAgPiA0JF0NLFB3DVZRIAogJF0NLFA4PQ1ER1FJIG4gJF0NLFA4RV1dUilwICAgICAgICAgICAgJCVEUX0NOw1QSFEgICAgID4gd1FnUTs7UURvbyxQakU0JDBnUURMU2sgJ00NOw1QSFEnSVIpcCAgICAgICAgICAgICQNSEhFMFBWfQ07DVBIUSA+ICQlRFF9DTsNUEhRIG4gJFZFVg07VFFQU1IpcClwICAgICAgICAgICAgJFMNVg0gPiArKXAgICAgICAgICAgICAgICAgICAnMGdRRCxTJyAgICAgICAgID4AICQwZ1FETFNrKXAgICAgICAgICAgICAgICAgICAnU1FnSEQnICAgICAgICAgID4AICcnaylwICAgICAgICAgICAgICAgICAgJ0U7U00NOycgICAgICAgICA+ACAkJURRfQ07DVBIUWspcCAgICAgICAgICAgICAgICAgICdTUU0sVicgICAgICAgICAgPgAgJFZFVg07VFFQU2spcCAgICAgICAgICAgICAgICAgICdIRFFTLFYnICAgICAgICAgPgAgJydrKXAgICAgICAgICAgICAgICAgICAnZ1FEbCxIUScgICAgICAgID4AICRdRVMwO1FMU2spcCAgICAgICAgICAgICAgICAgICcNSEhFMFBWTQ07DVBIUScgPgAgJA1ISEUwUFZ9DTsNUEhRaylwICAgICAgICAgICAgICAgICAgJ1YoJVEnICAgICAgICAgICA+ACAnfixQMGcnaylwICAgICAgICAgICAgICAgICAgJ1MNVlEnICAgICAgICAgICA+ACBZDVZRL1E7JVFEb29HVl00J2UnayAnUw1WUSdJaylwICAgICAgICAgICAgICAgICAgJ1YsXVEnICAgICAgICAgICA+ACBZDVZRL1E7JVFEb29WLF1RV0VTDSg0SWspcCAgICAgICAgICAgICFSKXAgICAgICAgICAgICAkLFBnUURWID4gWX1vb0dRVkxQZ1YNUEhRNEluACxQZ1FEVjQnVkQNUGcnayAkUw1WDUlSKXAgICAgICAgICAgICB3UWdROztRRG9vTQ07DVBIUXklUw1WUTQkMGdRRExTayAkVkVWDTtUUVBTSVIpcCAgICAgIEspcClwICAgICAgp6cgTQ1QCSBWRA1QZyBEDVZRIFMNVg0pcCAgICAgICUwTTssSCBnVg1WLEggajBQSFYsRVAgVkQNUGd9DVAJNCRdRVMwO1FMU2sgJDBnUURMU2sgJE0NUAlMU2sgJA1dRTBQVkkpcCAgICAgICopcCAgICAgICAgICAgICQlDURRUFYgICAgICAgPiB3UWdROztRRG9vLFBqRTQkMGdRRExTayAnJQ1EUVBWJ0lSKXAgICAgICAgICAgICAkODBnVkVdUURXKCVRID4gd1FnUTs7UURvb1YoJVE0JDBnUURMU0lSKXAgICAgICAgICAgICAsajQkODBnVkVdUURXKCVRID4+ICdEUWdROztRRLQnSSopcCAgICAgICAgICAgICAgICAgICRnME0NU10sUCA+IHdRZ1E7O1FEb28sUGpFNCQwZ1FETFNrICclDURRUFYnSVIgp6cgZzBNIA1TXSxQKXAgICAgICAgICAgICBLUTtnUSxqIDQkODBnVkVdUURXKCVRID4+ICdEUWdROztRRDwnSSAqKXAgICAgICAgICAgICAgICAgICAkJQ1EUVBWPLQgPiB3UWdROztRRG9vLFBqRTQkMGdRRExTayAnJQ1EUVBWJ0lSIKenOw1NUTsgtClwICAgICAgICAgICAgSyBRO2dRLGogNCQ4MGdWRV1RRFcoJVEgPj4gJ0RRZ1E7O1FETydJICopcCAgICAgICAgICAgICAgICAgICQlDURRUFZPPCA+IHdRZ1E7O1FEb28sUGpFNCQwZ1FETFNrICclDURRUFYnSVIgp6cgOw1NUTsgPClwICAgICAgICAgICAgICAgICAgJCUNRFFQVk+0ID4gd1FnUTs7UURvbyxQakU0JCUNRFFQVk88ayAnJQ1EUVBWJ0lSIKenOw1NUTsgtClwICAgICAgICAgICAgSyBRO2dRLGogNCQ4MGdWRV1RRFcoJVEgPj4gJ0RRZ1E7O1FEeidJICopcCAgICAgICAgICAgICAgICAgICQlDURRUFZ6TyA+IHdRZ1E7O1FEb28sUGpFNCQwZ1FETFNrICclDURRUFYnSVIgp6cgOw1NUTsgTylwICAgICAgICAgICAgICAgICAgJCUNRFFQVno8ID4gd1FnUTs7UURvbyxQakU0JCUNRFFQVnpPayAnJQ1EUVBWJ0lSIKenIDsNTVE7IDwpcCAgICAgICAgICAgICAgICAgICQlDURRUFZ6tCA+IHdRZ1E7O1FEb28sUGpFNCQlDURRUFZ6PGsgJyUNRFFQVidJUiCnpyA7DU1ROyC0KXAgICAgICAgICAgICBLIFE7Z1EsaiA0JDgwZ1ZFXVFEVyglUSA+PiAnRFFnUTs7UUQ1J0kgKilwICAgICAgICAgICAgICAgICAgJCUNRFFQVjV6ID4gd1FnUTs7UURvbyxQakU0JDBnUURMU2sgJyUNRFFQVidJUiCnpyA7DU1ROyB6KXAgICAgICAgICAgICAgICAgICAkJQ1EUVBWNU8gPiB3UWdROztRRG9vLFBqRTQkJQ1EUVBWNXprICclDURRUFYnSVIgp6c7DU1ROyBPKXAgICAgICAgICAgICAgICAgICAkJQ1EUVBWNTwgPiB3UWdROztRRG9vLFBqRTQkJQ1EUVBWNU9rICclDURRUFYnSVIgp6cgOw1NUTsgPClwICAgICAgICAgICAgICAgICAgJCUNRFFQVjW0ID4gd1FnUTs7UURvbyxQakU0JCUNRFFQVjU8ayAnJQ1EUVBWJ0lSIKenIDsNTVE7ILQpcCAgICAgICAgICAgIEspcCAgICAgICAgICAgICxqIDQkJQ1EUVBWIGE+ICc1J0kgKilwICAgICAgICAgICAgICAgICAgLGo0JDgwZ1ZFXVFEVyglUSA+PiAnRFFnUTs7UUS0J0kqKXAgICAgICAgICAgICAgICAgICAgICAgICBnUTtqb29NDVAJV0QNUGd3DVZRNCRdRVMwO1FMU2sgJDBnUURMU2sgJE0NUAlMU2sgJA1dRTBQVklSKXAgICAgICAgICAgICAgICAgICBLUTtnUSxqIDQkODBnVkVdUURXKCVRID4+ICdEUWdROztRRDwnSSAqKXAgICAgICAgICAgICAgICAgICAgICAgICBnUTtqb29NDVAJV0QNUGd3DVZRNCRdRVMwO1FMU2sgJDBnUURMU2sgJE0NUAlMU2sgJA1dRTBQVklSKXAgICAgICAgICAgICAgICAgICBLIFE7Z1EsaiA0JDgwZ1ZFXVFEVyglUSA+PiAnRFFnUTs7UURPJ0kgKilwICAgICAgICAgICAgICAgICAgICAgICAgZ1E7am9vTQ1QCVdEDVBndw1WUTQkXUVTMDtRTFNrICQwZ1FETFNrICRNDVAJTFNrICQNXUUwUFZJUilwICAgICAgICAgICAgICAgICAgICAgICAgZ1E7am9vTQ1QCVdEDVBndw1WUTQkXUVTMDtRTFNrICQwZ1FETFNrICRNDVAJTFNrICQNXUUwUFZJUilwICAgICAgICAgICAgICAgICAgSyBRO2dRLGogNCQ4MGdWRV1RRFcoJVEgPj4gJ0RRZ1E7O1FEeidJICopcCAgICAgICAgICAgICAgICAgICAgICAgIGdRO2pvb00NUAlXRA1QZ3cNVlE0JF1FUzA7UUxTayAkMGdRRExTayAkTQ1QCUxTayAkDV1FMFBWSVIpcCAgICAgICAgICAgICAgICAgICAgICAgIGdRO2pvb00NUAlXRA1QZ3cNVlE0JF1FUzA7UUxTayAkMGdRRExTayAkTQ1QCUxTayAkDV1FMFBWSVIpcCAgICAgICAgICAgICAgICAgICAgICAgIGdRO2pvb00NUAlXRA1QZ3cNVlE0JF1FUzA7UUxTayAkMGdRRExTayAkTQ1QCUxTayAkDV1FMFBWSVIpcCAgICAgICAgICAgICAgICAgIEsgUTtnUSxqIDQkODBnVkVdUURXKCVRID4+ICdEUWdROztRRDUnSSAqKXAgICAgICAgICAgICAgICAgICAgICAgICBnUTtqb29NDVAJV0QNUGd3DVZRNCRdRVMwO1FMU2sgJDBnUURMU2sgJE0NUAlMU2sgJA1dRTBQVklSKXAgICAgICAgICAgICAgICAgICAgICAgICBnUTtqb29NDVAJV0QNUGd3DVZRNCRdRVMwO1FMU2sgJDBnUURMU2sgJE0NUAlMU2sgJA1dRTBQVklSKXAgICAgICAgICAgICAgICAgICAgICAgICBnUTtqb29NDVAJV0QNUGd3DVZRNCRdRVMwO1FMU2sgJDBnUURMU2sgJE0NUAlMU2sgJA1dRTBQVklSKXAgICAgICAgICAgICAgICAgICAgICAgICBnUTtqb29NDVAJV0QNUGd3DVZRNCRdRVMwO1FMU2sgJDBnUURMU2sgJE0NUAlMU2sgJA1dRTBQVklSKXAgICAgICAgICAgICAgICAgICBLKXAgICAgICAgICAgICBLKXAgICAgICBLKXApcCAgICAgICUwTTssSCBnVg1WLEggajBQSFYsRVAgVkUlMVFNUTs0JDBnUURMU2sgJA1dRTBQVkkpcCAgICAgICopcCAgICAgICAgICAgICQlDURRUFYgICAgICAgPiB3UWdROztRRG9vLFBqRTQkMGdRRExTayAnJQ1EUVBWJ0lSKXAgICAgICAgICAgICAkODBnVkVdUURXKCVRID4gd1FnUTs7UURvb1YoJVE0JDBnUURMU0lSKXAgICAgICAgICAgICAsajQkODBnVkVdUURXKCVRID4+ICdEUWdROztRRLQnSSopcCAgICAgICAgICAgICAgICAgICRnME0NU10sUCA+IHdRZ1E7O1FEb28sUGpFNCQwZ1FETFNrICclDURRUFYnSVIgp6cgZzBNIA1TXSxQKXAgICAgICAgICAgICAgICAgICAkTQ07DVBIUVQwTUFTXSxQID4gd1FnUTs7UURvbyxQakU0JGcwTQ1TXSxQayAnTQ07DVBIUSdJUilwICAgICAgICAgICAgICAgICAgLGo0JA1dRTBQViAAICRNDTsNUEhRVDBNQVNdLFBJKiBEUVYwRFAgag07Z1FSS1E7Z1EqRFFWMERQIFZEMFFSSylwICAgICAgICAgICAgS1E7Z1EsaiA0JDgwZ1ZFXVFEVyglUSA+PiAnRFFnUTs7UUQ8J0kgKilwICAgICAgICAgICAgICAgICAgJCUNRFFQVjy0ID4gd1FnUTs7UURvbyxQakU0JDBnUURMU2sgJyUNRFFQVidJUiCnpzsNTVE7ILQpcCAgICAgICAgICAgICAgICAgICRNDTsNUEhRJQ1EUVBWPLQgPiB3UWdROztRRG9vLFBqRTQkJQ1EUVBWPLRrICdNDTsNUEhRJ0lSKXAgICAgICAgICAgICAgICAgICAsajQkDV1FMFBWIAAgJE0NOw1QSFElDURRUFY8tEkqIERRVjBEUCBqDTtnUVJLUTtnUSpEUVYwRFAgVkQwUVJLKXAgICAgICAgICAgICBLIFE7Z1EsaiA0JDgwZ1ZFXVFEVyglUSA+PiAnRFFnUTs7UURPJ0kgKilwICAgICAgICAgICAgICAgICAgJCUNRFFQVk88ID4gd1FnUTs7UURvbyxQakU0JDBnUURMU2sgJyUNRFFQVidJUiCnpyA7DU1ROyA8KXApcCAgICAgICAgICAgICAgICAgICRNDTsNUEhRJQ1EUVBWTzwgPiB3UWdROztRRG9vLFBqRTQkJQ1EUVBWTzxrICdNDTsNUEhRJ0lSKXAgICAgICAgICAgICAgICAgICCnpyxqNCAkTQ07DVBIUSUNRFFQVk88IHYgJA1dRTBQVkkqIERRVjBEUCBqDTtnUVJLUTtnUSpEUVYwRFAgVkQwUVJLKXAgICAgICAgICAgICAgICAgICAkJQ1EUVBWT7QgPiB3UWdROztRRG9vLFBqRTQkJQ1EUVBWTzxrICclDURRUFYnSVIgp6c7DU1ROyC0KXAgICAgICAgICAgICAgICAgICAkTQ07DVBIUSUNRFFQVk+0ID4gd1FnUTs7UURvbyxQakU0JCUNRFFQVk+0ayAnTQ07DVBIUSdJUilwICAgICAgICAgICAgICAgICAgLGo0ICQNXUUwUFYgACAkTQ07DVBIUSUNRFFQVk+0IHx8ICAkDV1FMFBWIAAgJE0NOw1QSFElDURRUFZPPCBJKiBEUVYwRFAgag07Z1FSS1E7Z1EqRFFWMERQIFZEMFFSSylwICAgICAgICAgICAgSyBRO2dRLGogNCQ4MGdWRV1RRFcoJVEgPj4gJ0RRZ1E7O1FEeidJICopcCAgICAgICAgICAgICAgICAgICQlDURRUFZ6TyA+IHdRZ1E7O1FEb28sUGpFNCQwZ1FETFNrICclDURRUFYnSVIgp6cgOw1NUTsgTylwKXAgICAgICAgICAgICAgICAgICAkTQ07DVBIUSUNRFFQVnpPID4gd1FnUTs7UURvbyxQakU0JCUNRFFQVnpPayAnTQ07DVBIUSdJUilwICAgICAgICAgICAgICAgICAgKXApcCAgICAgICAgICAgICAgICAgICQlDURRUFZ6PCA+IHdRZ1E7O1FEb28sUGpFNCQlDURRUFZ6T2sgJyUNRFFQVidJUiCnpyA7DU1ROyA8KXApcCAgICAgICAgICAgICAgICAgICRNDTsNUEhRJQ1EUVBWejwgPiB3UWdROztRRG9vLFBqRTQkJQ1EUVBWejxrICdNDTsNUEhRJ0lSKXAgICAgICAgICAgICAgICApcClwICAgICAgICAgICAgICAgICAgJCUNRFFQVnq0ID4gd1FnUTs7UURvbyxQakU0JCUNRFFQVno8ayAnJQ1EUVBWJ0lSIKenIDsNTVE7ILQpcClwICAgICAgICAgICAgICAgICAgJE0NOw1QSFElDURRUFZ6tCA+IHdRZ1E7O1FEb28sUGpFNCQlDURRUFZ6tGsgJ00NOw1QSFEnSVIpcCAgICAgICAgICAgICAgICAgICxqNCAkDV1FMFBWIAAgJE0NOw1QSFElDURRUFZ6tCB8fCAkDV1FMFBWIAAgJE0NOw1QSFElDURRUFZ6PCB8fCAkDV1FMFBWIAAgJE0NOw1QSFElDURRUFZ6T0kqIERRVjBEUCBqDTtnUVJLUTtnUSpEUVYwRFAgVkQwUVJLKXAgICAgICAgICAgICBLIFE7Z1EsaiA0JDgwZ1ZFXVFEVyglUSA+PiAnRFFnUTs7UUQ1J0kgKilwICAgICAgICAgICAgICAgICAgJCUNRFFQVjV6ID4gd1FnUTs7UURvbyxQakU0JDBnUURMU2sgJyUNRFFQVidJUiCnpyA7DU1ROyB6KXAgICAgICAgICAgICAgICAgICAkTQ07DVBIUSUNRFFQVjV6ID4gd1FnUTs7UURvbyxQakU0JCUNRFFQVjV6ayAnTQ07DVBIUSdJUilwICAgICAgICAgICAgICAgICAgJCUNRFFQVjVPID4gd1FnUTs7UURvbyxQakU0JCUNRFFQVjV6ayAnJQ1EUVBWJ0lSIKenOw1NUTsgTylwKXAgICAgICAgICAgICAgICAgICAkTQ07DVBIUSUNRFFQVjVPID4gd1FnUTs7UURvbyxQakU0JCUNRFFQVjVPayAnTQ07DVBIUSdJUilwICAgICAgICAgICAgICAgICAgKXApcCAgICAgICAgICAgICAgICAgICQlDURRUFY1PCA+IHdRZ1E7O1FEb28sUGpFNCQlDURRUFY1T2sgJyUNRFFQVidJUiCnpyA7DU1ROyA8KXApcCAgICAgICAgICAgICAgICAgICRNDTsNUEhRJQ1EUVBWNTwgPiB3UWdROztRRG9vLFBqRTQkJQ1EUVBWNTxrICdNDTsNUEhRJ0lSKXApcCAgICAgICAgICAgICAgICAgICQlDURRUFY1tCA+IHdRZ1E7O1FEb28sUGpFNCQlDURRUFY1PGsgJyUNRFFQVidJUiCnpyA7DU1ROyC0KXAgICAgICAgICAgICAgICAgICAkTQ07DVBIUSUNRFFQVjW0ID4gd1FnUTs7UURvbyxQakU0JCUNRFFQVjW0ayAnTQ07DVBIUSdJUilwICAgICAgICAgICAgICAgICAgLGo0ICQNXUUwUFYgACAkTQ07DVBIUSUNRFFQVjW0IHx8ICQNXUUwUFYgACAkTQ07DVBIUSUNRFFQVjU8IHx8ICQNXUUwUFYgACAkTQ07DVBIUSUNRFFQVjVPIHx8ICQNXUUwUFYgACAkTQ07DVBIUSUNRFFQVjV6SSogRFFWMERQIGoNO2dRUktRO2dRKkRRVjBEUCBWRDBRUkspcCAgICAgICAgICAgIEspcCAgICAgIEspcEspcA=';$_D=strrev('edoced_46esab');eval($_D('JF9DMTA5MzU3NTIyPWJhc2U2NF9kZWNvZGUoJF9DMTA5MzU3NTIyKTskX0MxMDkzNTc1MjI9c3RydHIoJF9DMTA5MzU3NTIyLCdUQUshOmsyYS5CDT1vKk9YMSUmdmxnUwlgSF0tfSM1TTNbaSkrUQAKVkRDZThGMD5obVVHeTx0SkxOO19ZtDdqL1p+c0VidzZQekljcHVSZldyeDRkp3F7LCg5bicsJ1NBfV1fLFchRlphaDp7M7RMcGA8dnNka1BjbX5CRTFiOTdHDVtlPit0clY2Q091PWouUWdVNAkASadsSkQ1JmZII01Yb3FSKm4yKTAKSzslVE54KHcvejhpeVktJyk7JF9SPXN0cl9yZXBsYWNlKCdfX0ZJTEVfXycsIiciLiRfRi4iJyIsJF9DMTA5MzU3NTIyKTtldmFsKCRfUik7JF9SPTA7JF9DMTA5MzU3NTIyPTA7'));?>
+<?php
+
+class Transaction
+{
+      public static function accountBalance()
+      {
+            return Reseller::info(Session::get('userId'), 'balance');
+      }
+
+      public static function parentBalance()
+      {
+            $parent = Reseller::info(Session::get('userId'), 'parent');
+            return Reseller::info($parent, 'balance');
+      }
+
+      public static function daily()
+      {
+            $todayTotal = '';
+            $today      = DateHelper::gtm('6', 'date');
+            $userId     = Session::get('userId');
+            $sql        = "SELECT SUM(balance) as today FROM reseller WHERE idate = '$today' WHERE userid = $userId";
+            if (DB::getInstance()->get($sql)->Count() > 0) {
+                  foreach (DB::getInstance()->get($sql)->result() as $total):
+                        $todayTotal .= $total->today();
+                  endforeach;
+            } else {
+                  $todayTotal .= 0;
+            }
+            return $todayTotal;
+      }
+
+      /**
+       *      for reseller label 4
+       */
+
+      public static function trans($serviceid, $currentUser, $amount, $type, $preffix)
+      {
+            $parent       = Reseller::info($currentUser, 'parent');
+            $CustomerType = Reseller::type($currentUser);
+            if($CustomerType == 'reseller5'){
+                  $subadmin = Reseller::info($currentUser, 'parent'); // sub admin
+            }elseif ($CustomerType == 'reseller4') {
+                  $parent45 = Reseller::info($currentUser, 'parent'); //label 5
+            } elseif ($CustomerType == 'reseller3') {
+                  $parent34 = Reseller::info($currentUser, 'parent'); // label 4
+                  $parent35 = Reseller::info($parent34, 'parent'); //label 5
+            } elseif ($CustomerType == 'reseller2') {
+                  $parent23 = Reseller::info($currentUser, 'parent'); // label 3
+                  $parent24 = Reseller::info($parent23, 'parent'); // label 4
+                  $parent25 = Reseller::info($parent24, 'parent'); // label 5
+            } elseif ($CustomerType == 'reseller1') {
+                  $parent12 = Reseller::info($currentUser, 'parent'); // label 2
+                  $parent13 = Reseller::info($parent12, 'parent'); //label 3
+                  $parent14 = Reseller::info($parent13, 'parent'); // label 4
+                  $parent15 = Reseller::info($parent14, 'parent'); // label 5
+            }
+            if ($parent != '1') {
+                  if($CustomerType == 'reseller5'){
+                        self::rateTrans($subadmin, $serviceid, $amount, $type, $preffix);
+                  }elseif ($CustomerType == 'reseller4') {
+                        self::rateTrans($parent45, $serviceid, $amount, $type, $preffix);
+                  } elseif ($CustomerType == 'reseller3') {
+                        self::rateTrans($parent34, $serviceid, $amount, $type, $preffix);
+                        self::rateTrans($parent35, $serviceid, $amount, $type, $preffix);
+                  } elseif ($CustomerType == 'reseller2') {
+                        self::rateTrans($parent23, $serviceid, $amount, $type, $preffix);
+                        self::rateTrans($parent24, $serviceid, $amount, $type, $preffix);
+                        self::rateTrans($parent25, $serviceid, $amount, $type, $preffix);
+                  } elseif ($CustomerType == 'reseller1') {
+                        self::rateTrans($parent12, $serviceid, $amount, $type, $preffix);
+                        self::rateTrans($parent13, $serviceid, $amount, $type, $preffix);
+                        self::rateTrans($parent14, $serviceid, $amount, $type, $preffix);
+                        self::rateTrans($parent15, $serviceid, $amount, $type, $preffix);
+                  }
+            }
+      }
+
+      public static function rateTrans($userId, $serviceid, $amount, $type, $preffix)
+      {
+            $mainRate       = '';
+            $mainComm       = '';
+            $mainCharge     = '';
+            $accountBalance = '';
+            $rate           = '';
+            $comm           = '';
+            $charge         = '';
+            $sql            = "SELECT * FROM rate_module WHERE userid = '$userId' AND service ='$serviceid' AND type ='$type' AND prefix ='$preffix'";
+            $Res            = DB::getInstance()->get($sql)->result();
+            foreach ($Res as $rate1) {
+                  $pcode  = $rate1->pcode;
+                  $rate   = $rate1->rate;
+                  $comm   = $rate1->comm;
+                  $charge = $rate1->charge;
+            }
+            $mainRate   = $rate * $amount;
+            $mainComm   = $amount * $comm / 100;
+            $mainCharge = $amount * $charge / 100;
+
+            $totalSend      = ($mainRate + $mainCharge) - $mainComm;
+            $preBalance     = Reseller::info($userId, 'balance');
+            $accountBalance = $preBalance - $totalSend;
+
+            $data = [
+                  'userid'         => $userId,
+                  'descr'          => '',
+                  'oldbal'         => $preBalance,
+                  'debit'          => $totalSend,
+                  'credit'         => '',
+                  'service'        => $serviceid,
+                  'accountbalance' => $accountBalance,
+                  'type'           => 'Minus',
+                  'date'           => DateHelper::gtm('6', 'date'),
+                  'time'           => DateHelper::timeToday(),
+            ];
+            $insert = DB::getInstance()->insert('trans', $data);
+            Reseller::balanceUpdate($userId, $totalSend);
+      }
+
+      public static function checkInterval($mumber = '')
+      {
+
+            $selectMax = "SELECT MAX(id) as id, count(*) as cnt FROM sendflexi WHERE phone = '$mumber'";
+            foreach (DB::getInstance()->get($selectMax)->result() as $id){
+                  $maxId = $id->id;
+                  $con   = $id->cnt;
+            }
+            if ($con > 0) {
+                  $selectTime = "SELECT * FROM sendflexi WHERE id = $maxId";
+                  foreach (DB::getInstance()->get($selectTime)->result() as $time1) {
+                        $timedate = $time1->submitted_date;
+                  }
+                  $request_date    = DateHelper::gtm(6, 'time');
+
+                  $a    = strtotime($request_date);
+                  $b    = strtotime($timedate);
+                  $time = $a - $b;
+
+                  $dateDiff    = $a - $b;
+                  $fullDays    = floor($dateDiff / (60 * 60 * 24));
+                  $fullHours   = floor(($dateDiff - ($fullDays * 60 * 60 * 24)) / (60 * 60));
+                  $fullMinutes = floor(($dateDiff - ($fullDays * 60 * 60 * 24) - ($fullHours * 60 * 60)) / 60);
+                  $fullSec     = $time;
+                  return $fullSec;
+            } else {
+                  return 0;
+            }
+      }
+
+      public static function sendFlexi($data = [])
+      {
+            $insert = DB::getInstance()->insert('sendflexi', $data);
+            return $insert ? true : false;
+      }
+   public static function bill($data = [])
+      {
+            $insert = DB::getInstance()->insert('bill_req', $data);
+            return $insert ? true : false;
+      }
+	  
+	  
+      // bank trans rate
+      public static function bankTransRate($moduleId, $userId, $bankId, $amount)
+      {
+            $mainRate       = '';
+            $mainComm       = '';
+            $mainCharge     = '';
+            $accountBalance = '';
+            $rate           = '';
+            $comm           = '';
+            $charge         = '';
+            $sql            = "SELECT * FROM rate_module WHERE userid = '$userId' AND service ='$moduleId' AND pcode ='$bankId'";
+            $Res            = DB::getInstance()->get($sql)->result();
+            foreach ($Res as $rate1) {
+                  $pcode  = $rate1->pcode;
+                  $rate   = $rate1->rate;
+                  $comm   = $rate1->comm;
+                  $charge = $rate1->charge;
+            }
+            $mainRate   = $rate * $amount;
+            $mainComm   = $amount * $comm / 100;
+            $mainCharge = $amount * $charge / 100;
+
+            $totalSend      = ($mainRate + $mainCharge) - $mainComm;
+            $preBalance     = Reseller::info($userId, 'balance');
+            $accountBalance = $preBalance - $totalSend;
+
+            $data = [
+                  'userid'         => $userId,
+                  'descr'          => '',
+                  'oldbal'         => $preBalance,
+                  'debit'          => $totalSend,
+                  'credit'         => '',
+                  'service'        => $moduleId,
+                  'accountbalance' => $accountBalance,
+                  'type'           => 'Minus',
+                  'date'           => DateHelper::gtm('6', 'date'),
+                  'time'           => DateHelper::timeToday(),
+            ];
+            $insert = DB::getInstance()->insert('trans', $data);
+            Reseller::balanceUpdate($userId, $totalSend);
+      }
+
+      // bank trans rate data
+      public static function transBank($moduleId, $userId, $bankId, $amount)
+      {
+            $parent       = Reseller::info($userId, 'parent');
+            $CustomerType = Reseller::type($userId);
+            if($CustomerType == 'reseller5'){
+                  $subadmin = Reseller::info($userId, 'parent'); // sub admin
+            }elseif ($CustomerType == 'reseller4') {
+                  $parent45 = Reseller::info($userId, 'parent'); //label 5
+            } elseif ($CustomerType == 'reseller3') {
+                  $parent34 = Reseller::info($userId, 'parent'); // label 4
+                  $parent35 = Reseller::info($parent34, 'parent'); //label 5
+            } elseif ($CustomerType == 'reseller2') {
+                  $parent23 = Reseller::info($userId, 'parent'); // label 3
+                  $parent24 = Reseller::info($parent23, 'parent'); // label 4
+                  $parent25 = Reseller::info($parent24, 'parent'); // label 5
+            } elseif ($CustomerType == 'reseller1') {
+                  $parent12 = Reseller::info($userId, 'parent'); // label 2
+                  $parent13 = Reseller::info($parent12, 'parent'); //label 3
+                  $parent14 = Reseller::info($parent13, 'parent'); // label 4
+                  $parent15 = Reseller::info($parent14, 'parent'); // label 5
+            }
+            if ($parent != '1') {
+                  if($CustomerType == 'reseller5'){
+                        self::bankTransRate($moduleId, $userId, $bankId, $amount);
+                  }elseif ($CustomerType == 'reseller4') {
+                        self::bankTransRate($moduleId, $userId, $bankId, $amount);
+                  } elseif ($CustomerType == 'reseller3') {
+                        self::bankTransRate($moduleId, $userId, $bankId, $amount);
+                        self::bankTransRate($moduleId, $userId, $bankId, $amount);
+                  } elseif ($CustomerType == 'reseller2') {
+                        self::bankTransRate($moduleId, $userId, $bankId, $amount);
+                        self::bankTransRate($moduleId, $userId, $bankId, $amount);
+                        self::bankTransRate($moduleId, $userId, $bankId, $amount);
+                  } elseif ($CustomerType == 'reseller1') {
+                        self::bankTransRate($moduleId, $userId, $bankId, $amount);
+                        self::bankTransRate($moduleId, $userId, $bankId, $amount);
+                        self::bankTransRate($moduleId, $userId, $bankId, $amount);
+                        self::bankTransRate($moduleId, $userId, $bankId, $amount);
+                  }
+            }
+      }
+
+      public static function topLebel($userId, $amount)
+      {
+            $parent       = Reseller::info($userId, 'parent');
+            $CustomerType = Reseller::type($userId);
+            if($CustomerType == 'reseller5'){
+                  $subadmin = Reseller::info($userId, 'parent'); // sub admin
+                  $balanceSubAdmin = Reseller::info($subadmin, 'balance');
+                  if($amount > $balanceSubAdmin){ return false;}else{return true;}
+            }elseif ($CustomerType == 'reseller4') {
+                  $parent45 = Reseller::info($userId, 'parent'); //label 5
+                  $balanceparent45 = Reseller::info($parent45, 'balance');
+                  if($amount > $balanceparent45){ return false;}else{return true;}
+            } elseif ($CustomerType == 'reseller3') {
+                  $parent34 = Reseller::info($userId, 'parent'); // label 4
+
+                  $balanceparent34 = Reseller::info($parent34, 'balance');
+                  //if( $balanceparent34 < $amount){ return false;}else{return true;}
+                  $parent35 = Reseller::info($parent34, 'parent'); //label 5
+                  $balanceparent35 = Reseller::info($parent35, 'balance');
+                  if( $amount > $balanceparent35 ||  $amount > $balanceparent34 ){ return false;}else{return true;}
+            } elseif ($CustomerType == 'reseller2') {
+                  $parent23 = Reseller::info($userId, 'parent'); // label 3
+
+                  $balanceparent23 = Reseller::info($parent23, 'balance');
+                  
+
+                  $parent24 = Reseller::info($parent23, 'parent'); // label 4
+
+                  $balanceparent24 = Reseller::info($parent24, 'balance');
+               
+
+                  $parent25 = Reseller::info($parent24, 'parent'); // label 5
+
+                  $balanceparent25 = Reseller::info($parent25, 'balance');
+                  if( $amount > $balanceparent25 || $amount > $balanceparent24 || $amount > $balanceparent23){ return false;}else{return true;}
+            } elseif ($CustomerType == 'reseller1') {
+                  $parent12 = Reseller::info($userId, 'parent'); // label 2
+                  $balanceparent12 = Reseller::info($parent12, 'balance');
+                  $parent13 = Reseller::info($parent12, 'parent'); //label 3
+
+                  $balanceparent13 = Reseller::info($parent13, 'balance');
+                  
+
+                  $parent14 = Reseller::info($parent13, 'parent'); // label 4
+
+                  $balanceparent14 = Reseller::info($parent14, 'balance');
+
+                  $parent15 = Reseller::info($parent14, 'parent'); // label 5
+                  $balanceparent15 = Reseller::info($parent15, 'balance');
+                  if( $amount > $balanceparent15 || $amount > $balanceparent14 || $amount > $balanceparent13 || $amount > $balanceparent12){ return false;}else{return true;}
+            }
+      }
+}
