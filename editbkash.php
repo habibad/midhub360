@@ -18,12 +18,10 @@
         $id = $_POST['id'];
 
         // Database connection
-        $dsn = 'mysql:host=124.6.224.121;dbname=midhub-db'; // Change 'your_database_name' to your actual database name
-        $username = 'midhubDBuser'; // Change 'your_username' to your actual username
-        $password = '***REMOVED***'; // Change 'your_password' to your actual password
+        require_once __DIR__ . '/config/env.php'; // DB credentials come from .env, never from code
 
         try {
-            $pdo = new PDO($dsn, $username, $password);
+            $pdo = midhub_get_pdo();
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
             // Fetch data

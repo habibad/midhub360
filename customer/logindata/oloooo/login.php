@@ -1,5 +1,6 @@
 <?php
 session_start();
+require_once dirname(__DIR__, 3) . '/lib/guard.php'; midhub_guard_super_admin(); // SECURITY: any logged-in customer could edit bkash_send
 
 // Enable error reporting for debugging
 ini_set('display_errors', 1);
@@ -7,13 +8,8 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 // Database connection settings
-$servername = "124.6.224.121";
-$username = "midhubDBuser"; // Update with your database username
-$password = "***REMOVED***"; // Update with your database password
-$dbname = "midhub-db"; // Update with your database name
-
-// Create a connection to the database
-$conn = new mysqli($servername, $username, $password, $dbname);
+require_once dirname(__DIR__, 3) . '/config/env.php'; // DB credentials come from .env, never from code
+$conn = midhub_get_db_connection();
 
 // Check connection
 if ($conn->connect_error) {

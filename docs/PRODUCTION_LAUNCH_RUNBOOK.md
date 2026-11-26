@@ -4,7 +4,22 @@ For the engineers deploying and operating Midhub360. Covers what changed, how to
 
 ---
 
-## 1. Deploy in this order
+## 0. Secrets policy and the one-command live update
+
+**Nothing secret is ever committed.** Passwords, API keys and the encryption key live only in the server's `.env` (chmod 600) or in Admin > Gateway Settings (encrypted in the DB). The same code runs locally (XAMPP defaults) and live (`.env`).
+- `.githooks/pre-commit` and `.githooks/pre-push` run `tools/secret-scan.sh` and refuse commits/pushes containing passwords, keys, tokens, `.env` files, `.sql` dumps or `CLAUDE_*.md` prompt files. `push.bat`/`pull.bat` enable them (`git config core.hooksPath .githooks`). Audit anytime: `bash tools/secret-scan.sh --all`.
+- Never `git push --force` to `main`, never `--no-verify`.
+- The GitHub history was rewritten on 2026-11-26 to purge leaked secrets. Every existing clone must re-sync: `git fetch origin && git reset --hard origin/main` (the live script does this).
+
+**Live update (replaces the manual steps below):**
+```bash
+cd /var/www/midhub360.com && sudo bash deploy/update_live.sh
+```
+It completes `.env` (asks for the DB password once, creates `APP_KEY`), checks the DB connection, backs up the database, saves any edits made on the server, moves the code to `origin/main`, runs migrations, re-applies `setup_server.sh` and reloads PHP-FPM. Then, once: `sudo bash deploy/rotate_db_password.sh`.
+
+If migrations are pending, every admin page shows a red "Database update needed" bar; a page that crashes shows the error in a red box instead of a blank dark screen.
+
+## 1. Deploy in this order (manual reference)
 
 Do every step on a **staging copy first** if one exists.
 
@@ -149,11 +164,11 @@ Both pass locally (PHP 8.2, MariaDB, strict SQL mode). All 235 changed PHP files
 ## 6. Open items and decisions (action needed)
 
 **Credentials to rotate.** They are in git history and/or were exposed by the issues in §2:
-- The production DB password (hardcoded in `config/env.php`, `editbkash.php`, old `.env.example`). Rotate it, put it in `.env`, then delete the defaults from `config/env.php`.
-- The super-admin password and Self-PIN (also written in `CLAUDE_PROJECT_DEVELOPMENT_PROMPT.md`; don't commit that file).
+- The production DB password: it was hardcoded in 16 files (now removed; every file reads `DB_PASS` from `.env`). Rotate it with `sudo bash deploy/rotate_db_password.sh`.
+- The super-admin password and Self-PIN: they were written in an AI prompt file that reached GitHub. Change both in the admin panel.
 - The Paywell `api_key`/`encryption_key` that were hardcoded in `Paywell.php`, if they were live keys.
 
-**Repository hygiene.** `yk/` (a full app backup, tracked despite `.gitignore`) and `aanonda_software_new.sql` (a DB dump) are in git. Remove them from the repo: `git rm -r --cached yk aanonda_software_new.sql`.
+**Repository hygiene (done 2026-11-26).** `yk/`, `aanonda_software_new.sql`, the `CLAUDE_*_PROMPT.md` files and three files that printed the DB password (`bkash2.html`, `edit_bkash_send.html`, `assets/libs/jquery-tabledit/example.php`) were removed and purged from the whole git history. See §0 for the rules that keep it that way.
 
 **Data cleanup:** `UPDATE login_logs SET password = '[purged]';` removes historical plaintext login attempts.
 

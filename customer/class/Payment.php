@@ -564,7 +564,7 @@ class Payment
                         'callback_url' => 'https://sandbox.paystation.com.bd/payment-success/104',
                         'checkout_items' => 'Add_Balance',
                         'merchantId' => '104-1653730183',
-                        'password' => 'gamecoderstorepass',
+                        'password' => 'gamecoderstorepass', // secret-scan:allow public PayStation sandbox demo
                         'opt_a' => '1',
                         'opt_b' => '2',
                         'opt_c' => '3'
@@ -748,7 +748,7 @@ class Payment
                               'callback_url' => $callbackURL,
                               'checkout_items' => $balance_type,
                               'merchantId' => '104-1653730183',
-                              'password' => 'gamecoderstorepass',
+                              'password' => 'gamecoderstorepass', // secret-scan:allow public PayStation sandbox demo
                               'opt_a' => '1',
                               'opt_b' => '2',
                               'opt_c' => '3'

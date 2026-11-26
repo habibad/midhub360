@@ -14,6 +14,9 @@ set -e
 
 APP_DIR=/var/www/midhub360.com
 PHP_SOCK=/var/run/php/php7.4-fpm.sock
+# The site runs on PHP 7.4-FPM. On Ubuntu 24.04 a plain "php" may be PHP 8.3 without the
+# mysqli extension, so cron and CLI tasks use php7.4 when it is installed.
+PHP_BIN="$(command -v php7.4 || command -v php)"
 
 echo "--------------------------------------------------------"
 echo "  Starting Midhub360 Server Setup on $(hostname)"
@@ -156,7 +159,7 @@ systemctl reload nginx
 # 5. Background worker + nightly backup + Fail2ban + certificate renewal
 echo "[5/6] Installing cron jobs (worker every minute, DB backup 02:30)..."
 cat << EOF > /etc/cron.d/midhub360
-* * * * * www-data /usr/bin/php $APP_DIR/cron/worker.php >> /var/log/midhub-worker.log 2>&1
+* * * * * www-data $PHP_BIN $APP_DIR/cron/worker.php >> /var/log/midhub-worker.log 2>&1
 30 2 * * * root /bin/bash $APP_DIR/cron/backup.sh >> /var/log/midhub-backup.log 2>&1
 EOF
 mkdir -p /var/backups/midhub360 && chmod 700 /var/backups/midhub360
@@ -213,6 +216,8 @@ check "http://127.0.0.1/aanonda_software_new.sql" 404
 check "http://127.0.0.1/lib/bootstrap.php" 404
 check "http://127.0.0.1/storage/keys/app.key" 404
 check "http://127.0.0.1/debug_login.php" 404
+check "http://127.0.0.1/CLAUDE_PROJECT_DEVELOPMENT_PROMPT.md" 404
+check "http://127.0.0.1/bkash2.html" 404
 echo ""
-echo "Next: sudo -u www-data php $APP_DIR/database/migrate.php"
+echo "Next: sudo -u www-data $PHP_BIN $APP_DIR/database/migrate.php  (deploy/update_live.sh does this for you)"
 echo "========================================================"

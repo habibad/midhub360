@@ -40,11 +40,11 @@ return function () {
     $sandboxDefaults = array(
         'bkash' => array(
             'app_key' => '4f6o0cjiki2rfm34kfdadl1eqq',
-            'app_secret' => '2is7hdktrekvrbljjh44ll3d9l1dtjo4pasmjvs5vl5qr3fug4b',
+            'app_secret' => '2is7hdktrekvrbljjh44ll3d9l1dtjo4pasmjvs5vl5qr3fug4b', // secret-scan:allow public bKash sandbox demo
             'username' => 'sandboxTokenizedUser02',
-            'password' => 'sandboxTokenizedUser02@12345',
+            'password' => 'sandboxTokenizedUser02@12345', // secret-scan:allow public bKash sandbox demo
         ),
-        'uddoktapay' => array('api_key' => '982d381360a69d419689740d9f2e26ce36fb7a50'),
+        'uddoktapay' => array('api_key' => '982d381360a69d419689740d9f2e26ce36fb7a50'), // secret-scan:allow public UddoktaPay sandbox demo
     );
     $limits = array(
         'bkash' => array(10, 25000), 'nagad' => array(10, 25000), 'upay' => array(10, 25000),

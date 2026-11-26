@@ -1,2 +1,4 @@
 # Shell scripts must keep LF line endings, or bash on the Ubuntu server fails with "\r: command not found"
 *.sh text eol=lf
+# Git hooks run under bash too (also on Windows), so they must keep LF
+.githooks/* text eol=lf

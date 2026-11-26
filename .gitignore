@@ -27,3 +27,27 @@ yk/
 # Encryption key + runtime storage (never commit: losing/leaking it exposes gateway secrets)
 storage/keys/
 storage/*.log
+
+# ---------------------------------------------------------------------------------------
+# SECRETS & PRIVATE DATA: never commit (also enforced by .githooks + tools/secret-scan.sh)
+# ---------------------------------------------------------------------------------------
+storage/*.lock
+# AI prompt / briefing files (they contain admin passwords, PINs and API keys)
+CLAUDE_*.md
+*_PROMPT.md
+# Database dumps (real customer data, password hashes, login logs)
+*.sql
+*.sql.gz
+*.dump
+# Keys, certificates, tokens
+*.key
+*.p12
+*.pfx
+*.jks
+id_rsa*
+id_ed25519*
+*api_token*
+credentials.json
+credentials.txt
+# Old site backup copy (contains old DB passwords and a Paywell API key)
+yk/

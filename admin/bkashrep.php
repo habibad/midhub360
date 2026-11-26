@@ -1,13 +1,8 @@
 <?php
 require_once dirname(__DIR__) . '/lib/guard.php'; midhub_guard_super_admin(); // SECURITY: was reachable without admin login
 // db_connection.php content
-$servername = "124.6.224.121";
-$username = "midhubDBuser";
-$password = "***REMOVED***";
-$dbname = "midhub-db";
-
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
+require_once dirname(__DIR__) . '/config/env.php'; // DB credentials come from .env, never from code
+$conn = midhub_get_db_connection();
 
 // Check connection
 if ($conn->connect_error) {

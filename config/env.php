@@ -135,9 +135,11 @@ if (!defined('MIDHUB_ENV_LOADED')) {
         $isSandbox   = true;
     } else {
         // LIVE PRODUCTION SERVER (midhub360.com)
+        // The password is NEVER written in code (this repository is pushed to GitHub).
+        // It comes only from DB_PASS in the server's .env file (chmod 600, owner www-data).
         $defaultHost = 'localhost';
         $defaultUser = 'midhubDBuser';
-        $defaultPass = '***REMOVED***';
+        $defaultPass = '';
         $defaultDb   = 'midhub-db';
         $defaultPort = 3306;
         $protocol    = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https://' : 'http://';
@@ -153,20 +155,46 @@ if (!defined('MIDHUB_ENV_LOADED')) {
     if (!defined('APP_URL')) define('APP_URL', env('APP_URL', $defaultUrl));
     if (!defined('IS_SANDBOX')) define('IS_SANDBOX', (bool)env('IS_SANDBOX', $isSandbox));
 
-    // 5. Global helper function to get an active MySQLi connection with automatic failover
-    if (!function_exists('midhub_get_db_connection')) {
-        function midhub_get_db_connection() {
+    // 5. Database host candidates, tried in order (shared by the mysqli and PDO helpers)
+    if (!function_exists('midhub_db_hosts')) {
+        function midhub_db_hosts() {
             $hosts = [DB_HOST];
-            if (DB_HOST === 'localhost' && !in_array('127.0.0.1', $hosts)) {
+            if (DB_HOST === 'localhost') {
                 $hosts[] = '127.0.0.1';
-            } elseif (DB_HOST === '127.0.0.1' && !in_array('localhost', $hosts)) {
+            } elseif (DB_HOST === '127.0.0.1') {
                 $hosts[] = 'localhost';
             }
-
-            // On live server, if localhost fails, allow fallback to external IP
-            if (!IS_LOCAL && !in_array('124.6.224.121', $hosts)) {
-                $hosts[] = '124.6.224.121';
+            // On the live server, if the configured host fails, fall back to the DB server address
+            if (!IS_LOCAL) {
+                $fallback = (string) env('DB_FALLBACK_HOST', '124.6.224.121');
+                if ($fallback !== '' && !in_array($fallback, $hosts, true)) {
+                    $hosts[] = $fallback;
+                }
             }
+            return $hosts;
+        }
+    }
+
+    // Stops with a clear message when the live server has no database password configured.
+    if (!function_exists('midhub_require_db_password')) {
+        function midhub_require_db_password() {
+            if (!IS_LOCAL && (string) DB_PASS === '') {
+                error_log('Midhub360: DB_PASS is not set. Add DB_PASS=... to ' . dirname(__DIR__) . '/.env');
+                if (PHP_SAPI === 'cli') {
+                    fwrite(STDERR, "DB_PASS is not set in .env (live server). Run: sudo bash deploy/update_live.sh\n");
+                    exit(1);
+                }
+                http_response_code(503);
+                die('Server configuration incomplete: the database password is not set in the .env file.');
+            }
+        }
+    }
+
+    // 6. Global helper function to get an active MySQLi connection with automatic failover
+    if (!function_exists('midhub_get_db_connection')) {
+        function midhub_get_db_connection() {
+            midhub_require_db_password();
+            $hosts = midhub_db_hosts();
 
             $lastError = "";
             foreach ($hosts as $host) {
@@ -183,12 +211,39 @@ if (!defined('MIDHUB_ENV_LOADED')) {
             }
 
             // If connection fails, output clean error message
+            midhub_db_connection_failed($lastError);
+        }
+    }
+
+    // PDO connection (legacy PDO scripts) with the same credentials and host failover.
+    if (!function_exists('midhub_get_pdo')) {
+        function midhub_get_pdo() {
+            midhub_require_db_password();
+            $lastError = '';
+            foreach (midhub_db_hosts() as $host) {
+                try {
+                    $pdo = new PDO('mysql:host=' . $host . ';port=' . DB_PORT . ';dbname=' . DB_NAME . ';charset=utf8mb4', DB_USER, DB_PASS);
+                    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                    return $pdo;
+                } catch (\Throwable $e) {
+                    $lastError = $e->getMessage();
+                }
+            }
+            midhub_db_connection_failed($lastError);
+        }
+    }
+
+    if (!function_exists('midhub_db_connection_failed')) {
+        function midhub_db_connection_failed($lastError) {
+            if (PHP_SAPI === 'cli') {
+                fwrite(STDERR, "Database connection error: " . $lastError . "\n");
+                exit(1);
+            }
             if (IS_LOCAL) {
                 die("Local Database connection error: " . $lastError . ". Please ensure MySQL is running in XAMPP.");
-            } else {
-                error_log("Database connection error: " . $lastError);
-                die("Database connection error. Please try again later.");
             }
+            error_log("Database connection error: " . $lastError);
+            die("Database connection error. Please try again later.");
         }
     }
 }

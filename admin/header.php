@@ -9,6 +9,13 @@ include "../function.php";
 //include "../android.php";
 require_once 'autoload.php';
 
+// Make failures visible: a page that dies after this header would otherwise show only the
+// theme's dark background (the theme JS is in the footer), and a database that is behind the
+// code (git pull without migrations) is reported at the top of every admin page.
+require_once dirname(__DIR__) . '/lib/admin_diagnostics.php';
+midhub_admin_visible_errors();
+$__midhub_pending_migrations = midhub_pending_migrations(isset($connect) ? $connect : null);
+
 $re_pending     = Mixedfn::totalnumpre();
 $drive_pending  = Mixedfn::totalnumpdrive();
 $mb_pending     = Mixedfn::totalnumpmb();
@@ -77,6 +84,7 @@ $level1_name     = Mixedfn::levelnamechange("1","level1");
 
     <!-- body start -->
     <body class="loading" data-layout='{"mode": "light", "width": "fluid", "menuPosition": "fixed", "sidebar": { "color": "light", "size": "default", "showuser": false}, "topbar": {"color": "dark"}, "showRightSidebarOnPageLoad": true}'>
+        <?php echo midhub_pending_migrations_banner($__midhub_pending_migrations); ?>
 
         <!-- Begin page -->
         <div id="wrapper">

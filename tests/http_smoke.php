@@ -74,6 +74,13 @@ try {
         $r = http('anon', 'GET', $p);
         TestKit::eq("anonymous $p -> 403", 403, $r['code']);
     }
+    foreach (array('/logindata/oloooo/update.php', '/logindata/oloooo/fetch.php', '/customer/logindata/oloooo/update.php', '/customer/logindata/oloooo/fetch.php') as $p) {
+        TestKit::eq("anonymous $p -> 403", 403, http('anon', 'GET', $p)['code']);
+    }
+    // These files served the production DB password as plain text (PHP inside .html is not executed)
+    foreach (array('/bkash2.html', '/edit_bkash_send.html', '/assets/libs/jquery-tabledit/example.php') as $p) {
+        TestKit::eq("$p removed -> 404", 404, http('anon', 'GET', $p)['code']);
+    }
     TestKit::eq('debug_login.php -> 404 over HTTP', 404, http('anon', 'GET', '/debug_login.php')['code']);
     TestKit::eq('database/migrate.php -> not runnable over HTTP', true, in_array(http('anon', 'GET', '/database/migrate.php')['code'], array(403, 404), true));
     foreach (array('/lib/bootstrap.php', '/storage/keys/app.key', '/tests/run.php', '/cron/worker.php') as $p) {
@@ -88,6 +95,16 @@ try {
     TestKit::check('retailer session on /admin/home.php -> bounced to admin login', $r['code'] === 302 && strpos($r['location'], 'index.php') !== false, $r['code'] . ' ' . $r['location'] . ' ' . substr(strip_tags($r['body']), 0, 80));
     $r = http('cust', 'POST', '/admin/route.php?action=balaaddsuccess', array('id' => 1), sameOrigin());
     TestKit::check('retailer cannot call admin actions', $r['code'] === 302 && strpos($r['location'], 'index.php') !== false);
+    // Every customer login sets $_SESSION['user_id'], which was all the old "oloooo" editors checked:
+    // a retailer could rewrite any bKash send request (e.g. the receiving number) before payout.
+    $bs = Db::one('SELECT id, ac_number FROM bkash_send ORDER BY id DESC LIMIT 1');
+    foreach (array('/logindata/oloooo/update.php', '/customer/logindata/oloooo/update.php') as $p) {
+        $r = http('cust', 'POST', $p, array('id' => $bs ? $bs['id'] : 1, 'company_name' => 'bKash', 'ac_number' => '01999999999', 'balance' => 1, 'charge' => 0, 'amount' => 1, 'submitted_date' => '2026-01-01', 'status' => '0'));
+        TestKit::eq("retailer session on $p -> 403", 403, $r['code']);
+    }
+    if ($bs) {
+        TestKit::eq('bKash send request left unchanged', $bs['ac_number'], Db::scalar('SELECT ac_number FROM bkash_send WHERE id = ?', 'i', array((int) $bs['id'])));
+    }
 
     // =====================================================================
     TestKit::section('Admin panel: pages, CSRF, Self-PIN, gateway settings');
@@ -99,6 +116,14 @@ try {
         $err = phpErrors($r['body']);
         TestKit::check("admin/$p renders without PHP errors", $r['code'] === 200 && $err === '', $r['code'] . ' ' . $err);
     }
+    // Legacy tools now take DB credentials from .env (config/env.php) instead of hardcoded ones
+    foreach (array('/admin/bkashrep.php', '/fetch.php?id=0') as $p) {
+        $r = http('adm', 'GET', $p);
+        $err = phpErrors($r['body']) . (strpos($r['body'], 'Connection failed') !== false ? 'Connection failed' : '');
+        TestKit::check("$p connects with the .env credentials", $r['code'] === 200 && $err === '', $r['code'] . ' ' . $err);
+    }
+    TestKit::check('no "database update needed" banner when migrations are applied', strpos(http('adm', 'GET', '/admin/home.php')['body'], 'Database update needed') === false);
+
     $page = http('adm', 'GET', '/admin/gateway_settings.php?tab=paywell');
     $tok = csrf($page['body']);
     TestKit::check('settings page has CSRF token, 7 gateways, copyable webhook URL', $tok !== '' && substr_count($page['body'], 'name="slug"') >= 14 && strpos($page['body'], 'gateway/webhook.php?gw=stripe') !== false);

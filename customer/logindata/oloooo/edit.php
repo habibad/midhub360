@@ -1,5 +1,6 @@
 <?php
 session_start();
+require_once dirname(__DIR__, 3) . '/lib/guard.php'; midhub_guard_super_admin(); // SECURITY: any logged-in customer could edit bkash_send
 
 if (!isset($_SESSION['user_id'])) {
     header("Location: login.html");
