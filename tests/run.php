@@ -201,7 +201,7 @@ try {
     TestKit::configure('bkash', array('status' => 'active', 'mode' => 'sandbox', 'sandbox_base_url' => TestKit::MOCK . '/bkash',
         'creds' => array('app_key' => 'qa_bkash_app_key', 'app_secret' => 'qa_bk_secret', 'username' => 'qa_bk_user', 'password' => 'qa_bk_pass'),
         'charge_percentage' => '1.50', 'min_amount' => '10', 'max_amount' => '25000'));
-    TestKit::check('bKash test connection (grant token)', GatewayFactory::any('bkash')->testConnection()['ok']);
+    TestKit::check('bKash test connection (grant token + create payment with our callback URL)', GatewayFactory::any('bkash')->testConnection()['ok']);
     TestKit::setBalance('qa_l2', 'bkash_balance', '0.00');
     $nonce = bin2hex(random_bytes(16));
     $d = DepositService::create($u['qa_l2'], 'bkash', 'bkash_balance', '1000', $nonce);
@@ -243,6 +243,28 @@ try {
     $r = DepositService::settle($d['invoice_no'], 'return', array('paymentID' => $txn['gateway_payment_id'], 'status' => 'success'));
     TestKit::check('paid amount != invoice -> held for review, NOT credited', $r['status'] === 'review' && TestKit::balance('qa_l2', 'bkash_balance') === '1500.00', $r['status']);
     TestKit::check('admin alert raised for review', (int) Db::scalar('SELECT COUNT(*) FROM admin_alerts WHERE alert_key = ?', 's', array('deposit_review:' . $d['invoice_no'])) === 1);
+
+    // Callback URL not registered for the merchant: bKash error 2049, which is what bKash's
+    // public demo credentials now return for every callback URL. Grant Token still succeeds.
+    TestKit::mock('/__bkash/reject_callback?on=1');
+    $t = GatewayFactory::any('bkash')->testConnection();
+    TestKit::check('test connection reports an unregistered callback URL (2049), not just "token OK"',
+        !$t['ok'] && strpos($t['message'], '2049') !== false && strpos($t['message'], 'gateway/bkash_callback.php') !== false, $t['message']);
+    $userMsg = '';
+    $adminMsg = '';
+    try {
+        DepositService::create($u['qa_l2'], 'bkash', 'bkash_balance', '100', bin2hex(random_bytes(16)));
+    } catch (\Midhub\Gateway\GatewayException $e) {
+        $userMsg = $e->userMessage;
+        $adminMsg = $e->getMessage();
+    }
+    TestKit::check('2049: customer sees a plain message, not "Invalid Merchant Callback URL"',
+        $userMsg !== '' && stripos($userMsg, 'callback') === false && stripos($userMsg, 'another payment method') !== false, $userMsg);
+    TestKit::check('2049: the admin-side reason keeps the bKash code and the callback URL',
+        strpos($adminMsg, '2049') !== false && strpos($adminMsg, 'gateway/bkash_callback.php') !== false, $adminMsg);
+    TestKit::eq('2049: nothing credited', '1500.00', TestKit::balance('qa_l2', 'bkash_balance'));
+    TestKit::mock('/__bkash/reject_callback?on=0');
+    Db::exec("DELETE FROM circuit_breakers WHERE cb_key = 'deposit:bkash'");
 
     $errs = array();
     foreach (array(array('bkash', '5'), array('bkash', '30000'), array('nagad', '100')) as $case) {

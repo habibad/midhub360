@@ -117,6 +117,10 @@ if (strpos($path, '/bkash/') === 0) {
         $json(array('message' => 'Unauthorized'), 401);
     }
     if ($p === '/tokenized/checkout/create') {
+        if (!empty($state['bk_reject_callback'])) {
+            // what bKash answers when callbackURL is not the merchant's registered domain
+            $json(array('statusCode' => '2049', 'statusMessage' => 'Invalid Merchant Callback URL'));
+        }
         $pid = 'TR00' . bin2hex(random_bytes(6));
         $state['bk'][$pid] = array('amount' => $body['amount'], 'inv' => $body['merchantInvoiceNumber'], 'status' => 'Initiated', 'executed' => 0, 'callback' => $body['callbackURL']);
         $save();
@@ -150,6 +154,12 @@ if (strpos($path, '/bkash/') === 0) {
         $json($out);
     }
     $json(array('statusCode' => '9999', 'statusMessage' => 'unknown'), 404);
+}
+// tests can make bKash reject every callbackURL (error 2049), as the public demo merchant does
+if ($path === '/__bkash/reject_callback') {
+    $state['bk_reject_callback'] = !empty($_GET['on']);
+    $save();
+    $json(array('ok' => true));
 }
 // tests can tamper with a bKash payment's recorded amount to simulate a mismatch
 if ($path === '/__tamper/bkash') {

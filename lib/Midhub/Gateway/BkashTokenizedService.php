@@ -17,6 +17,9 @@ use Midhub\Money;
  */
 final class BkashTokenizedService implements DepositGatewayInterface
 {
+    /** Create Payment: "Invalid Merchant Callback URL" (callback domain not registered for the merchant) */
+    const ERR_CALLBACK = '2049';
+
     /** @var GatewayConfig */
     private $cfg;
 
@@ -40,7 +43,7 @@ final class BkashTokenizedService implements DepositGatewayInterface
         );
         $res = $this->call('/tokenized/checkout/create', $body, 'create', $txn['invoice_no']);
         if (empty($res['bkashURL']) || empty($res['paymentID'])) {
-            throw new GatewayException('bKash create failed: ' . $this->errorText($res), $this->customerError($res));
+            throw new GatewayException('bKash create failed: ' . $this->errorText($res) . $this->callbackHint($res, $body['callbackURL']), $this->customerError($res));
         }
         return array('redirect_url' => (string) $res['bkashURL'], 'gateway_payment_id' => (string) $res['paymentID'], 'state' => array());
     }
@@ -90,10 +93,33 @@ final class BkashTokenizedService implements DepositGatewayInterface
         try {
             TokenCache::forget('bkash');
             $this->token();
-            return array('ok' => true, 'message' => 'Grant Token succeeded (' . $this->cfg->mode . ').');
         } catch (GatewayException $e) {
             return array('ok' => false, 'message' => $e->getMessage());
         }
+        if ($this->cfg->mode !== 'sandbox') {
+            return array('ok' => true, 'message' => 'Grant Token succeeded (live). Create Payment is not tested in live mode; make one small real payment to confirm.');
+        }
+        // A token alone does not prove checkout works: on every Create Payment bKash also checks
+        // the callbackURL against the domain registered for this merchant (error 2049). So the
+        // sandbox test creates one payment (never executed, nothing is charged).
+        $callback = GatewayConfig::publicUrl('gateway/bkash_callback.php');
+        try {
+            $res = $this->call('/tokenized/checkout/create', array(
+                'mode' => '0011',
+                'payerReference' => '01700000000',
+                'callbackURL' => $callback,
+                'amount' => '10.00',
+                'currency' => 'BDT',
+                'intent' => 'sale',
+                'merchantInvoiceNumber' => 'TEST' . date('ymdHis'),
+            ), 'test_create', null);
+        } catch (GatewayException $e) {
+            return array('ok' => false, 'message' => 'Grant Token OK, but Create Payment failed: ' . $e->getMessage());
+        }
+        if (!empty($res['paymentID']) && !empty($res['bkashURL'])) {
+            return array('ok' => true, 'message' => "Grant Token and Create Payment succeeded (sandbox). Callback URL: $callback");
+        }
+        return array('ok' => false, 'message' => 'Grant Token OK, but Create Payment was rejected: ' . $this->errorText($res) . $this->callbackHint($res, $callback));
     }
 
     // ------------------------------------------------------------------------
@@ -169,8 +195,29 @@ final class BkashTokenizedService implements DepositGatewayInterface
         return "[$code] $msg";
     }
 
+    /** Admin-facing explanation of error 2049 (callback URL not registered for the merchant). */
+    private function callbackHint(array $res, string $callback): string
+    {
+        if (!isset($res['statusCode']) || (string) $res['statusCode'] !== self::ERR_CALLBACK) {
+            return '';
+        }
+        $site = parse_url($callback, PHP_URL_SCHEME) . '://' . parse_url($callback, PHP_URL_HOST);
+        $hint = " bKash accepts only the callback domain registered for this merchant; $callback is not.";
+        if ($this->cfg->cred('username') === 'sandboxTokenizedUser02') {
+            $hint .= ' These are bKash\'s shared public demo credentials, which reject every callback URL:'
+                . ' ask bKash (merchant onboarding) for this merchant\'s own sandbox credentials with ' . $site . ' registered.';
+        } else {
+            $hint .= ' Ask bKash to register ' . $site . ' for this merchant, or set APP_URL in .env to the registered domain.';
+        }
+        return $hint;
+    }
+
     private function customerError(array $res): string
     {
+        if (isset($res['statusCode']) && (string) $res['statusCode'] === self::ERR_CALLBACK) {
+            // merchant set-up problem: nothing the customer can fix, so no technical text
+            return 'bKash payment is not available right now. Please choose another payment method.';
+        }
         $msg = isset($res['statusMessage']) ? (string) $res['statusMessage'] : '';
         return $msg !== '' ? 'bKash: ' . $msg : 'bKash is unavailable right now. Please try again later.';
     }
