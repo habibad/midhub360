@@ -159,7 +159,8 @@ main() {
 
     # ------------------------------------------------------------------ 6. Server
     say "6/6  Nginx rules, permissions, cron worker"
-    bash setup_server.sh
+    bash setup_server.sh || stop "server setup failed (message above). The code and database are updated;
+    Nginx keeps serving its previous configuration. Send the message above to the developer."
     for svc in php7.4-fpm php-fpm; do
         if systemctl list-units --type=service --all 2>/dev/null | grep -q "$svc.service"; then
             systemctl reload "$svc" && ok "$svc reloaded" && break
@@ -168,7 +169,8 @@ main() {
 
     say "Done"
     cat <<EOF
-    Open:  https://124.6.224.116/admin/gateway_settings.php   and   /admin/voucher_products.php
+    Open:  http://124.6.224.116/   (login page, not "Welcome to nginx!")
+           http://124.6.224.116/admin/gateway_settings.php   and   /admin/voucher_products.php
     Backup of the database before this update: $DUMP
 
     Still to do (only once, see the developer's notes):
@@ -179,4 +181,4 @@ main() {
 EOF
 }
 
-main "$@"
+main "$@"; exit $?

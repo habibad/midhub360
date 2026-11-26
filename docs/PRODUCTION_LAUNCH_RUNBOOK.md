@@ -19,6 +19,8 @@ It completes `.env` (asks for the DB password once, creates `APP_KEY`), checks t
 
 If migrations are pending, every admin page shows a red "Database update needed" bar; a page that crashes shows the error in a red box instead of a blank dark screen.
 
+If `http://124.6.224.116/` shows **"Welcome to nginx!"**, the Midhub360 Nginx site is not active (Nginx's stock default site answers instead). `deploy/nginx_site.sh` (run by `setup_server.sh`, or on its own with `sudo bash deploy/nginx_site.sh`) disables the stock site and older configs for this site (kept in `/etc/nginx/disabled-by-midhub360/`), writes the Midhub360 site, and checks it with `nginx -t`. If that check fails, it restores every file it changed, so the running site is never left broken.
+
 ## 1. Deploy in this order (manual reference)
 
 Do every step on a **staging copy first** if one exists.
