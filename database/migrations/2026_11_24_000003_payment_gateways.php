@@ -55,6 +55,12 @@ return function () {
     $order = 0;
     $seeded = 0;
     foreach (GatewayRegistry::all() as $slug => $def) {
+        // Only the gateways this migration created. Later ones (billpay, sms) need the wider
+        // `category` ENUM from migration 012, which seeds them; inserting them here failed on a
+        // fresh database under MySQL strict mode ("Data truncated for column 'category'").
+        if (!isset($limits[$slug])) {
+            continue;
+        }
         $order += 10;
         if (Db::scalar('SELECT id FROM payment_gateways WHERE gateway_slug = ?', 's', array($slug))) {
             continue;

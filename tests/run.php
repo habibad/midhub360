@@ -16,6 +16,7 @@ use Midhub\Crypto;
 use Midhub\Db;
 use Midhub\Gateway\GatewayConfig;
 use Midhub\Gateway\GatewayFactory;
+use Midhub\Gateway\GatewayRegistry;
 use Midhub\Gateway\StripeService;
 use Midhub\Http\HttpResponse;
 use Midhub\Money;
@@ -605,6 +606,28 @@ try {
         try { $fn(); $reran++; } catch (\Throwable $e) { echo "     re-run " . basename($f) . ": " . $e->getMessage() . "\n"; }
     }
     TestKit::eq('every migration can safely re-run', count(glob(MIDHUB_ROOT . '/database/migrations/*.php')), $reran);
+
+    // The live server failed here: on a FRESH database under MySQL 8 strict mode, migration 003
+    // tried to seed gateways added later (billpay, sms) whose category did not exist yet.
+    // Local re-runs never noticed because the rows already existed and MariaDB was not strict.
+    $scratch = 'qa_migtest_' . getmypid();
+    $mode = (string) Db::scalar('SELECT @@SESSION.sql_mode');
+    Db::raw("CREATE DATABASE `$scratch` CHARACTER SET utf8mb4");
+    try {
+        Db::raw("USE `$scratch`");
+        Db::raw("SET SESSION sql_mode = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION'");
+        $err = '';
+        foreach (array('2026_11_24_000003_payment_gateways', '2026_11_25_000012_billpay_and_sms_gateways') as $m) {
+            $fn = require MIDHUB_ROOT . "/database/migrations/$m.php";
+            try { $fn(); } catch (\Throwable $e) { $err .= "$m: " . $e->getMessage() . ' '; }
+        }
+        $rows = $err === '' ? (int) Db::scalar('SELECT COUNT(*) FROM payment_gateways') : 0;
+        TestKit::check('gateway migrations run on a fresh database in MySQL strict mode (9 gateways)', $err === '' && $rows === count(GatewayRegistry::all()), $err . "rows=$rows");
+    } finally {
+        Db::raw('USE `' . DB_NAME . '`');
+        Db::raw("SET SESSION sql_mode = '" . str_replace("'", '', $mode) . "'");
+        Db::raw("DROP DATABASE IF EXISTS `$scratch`");
+    }
 } catch (\Throwable $e) {
     TestKit::check('suite aborted: ' . get_class($e), false, $e->getMessage() . ' @ ' . basename($e->getFile()) . ':' . $e->getLine());
 } finally {
