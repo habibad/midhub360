@@ -52,9 +52,18 @@ check_paths() { # stdin: file paths
 }
 
 check_lines() { # stdin: "path<TAB>line" records
-    local tmp hits
+    local tmp hits allow
     tmp="$(mktemp)"
-    cat > "$tmp"
+    # .secret-scan-allow: exact public sandbox/demo strings (one per line) that are not secrets.
+    # Needed for old commits, where an inline "secret-scan:allow" comment cannot be added.
+    allow="$(git rev-parse --show-toplevel 2>/dev/null)/.secret-scan-allow"
+    if [ -f "$allow" ]; then
+        grep -v -e '^#' -e '^[[:space:]]*$' "$allow" | tr -d '\r' > "$tmp.allow"
+        if [ -s "$tmp.allow" ]; then grep -vF -f "$tmp.allow" > "$tmp" || true; else cat > "$tmp"; fi
+        rm -f "$tmp.allow"
+    else
+        cat > "$tmp"
+    fi
     hits="$(grep -E "$SECRET_RE" "$tmp" | grep -v 'secret-scan:allow')"
     if [ -n "$hits" ]; then printf '%s\n' "$hits" | report_records "API key / token / private key"; found=1; fi
     hits="$(grep -Ev "$VENDOR_PATHS" "$tmp" | grep -Ev "$ALLOW_LINE_RE" | grep -Ev "$SECRET_RE" | grep -Ei "$ASSIGN_RE")"
