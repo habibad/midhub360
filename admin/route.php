@@ -50,6 +50,9 @@ switch ($action) {
 	case 'VoucherBulk':
 		\Midhub\Admin\VoucherAdminController::bulk();
 		break;
+	case 'VoucherOrderAction':
+		\Midhub\Admin\VoucherAdminController::orderAction();
+		break;
 	case 'DepositRecheck':
 		\Midhub\Admin\DepositAdminController::recheck();
 		break;

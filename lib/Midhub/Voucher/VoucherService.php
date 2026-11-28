@@ -18,6 +18,10 @@ final class VoucherService
 {
     const SYNC_STATE = 'voucher_sync_state';
     const SYNC_LAST = 'voucher_sync_last';
+    /** Quick status checks right after an order is accepted, before the cron poller takes over. */
+    const INSTANT_CHECK_SECONDS = 3.0;
+    /** A lost order reply is re-sent with the same Idempotency-Key only within this window. */
+    const RECOVER_HOURS = 12;
     /** SQL condition: a product a customer may buy (never below cost, never a foreign-currency price). */
     const SELLABLE_SQL = "provider = 'popular_voucher' AND active = 1 AND in_stock = 1 AND sell_price > 0 AND sell_price >= cost_price AND (currency IS NULL OR currency = '' OR currency = 'BDT')";
 
@@ -181,9 +185,11 @@ final class VoucherService
 
     /**
      * Debits the Main wallet and places the order.
+     * @param string|null $lockedPrice price the customer already paid through a gateway: they are
+     *        never charged more than this, even if the price rose since (never below cost though)
      * @return array{ok:bool,message:string,order_no?:string,status?:string}
      */
-    public static function purchase(int $userId, int $productId, string $nonce, string $playerId = '', ?string $depositInvoice = null): array
+    public static function purchase(int $userId, int $productId, string $nonce, string $playerId = '', ?string $depositInvoice = null, ?string $lockedPrice = null): array
     {
         // nonce: form nonce, or "inv:<invoice>" when the order is paid through a gateway (one order per payment)
         if (!preg_match('/^([a-f0-9]{32,64}|inv:MH\d{18})$/', $nonce)) {
@@ -201,6 +207,13 @@ final class VoucherService
         $p = $chk['product'];
         $playerId = $chk['player_id'];
         $price = Money::fromPaisa(Money::toPaisa((string) $p['sell_price']));
+        if ($lockedPrice !== null && Money::cmp($price, Money::parse($lockedPrice)) > 0) {
+            // the price rose after the customer paid: honour the paid price while it still covers cost
+            if (Money::cmp(Money::parse($lockedPrice), Money::fromPaisa(Money::toPaisa((string) $p['cost_price']))) < 0) {
+                return array('ok' => false, 'message' => 'The price of ' . $p['name'] . ' changed and it can no longer be sold for ' . Money::parse($lockedPrice) . ' Tk.');
+            }
+            $price = Money::parse($lockedPrice);
+        }
         $orderNo = 'VO' . date('ymdHis') . str_pad((string) random_int(0, 999999), 6, '0', STR_PAD_LEFT);
         $mode = $svc->config()->mode;
 
@@ -218,6 +231,11 @@ final class VoucherService
             return array('ok' => false, 'message' => 'Insufficient Main wallet balance. Price: ' . $price . ' Tk.');
         } catch (\RuntimeException $e) {
             if (stripos($e->getMessage(), 'Duplicate') !== false) {
+                // a parallel request (e.g. the payment return page and the webhook) placed it first
+                $dup = Db::one('SELECT order_no, status FROM voucher_orders WHERE user_id = ? AND idempotency_key = ?', 'is', array($userId, $nonce));
+                if ($dup) {
+                    return array('ok' => true, 'order_no' => $dup['order_no'], 'status' => $dup['status'], 'message' => 'This order was already placed (duplicate submit ignored).');
+                }
                 return array('ok' => false, 'message' => 'This order was already submitted.');
             }
             throw $e;
@@ -225,6 +243,15 @@ final class VoucherService
 
         try {
             $r = $svc->placeOrder($p['product_code'], $orderNo, $playerId, (string) $p['delivery_schema']);
+            // The provider accepts first and fulfils a moment later (sandbox: ~60 ms). A few quick
+            // status checks deliver most orders while the customer is still on the page; the
+            // cron poller takes over for slower ones.
+            $deadline = microtime(true) + self::INSTANT_CHECK_SECONDS;
+            for ($i = 1; $r['outcome'] === PopularVoucherService::PROCESSING && $r['provider_order_id'] !== null && empty($r['completed_without_code'])
+                && microtime(true) < $deadline; $i++) {
+                usleep(min(1000000, 250000 * $i));
+                $r = $svc->orderStatus((string) $r['provider_order_id'], $orderNo, $playerId !== '');
+            }
             if ($r['outcome'] === PopularVoucherService::DELIVERED) {
                 CircuitBreaker::success('voucher');
             } elseif ($r['outcome'] === PopularVoucherService::PROCESSING && $r['provider_order_id'] === null) {
@@ -233,6 +260,7 @@ final class VoucherService
         } catch (\Throwable $e) {
             $r = array('outcome' => PopularVoucherService::PROCESSING, 'provider_order_id' => null, 'code' => null, 'serial' => null, 'pin' => null, 'expires' => null, 'message' => $e->getMessage());
         }
+        self::alertIfNoCode($orderNo, $r);
         $status = self::settle($orderId, $r);
         if ($status === 'delivered') {
             return array('ok' => true, 'order_no' => $orderNo, 'status' => $status, 'message' => $playerId !== '' ? 'Top-up successful: delivered to ' . $p['player_id_label'] . ' ' . $playerId . '.' : 'Purchase successful. Your code is in My Vouchers below.');
@@ -274,19 +302,50 @@ final class VoucherService
         });
     }
 
+    /** One admin alert when the provider says "completed" but sent no voucher code. */
+    private static function alertIfNoCode(string $orderNo, array $r): void
+    {
+        if (!empty($r['completed_without_code'])) {
+            AlertService::raise('voucher_nocode:' . $orderNo, 'critical', 'Voucher completed without a code',
+                "Order $orderNo (provider transaction " . ($r['provider_order_id'] ?: '?') . ') is completed at Popular Vouchers but no voucher code came back: '
+                . $r['message'] . ' The customer has paid and sees "processing". Look the code up in the distributor portal and deliver it from Admin > Digital Vouchers > Orders.', 43200); // once per order (30 days)
+        }
+    }
+
+    /**
+     * One status check of a processing order (cron poller and the admin "Check now" button).
+     * An order whose placement reply was lost (no provider id) is re-sent with the SAME
+     * Idempotency-Key: the provider then returns the existing transaction instead of creating a
+     * second one (verified against the sandbox), or creates it if the first request never arrived.
+     */
+    public static function check(array $o, PopularVoucherService $svc): string
+    {
+        $direct = (string) $o['player_id'] !== '';
+        if ((string) $o['provider_order_id'] === '') {
+            if (strtotime((string) $o['created_at']) < time() - self::RECOVER_HOURS * 3600) {
+                return 'processing'; // too old to re-send safely; the stuck-order alert asks the admin
+            }
+            $schema = (string) Db::scalar('SELECT delivery_schema FROM voucher_products WHERE id = ?', 'i', array((int) $o['product_id']));
+            $r = $svc->placeOrder((string) $o['product_code'], (string) $o['order_no'], (string) $o['player_id'], $schema);
+        } else {
+            $r = $svc->orderStatus((string) $o['provider_order_id'], (string) $o['order_no'], $direct);
+        }
+        self::alertIfNoCode((string) $o['order_no'], $r);
+        return self::settle((int) $o['id'], $r);
+    }
+
     /** Cron: re-check orders still processing. Never auto-refunds an unknown outcome. */
     public static function poll(int $limit = 30): array
     {
         $svc = PopularVoucherService::load();
         $counts = array('delivered' => 0, 'refunded' => 0, 'processing' => 0);
         // Only orders placed in the CURRENT mode: a sandbox lookup must never settle a live order.
-        $rows = Db::all("SELECT id, order_no, provider_order_id, player_id, created_at FROM voucher_orders WHERE status = 'processing' AND mode = ?
+        $rows = Db::all("SELECT id, order_no, product_id, product_code, provider_order_id, player_id, created_at FROM voucher_orders WHERE status = 'processing' AND mode = ?
                          AND created_at < NOW() - INTERVAL 60 SECOND
                          AND (status_checked_at IS NULL OR status_checked_at < NOW() - INTERVAL 60 SECOND)
                          ORDER BY id LIMIT ?", 'si', array($svc->config()->mode, $limit));
         foreach ($rows as $o) {
-            $r = $svc->orderStatus((string) $o['provider_order_id'], $o['order_no'], (string) $o['player_id'] !== '');
-            $s = self::settle((int) $o['id'], $r);
+            $s = self::check($o, $svc);
             $counts[$s] = isset($counts[$s]) ? $counts[$s] + 1 : 1;
             if ($s === 'processing' && strtotime($o['created_at']) < time() - 6 * 3600) {
                 AlertService::raise('voucher_stuck:' . $o['order_no'], 'warning', 'Voucher order stuck',

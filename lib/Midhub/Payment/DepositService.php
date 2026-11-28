@@ -290,8 +290,18 @@ final class DepositService
         }
         $result = null;
         if ($intent['type'] === 'voucher') {
+            // The customer is never charged more than the price shown when they paid.
+            $locked = isset($intent['price']) && is_numeric($intent['price']) ? (string) $intent['price'] : $txn['credit_amount'];
             $result = \Midhub\Voucher\VoucherService::purchase((int) $txn['user_id'], (int) $intent['product_id'], 'inv:' . $txn['invoice_no'],
-                isset($intent['player_id']) ? (string) $intent['player_id'] : '', $txn['invoice_no']);
+                isset($intent['player_id']) ? (string) $intent['player_id'] : '', $txn['invoice_no'], $locked);
+            if (is_array($result) && !$result['ok'] && empty($result['order_no'])) {
+                // Nothing was bought (store closed, product gone, ...): the payment stays in the Main
+                // wallet. Say so where the customer will see it, even when settled by webhook/cron.
+                $result['message'] = 'The voucher could not be bought: ' . $result['message'] . ' Your payment of ' . $txn['credit_amount']
+                    . ' Tk is in your Main wallet. Buy again from it, or contact support.';
+                Db::insert("INSERT INTO notification (UserId, submitted_time, message, MsgFrom, seen, date) VALUES (?, NOW(), ?, 'Voucher', '0', CURDATE())",
+                    'is', array((int) $txn['user_id'], substr('Payment ' . $txn['invoice_no'] . ': ' . $result['message'], 0, 250))); // notification.message is VARCHAR(250)
+            }
         }
         Db::exec('UPDATE gateway_transactions SET intent_done_at = NOW() WHERE id = ? AND intent_done_at IS NULL', 'i', array((int) $txn['id']));
         return $result;

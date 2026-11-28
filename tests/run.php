@@ -353,8 +353,8 @@ try {
     // --- Popular Vouchers v1.1 (mock server with the real API's shape) ---
     TestKit::mock('/__pv?count=230&bump=0&drop=&env=sandbox');
     TestKit::configure('popular_voucher', array('sandbox_base_url' => TestKit::MOCK . '/voucher', 'creds' => array('api_key' => 'qa_voucher_key'),
-        'extra' => array('catalog_path' => '/distributor/catalog', 'order_path' => '/distributor/orders', 'order_status_path' => '/distributor/orders/{order_id}',
-            'balance_path' => '/distributor/account', 'auth_header' => 'Authorization', 'order_product_field' => 'variant_id', 'order_reference_field' => 'reference', 'order_delivery_field' => 'delivery_data')));
+        'extra' => array('catalog_path' => '/distributor/catalog', 'order_path' => '/distributor/transactions', 'order_status_path' => '/distributor/transactions/{order_id}',
+            'balance_path' => '/distributor/account', 'auth_header' => 'Authorization', 'order_product_field' => 'variant_id', 'order_delivery_field' => 'delivery_details')));
     Db::exec("DELETE FROM platform_settings WHERE setting_key IN ('voucher_sync_state', 'voucher_sync_last')");
     $s1 = VoucherService::syncCatalog(0.0);
     $prog = VoucherService::syncProgress();
@@ -395,20 +395,22 @@ try {
     $r = VoucherService::purchase($u['qa_l1'], (int) $gplay['id'], bin2hex(random_bytes(16)));
     $last = TestKit::mock('/__state')['pv_last_order'] ?? null;
     TestKit::check('code product delivered; code from the voucher list, encrypted in the vault', $r['ok'] && $r['status'] === 'delivered' && strpos((string) VoucherService::vault($u['qa_l1'])[0]['voucher_code'], 'LIVECODE-') === 0, json_encode($r));
-    TestKit::check('order body: variant_id, quantity 1, our order no as reference + Idempotency-Key', $last && $last['body']['variant_id'] === 'variant_QA_GPLAY' && (int) $last['body']['quantity'] === 1
-        && $last['body']['reference'] === $r['order_no'] && $last['idem'] === $r['order_no'], json_encode($last));
+    TestKit::check('order body as the real API wants: variant_id, quantity 1, our order no as Idempotency-Key only', $last && $last['body']['variant_id'] === 'variant_QA_GPLAY' && (int) $last['body']['quantity'] === 1
+        && !isset($last['body']['reference']) && $last['idem'] === $r['order_no'], json_encode($last));
+    TestKit::check('accepted (202) then completed on the instant status check: delivered while the customer waits', strpos((string) Db::scalar('SELECT provider_order_id FROM voucher_orders WHERE order_no = ?', 's', array($r['order_no'])), 'dtx_') === 0);
     TestKit::eq('Main wallet debited the marked-up price 572', '4428.00', TestKit::balance('qa_l1', 'balance'));
     $r = VoucherService::purchase($u['qa_l1'], (int) $ff['id'], bin2hex(random_bytes(16)), '512345678');
     $last = TestKit::mock('/__state')['pv_last_order'] ?? null;
-    TestKit::check('game UID top-up: schema field sent as delivery_data.User, delivered', $r['ok'] && $r['status'] === 'delivered' && isset($last['body']['delivery_data']['User']) && $last['body']['delivery_data']['User'] === '512345678', json_encode($last));
+    TestKit::check('game UID top-up: schema field sent as delivery_details.User, delivered', $r['ok'] && $r['status'] === 'delivered' && isset($last['body']['delivery_details']['User']) && $last['body']['delivery_details']['User'] === '512345678', json_encode($last));
     $r = VoucherService::purchase($u['qa_l1'], (int) $gp['id'], bin2hex(random_bytes(16)), '8801712345678');
     $last = TestKit::mock('/__state')['pv_last_order'] ?? null;
-    TestKit::check('mobile recharge product: number sent as delivery_data.DestNo', $r['ok'] && $r['status'] === 'delivered' && ($last['body']['delivery_data']['DestNo'] ?? '') === '8801712345678', json_encode($r));
+    TestKit::check('mobile recharge product: number sent as delivery_details.DestNo', $r['ok'] && $r['status'] === 'delivered' && ($last['body']['delivery_details']['DestNo'] ?? '') === '8801712345678', json_encode($r));
     $bal = TestKit::balance('qa_l1', 'balance');
     $r = VoucherService::purchase($u['qa_l1'], (int) $gp['id'], bin2hex(random_bytes(16)), '01-ABC');
     TestKit::check('malformed phone number refused before any debit', !$r['ok'] && strpos($r['message'], 'Mobile / Account Number') !== false && TestKit::balance('qa_l1', 'balance') === $bal);
     $r = VoucherService::purchase($u['qa_l1'], (int) $ff['id'], bin2hex(random_bytes(16)), '000000');
-    TestKit::check('provider says invalid player -> refunded at once', !$r['ok'] && $r['status'] === 'refunded' && TestKit::balance('qa_l1', 'balance') === $bal, json_encode($r));
+    TestKit::check('provider fails the transaction (invalid player) -> refunded at once, with its reason', !$r['ok'] && $r['status'] === 'refunded' && TestKit::balance('qa_l1', 'balance') === $bal
+        && strpos((string) Db::scalar('SELECT failure_reason FROM voucher_orders WHERE order_no = ?', 's', array($r['order_no'])), 'invalid_destination') !== false, json_encode($r));
     $r = VoucherService::purchase($u['qa_l1'], (int) $vp('variant_QA_OOS')['id'], bin2hex(random_bytes(16)));
     $o = Db::one('SELECT * FROM voucher_orders WHERE order_no = ?', 's', array($r['order_no']));
     TestKit::check('HTTP 422 (order not created) -> refunded with the provider reason', !$r['ok'] && $r['status'] === 'refunded' && TestKit::balance('qa_l1', 'balance') === $bal && strpos((string) $o['failure_reason'], 'out of stock') !== false, json_encode($o));
@@ -417,13 +419,48 @@ try {
     $bal = TestKit::balance('qa_l1', 'balance');
     $r = VoucherService::purchase($u['qa_l1'], (int) $vp('variant_QA_PEND')['id'], bin2hex(random_bytes(16)));
     $o = Db::one('SELECT * FROM voucher_orders WHERE order_no = ?', 's', array($r['order_no']));
-    TestKit::check('pending order: the order-level "code" is NOT taken as a voucher code', $r['status'] === 'processing' && $o['voucher_code'] === null && strpos((string) $o['provider_order_id'], 'ord_PEND_') === 0, json_encode($o));
+    TestKit::check('pending order: the transaction-level "code" is NOT taken as a voucher code', $r['status'] === 'processing' && $o['voucher_code'] === null && strpos((string) $o['provider_order_id'], 'dtx_') === 0, json_encode($o));
+    TestKit::mock('/__pv_release?key=' . $r['order_no']);
     Db::exec('UPDATE voucher_orders SET created_at = NOW() - INTERVAL 5 MINUTE, status_checked_at = NULL WHERE id = ?', 'i', array((int) $o['id']));
     VoucherService::poll(50);
     $vault = VoucherService::vault($u['qa_l1']);
     $pend = null;
     foreach ($vault as $v) { if ($v['order_no'] === $r['order_no']) { $pend = $v; } }
     TestKit::check('status poller delivers it with the real voucher code', $pend && $pend['status'] === 'delivered' && strpos((string) $pend['voucher_code'], 'PENDCODE-') === 0 && TestKit::balance('qa_l1', 'balance') === Money::sub($bal, '905.00'), json_encode($pend));
+
+    // The order reply is lost (timeout) although the provider created the transaction.
+    $bal = TestKit::balance('qa_l1', 'balance');
+    TestKit::mock('/__pv_next?behavior=timeout');
+    $r = VoucherService::purchase($u['qa_l1'], (int) $gplay['id'], bin2hex(random_bytes(16)));
+    $o = Db::one('SELECT * FROM voucher_orders WHERE order_no = ?', 's', array($r['order_no']));
+    TestKit::check('lost reply (HTTP 504) -> processing, money held, no provider id yet', $r['status'] === 'processing' && $o['provider_order_id'] === null && TestKit::balance('qa_l1', 'balance') === Money::sub($bal, '572.00'), json_encode($o));
+    for ($i = 0; $i < 2; $i++) {
+        Db::exec('UPDATE voucher_orders SET created_at = NOW() - INTERVAL 5 MINUTE, status_checked_at = NULL WHERE id = ?', 'i', array((int) $o['id']));
+        VoucherService::poll(50);
+    }
+    $o = Db::one('SELECT * FROM voucher_orders WHERE order_no = ?', 's', array($r['order_no']));
+    $posts = TestKit::mock('/__state')['pv_posts'][$r['order_no']] ?? 0;
+    TestKit::check('poller re-sends the same Idempotency-Key: the existing transaction is found and delivered, never bought twice', $o['status'] === 'delivered' && $posts === 2
+        && count(array_filter(TestKit::mock('/__state')['pv_tx'] ?? array(), function ($t) use ($r) { return $t['external_id'] === $r['order_no']; })) === 1, json_encode(array($o['status'], $posts)));
+
+    // Completed at the provider but no voucher code in the reply (live): never refund, never "delivered".
+    $bal = TestKit::balance('qa_l1', 'balance');
+    TestKit::mock('/__pv_next?behavior=nocode');
+    $r = VoucherService::purchase($u['qa_l1'], (int) $gplay['id'], bin2hex(random_bytes(16)));
+    TestKit::check('completed without a code -> stays processing, money held, admin alerted once', $r['status'] === 'processing' && TestKit::balance('qa_l1', 'balance') === Money::sub($bal, '572.00')
+        && (int) Db::scalar('SELECT COUNT(*) FROM admin_alerts WHERE alert_key = ?', 's', array('voucher_nocode:' . $r['order_no'])) === 1, json_encode($r));
+    $o = Db::one('SELECT * FROM voucher_orders WHERE order_no = ?', 's', array($r['order_no']));
+    Db::exec('UPDATE voucher_orders SET created_at = NOW() - INTERVAL 5 MINUTE, status_checked_at = NULL WHERE id = ?', 'i', array((int) $o['id']));
+    VoucherService::poll(50);
+    TestKit::check('...and the poller does not repeat the alert', (int) Db::scalar('SELECT COUNT(*) FROM admin_alerts WHERE alert_key = ?', 's', array('voucher_nocode:' . $r['order_no'])) === 1);
+    Db::exec("UPDATE voucher_orders SET status = 'delivered' WHERE id = ?", 'i', array((int) $o['id'])); // keep it out of later polls
+
+    // The provider SANDBOX simulates fulfilment and sends no code (seen on 2026-11-28).
+    TestKit::mock('/__pv_next?behavior=sandbox');
+    $r = VoucherService::purchase($u['qa_l1'], (int) $gplay['id'], bin2hex(random_bytes(16)));
+    $sbx = null;
+    foreach (VoucherService::vault($u['qa_l1']) as $v) { if ($v['order_no'] === $r['order_no']) { $sbx = $v; } }
+    TestKit::check('sandbox simulated delivery -> delivered with a visible TEST placeholder code', $r['status'] === 'delivered' && $sbx && strpos((string) $sbx['voucher_code'], 'TEST-SANDBOX-') === 0, json_encode($r));
 
     // LIVE store + SANDBOX key = customers would pay real money for test vouchers
     TestKit::configure('popular_voucher', array('mode' => 'live', 'live_base_url' => TestKit::MOCK . '/voucher', 'live_credentials' => \Midhub\Crypto::encryptJson(array('api_key' => 'qa_voucher_key'))));
@@ -604,6 +641,73 @@ try {
     TestKit::eq('wallet nets to zero (credited by bKash, spent on the top-up)', '0.00', TestKit::balance('qa_l1', 'balance'));
     TestKit::eq('running the intent again never buys twice', null, DepositService::runIntent($d['invoice_no']));
     TestKit::eq('exactly one order for that payment', 1, (int) Db::scalar('SELECT COUNT(*) FROM voucher_orders WHERE deposit_invoice = ?', 's', array($d['invoice_no'])));
+
+    // Price locked at payment: the customer is never charged more than what they paid.
+    TestKit::setBalance('qa_l1', 'balance', '300.00'); // other money in the Main wallet must stay untouched
+    $d = DepositService::create($u['qa_l1'], 'bkash', 'balance', '95', bin2hex(random_bytes(16)), array('type' => 'voucher', 'product_id' => $fid, 'player_id' => '598765432', 'price' => '95.00'));
+    Db::exec("UPDATE voucher_products SET sell_price = 120.00 WHERE id = ?", 'i', array($fid)); // price rises while the customer pays
+    $txn = DepositService::find($d['invoice_no']);
+    DepositService::settle($d['invoice_no'], 'return', array('paymentID' => $txn['gateway_payment_id'], 'status' => 'success'));
+    $ir = DepositService::runIntent($d['invoice_no']);
+    $order = Db::one('SELECT * FROM voucher_orders WHERE deposit_invoice = ?', 's', array($d['invoice_no']));
+    TestKit::check('price rose after payment: sold at the paid 95, the rest of the wallet untouched', $ir && $ir['ok'] && $order && $order['price'] === '95.00' && TestKit::balance('qa_l1', 'balance') === '300.00', json_encode(array($ir, $order ? $order['price'] : null)));
+    $costNow = (string) Db::scalar('SELECT cost_price FROM voucher_products WHERE id = ?', 'i', array($fid));
+    $d = DepositService::create($u['qa_l1'], 'bkash', 'balance', '95', bin2hex(random_bytes(16)), array('type' => 'voucher', 'product_id' => $fid, 'player_id' => '598765432', 'price' => '95.00'));
+    Db::exec("UPDATE voucher_products SET cost_price = 110.00 WHERE id = ?", 'i', array($fid)); // provider cost now above the paid price
+    $txn = DepositService::find($d['invoice_no']);
+    DepositService::settle($d['invoice_no'], 'return', array('paymentID' => $txn['gateway_payment_id'], 'status' => 'success'));
+    $ir = DepositService::runIntent($d['invoice_no']);
+    TestKit::check('cost rose above the paid price: nothing bought, payment kept in the Main wallet, customer told',
+        $ir && !$ir['ok'] && strpos($ir['message'], 'Main wallet') !== false && TestKit::balance('qa_l1', 'balance') === '395.00'
+        && (int) Db::scalar('SELECT COUNT(*) FROM voucher_orders WHERE deposit_invoice = ?', 's', array($d['invoice_no'])) === 0
+        && (int) Db::scalar("SELECT COUNT(*) FROM notification WHERE UserId = ? AND MsgFrom = 'Voucher' AND message LIKE ?", 'is', array($u['qa_l1'], '%' . $d['invoice_no'] . '%')) === 1, json_encode($ir));
+    Db::exec('UPDATE voucher_products SET cost_price = ?, sell_price = 95.00 WHERE id = ?', 'si', array($costNow, $fid));
+
+    // =====================================================================
+    TestKit::section('Voucher paid directly with Nagad, Upay or UddoktaPay (mock)');
+    $keys = TestKit::mock('/__nagad_keys');
+    $limits = array('status' => 'active', 'mode' => 'sandbox', 'charge_percentage' => '0', 'min_amount' => '10', 'max_amount' => '25000');
+    TestKit::configure('nagad', $limits + array('sandbox_base_url' => TestKit::MOCK . '/nagad',
+        'creds' => array('merchant_id' => '683002007104225', 'merchant_number' => '01700000000', 'merchant_private_key' => $keys['merchant_private_key'], 'nagad_public_key' => $keys['nagad_public_key'])));
+    TestKit::configure('upay', $limits + array('sandbox_base_url' => TestKit::MOCK . '/upay',
+        'creds' => array('merchant_id' => 'qa_up_mid', 'merchant_key' => 'qa_up_key', 'merchant_code' => 'QA', 'merchant_name' => 'Midhub QA', 'merchant_mobile' => '01700000000')));
+    TestKit::configure('uddoktapay', $limits + array('sandbox_base_url' => TestKit::MOCK . '/uddoktapay', 'creds' => array('api_key' => 'qa_udp_key')));
+    TestKit::check('Nagad test connection parses both RSA keys', GatewayFactory::any('nagad')->testConnection()['ok']);
+    TestKit::check('Upay test connection authenticates', GatewayFactory::any('upay')->testConnection()['ok']);
+    foreach (array('nagad', 'upay', 'uddoktapay') as $gw) {
+        TestKit::setBalance('qa_l1', 'balance', '0.00');
+        $d = DepositService::create($u['qa_l1'], $gw, 'balance', '95.00', bin2hex(random_bytes(16)), array('type' => 'voucher', 'product_id' => $fid, 'player_id' => '598765432', 'price' => '95.00'));
+        $txn = DepositService::find($d['invoice_no']);
+        parse_str((string) parse_url($d['redirect_url'], PHP_URL_QUERY), $rq);
+        $params = $gw === 'nagad' ? array('payment_ref_id' => $txn['gateway_payment_id'], 'order_id' => $d['invoice_no'], 'status' => 'Success')
+            : ($gw === 'uddoktapay' ? array('invoice_id' => $rq['invoice_id'] ?? '') : array());
+        $r = DepositService::settle($d['invoice_no'], 'return', $params);
+        $ir = DepositService::runIntent($d['invoice_no']);
+        $order = Db::one('SELECT * FROM voucher_orders WHERE deposit_invoice = ?', 's', array($d['invoice_no']));
+        TestKit::check("$gw: checkout opened, payment verified server-to-server, voucher delivered, wallet nets to zero",
+            strpos($d['redirect_url'], 'http://127.0.0.1:8765/') === 0 && $r['status'] === 'completed' && $ir && $ir['ok'] && $order && $order['status'] === 'delivered'
+            && TestKit::balance('qa_l1', 'balance') === '0.00', json_encode(array($d['redirect_url'], $r['status'], $r['message'], $ir)));
+    }
+    TestKit::mock('/__nagad?badsig=1');
+    $err = '';
+    try {
+        DepositService::create($u['qa_l1'], 'nagad', 'balance', '95.00', bin2hex(random_bytes(16)));
+    } catch (\Midhub\Gateway\GatewayException $e) {
+        $err = $e->getMessage();
+    }
+    TestKit::check('Nagad: a response with a forged signature is refused before any redirect', strpos($err, 'signature is invalid') !== false, $err);
+    TestKit::mock('/__nagad?badsig=0&outcome=Aborted');
+    Db::exec("DELETE FROM circuit_breakers WHERE cb_key = 'deposit:nagad'");
+    $d = DepositService::create($u['qa_l1'], 'nagad', 'balance', '95.00', bin2hex(random_bytes(16)));
+    $txn = DepositService::find($d['invoice_no']);
+    $r = DepositService::settle($d['invoice_no'], 'return', array('payment_ref_id' => $txn['gateway_payment_id'], 'order_id' => $d['invoice_no'], 'status' => 'Success'));
+    TestKit::check('Nagad: the redirect says Success but verify says Aborted -> cancelled, nothing credited', $r['status'] === 'cancelled' && TestKit::balance('qa_l1', 'balance') === '0.00', $r['status']);
+    TestKit::mock('/__nagad?outcome=');
+    $r = DepositService::settle($d['invoice_no'], 'return', array('payment_ref_id' => 'NGFORGED00000000', 'order_id' => $d['invoice_no'], 'status' => 'Success'));
+    TestKit::check('Nagad: a payment_ref_id that is not ours is rejected', $r['status'] !== 'completed' && TestKit::balance('qa_l1', 'balance') === '0.00', $r['status']);
+    foreach (array('nagad', 'upay', 'uddoktapay') as $gw) {
+        TestKit::configure($gw, array('status' => 'inactive'));
+    }
 
     // =====================================================================
     TestKit::section('PIN brute force: temporary IP ban across accounts');

@@ -20,12 +20,25 @@ use Midhub\Ops\Settings;
  *                (mobile_recharge | gift_card | bill_pay | data), delivery_schema (fields the
  *                customer must supply, e.g. DestNo phone/meter, User).
  *
- * NOT yet confirmed (no order has been placed; the v1.1 document is behind the distributor
- * portal): the order request/response field names. They are admin-editable (Gateway Settings ->
- * Popular Voucher) and the parser accepts the common shapes. Money safety does not depend on them:
+ *   POST /distributor/transactions                (verified with sandbox orders on 2026-11-28)
+ *       header Idempotency-Key: <our order no> (required; stored as external_id)
+ *       body {variant_id, quantity: 1, delivery_details: {DestNo: "..."}}  (delivery only when the
+ *       product has a delivery_schema; the provider normalises numbers, 017.. -> 88017..)
+ *       -> 202 {transaction:{id:"dtx_...", status:"accepted", delivery_details, result:null,
+ *               failure_code, failure_message, ...}, balance, replayed:false}
+ *       same Idempotency-Key again -> 200, the SAME transaction, replayed:true (never a 2nd order)
+ *       errors: 400 invalid_request / 400 "Delivery details do not match" {error:{code,message,fields}}
+ *               404 product_not_found  (no transaction is created)
+ *   GET  /distributor/transactions/{id}            -> {transaction:{status:"completed", result:{
+ *               sandbox:true, delivery:{message, reference}}, ...}}; 404 not_found
+ *
+ * Money safety:
  *   - HTTP 4xx on order placement (except 408/409/425/429) = order definitely not created -> refund
- *   - timeout / 5xx / 409 / unreadable reply = unknown -> keep "processing", the poller asks again
+ *   - timeout / 5xx / 409 / unreadable reply = unknown -> keep "processing"; the poller re-sends
+ *     the SAME Idempotency-Key, which returns the existing transaction instead of a new one
  *   - a code is only accepted from a voucher field, never from an order-level "code"
+ *   - live order "completed" without any voucher code -> stays processing + admin alert
+ *     (the sandbox simulates delivery and returns no code; it gets a TEST placeholder)
  *
  * MOCK MODE: Sandbox with an empty Sandbox Base URL makes no network calls (demo catalog, TEST codes).
  */
@@ -207,8 +220,11 @@ final class PopularVoucherService
         $body = array(
             ($this->cfg->extra('order_product_field') ?: 'variant_id') => $productCode,
             'quantity' => 1,
-            ($this->cfg->extra('order_reference_field') ?: 'reference') => $orderNo,
         );
+        $refField = $this->cfg->extra('order_reference_field');
+        if ($refField !== '' && $refField !== '-') {
+            $body[$refField] = $orderNo; // optional: the Idempotency-Key header already carries it
+        }
         $merchant = $this->cfg->cred('merchant_id', false);
         if ($merchant !== '') {
             $body['merchant_id'] = $merchant;
@@ -229,11 +245,11 @@ final class PopularVoucherService
                 if ($container === '-') {
                     $body[$field] = $playerId; // admin chose "top level"
                 } else {
-                    $body[$container ?: 'delivery_data'] = array($field => $playerId);
+                    $body[$container ?: 'delivery_details'] = array($field => $playerId);
                 }
             }
         }
-        $resp = $this->request('POST', $this->cfg->extra('order_path') ?: '/distributor/orders', $body, 'place_order', $orderNo, array('Idempotency-Key' => $orderNo));
+        $resp = $this->request('POST', $this->cfg->extra('order_path') ?: '/distributor/transactions', $body, 'place_order', $orderNo, array('Idempotency-Key' => $orderNo));
         $j = $resp->json();
         if ($resp->errno !== 0 || $resp->status >= 500 || $resp->status === 0 || in_array($resp->status, array(408, 409, 425, 429), true)) {
             // unknown: the order may exist at the provider
@@ -256,7 +272,7 @@ final class PopularVoucherService
             return self::result(self::PROCESSING, $providerOrderId, null, null, null, null, 'mock mode: no status lookup');
         }
         $id = $providerOrderId !== '' ? $providerOrderId : $orderNo;
-        $resp = $this->request('GET', str_replace('{order_id}', rawurlencode($id), $this->cfg->extra('order_status_path') ?: '/distributor/orders/{order_id}'), null, 'order_status', $orderNo);
+        $resp = $this->request('GET', str_replace('{order_id}', rawurlencode($id), $this->cfg->extra('order_status_path') ?: '/distributor/transactions/{order_id}'), null, 'order_status', $orderNo);
         $j = $resp->json();
         if ($resp->status < 200 || $resp->status >= 300 || !is_array($j)) {
             // a failed lookup (even 404) is never proof that the order failed
@@ -354,19 +370,33 @@ final class PopularVoucherService
     private function parseOrder(array $j, bool $direct = false): array
     {
         $root = $j;
-        foreach (array('order', 'data') as $k) {
+        foreach (array('transaction', 'order', 'data') as $k) {
             if (isset($root[$k]) && is_array($root[$k]) && !isset($root[$k][0])) {
                 $root = $root[$k];
                 break;
             }
         }
-        $orderId = self::pick($root, array('order_id', 'id', 'transaction_id', 'reference_id'));
+        // v1.1 transaction: "id" is the dtx_ id used for status lookups ("order_id" is null)
+        $orderId = self::pick($root, array('id', 'order_id', 'transaction_id', 'reference_id'));
         $status = strtolower(self::pick($root, array('status', 'order_status', 'state', 'fulfillment_status')));
-        // voucher codes live in a voucher list (vouchers / codes / items[...].vouchers / fulfillments)
+        $result = isset($root['result']) && is_array($root['result']) ? $root['result'] : array();
+        $delivery = isset($result['delivery']) && is_array($result['delivery']) ? $result['delivery'] : array();
+
+        // Voucher codes live in a voucher list: vouchers / codes / items[...].vouchers / fulfillments,
+        // a delivery_details LIST (for a phone-number product it is the {DestNo} object instead),
+        // or inside result / result.delivery.
         $v = array();
-        foreach (array('vouchers', 'codes', 'items', 'fulfillments', 'line_items') as $k) {
-            if (!empty($root[$k]) && is_array($root[$k]) && isset($root[$k][0]) && is_array($root[$k][0])) {
-                $v = $root[$k][0];
+        $lists = array();
+        foreach (array('vouchers', 'codes', 'items', 'fulfillments', 'line_items', 'delivery_details') as $k) {
+            $lists[] = isset($root[$k]) ? $root[$k] : null;
+        }
+        foreach (array('vouchers', 'codes', 'items', 'delivery_details') as $k) {
+            $lists[] = isset($result[$k]) ? $result[$k] : null;
+            $lists[] = isset($delivery[$k]) ? $delivery[$k] : null;
+        }
+        foreach ($lists as $list) {
+            if (!empty($list) && is_array($list) && isset($list[0]) && is_array($list[0])) {
+                $v = $list[0];
                 foreach (array('vouchers', 'codes') as $k2) {
                     if (!empty($v[$k2]) && is_array($v[$k2]) && isset($v[$k2][0]) && is_array($v[$k2][0])) {
                         $v = array_merge($v, $v[$k2][0]);
@@ -375,25 +405,47 @@ final class PopularVoucherService
                 break;
             }
         }
-        $code = self::pick($v, array('voucher_code', 'code', 'redeem_code', 'redemption_code', 'claim_code', 'card_number'));
+        $explicit = array('voucher_code', 'redeem_code', 'redemption_code', 'claim_code', 'card_number');
+        $code = self::pick($v, array_merge(array('voucher_code', 'code'), $explicit));
         if ($code === '') {
-            $code = self::pick($root, array('voucher_code', 'redeem_code', 'redemption_code', 'card_number')); // never the order-level "code"
+            // never an order-level or delivery-level plain "code" (could be a status code)
+            $code = self::pick($root, $explicit) ?: self::pick($delivery, $explicit);
         }
-        $pin = self::pick($v, array('pin', 'voucher_pin', 'card_pin')) ?: self::pick($root, array('voucher_pin', 'card_pin', 'pin'));
+        $pin = self::pick($v, array('pin', 'voucher_pin', 'card_pin')) ?: (self::pick($root, array('voucher_pin', 'card_pin', 'pin')) ?: self::pick($delivery, array('voucher_pin', 'card_pin', 'pin')));
+        $message = self::pick($root, array('failure_message')) ?: (self::pick($delivery, array('message')) ?: self::message($j));
         $out = self::result(self::PROCESSING, $orderId !== '' ? substr($orderId, 0, 120) : null, $code !== '' ? $code : null,
-            (self::pick($v, array('serial', 'serial_number', 'voucher_serial')) ?: self::pick($root, array('serial', 'serial_number', 'voucher_serial'))) ?: null,
+            (self::pick($v, array('serial', 'serial_number', 'voucher_serial')) ?: (self::pick($root, array('serial', 'serial_number', 'voucher_serial')) ?: self::pick($delivery, array('serial', 'serial_number', 'voucher_serial')))) ?: null,
             $pin !== '' ? $pin : null,
-            (self::pick($v, array('expiry', 'expires_at', 'expiry_date', 'valid_till')) ?: self::pick($root, array('expiry', 'expires_at', 'expiry_date', 'valid_till'))) ?: null,
-            substr(self::message($j), 0, 240));
+            (self::pick($v, array('expiry', 'expires_at', 'expiry_date', 'valid_till')) ?: (self::pick($root, array('expiry', 'expires_at', 'expiry_date', 'valid_till')) ?: self::pick($delivery, array('expiry', 'expires_at', 'expiry_date', 'valid_till')))) ?: null,
+            substr($message, 0, 240));
         $failedWords = array('failed', 'failure', 'cancelled', 'canceled', 'rejected', 'refunded', 'declined', 'out_of_stock', 'error', 'expired');
         $doneWords = array('completed', 'complete', 'success', 'successful', 'succeeded', 'delivered', 'fulfilled');
+        $openWords = array('accepted', 'pending', 'processing', 'queued', 'in_progress', 'submitted', 'created');
         $explicitError = (isset($j['success']) && $j['success'] === false) || (isset($j['error']) && $j['error'] && !$orderId);
-        if (in_array($status, $failedWords, true) || ($explicitError && $status === '')) {
+        $failureCode = self::pick($root, array('failure_code'));
+        if (in_array($status, $failedWords, true) || ($explicitError && $status === '')
+            || ($failureCode !== '' && !in_array($status, array_merge($doneWords, $openWords), true))) {
             $out['outcome'] = self::FAILED;
+            if ($failureCode !== '' && strpos($out['message'], $failureCode) === false) {
+                $out['message'] = trim($failureCode . ': ' . $out['message'], ': ');
+            }
         } elseif ($code !== '' || $pin !== '') {
             $out['outcome'] = self::DELIVERED;
         } elseif ($direct && in_array($status, $doneWords, true)) {
             $out['outcome'] = self::DELIVERED; // direct top-up: credited to the player, no code
+        } elseif (in_array($status, $doneWords, true)) {
+            if (!$this->cfg->isLive() && isset($result['sandbox']) && $result['sandbox'] === true) {
+                // The provider sandbox simulates fulfilment and returns no code: a visible TEST placeholder
+                // lets the whole purchase be tested end to end. Never in live mode.
+                $out['outcome'] = self::DELIVERED;
+                $out['code'] = 'TEST-SANDBOX-' . strtoupper(substr(preg_replace('/[^A-Za-z0-9]/', '', (string) $orderId), -12));
+                $out['message'] = 'Sandbox simulated delivery (not a real voucher)';
+            } else {
+                // Completed at the provider but no code we can show the customer: never refund (it was
+                // paid for), never mark delivered without a code. The admin is alerted to resolve it.
+                $out['completed_without_code'] = true;
+                $out['message'] = substr('provider completed the order but returned no voucher code. ' . $out['message'], 0, 240);
+            }
         }
         return $out;
     }

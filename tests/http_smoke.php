@@ -239,6 +239,48 @@ try {
     }
     TestKit::check('5 wrong PINs lock purchases even with the right PIN', strpos($last, 'Too many wrong PIN attempts') !== false && TestKit::balance('qa_l0', 'balance') === '205.00', $last);
 
+    // The core journey: pick a voucher, pay from your own bKash, get the voucher automatically.
+    TestKit::configure('bkash', array('charge_percentage' => '1.50', 'min_amount' => '10', 'max_amount' => '25000'));
+    $p = http('cust', 'GET', '/customer/vouchers.php');
+    TestKit::check('buy dialog offers bKash with its charge, and the Main wallet', strpos($p['body'], 'id="pm-bkash"') !== false && strpos($p['body'], 'data-charge="1.50"') !== false && strpos($p['body'], 'id="pm-wallet"') !== false);
+    preg_match('/name="nonce" value="([a-f0-9]+)"/', $p['body'], $nm);
+    $r = http('cust', 'POST', '/customer/vouchers.php', array('_csrf' => csrf($p['body']), 'nonce' => $nm[1], 'product_id' => $pid, 'pay_method' => 'bkash'), sameOrigin());
+    TestKit::check('pay with bKash: no PIN needed, straight to the bKash checkout', $r['code'] === 302 && strpos($r['location'], '/bkash-pay?paymentID=') !== false, $r['code'] . ' ' . $r['location']);
+    parse_str((string) parse_url($r['location'], PHP_URL_QUERY), $q);
+    $vtx = Db::one('SELECT * FROM gateway_transactions WHERE gateway_payment_id = ?', 's', array($q['paymentID']));
+    TestKit::check('customer pays price + 1.5% (95.00 + 1.43 = 96.43); voucher price locked in the invoice', $vtx && $vtx['payable_amount'] === '96.43' && $vtx['credit_amount'] === '95.00'
+        && strpos((string) $vtx['intent'], '"price":"95.00"') !== false, json_encode($vtx));
+    $r = http('cust', 'GET', '/gateway/bkash_callback.php?paymentID=' . $q['paymentID'] . '&status=success&apiVersion=1.2.0-beta');
+    TestKit::check('after paying: "Payment received" + voucher delivered on the same page', strpos($r['body'], 'Payment received') !== false && strpos($r['body'], 'Purchase successful') !== false
+        && strpos($r['body'], 'View my vouchers') !== false, substr(strip_tags($r['body']), 0, 300));
+    $vo = Db::one('SELECT * FROM voucher_orders WHERE deposit_invoice = ?', 's', array($vtx['invoice_no']));
+    TestKit::check('one delivered voucher order for that payment; Main wallet back to where it was', $vo && $vo['status'] === 'delivered' && TestKit::balance('qa_l0', 'balance') === '205.00', json_encode($vo));
+    $r = http('cust', 'GET', '/gateway/bkash_callback.php?paymentID=' . $q['paymentID'] . '&status=success&apiVersion=1.2.0-beta');
+    TestKit::check('reloading the return page buys nothing more', strpos($r['body'], 'Your voucher is ready') !== false
+        && (int) Db::scalar('SELECT COUNT(*) FROM voucher_orders WHERE deposit_invoice = ?', 's', array($vtx['invoice_no'])) === 1, substr(strip_tags($r['body']), 0, 300));
+    TestKit::configure('bkash', array('charge_percentage' => '0'));
+
+    // Admin: a stuck order is refunded only by a Super Admin with the Self-PIN.
+    // (the PIN brute-force test above locked this test machine's IP; start clean)
+    Db::exec("DELETE FROM security_pin_attempts WHERE success = 0 AND user_id IN (SELECT id FROM user WHERE user LIKE 'qa\\_%' AND email LIKE '%@qa.invalid')");
+    Db::exec("UPDATE voucher_orders SET status = 'processing' WHERE id = ?", 'i', array((int) $vo['id']));
+    $ap = http('adm', 'GET', '/admin/voucher_products.php');
+    TestKit::check('admin sees actions for the processing order', strpos($ap['body'], 'VoucherOrderAction') !== false && strpos($ap['body'], $vo['order_no']) !== false && phpErrors($ap['body']) === '', phpErrors($ap['body']));
+    $act = array('_csrf' => csrf($ap['body']), 'order_no' => $vo['order_no'], 'order_action' => 'refund', 'self_pin' => '111111');
+    http('adm', 'POST', '/admin/route.php?action=VoucherOrderAction', $act, sameOrigin());
+    TestKit::check('wrong Self-PIN: nothing refunded', Db::scalar('SELECT status FROM voucher_orders WHERE id = ?', 'i', array((int) $vo['id'])) === 'processing' && TestKit::balance('qa_l0', 'balance') === '205.00');
+    $act['self_pin'] = TestKit::PIN;
+    http('adm', 'POST', '/admin/route.php?action=VoucherOrderAction', $act, sameOrigin());
+    $flashPage = http('adm', 'GET', '/admin/voucher_products.php');
+    $flash = preg_match('/alert-(?:success|danger)[^>]*>(.*?)<button/s', $flashPage['body'], $fm) ? trim(strip_tags($fm[1])) : '';
+    http('adm', 'POST', '/admin/route.php?action=VoucherOrderAction', $act, sameOrigin());
+    TestKit::check('refund with Self-PIN: once (second click refused), audited', Db::scalar('SELECT status FROM voucher_orders WHERE id = ?', 'i', array((int) $vo['id'])) === 'refunded'
+        && TestKit::balance('qa_l0', 'balance') === '300.00'
+        && (int) Db::scalar("SELECT COUNT(*) FROM gateway_audit_log WHERE action LIKE 'order refund%' AND changes LIKE ?", 's', array('%' . $vo['order_no'] . '%')) === 1,
+        json_encode(array(Db::scalar('SELECT status FROM voucher_orders WHERE id = ?', 'i', array((int) $vo['id'])), TestKit::balance('qa_l0', 'balance'),
+            Db::all("SELECT action, changes FROM gateway_audit_log WHERE changes LIKE ?", 's', array('%' . $vo['order_no'] . '%')), $flash)));
+    Db::exec("DELETE FROM gateway_audit_log WHERE action LIKE 'order %' AND changes LIKE ?", 's', array('%' . $vo['order_no'] . '%'));
+
     // =====================================================================
     TestKit::section('Admin manual queue: a request is settled only once');
     TestKit::configure('paywell', array('status' => 'inactive'));

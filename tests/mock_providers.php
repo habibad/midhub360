@@ -278,6 +278,136 @@ if ($path === '/sms/api/smsapi') {
     exit();
 }
 
+// ---------------- Nagad remote-payment-gateway v-0.2.0 ----------------
+// RSA exactly as the real PGW: request sensitiveData encrypted with the PG public key and signed
+// (SHA256withRSA) with the merchant private key; responses encrypted for the merchant and signed by the PG.
+$nagadKeys = function () use (&$state, $save) {
+    if (empty($state['ng_keys'])) {
+        $opt = array('private_key_bits' => 2048, 'private_key_type' => OPENSSL_KEYTYPE_RSA);
+        $cnf = getenv('OPENSSL_CONF') ?: dirname(PHP_BINARY) . '/extras/ssl/openssl.cnf';
+        if (is_file($cnf)) {
+            $opt['config'] = $cnf;
+        }
+        foreach (array('pg', 'merchant') as $who) {
+            $k = openssl_pkey_new($opt);
+            openssl_pkey_export($k, $priv, null, $opt);
+            $state['ng_keys'][$who] = array('private' => $priv, 'public' => openssl_pkey_get_details($k)['key']);
+        }
+        $save();
+    }
+    return $state['ng_keys'];
+};
+if ($path === '/__nagad_keys') {
+    $k = $nagadKeys();
+    $json(array('merchant_private_key' => $k['merchant']['private'], 'nagad_public_key' => $k['pg']['public']));
+}
+if ($path === '/__nagad') {
+    foreach (array('badsig', 'outcome') as $knob) {
+        if (isset($_GET[$knob])) {
+            $state['ng_' . $knob] = (string) $_GET[$knob];
+        }
+    }
+    $save();
+    $json(array('ok' => true));
+}
+if (strpos($path, '/nagad/') === 0) {
+    $k = $nagadKeys();
+    $p = substr($path, strlen('/nagad'));
+    if ($hdr('X-KM-Api-Version') === '' || $hdr('X-KM-Client-Type') === '' || $hdr('X-KM-IP-V4') === '') {
+        $json(array('reason' => 'Missing X-KM headers', 'message' => 'Invalid request'), 400);
+    }
+    $open = function (array $b) use ($k) {
+        $plain = '';
+        if (empty($b['sensitiveData']) || !openssl_private_decrypt((string) base64_decode((string) $b['sensitiveData']), $plain, $k['pg']['private'], OPENSSL_PKCS1_PADDING)) {
+            return null;
+        }
+        if (empty($b['signature']) || openssl_verify($plain, (string) base64_decode((string) $b['signature']), $k['merchant']['public'], OPENSSL_ALGO_SHA256) !== 1) {
+            return null;
+        }
+        return json_decode($plain, true);
+    };
+    if (preg_match('#^/api/dfs/check-out/initialize/([0-9]+)/([A-Za-z0-9]+)$#', $p, $m)) {
+        $d = $open($body);
+        if (!$d || $d['merchantId'] !== $m[1] || $d['orderId'] !== $m[2] || empty($d['challenge'])) {
+            $json(array('reason' => 'Invalid Request', 'message' => 'Signature or sensitive data invalid'), 400);
+        }
+        $ref = 'NG' . strtoupper(bin2hex(random_bytes(8)));
+        $challenge = bin2hex(random_bytes(10));
+        $state['ng'][$ref] = array('orderId' => $m[2], 'merchantId' => $m[1], 'challenge' => $challenge, 'amount' => null);
+        $save();
+        $plain = json_encode(array('paymentReferenceId' => $ref, 'challenge' => $challenge, 'acceptDateTime' => date('YmdHis')));
+        openssl_public_encrypt($plain, $enc, $k['merchant']['public'], OPENSSL_PKCS1_PADDING);
+        openssl_sign(!empty($state['ng_badsig']) ? $plain . 'x' : $plain, $sig, $k['pg']['private'], OPENSSL_ALGO_SHA256);
+        $json(array('sensitiveData' => base64_encode($enc), 'signature' => base64_encode($sig)));
+    }
+    if (preg_match('#^/api/dfs/check-out/complete/(NG[0-9A-F]{16})$#', $p, $m) && isset($state['ng'][$m[1]])) {
+        $d = $open($body);
+        $s = $state['ng'][$m[1]];
+        if (!$d || $d['challenge'] !== $s['challenge'] || $d['orderId'] !== $s['orderId'] || $d['currencyCode'] !== '050' || empty($body['merchantCallbackURL'])) {
+            $json(array('status' => 'Failed', 'reason' => 'Invalid Request', 'message' => 'challenge / order mismatch'), 400);
+        }
+        $state['ng'][$m[1]]['amount'] = (string) $d['amount'];
+        $save();
+        $json(array('status' => 'Success', 'callBackUrl' => 'http://127.0.0.1:8765/nagad-pay?ref=' . $m[1]));
+    }
+    if (preg_match('#^/api/dfs/verify/payment/(NG[0-9A-F]{16})$#', $p, $m) && isset($state['ng'][$m[1]])) {
+        $s = $state['ng'][$m[1]];
+        $outcome = !empty($state['ng_outcome']) ? $state['ng_outcome'] : 'Success';
+        $json(array('merchantId' => $s['merchantId'], 'orderId' => $s['orderId'], 'paymentRefId' => $m[1], 'amount' => $s['amount'],
+            'issuerPaymentRefNo' => $outcome === 'Success' ? 'NGTRX' . substr($m[1], -8) : null, 'status' => $outcome, 'statusCode' => $outcome === 'Success' ? '000' : '001'));
+    }
+    $json(array('reason' => 'Not found', 'message' => 'unknown nagad endpoint ' . $p), 404);
+}
+
+// ---------------- Upay merchant checkout (paths as configured in the registry) ----------------
+if (strpos($path, '/upay/') === 0) {
+    $p = substr($path, strlen('/upay'));
+    if ($p === '/payment/merchant-auth/') {
+        if (($body['merchant_id'] ?? '') !== 'qa_up_mid' || ($body['merchant_key'] ?? '') !== 'qa_up_key') {
+            $json(array('code' => 'MAF4001', 'message' => 'Invalid merchant credentials'), 401);
+        }
+        $json(array('code' => 'MAS2001', 'message' => 'Authorized', 'data' => array('token' => 'upay-qa-token')));
+    }
+    if ($hdr('Authorization') !== 'UPAY upay-qa-token') {
+        $json(array('code' => 'AUTH401', 'message' => 'Unauthorized'), 401);
+    }
+    if ($p === '/payment/merchant-payment-init/') {
+        $trx = 'UP' . strtoupper(bin2hex(random_bytes(5)));
+        $state['up'][(string) $body['txn_id']] = array('amount' => (string) $body['amount'], 'trx' => $trx, 'redirect' => (string) $body['redirect_url']);
+        $save();
+        $json(array('code' => 'MPIS2002', 'message' => 'Payment initiated', 'data' => array('gateway_url' => 'http://127.0.0.1:8765/upay-pay?trx=' . $trx, 'trx_id' => $trx)));
+    }
+    if (preg_match('#^/payment/single-payment-status/([A-Za-z0-9]+)/$#', $p, $m) && isset($state['up'][$m[1]])) {
+        $s = $state['up'][$m[1]];
+        $json(array('code' => 'SPS2001', 'message' => 'ok', 'data' => array('status' => 'success', 'amount' => $s['amount'], 'txn_id' => $m[1], 'trx_id' => $s['trx'])));
+    }
+    $json(array('code' => 'NF404', 'message' => 'unknown upay endpoint ' . $p), 404);
+}
+
+// ---------------- UddoktaPay (checkout-v2 / verify-payment) ----------------
+if (strpos($path, '/uddoktapay/') === 0) {
+    $p = substr($path, strlen('/uddoktapay'));
+    if ($hdr('RT-UDDOKTAPAY-API-KEY') !== 'qa_udp_key') {
+        $json(array('status' => false, 'message' => 'Unauthorized Action'), 401);
+    }
+    if ($p === '/api/checkout-v2') {
+        $iid = 'UDP' . strtoupper(bin2hex(random_bytes(6)));
+        $state['udp'][$iid] = array('amount' => (string) $body['amount'], 'metadata' => $body['metadata'], 'full_name' => $body['full_name'], 'email' => $body['email']);
+        $save();
+        $json(array('status' => true, 'message' => 'Payment Url', 'payment_url' => 'http://127.0.0.1:8765/udp-pay?invoice_id=' . $iid));
+    }
+    if ($p === '/api/verify-payment') {
+        $iid = (string) ($body['invoice_id'] ?? '');
+        if (!isset($state['udp'][$iid])) {
+            $json(array('status' => 'ERROR', 'message' => 'Invoice not found'));
+        }
+        $s = $state['udp'][$iid];
+        $json(array('full_name' => $s['full_name'], 'email' => $s['email'], 'amount' => $s['amount'], 'fee' => '0.00', 'charged_amount' => $s['amount'], 'invoice_id' => $iid,
+            'metadata' => $s['metadata'], 'payment_method' => 'bkash', 'sender_number' => '01700000000', 'transaction_id' => 'UDTRX' . substr($iid, -6), 'date' => date('Y-m-d H:i:s'), 'status' => 'COMPLETED'));
+    }
+    $json(array('status' => false, 'message' => 'unknown uddoktapay endpoint ' . $p), 404);
+}
+
 // ---------------- Voucher provider: Popular Vouchers Catalogue & Distributor API v1.1 shape ----------------
 if ($path === '/__pv') {
     // test knobs: count, bump (price increase), drop (variant to omit), env (account environment)
@@ -335,40 +465,108 @@ if (strpos($path, '/voucher/') === 0) {
         $page = array_slice($all, $offset, $limit);
         $json(array('products' => $page, 'count' => count($page), 'limit' => $limit, 'offset' => $offset, 'metadata' => array('skip' => $offset, 'take' => $limit, 'count' => count($all))));
     }
-    if ($p === '/distributor/orders' && $_SERVER['REQUEST_METHOD'] === 'POST') {
-        $state['pv_last_order'] = array('body' => $body, 'idem' => $hdr('Idempotency-Key'));
-        $save();
+    // Orders, exactly as the real API answered our sandbox orders on 2026-11-28:
+    // POST /distributor/transactions (Idempotency-Key required, replay returns the same transaction),
+    // 202 {transaction:{id:'dtx_..', status:'accepted'}}, then GET /distributor/transactions/{id}.
+    if ($p === '/distributor/transactions' && $_SERVER['REQUEST_METHOD'] === 'POST') {
+        $idem = $hdr('Idempotency-Key');
+        $state['pv_last_order'] = array('body' => $body, 'idem' => $idem);
         $v = isset($body['variant_id']) ? (string) $body['variant_id'] : '';
-        $ref = isset($body['reference']) ? (string) $body['reference'] : '';
+        if ($idem === '' || $v === '' || !isset($body['quantity']) || (int) $body['quantity'] !== 1) {
+            $save();
+            $json(array('error' => array('code' => 'invalid_request', 'message' => 'Idempotency-Key and variant_id are required; quantity must be 1')), 400);
+        }
+        if (isset($state['pv_key'][$idem])) {
+            $state['pv_posts'][$idem] = (isset($state['pv_posts'][$idem]) ? $state['pv_posts'][$idem] : 0) + 1;
+            $save();
+            $json(array('transaction' => $state['pv_tx'][$state['pv_key'][$idem]], 'balance' => 5000, 'replayed' => true), 200);
+        }
+        if (strpos($v, 'variant_QA_') !== 0) {
+            $save();
+            $json(array('error' => array('code' => 'product_not_found', 'message' => 'Product variant is unavailable')), 404);
+        }
         if ($v === 'variant_QA_OOS') {
+            $save();
             $json(array('error' => array('code' => 'out_of_stock', 'message' => 'Variant out of stock')), 422);
         }
         if ($v === 'variant_QA_409') {
-            $json(array('message' => 'An order with this reference is already being processed'), 409);
-        }
-        if ($v === 'variant_QA_PEND') {
-            $state['pv_orders']['ord_PEND_' . substr($ref, -6)] = 'pending';
             $save();
-            // order-level "code" is an order reference, NOT a voucher code
-            $json(array('order' => array('id' => 'ord_PEND_' . substr($ref, -6), 'code' => 'ORD-' . substr($ref, -6), 'status' => 'pending')), 201);
+            $json(array('error' => array('code' => 'conflict', 'message' => 'A transaction with this key is already being processed')), 409);
         }
-        $delivery = isset($body['delivery_data']) && is_array($body['delivery_data']) ? $body['delivery_data'] : array();
-        if ($v === 'variant_QA_FFID' || $v === 'variant_QA_GP100') {
-            $dest = isset($delivery['User']) ? $delivery['User'] : (isset($delivery['DestNo']) ? $delivery['DestNo'] : '');
-            if ($dest === '' || trim($dest, '0') === '') {
-                $json(array('order' => array('id' => 'ord_' . substr($ref, -6), 'status' => 'failed'), 'message' => 'Invalid destination'), 200);
-            }
-            $json(array('order' => array('id' => 'ord_' . substr($ref, -6), 'status' => 'completed', 'items' => array(array('variant_id' => $v)))), 201);
+        $need = $v === 'variant_QA_FFID' ? 'User' : ($v === 'variant_QA_GP100' ? 'DestNo' : '');
+        $delivery = isset($body['delivery_details']) && is_array($body['delivery_details']) ? $body['delivery_details'] : array();
+        if ($need !== '' && (!isset($delivery[$need]) || (string) $delivery[$need] === '')) {
+            $save();
+            $json(array('error' => array('code' => 'invalid_delivery_details', 'message' => 'Delivery details do not match the supplier requirements', 'fields' => array($need))), 400);
         }
-        $json(array('order' => array('id' => 'ord_' . substr($ref, -6), 'status' => 'completed', 'items' => array(array('variant_id' => $v,
-            'vouchers' => array(array('code' => 'LIVECODE-' . substr($ref, -6), 'pin' => '4455', 'serial' => 'S1', 'expires_at' => '2027-12-31')))))), 201);
+        $id = 'dtx_' . bin2hex(random_bytes(8));
+        $tx = array('id' => $id, 'order_id' => null, 'external_id' => $idem, 'product_variant_id' => $v, 'quantity' => 1, 'currency_code' => 'bdt',
+            'status' => 'accepted', 'delivery_details' => $need !== '' ? $delivery : array(), 'result' => null, 'failure_code' => null, 'failure_message' => null,
+            'delivery_channel' => 'email', 'buyer_email' => null);
+        if ($v === 'variant_QA_PEND') {
+            $tx['code'] = 'ORD-' . substr($idem, -6); // transaction-level "code" is a reference, NOT a voucher code
+        }
+        $behavior = isset($state['pv_next']) ? $state['pv_next'] : '';
+        unset($state['pv_next']);
+        $state['pv_tx'][$id] = $tx;
+        $state['pv_meta'][$id] = array('behavior' => $behavior, 'variant' => $v, 'dest' => $need !== '' ? (string) $delivery[$need] : '');
+        $state['pv_key'][$idem] = $id;
+        $state['pv_posts'][$idem] = 1;
+        $save();
+        if ($behavior === 'timeout') {
+            $json(array('message' => 'upstream timeout'), 504); // created, but the reply is lost
+        }
+        $json(array('transaction' => $tx, 'balance' => 5000, 'replayed' => false), 202);
     }
-    if (preg_match('#^/distributor/orders/(ord_PEND_\d{6})$#', $p, $mm) && isset($state['pv_orders'][$mm[1]])) {
-        $json(array('order' => array('id' => $mm[1], 'status' => 'completed', 'items' => array(array('vouchers' => array(array('code' => 'PENDCODE-' . substr($mm[1], -6), 'pin' => '9999')))))));
+    if (preg_match('#^/distributor/transactions/(dtx_[0-9a-f]{16})$#', $p, $mm)) {
+        $id = $mm[1];
+        if (!isset($state['pv_tx'][$id])) {
+            $json(array('error' => array('code' => 'not_found', 'message' => 'Transaction not found')), 404);
+        }
+        $tx = $state['pv_tx'][$id];
+        $meta = $state['pv_meta'][$id];
+        if ($tx['status'] === 'accepted' && ($meta['variant'] !== 'variant_QA_PEND' || !empty($state['pv_release'][$tx['external_id']]))) {
+            $ref = substr($tx['external_id'], -6);
+            if ($meta['dest'] !== '' && trim($meta['dest'], '0') === '') {
+                $tx['status'] = 'failed';
+                $tx['failure_code'] = 'invalid_destination';
+                $tx['failure_message'] = 'Invalid destination';
+            } elseif ($meta['dest'] !== '') {
+                $tx['status'] = 'completed';
+                $tx['result'] = array('sandbox' => false, 'delivery' => array('message' => 'Top-up delivered', 'reference' => 'sup_' . $ref));
+            } elseif ($meta['behavior'] === 'nocode') {
+                $tx['status'] = 'completed';
+                $tx['result'] = array('sandbox' => false, 'delivery' => array('message' => 'Delivered by email', 'reference' => 'sup_' . $ref));
+            } elseif ($meta['behavior'] === 'sandbox') {
+                $tx['status'] = 'completed';
+                $tx['result'] = array('test' => false, 'sandbox' => true, 'provider' => 'sandbox',
+                    'delivery' => array('message' => 'Simulated fulfillment completed successfully. A test delivery email was sent - no real supplier order was created.', 'reference' => 'sandbox_' . $id));
+            } else {
+                $tx['status'] = 'completed';
+                $prefix = $meta['variant'] === 'variant_QA_PEND' ? 'PENDCODE-' : 'LIVECODE-';
+                $tx['delivery_details'] = array(array('code' => $prefix . $ref, 'pin' => $meta['variant'] === 'variant_QA_PEND' ? '9999' : '4455', 'serial' => 'S1', 'expires_at' => '2027-12-31'));
+                $tx['result'] = array('sandbox' => false, 'delivery' => array('message' => 'Delivered', 'reference' => 'sup_' . $ref));
+            }
+            $state['pv_tx'][$id] = $tx;
+            $save();
+        }
+        $json(array('transaction' => $tx));
     }
     $json(array('error' => array('message' => 'not found')), 404);
 }
 
+// tests: behaviour of the NEXT Popular Vouchers transaction (timeout | nocode | sandbox), and
+// releasing a transaction that stays "accepted" (variant_QA_PEND) by its Idempotency-Key
+if ($path === '/__pv_next') {
+    $state['pv_next'] = (string) $_GET['behavior'];
+    $save();
+    $json(array('ok' => true));
+}
+if ($path === '/__pv_release') {
+    $state['pv_release'][(string) $_GET['key']] = 1;
+    $save();
+    $json(array('ok' => true));
+}
 if ($path === '/__pw_final') {
     $state['pw'][$_GET['ref']]['final'] = $_GET['final'];
     $save();

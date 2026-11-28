@@ -183,7 +183,20 @@ $label = function ($cat) {
       <?php foreach ($orders as $o): ?>
         <tr><td class="font-monospace"><?= $h($o['order_no']) ?></td><td><?= $h($o['username']) ?></td><td><?= $h($o['product_name']) ?><?= $o['player_id'] ? '<br><small class="text-muted">to ' . $h($o['player_id']) . '</small>' : '' ?></td>
             <td class="text-end"><?= $h($o['price']) ?></td><td><?= $h($o['mode']) ?></td>
-            <td><?= $h($o['status']) ?><?= $o['failure_reason'] ? '<br><small class="text-muted">' . $h($o['failure_reason']) . '</small>' : '' ?></td><td class="text-nowrap"><?= $h($o['created_at']) ?></td></tr>
+            <td><?= $h($o['status']) ?><?= $o['failure_reason'] ? '<br><small class="text-muted">' . $h($o['failure_reason']) . '</small>' : '' ?><?= $o['provider_order_id'] ? '<br><small class="text-muted font-monospace">' . $h($o['provider_order_id']) . '</small>' : '' ?></td><td class="text-nowrap"><?= $h($o['created_at']) ?></td></tr>
+        <?php if ($o['status'] === 'processing'): ?>
+        <tr><td colspan="7" class="border-0 pt-0">
+          <form method="post" action="route.php?action=VoucherOrderAction" class="row g-1 align-items-center" onsubmit="var a=this.order_action.value; return a!=='refund' || confirm('Refund only after the distributor portal shows this transaction FAILED. Refund <?= $h($o['price']) ?> Tk to the customer?');">
+            <?= Csrf::field() ?><input type="hidden" name="order_no" value="<?= $h($o['order_no']) ?>">
+            <div class="col-auto"><select name="order_action" class="form-select form-select-sm" required>
+              <option value="check">Check with provider now</option><option value="deliver">Deliver manually (code from portal)</option><option value="refund">Refund to Main wallet</option></select></div>
+            <div class="col-auto"><input name="code" class="form-control form-control-sm" placeholder="Code (deliver)" autocomplete="off" maxlength="200"></div>
+            <div class="col-auto"><input name="pin" class="form-control form-control-sm" placeholder="PIN (optional)" autocomplete="off" maxlength="100"></div>
+            <div class="col-auto"><input type="password" inputmode="numeric" name="self_pin" class="form-control form-control-sm" placeholder="Self-PIN" required autocomplete="off"></div>
+            <div class="col-auto"><button class="btn btn-sm btn-outline-primary">Go</button></div>
+          </form>
+        </td></tr>
+        <?php endif; ?>
       <?php endforeach; ?>
       <?php if (!$orders): ?><tr><td colspan="7" class="text-center text-muted">No orders yet.</td></tr><?php endif; ?>
       </tbody>

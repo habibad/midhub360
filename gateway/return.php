@@ -78,7 +78,18 @@ if (GatewayRegistry::exists($gw) && preg_match('/^MH\d{18}$/', $inv)) {
             if ($state === 'completed') {
                 // follow-up action paid for by this deposit (e.g. a voucher / Player ID top-up)
                 $intentResult = DepositService::runIntent($inv);
-                if (is_array($intentResult)) {
+                if (!empty($txn['intent'])) {
+                    // A voucher payment: talk about the voucher, not about a wallet top-up.
+                    if (is_array($intentResult)) {
+                        $message = 'Payment received. ' . $intentResult['message'];
+                    } else {
+                        // already handled (webhook / cron got here first): report the order as it is now
+                        $vo = \Midhub\Db::one('SELECT status FROM voucher_orders WHERE deposit_invoice = ? ORDER BY id DESC LIMIT 1', 's', array($inv));
+                        $voText = array('delivered' => 'Your voucher is ready in My Vouchers.', 'processing' => 'Your voucher order is processing and will appear in My Vouchers shortly.',
+                            'refunded' => 'The provider could not deliver the voucher; the amount was returned to your Main wallet.');
+                        $message = 'Payment received. ' . ($vo && isset($voText[$vo['status']]) ? $voText[$vo['status']] : 'Your voucher order is being prepared.');
+                    }
+                } elseif (is_array($intentResult)) {
                     $message .= ' ' . $intentResult['message'];
                 }
             }

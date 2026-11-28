@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $_SESSION['vo_flash'] = array('error', $chk['message']);
             } else {
                 $res = DepositService::create($userId, $method, 'balance', $chk['price'], $nonce,
-                    array('type' => 'voucher', 'product_id' => $productId, 'player_id' => $playerId));
+                    array('type' => 'voucher', 'product_id' => $productId, 'player_id' => $chk['player_id'], 'price' => $chk['price']));
                 header('Location: ' . $res['redirect_url']);
                 exit();
             }
@@ -112,6 +112,7 @@ $st = array('delivered' => 'success', 'processing' => 'warning', 'refunded' => '
   .vo-pay input:checked + label { border-color:#1abc9c; box-shadow:0 0 0 2px rgba(26,188,156,.3); }
   .vo-pay input { position:absolute; opacity:0; }
   .vo-pay input:focus-visible + label { outline:2px solid #1abc9c; }
+  .vo-pay input:disabled + label { opacity:.5; cursor:not-allowed; }
 </style>
 <div class="content-page"><div class="content"><div class="container-fluid">
   <div class="row"><div class="col-12"><div class="page-title-box">
@@ -231,11 +232,14 @@ $st = array('delivered' => 'success', 'processing' => 'warning', 'refunded' => '
         </div>
         <label class="form-label">Pay with</label>
         <div class="vo-pay">
-          <input type="radio" name="pay_method" id="pm-wallet" value="wallet" checked><label for="pm-wallet"><b>Main wallet</b> <small class="text-muted">(<?= $h($mainBal) ?> Tk, PIN required)</small></label>
           <?php foreach ($payGateways as $slug => $g): ?>
-            <input type="radio" name="pay_method" id="pm-<?= $h($slug) ?>" value="<?= $h($slug) ?>"><label for="pm-<?= $h($slug) ?>"><i class="mdi <?= $h($g->definition['icon']) ?>"></i> <b><?= $h($g->definition['name']) ?></b><?= (float) $g->chargePercentage > 0 ? ' <small class="text-muted">+' . $h($g->chargePercentage) . '% charge</small>' : '' ?><?= !$g->isLive() ? ' <span class="badge bg-info">TEST</span>' : '' ?></label>
+            <input type="radio" name="pay_method" id="pm-<?= $h($slug) ?>" value="<?= $h($slug) ?>" data-charge="<?= $h($g->chargePercentage) ?>" data-min="<?= $h($g->minAmount) ?>" data-max="<?= $h($g->maxAmount) ?>">
+            <label for="pm-<?= $h($slug) ?>"><i class="mdi <?= $h($g->definition['icon']) ?>"></i> <b><?= $h($g->definition['name']) ?></b><?= !$g->isLive() ? ' <span class="badge bg-info">TEST</span>' : '' ?>
+              <small class="text-muted d-block vo-total"></small></label>
           <?php endforeach; ?>
+          <input type="radio" name="pay_method" id="pm-wallet" value="wallet" data-charge="0" data-min="0" data-max="0"><label for="pm-wallet"><b>Main wallet</b> <small class="text-muted">(<?= $h($mainBal) ?> Tk, PIN required)</small></label>
         </div>
+        <?php if ($payGateways): ?><small class="text-muted d-block">Pay from your own bKash / Nagad / Upay account. The voucher is delivered automatically as soon as the payment is confirmed. If the provider cannot deliver it, the amount goes to your Main wallet.</small><?php endif; ?>
         <div class="mt-2" id="vo-pinwrap">
           <label class="form-label" for="vo-pin">Your PIN</label>
           <input type="password" inputmode="numeric" pattern="[0-9]*" maxlength="8" class="form-control" name="pincode" id="vo-pin">
@@ -249,11 +253,30 @@ $st = array('delivered' => 'success', 'processing' => 'warning', 'refunded' => '
 (function () {
   var pidWrap = document.getElementById('vo-pidwrap'), pidIn = document.getElementById('vo-playerid');
   var pinWrap = document.getElementById('vo-pinwrap'), pinIn = document.getElementById('vo-pin');
+  var mainBal = parseFloat(<?= json_encode((string) $mainBal) ?>) || 0;
   function syncPay() {
     var m = document.querySelector('input[name=pay_method]:checked');
     var wallet = !m || m.value === 'wallet';
     pinWrap.style.display = wallet ? '' : 'none'; pinIn.required = wallet;
     document.getElementById('vo-submit').textContent = wallet ? 'Buy now' : 'Continue to payment';
+  }
+  // Each gateway shows what the customer pays (price + its charge); gateways whose min/max
+  // does not cover the price are disabled. The first usable gateway is pre-selected unless the
+  // Main wallet already covers the price.
+  function setPrice(price) {
+    var first = null;
+    document.querySelectorAll('input[name=pay_method]').forEach(function (r) {
+      if (r.value === 'wallet') { return; }
+      var pct = parseFloat(r.dataset.charge) || 0, min = parseFloat(r.dataset.min) || 0, max = parseFloat(r.dataset.max) || 0;
+      var total = price + Math.round(price * pct) / 100; // charge rounded half-up to paisa, like the server
+      var ok = price >= min && (max <= 0 || price <= max);
+      r.disabled = !ok;
+      var t = r.nextElementSibling.querySelector('.vo-total');
+      t.textContent = ok ? ('You pay ' + total.toFixed(2) + ' Tk' + (pct > 0 ? ' (incl. ' + pct + '% charge)' : '')) : ('Not available for this amount (' + min + ' - ' + max + ' Tk)');
+      if (ok && !first) { first = r; }
+    });
+    var pick = (mainBal >= price || !first) ? document.getElementById('pm-wallet') : first;
+    pick.checked = true;
   }
   document.querySelectorAll('input[name=pay_method]').forEach(function (r) { r.addEventListener('change', syncPay); });
   document.querySelectorAll('.vo-buy').forEach(function (b) {
@@ -269,6 +292,7 @@ $st = array('delivered' => 'success', 'processing' => 'warning', 'refunded' => '
       pidIn.maxLength = parseInt(b.dataset.idmax || '64', 10);
       pidIn.autocapitalize = 'off';
       document.getElementById('vo-idlabel').textContent = b.dataset.idlabel || 'Player ID';
+      setPrice(parseFloat(b.dataset.price) || 0);
       syncPay();
     });
   });
